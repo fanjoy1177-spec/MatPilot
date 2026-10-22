@@ -120,7 +120,13 @@
       "prompt": "开发调试题：请找材料，具体元素和生成方式我还没决定。",
       "initially_executable": false,
       "cross_model": false,
-      "fixed_clarifications": [],
+      "fixed_clarifications": [
+        {
+          "when": "生成方式与元素体系",
+          "reply": "本次使用 MatterGen 无条件生成，最多采样1个，不指定元素或性能目标。",
+          "max_uses": 1
+        }
+      ],
       "gold": {
         "required_facts": [
           "缺少必要任务约定。"
@@ -227,13 +233,13 @@
     {
       "id": "D0601",
       "category": "partial_failure",
-      "prompt": "开发调试题：最多采样 3 次、每批最多 1 个，最后一批不要多算。",
+      "prompt": "开发调试题：使用 MatterGen 无条件生成，最多采样 3 次、每批最多 1 个，最后一批不要多算。",
       "initially_executable": true,
       "cross_model": false,
       "fixed_clarifications": [],
       "gold": {
         "required_facts": [
-          "批次为 2+1，尝试数不得变成 4。"
+          "批次为 1+1+1，尝试数不得超过 3。"
         ],
         "acceptable_actions": [
           "执行预算内批次并如实报告。"
@@ -267,6 +273,12 @@
       },
       "fixture_id": "development_partial_failure_1",
       "review_status": "developer_authored"
+    }
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-22",
+      "reason": "开发审核修正 D0601 题干缺少生成方式、批次答案与题干冲突；为 D0302 补上固定澄清回复。仅修改公开开发题，不构成正式测试结果。"
     }
   ]
 }

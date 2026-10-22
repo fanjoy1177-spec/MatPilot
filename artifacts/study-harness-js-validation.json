@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "evidence_scope": "cpu_contract_and_local_process_only",
+  "real_scientific_computation": false,
+  "api_requests": 0,
+  "passed": true,
+  "tests_run": 26,
+  "pass": 26,
+  "fail": 0,
+  "skipped": 0,
+  "elapsed_seconds": 3.86,
+  "source_sha256": {
+    "benchmarks/harness_study.mjs": "69af3a35e9e2b8c27bd320108faa0f09d13f8b68344e7668f464f7ebde6b6d13",
+    "benchmarks/harness_study.test.mjs": "672eb63bd56e4f133a8a0ee8e1ff767abdabf40b7da21707300fe7cc391c9ff4",
+    "benchmarks/study_drivers/harness_bridge.mjs": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+    "benchmarks/study_drivers/harness_bridge.test.mjs": "e02cd92bbe6267a6d1b7785eec410ecf7810ad1947eca5d4d6ed19525c637cb1"
+  },
+  "limitations": [
+    "Fake Harness contract tests plus real local Python echo processes; not an actual Harness LLM study."
+  ],
+  "failure_log": null
+}

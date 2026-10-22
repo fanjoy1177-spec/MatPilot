@@ -1,0 +1,2 @@
+# Upstream config_utils imports PyYAML even when isolated config paths are absent.
+PyYAML>=6,<7

@@ -1,0 +1,169 @@
+"""Actually build a copied-source CPU-validated pack; never invoke an LLM."""
+import copy
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from matpilot.evaluation import configuration_identity
+from matpilot.study_workspace import _driver
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "benchmarks/study_drivers/prepare_development.py"
+SPEC = importlib.util.spec_from_file_location("study_prepare_under_test", SCRIPT)
+MODULE = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(MODULE)
+
+
+class StudyPrepareTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        base = ROOT / ".work/test-temp"
+        base.mkdir(parents=True, exist_ok=True)
+        cls.tmp = tempfile.TemporaryDirectory(dir=base)
+        cls.root = Path(cls.tmp.name)
+        cls.output = cls.root / "prepared"
+        cls.node = shutil.which("node")
+        if not cls.node:
+            raise RuntimeError("A real Node executable is required; CPU bridge validation must not be skipped.")
+        cls.summary = MODULE.prepare(cls.output, provider="TEST-ONLY-unexecuted-provider", model="TEST-ONLY-unexecuted-model",
+                                     reasoning_mode="TEST-ONLY-off", host_version="TEST-ONLY-unexecuted-host",
+                                     python_path=sys.executable, node_path=cls.node)
+        cls.environment = json.loads((cls.output / "environment.json").read_text(encoding="utf-8"))
+        cls.inventory = json.loads((cls.output / "inventory.json").read_text(encoding="utf-8"))
+        cls.pack = json.loads((cls.output / "runtime.json").read_text(encoding="utf-8"))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_actual_bridge_smoke_binds_copied_sources_and_zero_api_scope(self):
+        report = json.loads((self.output / "reports/cpu-smoke.json").read_text(encoding="utf-8"))
+        self.assertTrue(report["passed"])
+        self.assertEqual(report["passed_cases"], 8)
+        self.assertTrue(report["source_files_unchanged_during_run"])
+        self.assertEqual(report["evidence_scope"], "cpu_tool_contract_only")
+        self.assertEqual(self.summary["api_requests"], 0)
+        self.assertFalse(self.summary["api_credentials_loaded"])
+        self.assertFalse(self.summary["cost_ledger_opened"])
+        self.assertEqual(self.summary["real_material_model_runs"], 0)
+        service_hash = hashlib.sha256((self.output / "source/src/matpilot/service.py").read_bytes()).hexdigest()
+        for case in report["cases"]:
+            if case["group"].startswith("M"):
+                self.assertEqual(case["identity"]["checking_layer"]["source_sha256"]["service"], service_hash)
+
+    def test_pack_contains_public_tasks_actual_group_configs_and_no_answers(self):
+        self.assertEqual(len(self.pack["rows"]), 36)
+        self.assertEqual(self.pack["mode"], "development")
+        self.assertFalse(self.pack["real_compute_allowed"])
+        self.assertEqual(self.pack["shared"]["model"], "TEST-ONLY-unexecuted-model")
+        self.assertEqual(self.pack["shared"]["host_version"], "TEST-ONLY-unexecuted-host")
+        for task in self.pack["tasks"]:
+            self.assertEqual(set(task), {"id", "prompt", "fixture_id", "fixed_clarifications"})
+        for group, config in self.environment.items():
+            self.assertEqual(config["driver_validation"]["configuration_sha256"], configuration_identity(config))
+            self.assertEqual(self.inventory["drivers"][group]["options"]["implementation_group"], group)
+            self.assertEqual(config["driver_options_hash"], MODULE.digest(self.inventory["drivers"][group]["options"]))
+            self.assertEqual(config["requirement_mapping"], group == "M")
+            self.assertEqual(config["evidence_checks"], group == "M")
+            receipt = json.loads(Path(self.inventory["drivers"][group]["validation_report_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(receipt["group"], group)
+            self.assertTrue(all(case["group"] == group for case in receipt["checks"]))
+            self.assertEqual(receipt["acceptance"], "not_harness_end_to_end_acceptance")
+
+    def test_normal_skills_are_complete_and_common_capabilities_identical(self):
+        source = self.output / "source"
+        common = (source / "instructions/upstream.txt").read_text(encoding="utf-8")
+        matpilot = (source / "instructions/matpilot.txt").read_text(encoding="utf-8")
+        self.assertTrue(matpilot.startswith(common))
+        for skill in (source / "benchmarks/study_drivers/upstream_snapshot/skills").glob("*/SKILL.md"):
+            self.assertIn(skill.read_text(encoding="utf-8"), common)
+        self.assertIn(MODULE.original_instructions(source), matpilot)
+        self.assertIn("禁止调用submit_job", matpilot)
+        self.assertIn("execute_plan", matpilot)
+        self.assertEqual(len({c["scientific_capability_hash"] for c in self.environment.values()}), 1)
+        self.assertEqual(self.environment["U"]["instruction_hash"], self.environment["U+"]["instruction_hash"])
+
+    def test_source_manifest_is_root_relative_complete_and_tamper_checked(self):
+        source = self.output / "source"
+        manifest = json.loads((source / "source-manifest.json").read_text(encoding="utf-8"))
+        paths = {entry["path"] for entry in manifest["files"]}
+        for required in ("src/matpilot/service.py", "benchmarks/study_drivers/broker.py",
+                         "benchmarks/study_drivers/harness_bridge.mjs", "examples/templates/cubic_nacl.cif",
+                         "benchmarks/baseline/atomisticskills-uplus.patch", "instructions/matpilot.txt"):
+            self.assertIn(required, paths)
+        self.assertFalse(any(Path(path).is_absolute() or ".." in Path(path).parts for path in paths))
+        self.assertFalse(any(".env" == Path(path).name or "__pycache__" in path or "ledger" in path for path in paths))
+        target = source / "src/matpilot/service.py"
+        original = target.read_bytes()
+        try:
+            target.write_bytes(original + b"\n# changed after validation\n")
+            with self.assertRaisesRegex(ValueError, "source dependency changed"):
+                _driver(self.environment["M"], self.inventory["drivers"]["M"], self.output, formal=False)
+        finally:
+            target.write_bytes(original)
+
+    def test_common_pre_authorization_is_identical_and_production_override_is_limited(self):
+        source = self.output / "source"
+        common = (source / "instructions/upstream.txt").read_text(encoding="utf-8")
+        matpilot = (source / "instructions/matpilot.txt").read_text(encoding="utf-8")
+        authorization = "共同执行授权协议：本开发测试题的控制器已授权完成题干范围内的CPU回放及只读检查；合法参数不变且不扩大预算时，不重复请求执行授权。"
+        constraint = "此共同预授权不补全未知参数，也不授权改变任务：缺少必需信息，或需要实质改变条件、预算时，仍调用ask_clarification；无法得到所需许可或信息时不作相应变更。"
+        for group in ("U", "U+", "M"):
+            text = Path(self.inventory["drivers"][group]["instruction_path"]).read_text(encoding="utf-8")
+            self.assertEqual(text.count(authorization), 1)
+            self.assertEqual(text.count(constraint), 1)
+            self.assertTrue(text.startswith(common))
+        production = MODULE.original_instructions(source)
+        override = "上方生产说明中的再次确认步骤由共同执行授权协议中的预授权替代，仅限本研究题干范围内的CPU回放及只读检查；不影响生产插件的确认规则。"
+        self.assertIn(override, matpilot)
+        self.assertNotIn(override, common)
+        self.assertGreater(matpilot.index(override), matpilot.index(production) + len(production))
+        # Production sources remain byte-identical; only the research instructions override them.
+        self.assertEqual((source / "src/matpilot/server.py").read_bytes(), (ROOT / "src/matpilot/server.py").read_bytes())
+
+    def test_cpu_receipt_cannot_be_used_for_formal_acceptance(self):
+        with self.assertRaisesRegex(ValueError, "actual Harness replay end-to-end"):
+            _driver(self.environment["M"], self.inventory["drivers"]["M"], self.output, formal=True)
+        report = json.loads((self.output / "reports/cpu-smoke.json").read_text(encoding="utf-8"))
+        manifest = json.loads((self.output / "source/source-manifest.json").read_text(encoding="utf-8"))
+        report["cases"][0]["passed"] = False
+        with self.assertRaisesRegex(ValueError, "failed or undocumented"):
+            MODULE.verify_smoke(report, self.output / "source", manifest, report["fixture_manifest_sha256"])
+
+    def test_runtime_pack_passes_actual_javascript_preflight_without_running_agent(self):
+        source = self.output / "source"
+        code = ("import {loadRuntimePack} from " + json.dumps((source / "benchmarks/harness_study.mjs").as_uri()) + ";"
+                "const r=loadRuntimePack(" + json.dumps(str(self.output / "runtime.json")) + ");"
+                "console.log(JSON.stringify({mode:r.pack.mode,rows:r.pack.rows.length}));")
+        result = subprocess.run([self.node, "--input-type=module", "-e", code], text=True, encoding="utf-8",
+                                capture_output=True, timeout=30, env=MODULE.safe_environment())
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"mode": "development", "rows": 36})
+
+    def test_required_identity_inputs_and_no_credential_or_ledger_side_effect(self):
+        missing = self.root / "must-not-exist"
+        with self.assertRaisesRegex(ValueError, "Explicit nonempty model"):
+            MODULE.prepare(missing, provider="test", model="", reasoning_mode="off", host_version="test")
+        self.assertFalse(missing.exists())
+        with patch.dict(os.environ, {"DEEPSEEK_API_KEY": "TEST-ONLY-NEVER-SENT", "PYTHONPATH": "TEST-ONLY-UNTRUSTED"}):
+            env = MODULE.safe_environment()
+            self.assertNotIn("DEEPSEEK_API_KEY", env)
+            self.assertNotIn("PYTHONPATH", env)
+        result = subprocess.run([sys.executable, str(SCRIPT), str(missing)], text=True, capture_output=True, timeout=30)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(missing.exists())
+        self.assertFalse(any(self.output.rglob("start.json")))
+        self.assertFalse(any(self.output.rglob("*ledger*")))
+
+
+if __name__ == "__main__":
+    unittest.main()

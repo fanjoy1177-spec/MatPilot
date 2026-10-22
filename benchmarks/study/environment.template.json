@@ -13,7 +13,20 @@
     "driver_validated": false,
     "source_revision": null,
     "instruction_hash": null,
-    "baseline_patch_hash": null
+    "baseline_patch_hash": null,
+    "max_requests": 16,
+    "timeout_ms": 180000,
+    "guidance_scale": 2,
+    "driver_sha256": null,
+    "source_manifest_sha256": null,
+    "driver_validation": {
+      "configuration_sha256": null,
+      "report_sha256": null
+    },
+    "requirement_mapping": false,
+    "evidence_checks": false,
+    "ablation": null,
+    "driver_options_hash": null
   },
   "U+": {
     "host_version": null,
@@ -29,7 +42,20 @@
     "driver_validated": false,
     "source_revision": null,
     "instruction_hash": null,
-    "baseline_patch_hash": null
+    "baseline_patch_hash": null,
+    "max_requests": 16,
+    "timeout_ms": 180000,
+    "guidance_scale": 2,
+    "driver_sha256": null,
+    "source_manifest_sha256": null,
+    "driver_validation": {
+      "configuration_sha256": null,
+      "report_sha256": null
+    },
+    "requirement_mapping": false,
+    "evidence_checks": false,
+    "ablation": null,
+    "driver_options_hash": null
   },
   "M": {
     "host_version": null,
@@ -45,6 +71,19 @@
     "driver_validated": false,
     "source_revision": null,
     "instruction_hash": null,
-    "baseline_patch_hash": null
+    "baseline_patch_hash": null,
+    "max_requests": 16,
+    "timeout_ms": 180000,
+    "guidance_scale": 2,
+    "driver_sha256": null,
+    "source_manifest_sha256": null,
+    "driver_validation": {
+      "configuration_sha256": null,
+      "report_sha256": null
+    },
+    "requirement_mapping": true,
+    "evidence_checks": true,
+    "ablation": null,
+    "driver_options_hash": null
   }
 }

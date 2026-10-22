@@ -1,0 +1,2851 @@
+{
+  "format": "matpilot-harness-development-validation/v1",
+  "status": "awaiting_user_review",
+  "real_compute_allowed": false,
+  "review_report": "releases/0.2.0.dev5/MatPilot_development_review_r3.zip",
+  "metrics": {
+    "format": "matpilot-development-review/v1",
+    "status": "awaiting_user_review",
+    "mode": "development",
+    "correctness_scored": false,
+    "scientific_results_validated": false,
+    "improvement_or_speedup_estimated": false,
+    "runtime_pack_sha256": "40e87ecfbae4221a5ea582ba67d8563b7602d819880b965786fbaf0191519bda",
+    "suite_sha256": "2351465da4baafca3b2d323196991cf0bbc148f1f801ba4ad1827adc626f38e8",
+    "plan_sha256": "0fd0b761f49f78ce55b93d57a18700204c591b79dda088b7d05e2d5285e66319",
+    "ledger_snapshot_sha256": "a1c902b602586d2547f81a6d7ccf533517be0ab3d1aec0d3008f8da52464aaa6",
+    "ledger_accounted_cumulative_cny": 18.839824,
+    "selection_source": "all_planned",
+    "planned_runs": 36,
+    "selected_runs": 36,
+    "not_selected_runs": 0,
+    "completed": 36,
+    "failed": 0,
+    "timeout": 0,
+    "budget_stopped": 0,
+    "missing": 0,
+    "partial": 0,
+    "invalid": 0,
+    "groups": {
+      "U": {
+        "planned_runs": 12,
+        "selected_runs": 12,
+        "completed": 12,
+        "failed": 0,
+        "timeout": 0,
+        "budget_stopped": 0,
+        "missing": 0,
+        "partial": 0,
+        "invalid": 0,
+        "cost_audited_runs": 12,
+        "api_accounted_cny": 2.27484,
+        "api_request_count": 59,
+        "reservation_retained_requests": 0,
+        "observed_run_wall_seconds": 147.9115828000009,
+        "run_wall_time_measured_count": 12,
+        "observed_llm_request_wall_seconds": 122.354,
+        "human_active_seconds": null
+      },
+      "U+": {
+        "planned_runs": 12,
+        "selected_runs": 12,
+        "completed": 12,
+        "failed": 0,
+        "timeout": 0,
+        "budget_stopped": 0,
+        "missing": 0,
+        "partial": 0,
+        "invalid": 0,
+        "cost_audited_runs": 12,
+        "api_accounted_cny": 2.298286,
+        "api_request_count": 60,
+        "reservation_retained_requests": 0,
+        "observed_run_wall_seconds": 133.7556246999949,
+        "run_wall_time_measured_count": 12,
+        "observed_llm_request_wall_seconds": 106.85000000000001,
+        "human_active_seconds": null
+      },
+      "M": {
+        "planned_runs": 12,
+        "selected_runs": 12,
+        "completed": 12,
+        "failed": 0,
+        "timeout": 0,
+        "budget_stopped": 0,
+        "missing": 0,
+        "partial": 0,
+        "invalid": 0,
+        "cost_audited_runs": 12,
+        "api_accounted_cny": 2.842496,
+        "api_request_count": 65,
+        "reservation_retained_requests": 0,
+        "observed_run_wall_seconds": 159.03136509998143,
+        "run_wall_time_measured_count": 12,
+        "observed_llm_request_wall_seconds": 129.94,
+        "human_active_seconds": null
+      }
+    },
+    "runs": [
+      {
+        "run_id": "D0202--Uplus--1",
+        "task_id": "D0202",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "750bbfeaa5f16d5f159e18c11dbf78a2fb1e7c96f141660ed452269eaab96680",
+          "trace.json": "3df59c468de1e454d37c8e1339be1b8088fd1605a58d3a4aea1f11c0a09a2478",
+          "trace.partial.json": "a7f8ef23971b4d83f679973c143c534b9e2775e1e1377110ee3c0e7c31f4127f",
+          "events.jsonl": "469f09311240cd66ba5dbd848894c07de20017243086da79b32a4b3ef9aa0c6a",
+          "journal.jsonl": "e6ef907fa73df983b00b46175405b952030c57a02478bbdf9671e8d25077c352"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.093738,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 6.812,
+        "usage_record_ids": [
+          "c58d3275-9039-4f1b-8981-272798a5d5b3",
+          "d092141b-b3cf-4f21-9750-38e43808fc99",
+          "3ab40d9b-464f-49b3-96e4-899990b43a3b"
+        ],
+        "ledger_records_sha256": "ae61e80c384e6361000cb6ba31397e84f65599910ee3c9ca5cd380d3a865f3bc",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 4,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 8.83891290000081,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0202--M--1",
+        "task_id": "D0202",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "52d2b879f62bd2b07568be86842df2266fdd90075d7e86fec180f796de8c9e9c",
+          "trace.json": "8f54034c073e6c7bfc6e137ed5637c669a8287e268de61660fbc3e8ee5c67572",
+          "trace.partial.json": "2c9547fcfda8065e67146cd806089a21b2dec9db61174d3feb85918ccda16d38",
+          "events.jsonl": "1d0f0c62e48771405dc2b7609f70c440a4462aff24b483449b9062a3bd4ed7dc",
+          "journal.jsonl": "a9540ef1ebee86545e0d6eaf94b5818eca057f20bd7ad04343049ac7dda2c682"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 5,
+        "api_accounted_cny": 0.198022,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.687999999999999,
+        "usage_record_ids": [
+          "279b17f9-b506-46c7-afbb-fcfc003969fc",
+          "88cd4a0a-9f2e-403b-970e-a7143f460ba6",
+          "9fda38e1-a15f-4a59-8be2-519ae30c821a",
+          "34e43954-8fb0-4b2e-aa15-2db58e621c60",
+          "4d242632-4733-47c5-969d-5692cae0598a"
+        ],
+        "ledger_records_sha256": "e181b9209fc79c1b2c845e8bfcd3558f6cb2feca45e3b291fb54d660cb581b62",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 6,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "get_capabilities": 1,
+          "get_input_capabilities": 1,
+          "status": 1,
+          "list_templates": 1,
+          "prepare_plan": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 5,
+        "wall_seconds": 13.783111400008202,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0202--U--1",
+        "task_id": "D0202",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "6e9ff4d5f10342ab0cdc7d9dc5e4537880720c825774c0e09947b94d97d436ee",
+          "trace.json": "f00f09b618789cbcd3e5105a9a7398472517e44d7e2acd89ae72cbc3a224f356",
+          "trace.partial.json": "17d5ad83b591ba2f57284b599f933ed1c69c47e5152b2deda403f5b0db29d413",
+          "events.jsonl": "e5e8b079f453ab5dfb5296cabd7cfa38267a6cbd2736b502b4ce2ece216ed177",
+          "journal.jsonl": "c152c8b76ed179000d4a2f11458fb49f9c0ccd4be08d2c452cbad4410372b197"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.09288199999999999,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 6.951,
+        "usage_record_ids": [
+          "9229af5d-5e23-4eee-a54b-903aa38f5683",
+          "a0507dc7-4dcc-41e4-ac74-974b869e70bf",
+          "eb6e1d1e-e207-40ef-b9b5-bd66bb050714"
+        ],
+        "ledger_records_sha256": "161c7544e2ee091ed0ba6fef77185700b25bc6def6f77da928958ad199fa6e9c",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 8.83262950000167,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0402--M--1",
+        "task_id": "D0402",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "95dc9d06de45c5895ddf4ddcfec7f81ccbfefbe5119c8d9cf7d91d04dcc6cfb4",
+          "trace.json": "740ff8e9f2ebcf1db9913bbea2408e47ee729ef6c639d2beef577a9d4a1c490e",
+          "trace.partial.json": "27f6598b1e81a7276f5674b368d036fe1283a6c094224205b46072ba62a3473f",
+          "events.jsonl": "2b77857d6c0a836455077f04d3cde21a213656dd157ab8ada9f3f2fbc894e609",
+          "journal.jsonl": "b6d9de3b4c4f9e9132e0640bed6b6203c8634d47cfb18629d7ccd9964530c8c8"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.144818,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 9.507,
+        "usage_record_ids": [
+          "e3696339-b077-46ae-88bc-e9a5a8443948",
+          "d916bb81-24fb-4d4c-bce2-a7790eb42ca9",
+          "b60206eb-b0ff-467f-81d7-d6c04bd4dded",
+          "4345c4bb-f3b0-431f-8543-13bfaffb5d2a"
+        ],
+        "ledger_records_sha256": "72b7e5ea6b9fd9f1c4185ed05b8fff5aa963666b2a500be3adc230f776eec311",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 4,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "get_capabilities": 1,
+          "status": 1,
+          "prepare_plan": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 11.587979800000786,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0402--Uplus--1",
+        "task_id": "D0402",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "06e6ddf47ec36b6a705b226510cc3e810ed96a6ed917a25a5e56a44a54ae0097",
+          "trace.json": "b57d869902256e52e1c26a3aa9a06cebdf8df6f8b2ef25a9a8cc70e2d5c43aa8",
+          "trace.partial.json": "541ae80f6cb64398daea1a0ecbf0b1a8e6bfcbead38ff0c086c7c3b77c1557a5",
+          "events.jsonl": "088df0e687549cc8f6c2eba69095bde77b3100be51d1b077290e9a389757812b",
+          "journal.jsonl": "62814f9be8617b4c95fd8ff6b834be7cc5debd779ae7dc18c8d6591466e64c62"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.131076,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.59,
+        "usage_record_ids": [
+          "c26b17c1-d0a2-4eac-a16b-63cd26b691af",
+          "024ef891-8b3a-4e07-924b-614333676900",
+          "2bccb563-ac59-4ca7-8d72-6e935f9e1efc",
+          "02b2508b-cce8-4ba1-aaae-a6c27af75e2f"
+        ],
+        "ledger_records_sha256": "758e907f00d9e7a7f6d696d778d59896dfa1d92bbdac0c3c3b5be92fab90e545",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 7,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "get_candidates": 1,
+          "list_upstream_artifacts": 1,
+          "list_artifacts": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 10.615561800003052,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0402--U--1",
+        "task_id": "D0402",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "9780d0576fa6e627e82a3223f9b5ee46cf7195569ddded22be4f516255a57a48",
+          "trace.json": "04f24c46a40fa88c6aebcc4e99885deab5caa78330d1d70ba980f072a7478671",
+          "trace.partial.json": "b52ea2223d501a78eff2bda86d01f175db53dd6f5e4ba8e14d9c4e47acd8e54e",
+          "events.jsonl": "9426861a6d285100b75330dab3aaeb9e028b2e55a0d5cb4dead48a56b14d5d7a",
+          "journal.jsonl": "75218c18e51b045b564e5b4aa1a2b2a789cecaa717677681ecd586bbbaf3a1e7"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.13044,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 16.837,
+        "usage_record_ids": [
+          "b5d82508-5d15-4899-9e9c-5421b082cdfb",
+          "40150a34-c5ed-4192-8da4-bfdf08a4b28d",
+          "3e4c4697-c3ed-4316-9f7b-b0adafb0727f",
+          "03074d3a-1265-4288-91b8-ca115b75f6aa"
+        ],
+        "ledger_records_sha256": "9271767071d3fcaeaab2b7c35020ac463bc94534336509c59f39a32e977b21ff",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 5,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "list_artifacts": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 18.98078170000017,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0401--Uplus--1",
+        "task_id": "D0401",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "e1480333d56c38b7ad9d386c9130b1b7a029165cb5a74a29b539779ef59c544d",
+          "trace.json": "8d7ac11afb732d44c19e218aba6276a62301bf5bdc7b6c93a50a945a7af774e7",
+          "trace.partial.json": "5243080bb57157dd1ed078f5566c004154b0ee2fbd62c1331fdf7b3c2ca55d16",
+          "events.jsonl": "606190e5ac86e848a2675577580022beb6fdca6d2ce8704145a626c053cb42a6",
+          "journal.jsonl": "69c6357370221ab106b6dc2cc238f8f4fd711b8fcec05b6dfbad41bcc103e35c"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 7,
+        "api_accounted_cny": 0.290038,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.062,
+        "usage_record_ids": [
+          "b2d50b3b-faf6-40f5-adaf-cef305447839",
+          "23390a7b-8f41-4e2d-ad5e-dfd32f02aca7",
+          "3c285bc2-c45a-4d9d-9dd6-a5691e20845f",
+          "463a625c-5155-4a0f-b96e-396ebbe402cb",
+          "197cb20a-2e53-4dfa-9228-88970fa7c930",
+          "5f7cbb17-4a46-477e-b3a1-dd9d2c33d97d",
+          "a27dacc4-cd4c-4666-9a10-c4550fcab63c"
+        ],
+        "ledger_records_sha256": "5834da64175792f7a21250650743792bee18de26262250c3ddc8ef9a4b994038",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 13,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "list_templates": 1,
+          "get_input_capabilities": 1,
+          "generate_structures_with_symmetry": 1,
+          "get_candidates": 1,
+          "get_metrics": 2,
+          "list_upstream_artifacts": 1,
+          "read_upstream_artifact": 2,
+          "list_artifacts": 1,
+          "read_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 7,
+        "wall_seconds": 13.397679700002074,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0401--U--1",
+        "task_id": "D0401",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "f11c664dbaf47b76a2c4c0074bc2476fb64503b32f03fdb11faa56140f75f4dd",
+          "trace.json": "baf401690d452aef1b3061943e7ee6e6e31b588679eababe41adb744f28a486f",
+          "trace.partial.json": "856f379e469c26a62603c021c165fef9a75902c2e319cb5361f18784fa03c231",
+          "events.jsonl": "ca4b7c73320ee8c3af8f6a34d23c4899236e2c668fb98aed3d3708b8f78a19f8",
+          "journal.jsonl": "7615571ad5fe9a6b0ff8713ac0536ee9f420cb3d1134f53d3abed1b6d16a3f21"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 7,
+        "api_accounted_cny": 0.28801,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 12.954,
+        "usage_record_ids": [
+          "7c239648-d081-4869-b838-7ed8937892b5",
+          "29cfb3c8-9953-44f9-8684-d54629b597e5",
+          "472f5e1f-08fa-4994-86ab-34421a7b5eac",
+          "e747a027-26fc-4a57-8e7a-37bd585aa8ba",
+          "a90d5caf-9a09-477a-be89-97aea097973a",
+          "74a59f1a-dc6f-43f3-80b6-b836afd48e0c",
+          "6aa7deff-9526-4e2a-bc04-e0b3aa5de5a7"
+        ],
+        "ledger_records_sha256": "8081705f029b8ede2eda9f36b813d345e153efb77c1bbb15d6935f5a66888326",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 12,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "generate_structures_with_symmetry": 1,
+          "get_candidates": 1,
+          "get_metrics": 3,
+          "read_artifact": 1,
+          "list_upstream_artifacts": 1,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 7,
+        "wall_seconds": 15.17661510001123,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0401--M--1",
+        "task_id": "D0401",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "0396197a249da8d6f9c24816938ef4b79fa2a1b06ea535dab269cd84ba4703b0",
+          "trace.json": "fec6ba9b074df672681bf04946d4e7a614c8556271101ae67c6eb0866b84359e",
+          "trace.partial.json": "47ce13591ac1d90cb6e40f36e676299403edcfbc24bdafe107b225e4b08572e8",
+          "events.jsonl": "4fbdee388c3a16bdc4d4073bd1046be9cae1cf484a21f3997d7b935501ac6636",
+          "journal.jsonl": "043cd8eedd0d05002f464aabd3220f422ea18edb7a0816c0b5658f082db3715d"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 7,
+        "api_accounted_cny": 0.348192,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.530999999999999,
+        "usage_record_ids": [
+          "4cbc531d-4357-431f-b17c-fad3e1812e63",
+          "2e790311-2f3f-4465-a24f-03515e79013d",
+          "96ca20e5-fe9d-49ab-bc3c-9b7b47d990be",
+          "d0e159f3-8bc3-44d8-889b-2f7baa26c50f",
+          "325e6663-6f6e-4d37-9966-351783284dcc",
+          "8716e52e-246b-43d1-b830-3ea9b47caf00",
+          "00315e2c-73d5-4ab5-86af-3370c797d5e6"
+        ],
+        "ledger_records_sha256": "30ffee7c0393c7bae2b71d5f58268c8e07aefdc5656a077e0b813d232780dfe8",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 13,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "get_capabilities": 1,
+          "status": 2,
+          "list_templates": 1,
+          "get_input_capabilities": 1,
+          "prepare_plan": 1,
+          "execute_plan": 1,
+          "get_candidates": 1,
+          "check_candidates": 1,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1,
+          "read_artifact": 1,
+          "read_upstream_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 7,
+        "wall_seconds": 14.3539673999995,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0501--Uplus--1",
+        "task_id": "D0501",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "39263c4df201e3ba0ebf4f83e9b2b882d99263b0a516766b13bd962ec06df933",
+          "trace.json": "c2edfa043ab6f43a9f050310410c2ece4febd016fe2c65179f1e3e84fd95da8d",
+          "trace.partial.json": "daab32ce9904698595811307ef5aa6cc1aba4a49d83a24b776118424fddd2cbc",
+          "events.jsonl": "ae9d06891d374f85868c44c48bddcdba42c8484a83e6ae3b42b7eb89366514c0",
+          "journal.jsonl": "346d889793d2c8ae1ee59df1eb75c025abf260400475fe600ca978f3d8d5a63b"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.089794,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 4.477,
+        "usage_record_ids": [
+          "d35addcf-26e4-40a5-9537-b582791b1a44",
+          "80854415-d0ab-4ae4-b72c-fc45c4105c4d",
+          "3f3cdcf4-3bc8-4264-bf15-84234b945a22"
+        ],
+        "ledger_records_sha256": "3e3aba3e9c884c069257c3e41fcdd2df64369634bd86e11ebb2925ec837c657c",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_metrics": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 6.728783399999141,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0501--U--1",
+        "task_id": "D0501",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "02bdea537bf6dbc86a1f7e3de26a38ced543a7e90fc8bc87974dec71dc90a0d8",
+          "trace.json": "f0fd4d27562c1b9ce86d3c1cc567991cdeabb67c75d27dd5d226859d2b31698f",
+          "trace.partial.json": "b1badd7b1dd87021fa66b8a40d6bb703b1322dca8c8d875935d36719f53fc38d",
+          "events.jsonl": "3e1c132baca2f91de343762eac786e8cd45b5753be7fdbdd99cb9a119801d555",
+          "journal.jsonl": "8a353c190913eb6ff98bc10ffee72100c19914a773e55061238df3eb90cecef0"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.089502,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 4.287,
+        "usage_record_ids": [
+          "4955093e-637a-4d64-8d86-46fb5e197394",
+          "f2c69f21-3e52-4cda-b265-7b32fd2dd952",
+          "5a27cc11-68a2-4897-888d-0c980d9a7dcf"
+        ],
+        "ledger_records_sha256": "efe648fbc99ffed4b1b98fe0ce1d313152279ba4cc3549c3c5ee93dff28b262b",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_metrics": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 6.466615299999714,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0501--M--1",
+        "task_id": "D0501",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "36c386f2cb38314d320e47da6e244169a2d2bfb1af308638845d1aff885b814e",
+          "trace.json": "bde6a44e3732db894d5a5150660268a89e1d9a4da1cbda2ed0f4ae98825d74cd",
+          "trace.partial.json": "d296808a57d9c0c0c0ceed02f52b655cde411c707974fea4f36f5bdb848cb1f1",
+          "events.jsonl": "2c13923822ccbd3a4e822e281b77c433cd4642500a0a54f9b0d88ae3a73f8762",
+          "journal.jsonl": "33c48472c10972d3151009a331b90400b08984d77a0a649d2441d57511ea88f3"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 5,
+        "api_accounted_cny": 0.15967,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.128,
+        "usage_record_ids": [
+          "b2b6830b-1249-440b-b45f-0342629a82a9",
+          "eba074bf-bca5-45dd-9eaf-5c65d0002b4d",
+          "d73780c3-d2e8-49c3-b8b8-76a839e1507f",
+          "260399dc-d53a-40f8-b182-4bb71c710da9",
+          "52c3b47e-847a-4768-b438-4dd85c78359a"
+        ],
+        "ledger_records_sha256": "4739e83349cfb97dd14bab629fe3d510a744db16415166180a2e78da33bfd6b3",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 5,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_metrics": 1,
+          "list_artifacts": 1,
+          "read_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 5,
+        "wall_seconds": 10.35693559999764,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0602--Uplus--1",
+        "task_id": "D0602",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "d38675a1d30cb7c5f75e1e48a8456c88d7f5f6e053596ef086dbeaa1b5eaf67c",
+          "trace.json": "ffc9493cf50fe2f503d0ad2ab91d8df97f8cd7a21f708ef1f92154954298f436",
+          "trace.partial.json": "eeeababa1f893c92555984419b9b345f88d95c93a87187df015d2d9cf5d5623b",
+          "events.jsonl": "1d4a6a7c5f23a2ea10b4625be6035b4cd5100809977360ada8dd26d75c70ecf3",
+          "journal.jsonl": "b4c2a9850f481b643d7381a5e342cafee5440261c8c46042840e1b21e2b4dddd"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.123064,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 5.517,
+        "usage_record_ids": [
+          "9753e4e4-c37c-4659-9c0f-5c6b7b858790",
+          "e3df4dc8-f043-4f41-b96a-37e69f3505da",
+          "54ae8741-a0af-464e-a06f-a277cace8818",
+          "de64ba3a-a9d1-4a2a-992e-c5d5f0ed3ec6"
+        ],
+        "ledger_records_sha256": "15d980c17258c30e3e84037708e78e35d6f5ad5eae471d08b4de70743f0b4a53",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 6,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "get_metrics": 1,
+          "list_artifacts": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 7.82282689999044,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0602--M--1",
+        "task_id": "D0602",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "7b5be7d9b47768cf2642a91d3cbb179a03f3e6bca572ca34b7ff4545fba036ad",
+          "trace.json": "cbe2ff236d82980f5ac891d30f26f2e762be8d486ae8f8c88153cb48ddeed459",
+          "trace.partial.json": "a3aca3c1eb9222941c154c053549914a460b13fc9565966ca78f3d964d3413d1",
+          "events.jsonl": "c4d19ae1f46bc31004bc4bb6dbcc3e8a9f4b736727543e3ccb2afb65dfcbb818",
+          "journal.jsonl": "773eeb6be8d43163290d5a25a825dacfbd84a8edfd1db42910a4a157974e25ac"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.094208,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 6.444,
+        "usage_record_ids": [
+          "5e7baa9e-f90d-49c4-b99e-e0d93679f728",
+          "cd569244-1bea-401f-87c8-8f5f06f2ec49",
+          "e8e2f1cc-0aa8-4f4b-963c-74dcb1eb0c67"
+        ],
+        "ledger_records_sha256": "c00522befcd00802fdb3d831ae518c73b9dc9f1e93f132779bf50718a916579b",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 8.537803499996663,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0602--U--1",
+        "task_id": "D0602",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "45848b515b178ea9dea727b2f95f8c6b994dbcbf60fe3ff08dc19eec5bad79f7",
+          "trace.json": "f927ecc594b9d09f8bda7c43325b407f0fa3cb5f7e29dff632a4056d324e9369",
+          "trace.partial.json": "d72eaff1d762c83a483ad1cca7be4cb3bf580633c3ec81468722c718e5b4b9cb",
+          "events.jsonl": "34e2c27312f19308ba5c36c2816874d7e6536cf7897817c30931f13b57a4db75",
+          "journal.jsonl": "f0b0b018ca21524780077214c633634c076ff18600928f853fa7b4f3f80a9747"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.09539,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.277000000000001,
+        "usage_record_ids": [
+          "ed5d3eaa-e435-4e0b-9ea7-a2ee7b1ab837",
+          "b3414f8a-c51e-47c6-bdb2-61f99eea02d8",
+          "dacf7fbf-9fea-4a2d-bb08-79131321d5e7"
+        ],
+        "ledger_records_sha256": "358d2f6e7245611eeff7ff7414383659a37d6a94951f3c523dea8fe4bde751a0",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 10.173668300002813,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0102--M--1",
+        "task_id": "D0102",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "ca9da3244f05c008208ee91c4001000ef88a341990bbb3de30ba0d2de26f6c2f",
+          "trace.json": "af78649e5172de36b147218a7a42a314d785d5cde74e90171d01b98ee74dea17",
+          "trace.partial.json": "718d71842026a5c4c65701922d268f51a615ffa4c6ade974a50e0433896c73ad",
+          "events.jsonl": "3190ccad9ef22e6af34abbf067a52c1c20bd6db92096f556b2fa80ed4621977d",
+          "journal.jsonl": "dc9e100752dc3c513c6e1ef0684953f82c9c6425c16555e68921979ef75276e8"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.110738,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 9.307,
+        "usage_record_ids": [
+          "f2174956-d884-4e3b-9034-f33e05b21c07",
+          "dcdeb87c-0ffb-4ef8-a263-67ac379f3969",
+          "b8981b94-f137-4e56-87b9-e4cd520b2885"
+        ],
+        "ledger_records_sha256": "98f12ede2b00fe466424e643dc59072430d408d56711608cb6c3e90e6987d5d2",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 5,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "get_capabilities": 1,
+          "get_input_capabilities": 1,
+          "status": 1,
+          "list_templates": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 11.373880899995566,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0102--Uplus--1",
+        "task_id": "D0102",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "f9eec1e09c8639cb7df7f66cc967910a6743d0327703ecc03da9351b200c17a0",
+          "trace.json": "ae7789c091f34f9e526732ed941b07ffa1980d110063873eb3f67debc05330b8",
+          "trace.partial.json": "fc3cb5887451c237558c7017712dfb4f642b4d6aeb85de3d9fd54f983ca86212",
+          "events.jsonl": "377a71b1dd081b8c16eedd9770786aeba33db8b30e5efef52ed798561d104d71",
+          "journal.jsonl": "9e15a0968d5c3c408e8490d6a5ba7329ae807f64a0b39440a92bad1ff3427073"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.13,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.269,
+        "usage_record_ids": [
+          "9118373a-83a4-4eed-9f12-865d4853a8b4",
+          "a45b65fc-27fc-43d1-a0d8-bef9ef337657",
+          "4d896f99-cd1b-46d5-903a-247a71df19bb",
+          "2f9adc38-548c-496f-bc6d-6b5d7b4b880c"
+        ],
+        "ledger_records_sha256": "e4cb96cb3ec4e3b75d120c0880d9eba78afb2ae6ab58e748bc0dcb4c7a93f6b6",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 7,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1,
+          "get_candidates": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 10.36852009999752,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0102--U--1",
+        "task_id": "D0102",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "815bfbb4b458594315f5cd7401ad8985a5cb94419933c46f49e4dec5b33cf9a3",
+          "trace.json": "cd0aa09d1920d92bb7d0fda1e9f6a99092cbcc0c9768ccbf8fa387620f7bea73",
+          "trace.partial.json": "5ab8de2ec5726aa07f8e4088acad077d4e72da68e150583371bb24a80a62f3d7",
+          "events.jsonl": "96621388c808b9418b4b5e3a6060a59613106838f9a6854b6c88a37bf2f74444",
+          "journal.jsonl": "88fb95d8c63c0afb2594b83ffa82d0da7c852eef926f71ff14f5b0db6122a564"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.13079200000000002,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 10.527000000000001,
+        "usage_record_ids": [
+          "be1dc719-ac11-469d-a64d-b532349556e8",
+          "793eab87-7523-496b-95b1-94363b1d5169",
+          "5336e6ea-f8fe-4a29-99d9-cb744ea06cb6",
+          "7ac056a6-3658-4c5b-b4bd-08718f25c965"
+        ],
+        "ledger_records_sha256": "f7af2bf54351ae9e130f2eca685959676231d5611bffff12be0ddb2e6124f9ba",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 5,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "get_candidates": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 12.490318299993872,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0101--Uplus--1",
+        "task_id": "D0101",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "8adc79d7ed5e1f61774f392550a47710aecce6ebcf470c850fb4a9b9f73bfded",
+          "trace.json": "26ca14cb1057f5614a255680cdf4f0484c207895ddd4fd2ec0423470f8aeb367",
+          "trace.partial.json": "e6ce81e7295e165f9c6562513c7cbd329ad5978e46bf9e36776741758cad33bf",
+          "events.jsonl": "465d1fd729e9b7a6ee0215c315e057709ce9ededaaa928d1fbdbf500a643dfa4",
+          "journal.jsonl": "dfea0fccd5ab030bd0c2931c7c88f8f2dc0138b3a0c2e5d14028d289ef8639f3"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 9,
+        "api_accounted_cny": 0.466938,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 14.34,
+        "usage_record_ids": [
+          "cd057372-0866-4c73-ba69-0c9241dfc303",
+          "1e493a2a-890d-40d4-9bc0-000a74ada3f4",
+          "fd26d928-e3f6-4015-a6c0-226b1d6558de",
+          "eeeb76e1-6168-42d9-972f-220e70677e33",
+          "b5c2af1b-733d-4891-9143-8e4582167666",
+          "91eb19a6-4774-4db3-a646-fc7882d21583",
+          "0d7fe1ec-0418-47d4-aeba-b4eaaeabc438",
+          "f79765dc-d671-4768-bb5a-d76164ec6d50",
+          "a4e46b62-ab91-4fef-b413-2583c52f7176"
+        ],
+        "ledger_records_sha256": "f9197479e1835153f6bb2fd27be96ad7920e2bf4e68a90156c9830945c1c6bc7",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 18,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 3,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "generate_structures": 1,
+          "get_candidates": 1,
+          "list_artifacts": 1,
+          "get_metrics": 4,
+          "read_artifact": 2,
+          "list_upstream_artifacts": 1,
+          "read_upstream_artifact": 3
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 9,
+        "wall_seconds": 17.36717239999771,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0101--M--1",
+        "task_id": "D0101",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "a7d3d49c11d5705ba55c087110e90f3ba078b43882c3957cad86b563b35b1334",
+          "trace.json": "eea7a1080b123475005531f7ef0982b910cd2990c952b7c958cd8e20bdea88b8",
+          "trace.partial.json": "0d4e3138d9e289cfa34d248bd4ea8522a12cca25ccac380409c62eae311dfc26",
+          "events.jsonl": "9cb5ecaa6520d28a31343add84982348c67f08d265322878c7611bb1915bd786",
+          "journal.jsonl": "ba9edf46b893a09c0fad43c674e94d8832d31a54906cbce03a54ada73328a581"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 6,
+        "api_accounted_cny": 0.304768,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.41,
+        "usage_record_ids": [
+          "7540750c-b9ec-48cd-883d-7feb1d99a69b",
+          "37c14fc6-2601-45e6-9c86-59903070c23a",
+          "6caa43cb-c46d-4713-a783-de734262cfbf",
+          "2fc8a8a5-1b59-4689-bd7a-a6d044bc6a3c",
+          "49acd694-1cf8-43a2-882f-43dafb93f8ec",
+          "5b8e987a-d690-482a-a1b5-113838dd3bba"
+        ],
+        "ledger_records_sha256": "10f6ba2bf0ab253eee2aa982a6b3f3bd93f39b86b0f8c588fe6d981ff8aacc1d",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 8,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_capabilities": 1,
+          "get_input_capabilities": 1,
+          "prepare_plan": 1,
+          "execute_plan": 1,
+          "check_candidates": 1,
+          "get_candidates": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 6,
+        "wall_seconds": 14.479915199995041,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0101--U--1",
+        "task_id": "D0101",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "a479cebf5b468c7c6cc05301707b284ebfe142d19f97148b3d94957b0ace7a8d",
+          "trace.json": "8030449804e6812bc3923224f6fb888d8642c9b1f4bf920862a136dabfde29f8",
+          "trace.partial.json": "d8972e5c217d46b1d0db7aa2aa5490eedb4ba7304b0bcde34f0975267039b885",
+          "events.jsonl": "83d56050dc319e5cc6e94751f1dcb903b99adefdc8b3c6b1419c7c941eaff108",
+          "journal.jsonl": "cd32a52df22b13665bd8a5d69b32fadd6d4d2bda046a4d0121d295f3e0968276"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 9,
+        "api_accounted_cny": 0.40461,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 12.866999999999999,
+        "usage_record_ids": [
+          "80048980-886d-456b-ad6f-7d2076a2f0f7",
+          "b3c6bb74-2b45-41b1-a900-293900c08cc5",
+          "56223d89-8f3e-476f-ad27-98168e4afc8f",
+          "ef649a67-08ab-4c40-b464-c98fd85ff8e1",
+          "d82c9f4c-27ad-494d-accf-8e04cc7cd7c5",
+          "8b18e1ae-2160-4ef2-af9e-475d3e0ba003",
+          "da21a4ab-bcae-41ca-9e4e-784916f41f8d",
+          "c51ee082-6e56-4638-8782-6885d1c05b1c",
+          "fffbb0f1-9f1e-44c0-b8aa-aea7313ab9fc"
+        ],
+        "ledger_records_sha256": "101fca2560b8c6c7a22a777c196f62d3c46db3db964d0e942901254bd956bf71",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 18,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "list_templates": 1,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 2,
+          "get_candidates": 2,
+          "generate_structures": 1,
+          "get_metrics": 4,
+          "read_artifact": 2,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 9,
+        "wall_seconds": 15.608072599992155,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0201--M--1",
+        "task_id": "D0201",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "bc7926a8cb291aa9ed0e7743032d51dfaaa4b3cd52b7caa96fcfa713aff29034",
+          "trace.json": "5b9272ec4e382c000ab8283df000f5e53c81219be4dd8f04eede3147fe7d0964",
+          "trace.partial.json": "cb4d1f5a4e6f90b70332645322ba9e941cb71d9d0ad9a5aba103d1de02ea69e3",
+          "events.jsonl": "946aba6f9bc493d6cc59a9ce6efa78974e4c87f75c535a8a0e136460c51b6db3",
+          "journal.jsonl": "54c8c46eca501000c713de7cdcef412bc1be6570dbda1558fb4dd4df2390d49d"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 8,
+        "api_accounted_cny": 0.406928,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 13.735,
+        "usage_record_ids": [
+          "4d8a692f-0163-4dd2-b8d1-4bb10555f070",
+          "f59b9092-523f-4f2c-a054-3b687217ff6d",
+          "af02fb35-c80e-4039-a848-da96f39b4848",
+          "241b0f68-40a8-4f30-90cd-bbd0f604568a",
+          "8962fc04-e406-4c7f-91e0-c32a0cfe8c07",
+          "6a7c987a-2570-4ee9-ad6e-87b4e5d5624b",
+          "5c56e57c-c03f-4869-8a5a-63ed61c92634",
+          "6972845f-4137-44a1-a6d7-a2944d48db04"
+        ],
+        "ledger_records_sha256": "c701cf7aa889f889e8c5674ba6e4a1f058da5f7fd1e80589adda66e0c056f181",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 12,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "get_capabilities": 1,
+          "get_input_capabilities": 1,
+          "status": 1,
+          "prepare_plan": 2,
+          "execute_plan": 1,
+          "get_candidates": 1,
+          "check_candidates": 1,
+          "list_upstream_artifacts": 1,
+          "get_metrics": 1,
+          "read_upstream_artifact": 1,
+          "read_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 8,
+        "wall_seconds": 16.538635000005364,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0201--U--1",
+        "task_id": "D0201",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "667307a3dddb88be6786adc72a834e5456137efc04dd61581408cadeb5a5cfe7",
+          "trace.json": "25a5f97d1e7020bcce75ad79b8027a048382b0695c7d90fc26df5115422ce4df",
+          "trace.partial.json": "c748609769370b2076040467db8bf9adcfeaf6065e8b973d503961b8e753ed43",
+          "events.jsonl": "5567dec0fc03429173356b46b41419b3314f3a0be635e369ec2c35db32c1f221",
+          "journal.jsonl": "285a51fb6ccc5334479faca5d7290f96231658f1fb2948d6b7f63b85e0212277"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 3,
+        "api_accounted_cny": 0.09307,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 6.9719999999999995,
+        "usage_record_ids": [
+          "eb458745-444e-4906-8606-48fae2da129d",
+          "37372071-ec84-4728-b6cb-25110969d10e",
+          "f4fb7ef3-7bfe-4267-a621-5845f0d8b868"
+        ],
+        "ledger_records_sha256": "4e6c2db2efb91e0b16cd39baae9e9d351542fc76567038bd3efc89bad7435acb",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 3,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 3,
+        "wall_seconds": 8.906324699997901,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0201--Uplus--1",
+        "task_id": "D0201",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "614d0b00dcda56c8b6059988d1ae3889b5a1ccff08a741e4fb37e7875519747d",
+          "trace.json": "43570098712ae4510028fd8ce360501c3f90841123782c2ce1d5d56ac1c67b5c",
+          "trace.partial.json": "43f661131b26ff338d266cb646350b41d3b93c63879d06901cb139c7a72d9bfa",
+          "events.jsonl": "f334aac8b2f7826c2e34c342f17d5788f0709d4c7b34c7fcdf1500fab64945af",
+          "journal.jsonl": "fa05c89f2e4674c86a4d1a118e474e0abdd6752518be750673be3a2a20b94544"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 6,
+        "api_accounted_cny": 0.241596,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.187000000000001,
+        "usage_record_ids": [
+          "85b098ce-58bd-4a4b-af7a-834cbe578b50",
+          "d0cb65dd-4736-40a0-a119-20c1a9df5828",
+          "f79e29f1-064e-408a-bd77-9ca0d72cfb96",
+          "29b8b0e8-f801-4cbf-8c87-c1fe114a7996",
+          "5fc476e6-e10e-4225-a156-3f7776c4af47",
+          "c29fb949-4ce6-4a53-a5dd-7d2a6d5c1ca9"
+        ],
+        "ledger_records_sha256": "6ef8c685902cdf66f7b94dbbf8d98cee7c0631c63657de49160ee5008b5d1aad",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 11,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "generate_structures": 1,
+          "get_candidates": 1,
+          "get_metrics": 2,
+          "list_upstream_artifacts": 1,
+          "read_artifact": 1,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 6,
+        "wall_seconds": 13.413696299999952,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0301--U--1",
+        "task_id": "D0301",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "758014a25602029eb60e52280bffa98af44a1522b23f640b80ea0047d6e7c4aa",
+          "trace.json": "c12c33e75888adc388591b57609673cf55561de2b94d3432e3391e77bdc6f034",
+          "trace.partial.json": "735ac459c0e880bf98bbcd61613fe97f874617dcf6721a8cd61976397227a718",
+          "events.jsonl": "043ff8fa5dd92ae34566bbe77fa67820675b339aa529d663ad31a44254646483",
+          "journal.jsonl": "448a19439460f6289da7e268fe822254f5b245632e8a70a5f8a15dba662aad1b"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.140112,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.354,
+        "usage_record_ids": [
+          "89799235-d666-4897-a029-12425ea84008",
+          "6fad306a-0606-4964-abfd-55d85d008e8b",
+          "24f75117-4f7d-4359-aa5c-802c895ed82a",
+          "918647d4-468d-4305-877b-d94a5fe4309a"
+        ],
+        "ledger_records_sha256": "808fd635a9198e0b9a4ddcd2ea095fcb76d37a4780b44d8f330355429f99ad3d",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 5,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "list_templates": 1,
+          "generate_structures_with_symmetry": 1,
+          "read_artifact": 1,
+          "get_metrics": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 10.479994599997998,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0301--Uplus--1",
+        "task_id": "D0301",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "46102ec1ea32dacde7e876b1c5d584cb3c8d838f2684048b1c9bd52d4d6adeb2",
+          "trace.json": "21df90955dd1dccb75b288efc1c5862e4398ad7e4fbb0f22a7c461771fcba6d6",
+          "trace.partial.json": "6f2b12521714f9300ab20d8f38746ec932c664c8f589f108b44a516c8d4b2856",
+          "events.jsonl": "87fa4e9f40ddac446cbf6556afaa8b421ad4d7c77e8466ae80733beaa5e61c04",
+          "journal.jsonl": "c0a086433b6163521e04c51a6586b2058838a161847c99c0c49ce6eda4b2c719"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 5,
+        "api_accounted_cny": 0.173408,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.705,
+        "usage_record_ids": [
+          "b5b19dba-381d-4c16-9050-195932601e4f",
+          "4ec251ee-3e87-44d3-b5a4-427f0f810fd9",
+          "2b00d1d7-17d7-425a-b545-c392dcabe515",
+          "6cd365f5-8419-4992-bddc-4128f1236927",
+          "776e6a25-3539-42b6-89d1-58d7d5b656ed"
+        ],
+        "ledger_records_sha256": "b65e16f376b61e352e2175e828e2d945c4461470c4e0ccb7978b0e61c7c9d0a1",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 6,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "list_templates": 1,
+          "get_input_capabilities": 1,
+          "generate_structures_with_symmetry": 1,
+          "get_candidates": 1,
+          "read_upstream_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 5,
+        "wall_seconds": 10.786533000007271,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0301--M--1",
+        "task_id": "D0301",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "e316f9b7f86e9c30b0998386d23b246d928290685803686cc033295c9ac855ee",
+          "trace.json": "a8481f0d98b1964c4f881316512d200eefd73b1c80d7559e099f74cdc77e0b52",
+          "trace.partial.json": "25d08bf50e9b3b9c5887035170386eab63001ae0921d56e43f7f4f25b909f120",
+          "events.jsonl": "179b0a7d0fa1e61a34e3a13c5c373609e2b7451f72785327b5d14806af6139fb",
+          "journal.jsonl": "159ac6ad2586bc46ef4c51d2beac6442ec963512c1907da0e0b1324927af74b8"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 6,
+        "api_accounted_cny": 0.282894,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.098,
+        "usage_record_ids": [
+          "c2f1f6e3-806d-4969-a59d-a14052c70ce8",
+          "3dfdcfee-9948-4a6f-af4a-3c38f59d4e60",
+          "e39e8663-8679-41a2-8178-efc9ada2e471",
+          "daf44e21-109d-489d-9129-6c677cae57ef",
+          "79b9acfa-1e70-40ac-b43d-1ba123e88afa",
+          "6a55b6da-824a-491f-9e18-cb5b1826c5d9"
+        ],
+        "ledger_records_sha256": "90708db348a84d5391dd324c445f1eca4c2f00a02411cc5cfc8aea03f3e7c9ae",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 9,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_capabilities": 1,
+          "list_templates": 1,
+          "get_input_capabilities": 1,
+          "prepare_plan": 1,
+          "execute_plan": 1,
+          "check_candidates": 1,
+          "get_candidates": 1,
+          "read_artifact": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 6,
+        "wall_seconds": 13.649581699997187,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0502--M--1",
+        "task_id": "D0502",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "cb03971f6556d43e27e56c24d95d65f34ebd68808f03c5770bf6eda19ce52900",
+          "trace.json": "bbd0ecc0012932b19d9d228bd17c30e4cbd428179136b0d5b54c0f86f850272f",
+          "trace.partial.json": "8d292b02169bf7ac5f016c8a34d3a6524f4ca4adf30aaf1ea31614879e52f148",
+          "events.jsonl": "923cc512109872a0ca6470193235178109a417f9ac664840058df7829ae34fb8",
+          "journal.jsonl": "cf17a6005b425a74dc8b885ead854b2d8f2c55e6658e521f626aae3026603c20"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.14931,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 9.592,
+        "usage_record_ids": [
+          "678a149b-093e-4496-aaf0-c1ceda92ddc7",
+          "c3f24b98-5a6d-493f-abcd-e2856cb01066",
+          "1c93db44-766f-4801-99b2-3dbbbabbe352",
+          "8bb85a1f-3203-441f-9c1d-6bf64ba275f1"
+        ],
+        "ledger_records_sha256": "de5439fbd929a9854a3b17dd5c359e37a929ce80ff9093ee3ca7326cb5b0bf65",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 6,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_capabilities": 1,
+          "get_candidates": 1,
+          "get_metrics": 2,
+          "compare_candidate_metrics": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 11.662861499994992,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0502--U--1",
+        "task_id": "D0502",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "c056595d1686dba9c1e6c0f04cdb3d44904adc57f92013aa7b61b6dc0997d35c",
+          "trace.json": "b342118277c33243484a8f80c7059458e864be828158de4986596c68f3e861d8",
+          "trace.partial.json": "584a8a99b1195d2d7c34cad284203ab878e9810688336be4156a643f74fb94f6",
+          "events.jsonl": "54bed2ef3070dc917b31c6653fcf276d448132b04f30eed45ad7833d56fc13ae",
+          "journal.jsonl": "eccf8e2fcee3e5785ee96f411251d5b089ca769c261c2cb2d0e23c2324cb6adc"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.13793,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.754,
+        "usage_record_ids": [
+          "3cb80985-9724-47eb-aab6-f442de39ef2d",
+          "79c376b0-1686-4bb9-aabf-31c428922e6a",
+          "b0b575dd-0ca8-411f-a11d-83535c676db3",
+          "b91e4ae3-0ade-40ba-bb1b-82ea2ecf9f09"
+        ],
+        "ledger_records_sha256": "85d1bcbfc3e38e1f91db29d3b3d51c4a6fcf33173e99796648575327b7e73798",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 7,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_input_capabilities": 1,
+          "get_metrics": 2,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 10.701101300001145,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0502--Uplus--1",
+        "task_id": "D0502",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "696f7b58b4af2e2c01c9eef27a04277e5039fb2272676c4b0a1963732404e34c",
+          "trace.json": "d31e90b13c96bb7aa06441bd988e7ba6272f0241c5eb82ce3c6dd715937c0075",
+          "trace.partial.json": "c98b7f930374ac5604639b9652567f0862f6c8a2e3c1c57425f550fb02876c6b",
+          "events.jsonl": "7d8969ee160e615e89c82401b2f340d4ff98548d6d62c67c5c8d705a94d33b3e",
+          "journal.jsonl": "28ae6e0f75d96db434ec7c5701c86188489faa0f3d94b88209afc4723bf9e196"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.14543,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 8.512,
+        "usage_record_ids": [
+          "1df255ff-1435-48dd-8d15-587d0a8628f3",
+          "c9dc6655-5aba-4419-ad1e-c70d1778ebb2",
+          "a70ed23e-2ace-4080-962a-00e2214ac3d9",
+          "61cc718a-7ebb-417e-88bf-7878aaa47475"
+        ],
+        "ledger_records_sha256": "10097ef15caa495e527040f9b4232479e8c2d8692be00b02c058a5697d0fc025",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 11,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_candidates": 1,
+          "get_input_capabilities": 1,
+          "get_metrics": 2,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1,
+          "read_artifact": 4
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 10.651313199996949,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0302--Uplus--1",
+        "task_id": "D0302",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "51d1b0ee81752680ecd9022f406f3129c3671308286bf3b5a0f99772522b2765",
+          "trace.json": "8e17d0d77648e8f3c713c26fe8e1479cf410fdbafbde6ae8d236b8282ad8e871",
+          "trace.partial.json": "cee26c0aaeced3f5d1a4c48b70bca365cb6ec0057ebd70abfa66ced635689ce7",
+          "events.jsonl": "caf16a1dca18087a7f31511023bee45640292eb3f401151e58e881ad4b41fbc1",
+          "journal.jsonl": "3e6c36f8e47ab80ef94444cdd1a99dc32252983b4e7f4a8bd570ca5301fe3959"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 7,
+        "api_accounted_cny": 0.270426,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 12.986,
+        "usage_record_ids": [
+          "e5232cf0-ecdd-44e3-80b5-fb3f8f9b8182",
+          "9757193d-1b30-4334-9529-bccc2151a0ec",
+          "2f5c938f-9cd9-4a3b-9631-d12685c088ea",
+          "46a273c6-2c79-4568-b78e-0d21886ef546",
+          "9a64f22a-62f8-4a6b-9386-461369e9266e",
+          "c2061b49-9c2d-4f53-865a-12863e95e766",
+          "ff023e3c-6631-4a12-a065-805547db778d"
+        ],
+        "ledger_records_sha256": "c70a1acc6e29729d757889ad629d3cdb781530e48e521a5651c2daae266f1cd1",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 14,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1,
+          "list_templates": 1,
+          "generate_structures": 1,
+          "get_candidates": 1,
+          "get_metrics": 2,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1,
+          "read_artifact": 1,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 7,
+        "wall_seconds": 15.356597900003194,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0302--M--1",
+        "task_id": "D0302",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "13d1456ec412fb3919ca618b86ca08bf99cdc459ba9b866efc0595562475b780",
+          "trace.json": "3e69972346fd448aa389f4e6df2ded51d6e95de8334653239fcf8061dbaaa819",
+          "trace.partial.json": "f5a7c66cec3058c857024da8aeef935fd4dcc60a98532ae53f26d5badc8e6eb1",
+          "events.jsonl": "69e63a7aa94bdb708c543a16b5294d96b6eebe57d3d684c90e1655bb98258c3f",
+          "journal.jsonl": "0b301c726bfb948719c13822d6e1ca2f748df0ec32ff178d9425bd33d110609a"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 9,
+        "api_accounted_cny": 0.432388,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 18.047,
+        "usage_record_ids": [
+          "6bdcaf26-1741-46f7-af7e-d85bb13b1baa",
+          "4896e865-95a5-401d-bd18-eee84025b838",
+          "39d687a0-5eb6-4c77-9b1f-2f8037913bb3",
+          "55df4893-16a2-498f-b16f-f198053ec7ee",
+          "02dc9aa2-fecb-4fdd-9a4d-d4cb7bef15f0",
+          "faf13d29-0c6d-4d0f-ac8d-677c99b45ac5",
+          "943cd25b-56eb-49dc-a0d3-075c98a51db6",
+          "f6e7234b-3363-4519-b5b3-8a4bb3c8ad30",
+          "b24af079-a059-4c35-b81e-6a3111f2266b"
+        ],
+        "ledger_records_sha256": "c5f42f60a471cf90d34e86fc40e6db666a1932de8828eabd478dc01a15390c14",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 17,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "get_capabilities": 1,
+          "list_templates": 1,
+          "ask_clarification": 1,
+          "prepare_plan": 2,
+          "execute_plan": 1,
+          "get_candidates": 1,
+          "get_metrics": 1,
+          "list_artifacts": 1,
+          "list_upstream_artifacts": 1,
+          "check_candidates": 1,
+          "read_artifact": 1,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 9,
+        "wall_seconds": 20.891600199997423,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0302--U--1",
+        "task_id": "D0302",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "56cb81e022463d72376bedb30398999c99166cb1fe77b7a00f94e8909e48a740",
+          "trace.json": "64e8facb9c1b389ead1dae248b95131609c0f9abecaf070558ceae4c8b716588",
+          "trace.partial.json": "a0c3024ae25d36b5c3a8382052a521fefe18fc8acc30b38a59f4f1fd2adbbe96",
+          "events.jsonl": "7ad1d5fd6ce83f6dad340504c539a810ad01cc8236f7dcffbfcea0aa8c236e35",
+          "journal.jsonl": "86db8929ca8f566c73f8550aaee8dcfbe08377a59d1543f8374b7c1acf4ec620"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 7,
+        "api_accounted_cny": 0.277414,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 11.249,
+        "usage_record_ids": [
+          "831669a1-a1e0-411e-b0ec-270f8fb7ee81",
+          "da9000bd-8c65-4fb0-8901-c7928485448b",
+          "3d2ed9b4-0d4a-43fc-b64c-5ba5f545c86d",
+          "a465ae2c-0c65-4ab9-8879-6d13e1d40a99",
+          "c5999185-ed0e-4ab5-8628-80eb95d6e136",
+          "3b0cd5ea-c700-4c85-8151-3c98a3f504e7",
+          "48c3e08c-16a7-499f-9f64-8964acfe278b"
+        ],
+        "ledger_records_sha256": "709590cc563f4b23e6ad3f82f3ef6d154ec6ef81f1b6aa17317910ed04a698db",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 12,
+        "clarification_count": 1,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "ask_clarification": 1,
+          "generate_structures": 1,
+          "get_candidates": 1,
+          "list_artifacts": 1,
+          "read_artifact": 1,
+          "get_metrics": 1,
+          "list_upstream_artifacts": 1,
+          "read_upstream_artifact": 2
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 7,
+        "wall_seconds": 13.51218940000236,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0601--M--1",
+        "task_id": "D0601",
+        "group": "M",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "11438fbcfcf4944b52c361ea08c65d3652c614d86bd3c8f9b8f15e94c4cd8d6d",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "54b4f330c9131a3c4b0308c1e555273302f9a9c4f6865add985456380f0f8955",
+          "trace.json": "88ef88c1534cb7b9d3bf137380dc68979f85ac01bfc7d49e992eb22b23e8f20a",
+          "trace.partial.json": "23b8c281d6731fc56d8753ef22072a3cecdcd2c1d399bc5a460e615863199f90",
+          "events.jsonl": "f9fa749f4f1d412c6e5aa1969f2897cbb8ca8218d9da2fce30e0a990a8b8dc32",
+          "journal.jsonl": "8c5510325a7f026a578b50ecdd41df8517f917b8ec2e030c62672cefde9a968f"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 5,
+        "api_accounted_cny": 0.21056,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 9.453,
+        "usage_record_ids": [
+          "1e287a70-a800-44fe-9b6c-7ddeaa0b33a9",
+          "080f9a9c-eb77-461b-a1df-c4d4e311685d",
+          "c63c4f69-833a-4d77-9c54-32b3288d2748",
+          "b6138a04-af34-4367-8796-6d8d5c6d6835",
+          "fdcb2c92-2eef-44b5-83a7-620984b169ac"
+        ],
+        "ledger_records_sha256": "e12df6ab2de9d2ccdfb76e3e1f585391788f88eee1ae73bcd5e8ed20642a4a72",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 6,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 1,
+          "get_capabilities": 1,
+          "prepare_plan": 1,
+          "execute_plan": 1,
+          "get_candidates": 1,
+          "check_candidates": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 5,
+        "wall_seconds": 11.815092899993061,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0601--Uplus--1",
+        "task_id": "D0601",
+        "group": "U+",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "936c7f5c5b234d60a7d0d2df3554f2a3512627bf605904001cb1e772d24779cb",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "90f0e4f69eae31db6c47e15fa828c6693a573aa8bb168f64a12b8632b3e4c0a6",
+          "trace.json": "9acd7117e12fd3ed87fea87ed06447e9a217a809a5fa5290fbc15d40bebaf5bc",
+          "trace.partial.json": "b23bdac73ea0ce52e75ff1932f773d33940e81c537d906934e56dc40d36c09d3",
+          "events.jsonl": "59b40ec2aca44312cbd31a6ebcc791ffd147323159b9e37956a053afcb127e2c",
+          "journal.jsonl": "e85ef62f96afc9c2c61f3808fc995f855eb21b6498b6c5bd8b9500c48972e9e1"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 4,
+        "api_accounted_cny": 0.14277800000000002,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 6.393000000000001,
+        "usage_record_ids": [
+          "d046406d-14c1-4f0a-8ba0-8de4ca3c450c",
+          "21050e2a-3856-4e42-ba5e-77379ebacb25",
+          "8b7c774c-8137-40d1-9826-5a13ab6201c4",
+          "1f938f2a-c1bd-48d3-95aa-83c33b99db80"
+        ],
+        "ledger_records_sha256": "d5fc1e2c727e1286569a0e282b54bc89683e4d39366b78dc1bb1ff25e6f07288",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 4,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "generate_structures": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 4,
+        "wall_seconds": 8.408027099996804,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      },
+      {
+        "run_id": "D0601--U--1",
+        "task_id": "D0601",
+        "group": "U",
+        "repeat": 1,
+        "mode": "development",
+        "configuration_hash": "5331185e9476da45e3c2943e104e9a33632093bc1660df9e364ae852c59605d7",
+        "audit_status": "verified_record",
+        "execution_status": "completed",
+        "issues": [],
+        "source_hashes": {
+          "result.json": "7d0799af055192d5676587c14d2a20670472b9d94d452100da0e6e299b2d8de9",
+          "trace.json": "55840e74635691f3b8f6ce09947a70907ef6fde3039e226867c65e7bd3754d5d",
+          "trace.partial.json": "ce6fb6f58fb58a905ec13538ac63fbd73e5c8ac982ee6444c1806ec779b46f55",
+          "events.jsonl": "204f2bb26a039935939a6fa34903bc4d3b5b0ce8b98a4956a52ccfcf3f1c949b",
+          "journal.jsonl": "bebf1591b102bca778bd76eceb9654db3b4429fb2263f192daf0d41c638a3a4e"
+        },
+        "review_status": "awaiting_user_review",
+        "correctness": null,
+        "human_active_seconds": null,
+        "api_request_count": 8,
+        "api_accounted_cny": 0.394688,
+        "reservation_retained_requests": 0,
+        "pending_reserved_requests": 0,
+        "llm_request_wall_seconds": 14.325,
+        "usage_record_ids": [
+          "dcfedd13-abb8-4547-8a01-e84dc32c7209",
+          "7271617f-df69-46b7-bdc6-c08d170a0c41",
+          "fe8f96b4-6ad8-4014-8650-1a299edb961a",
+          "d76ac3c0-87eb-4b4e-9141-31846956611a",
+          "7c14b6b3-14f7-4459-a63b-e2e12913c68a",
+          "eacb3973-5595-47d9-a89c-16a5b66e4e95",
+          "ff9c6aa2-e9a1-42a5-a382-92ae6bdbde05",
+          "7160a7bc-348d-4710-a129-5a4a80cb5459"
+        ],
+        "ledger_records_sha256": "58eb015bb3b2d4b5113037e1ed6089a4e434768a6d48962d307afc687c5654bd",
+        "accounting": "reported usage at conservative prices or retained reservation; not provider billing",
+        "tool_call_count": 11,
+        "clarification_count": 0,
+        "tool_calls_by_name": {
+          "status": 2,
+          "get_input_capabilities": 1,
+          "generate_structures": 3,
+          "get_candidates": 1,
+          "read_artifact": 1,
+          "get_metrics": 2,
+          "list_artifacts": 1
+        },
+        "user_message_count": 2,
+        "assistant_message_count": 8,
+        "wall_seconds": 16.58327199999988,
+        "failure": null,
+        "turn_end_reason": {
+          "kind": "completed"
+        }
+      }
+    ],
+    "unselected_recorded_runs": [],
+    "unexpected_run_directories": [],
+    "redaction_actions": 1526,
+    "limitations": [
+      "Public development cases; no independent review, correctness score, formal effect estimate or scientific conclusion.",
+      "Completed means the Harness turn ended normally, not that the task answer was correct.",
+      "Wall time includes host/tool overhead; request duration is observed stream wall time, not pure model inference time.",
+      "API amounts are ledger accounting or retained reservations, not provider invoices. Failed requests remain included.",
+      "Partial records are retained; invalid records remain visible but their costs/statuses are excluded from verified aggregates.",
+      "Hashes validate supplied file identities, not the truth of host/reviewer assertions. Original records are not modified.",
+      "Human active time, correctness and speedup remain unmeasured; user review is still pending."
+    ]
+  },
+  "prompt_isolation_audit": {
+    "format": "matpilot-development-prompt-isolation-audit/v1",
+    "mode": "development",
+    "audit_scope": "Recorded prompt isolation, source identity and accounting only; no task or scientific correctness scoring.",
+    "runtime_pack_sha256": "40e87ecfbae4221a5ea582ba67d8563b7602d819880b965786fbaf0191519bda",
+    "runs_audited": 36,
+    "api_requests_audited": 184,
+    "prompt_isolation_checks": 184,
+    "system_messages_audited": 36,
+    "record_integrity_audit_passed": true,
+    "issues": [],
+    "common_prompt_sections_equal": true,
+    "common_prompt_section_hashes": {
+      "harness:identity": [
+        "1dd6363fa551837a710e2112cccb63d61feaa0e1b1070d91b51e840e171e9be1"
+      ],
+      "deployment:persona-prefix": [
+        "e0eb4484e48650627aa9a07bae720c151efc5c331e6e237ad9861e255ba00743"
+      ],
+      "context:file-reference": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      "ui:deliverable-file-references": [
+        "e8a2eb8da7f69017cd912b8ecf43cecb7b0cef1b52ae55be3d5038640f820852"
+      ],
+      "matpilot-study-policy": [
+        "a55ea73956380f4f9f4a8c833c36531023a6e7fd3af08e2879ef449ee4f8b5ed"
+      ],
+      "harness:source": [
+        "cacb12df44551f408df3e53d3d38cc680f55a62643ecc5102ed61e7965c83229"
+      ],
+      "app:web-surface": [
+        "7496863f7f81a12cad97ff5c643339f8ddf344b6525c191c29ab086bec5a400a"
+      ],
+      "deployment:persona-suffix": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ]
+    },
+    "group_instruction_hashes": {
+      "U": "b20e8b82cd0d0a534797557bee312a91d56fd9327d9159d9c307ded75dce6623",
+      "U+": "b20e8b82cd0d0a534797557bee312a91d56fd9327d9159d9c307ded75dce6623",
+      "M": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf"
+    },
+    "current_run_pending_reservations": 0,
+    "historical_unidentified_reserved_records_retained": 1,
+    "historical_unidentified_reserved_cny_retained": 2.113536,
+    "current_batch_api_accounted_cny": 7.415622,
+    "ledger_accounted_cumulative_cny": 18.839824,
+    "request_linkage_limit": "Isolation journal events have no request ID. Their per-run counts are matched to unique ledger IDs; the frozen runner records an isolation check on every prompt assembly. This is not a signed provider attestation.",
+    "per_run": [
+      {
+        "run_id": "D0202--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "3df59c468de1e454d37c8e1339be1b8088fd1605a58d3a4aea1f11c0a09a2478",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0202--M--1",
+        "group": "M",
+        "trace_sha256": "8f54034c073e6c7bfc6e137ed5637c669a8287e268de61660fbc3e8ee5c67572",
+        "usage_record_count": 5,
+        "prompt_isolation_check_count": 5,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0202--U--1",
+        "group": "U",
+        "trace_sha256": "f00f09b618789cbcd3e5105a9a7398472517e44d7e2acd89ae72cbc3a224f356",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0402--M--1",
+        "group": "M",
+        "trace_sha256": "740ff8e9f2ebcf1db9913bbea2408e47ee729ef6c639d2beef577a9d4a1c490e",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0402--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "b57d869902256e52e1c26a3aa9a06cebdf8df6f8b2ef25a9a8cc70e2d5c43aa8",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0402--U--1",
+        "group": "U",
+        "trace_sha256": "04f24c46a40fa88c6aebcc4e99885deab5caa78330d1d70ba980f072a7478671",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0401--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "8d7ac11afb732d44c19e218aba6276a62301bf5bdc7b6c93a50a945a7af774e7",
+        "usage_record_count": 7,
+        "prompt_isolation_check_count": 7,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0401--U--1",
+        "group": "U",
+        "trace_sha256": "baf401690d452aef1b3061943e7ee6e6e31b588679eababe41adb744f28a486f",
+        "usage_record_count": 7,
+        "prompt_isolation_check_count": 7,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0401--M--1",
+        "group": "M",
+        "trace_sha256": "fec6ba9b074df672681bf04946d4e7a614c8556271101ae67c6eb0866b84359e",
+        "usage_record_count": 7,
+        "prompt_isolation_check_count": 7,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0501--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "c2edfa043ab6f43a9f050310410c2ece4febd016fe2c65179f1e3e84fd95da8d",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0501--U--1",
+        "group": "U",
+        "trace_sha256": "f0fd4d27562c1b9ce86d3c1cc567991cdeabb67c75d27dd5d226859d2b31698f",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0501--M--1",
+        "group": "M",
+        "trace_sha256": "bde6a44e3732db894d5a5150660268a89e1d9a4da1cbda2ed0f4ae98825d74cd",
+        "usage_record_count": 5,
+        "prompt_isolation_check_count": 5,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0602--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "ffc9493cf50fe2f503d0ad2ab91d8df97f8cd7a21f708ef1f92154954298f436",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0602--M--1",
+        "group": "M",
+        "trace_sha256": "cbe2ff236d82980f5ac891d30f26f2e762be8d486ae8f8c88153cb48ddeed459",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0602--U--1",
+        "group": "U",
+        "trace_sha256": "f927ecc594b9d09f8bda7c43325b407f0fa3cb5f7e29dff632a4056d324e9369",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0102--M--1",
+        "group": "M",
+        "trace_sha256": "af78649e5172de36b147218a7a42a314d785d5cde74e90171d01b98ee74dea17",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0102--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "ae7789c091f34f9e526732ed941b07ffa1980d110063873eb3f67debc05330b8",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0102--U--1",
+        "group": "U",
+        "trace_sha256": "cd0aa09d1920d92bb7d0fda1e9f6a99092cbcc0c9768ccbf8fa387620f7bea73",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0101--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "26ca14cb1057f5614a255680cdf4f0484c207895ddd4fd2ec0423470f8aeb367",
+        "usage_record_count": 9,
+        "prompt_isolation_check_count": 9,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0101--M--1",
+        "group": "M",
+        "trace_sha256": "eea7a1080b123475005531f7ef0982b910cd2990c952b7c958cd8e20bdea88b8",
+        "usage_record_count": 6,
+        "prompt_isolation_check_count": 6,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0101--U--1",
+        "group": "U",
+        "trace_sha256": "8030449804e6812bc3923224f6fb888d8642c9b1f4bf920862a136dabfde29f8",
+        "usage_record_count": 9,
+        "prompt_isolation_check_count": 9,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0201--M--1",
+        "group": "M",
+        "trace_sha256": "5b9272ec4e382c000ab8283df000f5e53c81219be4dd8f04eede3147fe7d0964",
+        "usage_record_count": 8,
+        "prompt_isolation_check_count": 8,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0201--U--1",
+        "group": "U",
+        "trace_sha256": "25a5f97d1e7020bcce75ad79b8027a048382b0695c7d90fc26df5115422ce4df",
+        "usage_record_count": 3,
+        "prompt_isolation_check_count": 3,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0201--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "43570098712ae4510028fd8ce360501c3f90841123782c2ce1d5d56ac1c67b5c",
+        "usage_record_count": 6,
+        "prompt_isolation_check_count": 6,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0301--U--1",
+        "group": "U",
+        "trace_sha256": "c12c33e75888adc388591b57609673cf55561de2b94d3432e3391e77bdc6f034",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0301--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "21df90955dd1dccb75b288efc1c5862e4398ad7e4fbb0f22a7c461771fcba6d6",
+        "usage_record_count": 5,
+        "prompt_isolation_check_count": 5,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0301--M--1",
+        "group": "M",
+        "trace_sha256": "a8481f0d98b1964c4f881316512d200eefd73b1c80d7559e099f74cdc77e0b52",
+        "usage_record_count": 6,
+        "prompt_isolation_check_count": 6,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0502--M--1",
+        "group": "M",
+        "trace_sha256": "bbd0ecc0012932b19d9d228bd17c30e4cbd428179136b0d5b54c0f86f850272f",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0502--U--1",
+        "group": "U",
+        "trace_sha256": "b342118277c33243484a8f80c7059458e864be828158de4986596c68f3e861d8",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0502--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "d31e90b13c96bb7aa06441bd988e7ba6272f0241c5eb82ce3c6dd715937c0075",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0302--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "8e17d0d77648e8f3c713c26fe8e1479cf410fdbafbde6ae8d236b8282ad8e871",
+        "usage_record_count": 7,
+        "prompt_isolation_check_count": 7,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0302--M--1",
+        "group": "M",
+        "trace_sha256": "3e69972346fd448aa389f4e6df2ded51d6e95de8334653239fcf8061dbaaa819",
+        "usage_record_count": 9,
+        "prompt_isolation_check_count": 9,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0302--U--1",
+        "group": "U",
+        "trace_sha256": "64e8facb9c1b389ead1dae248b95131609c0f9abecaf070558ceae4c8b716588",
+        "usage_record_count": 7,
+        "prompt_isolation_check_count": 7,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0601--M--1",
+        "group": "M",
+        "trace_sha256": "88ef88c1534cb7b9d3bf137380dc68979f85ac01bfc7d49e992eb22b23e8f20a",
+        "usage_record_count": 5,
+        "prompt_isolation_check_count": 5,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+        ]
+      },
+      {
+        "run_id": "D0601--Uplus--1",
+        "group": "U+",
+        "trace_sha256": "9acd7117e12fd3ed87fea87ed06447e9a217a809a5fa5290fbc15d40bebaf5bc",
+        "usage_record_count": 4,
+        "prompt_isolation_check_count": 4,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      },
+      {
+        "run_id": "D0601--U--1",
+        "group": "U",
+        "trace_sha256": "55840e74635691f3b8f6ce09947a70907ef6fde3039e226867c65e7bd3754d5d",
+        "usage_record_count": 8,
+        "prompt_isolation_check_count": 8,
+        "check_count_matches_usage_records": true,
+        "system_message_count": 1,
+        "production_mcp_prompt_absent": true,
+        "frozen_group_instructions_retained_verbatim": true,
+        "retained_group_hash_matches_instruction_file": true,
+        "upstream_skill_markers_present": {
+          "ml-generative-mattergen": true,
+          "ml-generative-diffcsp": true,
+          "general-property-units": true,
+          "mat-stability": true,
+          "mat-structure-novelty": true
+        },
+        "system_message_text_sha256": [
+          "449f0ef0afad5ae379e01ce12956f9971881f03368f9ede1f3b776182592a8ca"
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Controller completion is not task correctness.",
+    "No scientific property validation or relative speedup conclusion is made.",
+    "Cumulative API accounting includes a conservatively retained historical reservation and is not an invoice."
+  ],
+  "review_report_member": "report.md"
+}

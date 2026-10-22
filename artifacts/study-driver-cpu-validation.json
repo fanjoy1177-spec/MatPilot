@@ -1,0 +1,1890 @@
+{
+  "format": "matpilot-study-cpu-validation/v1",
+  "evidence_scope": "cpu_tool_contract_only",
+  "acceptance": "not_harness_end_to_end_acceptance",
+  "started_at": "2026-10-22T14:23:58.014Z",
+  "passed": true,
+  "api_requests": 0,
+  "api_cny": 0,
+  "real_material_model_runs": 0,
+  "scientific_values": "synthetic, not material performance evidence",
+  "structured_entry": "Programmatically supplied requests without raw_request; no AI semantic correctness is tested.",
+  "fixture_manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+  "source_files": [
+    {
+      "path": "benchmarks/baseline/atomisticskills-uplus.patch",
+      "sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384"
+    },
+    {
+      "path": "benchmarks/baseline/source-lock.json",
+      "sha256": "fe6c849911d3ee0fe64f91564cea97e4b30e7c61a027629ad869a95f5ca576ce"
+    },
+    {
+      "path": "benchmarks/study/fixtures.development.json",
+      "sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192"
+    },
+    {
+      "path": "benchmarks/study_drivers/broker.py",
+      "sha256": "bca509791306dac9e713b0b13915ba1f5ea873191c0c9edad98559d796751fdd"
+    },
+    {
+      "path": "benchmarks/study_drivers/harness_bridge.mjs",
+      "sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a"
+    },
+    {
+      "path": "benchmarks/study_drivers/matpilot_checks.py",
+      "sha256": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174"
+    },
+    {
+      "path": "benchmarks/study_drivers/prepare_development.py",
+      "sha256": "c109689b82d523c4d47cce03aece540a99a96bada740ae562fb048387df0f18a"
+    },
+    {
+      "path": "benchmarks/study_drivers/requirements.txt",
+      "sha256": "5b601dc8b9761d4cb984366c2ae43999990dd6a5c6908cd7ae46d381355186a1"
+    },
+    {
+      "path": "benchmarks/study_drivers/smoke_bridge.mjs",
+      "sha256": "d135a112f5ac6f1a840cdb2352e0b9818ad15c950679f75114487b36a8ae17fb"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream-source.json",
+      "sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_replay.py",
+      "sha256": "ddc4c65cf68e7bf298227920479c8b4dafcc39cf581b84a0d456665b37aa982a"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/general-property-units/SKILL.md",
+      "sha256": "38ec9361a82fc7b6ea64c437a24c219116060aca5282f239667b7ef5630008fd"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/mat-stability/SKILL.md",
+      "sha256": "324dcd4d2a67f196f4395cbcefa796a21cf1214ad21b59f0b79a8152ffa4ac6c"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/mat-stability/scripts/compute_ehull.py",
+      "sha256": "688e7eca1f68e0cd8578dcabe10505a07afe69782f5d4eda7f372b434d6e0552"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/mat-structure-novelty/SKILL.md",
+      "sha256": "7a6a354420570e1bc7659fbcfc51c8bc539618a06cfea373371655ac796b085e"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/mat-structure-novelty/scripts/match_structure.py",
+      "sha256": "eb1b24b2ff66fae80d5e4bb358f577fdb8bf34fdc2e3581e7a7c866ba9689fd6"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/ml-generative-diffcsp/SKILL.md",
+      "sha256": "6b0b98e46f80b57b863108040fb88d4b3d3f99a561f2934716229cb522c781d8"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/skills/ml-generative-mattergen/SKILL.md",
+      "sha256": "1934730b569285d7cab449423cebb002ded916c0c51ae251624728766901b064"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/mcp_server/diffcsp_server.py",
+      "sha256": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/mcp_server/mattergen_server.py",
+      "sha256": "d6e67af69dc5facdbfc7755d08c9919e35e9723e832acc26181bf60792aa8d8c"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/config_utils.py",
+      "sha256": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/generative_models/diffcsp/diffcsp_wrapper.py",
+      "sha256": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/generative_models/mattergen/mattergen_wrapper.py",
+      "sha256": "cb69af074a0daf2cec2bbe3344cf5eba8dbd62eec7192d6074b3ddbad21d4bbe"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/mcp_utils.py",
+      "sha256": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/research_utils.py",
+      "sha256": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931"
+    },
+    {
+      "path": "benchmarks/study_drivers/upstream_snapshot/src/utils/serialization_utils.py",
+      "sha256": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b"
+    },
+    {
+      "path": "examples/config.multimodel.demo.json",
+      "sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805"
+    },
+    {
+      "path": "examples/templates/cubic_nacl.cif",
+      "sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+    },
+    {
+      "path": "src/matpilot/__init__.py",
+      "sha256": "7be943d17f526a0f900777f302bfe88f3483b4bc2d527531334c380fe53b3f39"
+    },
+    {
+      "path": "src/matpilot/__main__.py",
+      "sha256": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3"
+    },
+    {
+      "path": "src/matpilot/adapters/__init__.py",
+      "sha256": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1"
+    },
+    {
+      "path": "src/matpilot/adapters/diffcsp.py",
+      "sha256": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36"
+    },
+    {
+      "path": "src/matpilot/adapters/mattergen.py",
+      "sha256": "74d1f825001a108ecbed2665d75cd22142579694113951bf61d1a74e24691caa"
+    },
+    {
+      "path": "src/matpilot/bridges/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/matpilot/bridges/diffcsp_runner.py",
+      "sha256": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89"
+    },
+    {
+      "path": "src/matpilot/capabilities.py",
+      "sha256": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60"
+    },
+    {
+      "path": "src/matpilot/cli.py",
+      "sha256": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef"
+    },
+    {
+      "path": "src/matpilot/compute_process.py",
+      "sha256": "c45b6fa33d2cc873ccfffec00a546f53370d9f1e060f8e6daa1680f86b9ed9d6"
+    },
+    {
+      "path": "src/matpilot/config.py",
+      "sha256": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218"
+    },
+    {
+      "path": "src/matpilot/development_report.py",
+      "sha256": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81"
+    },
+    {
+      "path": "src/matpilot/evaluation.py",
+      "sha256": "b8f0bd81a7799704da4fdbfc47eb63f9eb1c22b9c9e0a74e44bc8e8d7d78a03e"
+    },
+    {
+      "path": "src/matpilot/evidence.py",
+      "sha256": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934"
+    },
+    {
+      "path": "src/matpilot/repairs.py",
+      "sha256": "7766ce3fd2a8e00d30a7428bbe81cd128ca9b79c74d79ffb61de79320ef005e3"
+    },
+    {
+      "path": "src/matpilot/requirements.py",
+      "sha256": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327"
+    },
+    {
+      "path": "src/matpilot/server.py",
+      "sha256": "7f6e5c458156eb09df67aa9e68bb0ef3a5d7415fd85493cde34493df1c9f1f5c"
+    },
+    {
+      "path": "src/matpilot/service.py",
+      "sha256": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e"
+    },
+    {
+      "path": "src/matpilot/store.py",
+      "sha256": "2265fb2c61532164956e7cf6058fb6ebc2a6d665aacad49c3a8a8aeb6a0b9f7e"
+    },
+    {
+      "path": "src/matpilot/structures.py",
+      "sha256": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69"
+    },
+    {
+      "path": "src/matpilot/study_replay.py",
+      "sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35"
+    },
+    {
+      "path": "src/matpilot/study_workspace.py",
+      "sha256": "3b51b3a9c31ef86674131c58bcce75324ef34c53243498fb5a2e2dfaee513592"
+    },
+    {
+      "path": "src/matpilot/templates.py",
+      "sha256": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+    },
+    {
+      "path": "src/matpilot/worker.py",
+      "sha256": "fbf50fb7b94828b4fbe9621619d8651368d20b5ca1a820287336ecdde858c26f"
+    }
+  ],
+  "source_manifest_sha256": "5a8abbda89e7dfb44821c4e45bdd011fbd149a1d3e1b473872dd615d3b2cf9bd",
+  "runtime": {
+    "node": "24.16.0",
+    "platform": "win32"
+  },
+  "cases": [
+    {
+      "id": "u-mattergen-odd-budget",
+      "group": "U",
+      "engine": "mattergen",
+      "fixture": "development_control_semantics_0",
+      "cap": 3,
+      "upstream": true,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "original U requests 4 for num_structures=3,batch_size=2; hard cap=3 rejects before any attempt",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "U",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": null,
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "d6e67af69dc5facdbfc7755d08c9919e35e9723e832acc26181bf60792aa8d8c",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "cb69af074a0daf2cec2bbe3344cf5eba8dbd62eec7192d6074b3ddbad21d4bbe",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "688e7eca1f68e0cd8578dcabe10505a07afe69782f5d4eda7f372b434d6e0552",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "eb1b24b2ff66fae80d5e4bb358f577fdb8bf34fdc2e3581e7a7c866ba9689fd6"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f758bd95f5b28c8799ac03d42c85f36874a803f0d4acb6a11532f4332c166132",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "3cbb3228070dcf661c00bd4999e29ee6b723f889227fa5bbd70c2e570b630441",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": null
+      },
+      "execution": {
+        "upstream_result": {
+          "error": "Generation failed: Generation failed: Entire request denied: it exceeds the remaining hard sampling budget."
+        },
+        "engine_calls": [
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 4
+            },
+            "returned_candidate_ids": []
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_control_semantics_0",
+          "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 0,
+          "sampling_cap": 3,
+          "remaining_budget": 3,
+          "requested_samples": 4,
+          "candidate_ids": [],
+          "events_recorded": 1,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_control_semantics_0",
+            "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 1,
+            "event_sha256": "de521656b68f71edce675c8795f81beb08e77f8ec4d29c52ac80ecb8a6927c9f"
+          }
+        },
+        "candidate_versions": []
+      },
+      "upstream_artifact_count": 0,
+      "wall_seconds": 2.8371333
+    },
+    {
+      "id": "uplus-mattergen-odd-budget",
+      "group": "U+",
+      "engine": "mattergen",
+      "fixture": "development_control_semantics_0",
+      "cap": 3,
+      "upstream": true,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual U+ wrapper executes exact 2+1 batches under the same cap=3",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "U+",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": null
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 3,
+          "sampling_attempts": 3,
+          "status": "completed"
+        },
+        "engine_calls": [
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_a",
+              "c_b"
+            ]
+          },
+          {
+            "batch_size": 1,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 1
+            },
+            "returned_candidate_ids": [
+              "c_c"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_control_semantics_0",
+          "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 3,
+          "sampling_cap": 3,
+          "remaining_budget": 0,
+          "requested_samples": 3,
+          "candidate_ids": [
+            "c_a",
+            "c_b",
+            "c_c"
+          ],
+          "events_recorded": 2,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_control_semantics_0",
+            "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 2,
+            "event_sha256": "05f0b5fcdfc93715a264d750878f8f92d2f03faaae9363aa3a34c7a3b2caedb5"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_0a1158b31340a8adf8e6ae1c1b8461299b47a75148e1f400cf1b25eb944e110e",
+            "parent_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_53dcb5df5fbb8f17e661976c3d16eaf4ada840ce3aeb128c640c2c564cb87575",
+            "parent_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_44d0eac1c2315f1fc9fb26b064539b0d51cd89f901c9e2db48840d66fd452e25",
+            "parent_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "sha256": "bf69f44019d20bf686f5cbc7e65f418c4113b39a3a83d10afe4f33129bdff22b",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 4,
+      "wall_seconds": 2.8464518
+    },
+    {
+      "id": "u-diffcsp-template",
+      "group": "U",
+      "engine": "diffcsp",
+      "fixture": "development_missing_information_0",
+      "cap": 1,
+      "upstream": true,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual DiffCSP server and wrapper return the registered-template synthetic candidate",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "U",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": null,
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "d6e67af69dc5facdbfc7755d08c9919e35e9723e832acc26181bf60792aa8d8c",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "cb69af074a0daf2cec2bbe3344cf5eba8dbd62eec7192d6074b3ddbad21d4bbe",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "688e7eca1f68e0cd8578dcabe10505a07afe69782f5d4eda7f372b434d6e0552",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "eb1b24b2ff66fae80d5e4bb358f577fdb8bf34fdc2e3581e7a7c866ba9689fd6"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f758bd95f5b28c8799ac03d42c85f36874a803f0d4acb6a11532f4332c166132",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "3cbb3228070dcf661c00bd4999e29ee6b723f889227fa5bbd70c2e570b630441",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": null
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 1
+        },
+        "engine_calls": [
+          {
+            "batch_size": 1,
+            "actual_engine_request": {
+              "engine": "diffcsp",
+              "model_name": "mp_csp",
+              "conditions": {
+                "spacegroup": 221,
+                "wyckoff_letters": [
+                  "a",
+                  "b"
+                ],
+                "atom_types": [
+                  "Na",
+                  "Cl"
+                ]
+              },
+              "parameters": {
+                "step_lr": 0.00001
+              },
+              "num_samples": 1
+            },
+            "returned_candidate_ids": [
+              "c_a"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_missing_information_0",
+          "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 1,
+          "sampling_cap": 1,
+          "remaining_budget": 0,
+          "requested_samples": 1,
+          "candidate_ids": [
+            "c_a"
+          ],
+          "events_recorded": 1,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_missing_information_0",
+            "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 1,
+            "event_sha256": "2fa343d65da290547293234b46dc1002ffd326ff7efcd44e54d8987b82541aad"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_c9aa35041262889116df98988a77498192e45b457944bd1ab2e64cdc1fbb836c",
+            "parent_version_id": "s_a0df685cad8000bb206c33523c9f44c629227664b49d2d55db8f3fae6454e4fe",
+            "sha256": "8ddc640ff31b5cca39b2ec4ba710b5d1ee823e993fa2d9e9239280bfcb5ff23d",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 2,
+      "wall_seconds": 2.6902973999999995
+    },
+    {
+      "id": "uplus-diffcsp-template",
+      "group": "U+",
+      "engine": "diffcsp",
+      "fixture": "development_missing_information_0",
+      "cap": 1,
+      "upstream": true,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual DiffCSP server and wrapper return the registered-template synthetic candidate",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "U+",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": null
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 1
+        },
+        "engine_calls": [
+          {
+            "batch_size": 1,
+            "actual_engine_request": {
+              "engine": "diffcsp",
+              "model_name": "mp_csp",
+              "conditions": {
+                "spacegroup": 221,
+                "wyckoff_letters": [
+                  "a",
+                  "b"
+                ],
+                "atom_types": [
+                  "Na",
+                  "Cl"
+                ]
+              },
+              "parameters": {
+                "step_lr": 0.00001
+              },
+              "num_samples": 1
+            },
+            "returned_candidate_ids": [
+              "c_a"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_missing_information_0",
+          "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 1,
+          "sampling_cap": 1,
+          "remaining_budget": 0,
+          "requested_samples": 1,
+          "candidate_ids": [
+            "c_a"
+          ],
+          "events_recorded": 1,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_missing_information_0",
+            "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 1,
+            "event_sha256": "ff4295c1bf6b9d3c6db31cbf9094df51cd3eb78c8dac05ab903e489555ea70c1"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_c9aa35041262889116df98988a77498192e45b457944bd1ab2e64cdc1fbb836c",
+            "parent_version_id": "s_a0df685cad8000bb206c33523c9f44c629227664b49d2d55db8f3fae6454e4fe",
+            "sha256": "8ddc640ff31b5cca39b2ec4ba710b5d1ee823e993fa2d9e9239280bfcb5ff23d",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 2,
+      "wall_seconds": 2.8166885
+    },
+    {
+      "id": "m-mattergen-plan-execute-check",
+      "group": "M",
+      "engine": "mattergen",
+      "fixture": "development_control_semantics_0",
+      "cap": 4,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual MatPilot structured prepare -> actual patched upstream execute -> candidate-ID checks",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "M",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": {
+          "version": "matpilot-study-checks-v1",
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "acceptance": "isolated_checking_layer_not_complete_Harness_M_driver"
+        }
+      },
+      "plan": {
+        "state": "ready",
+        "model_id": "mattergen",
+        "checkpoint": "chemical_system",
+        "num_samples": 4,
+        "requirement_mapping_count": 3,
+        "coverage": {
+          "scope": "structured_input",
+          "proposed_count": 3,
+          "valid_count": 3,
+          "mapped_count": 3,
+          "uncovered_signals": [],
+          "program_mapping_coverage": 1,
+          "semantic_completeness": "not_verified_requires_independent_review",
+          "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+        }
+      },
+      "candidate_checks": {
+        "checks_performed": true,
+        "valid_candidate_count": 3,
+        "unique_valid_candidate_count": 1,
+        "records": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "all_hard_requirements_pass": false,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "fail"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          }
+        ]
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 4,
+          "sampling_attempts": 4,
+          "status": "completed"
+        },
+        "engine_calls": [
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_a",
+              "c_b"
+            ]
+          },
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_c",
+              "c_d"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_control_semantics_0",
+          "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 4,
+          "sampling_cap": 4,
+          "remaining_budget": 0,
+          "requested_samples": 4,
+          "candidate_ids": [
+            "c_a",
+            "c_b",
+            "c_c",
+            "c_d"
+          ],
+          "events_recorded": 2,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_control_semantics_0",
+            "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 2,
+            "event_sha256": "98835804386b871cff0cbc33ce02c917daea17f48ea8682d670a5636558a9ba4"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_0a1158b31340a8adf8e6ae1c1b8461299b47a75148e1f400cf1b25eb944e110e",
+            "parent_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_53dcb5df5fbb8f17e661976c3d16eaf4ada840ce3aeb128c640c2c564cb87575",
+            "parent_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_44d0eac1c2315f1fc9fb26b064539b0d51cd89f901c9e2db48840d66fd452e25",
+            "parent_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "sha256": "bf69f44019d20bf686f5cbc7e65f418c4113b39a3a83d10afe4f33129bdff22b",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_cc641de057c06ae142ebeec2e2cffde8906e04f09df780ccfc942a75bcfb77e5",
+            "parent_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 5,
+      "wall_seconds": 3.3770115000000005
+    },
+    {
+      "id": "m-diffcsp-plan-execute-check",
+      "group": "M",
+      "engine": "diffcsp",
+      "fixture": "development_missing_information_0",
+      "cap": 1,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual MatPilot structured prepare -> actual patched upstream execute -> candidate-ID checks",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "M",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": {
+          "version": "matpilot-study-checks-v1",
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "acceptance": "isolated_checking_layer_not_complete_Harness_M_driver"
+        }
+      },
+      "plan": {
+        "state": "ready",
+        "model_id": "diffcsp",
+        "checkpoint": "mp_csp",
+        "num_samples": 1,
+        "requirement_mapping_count": 4,
+        "coverage": {
+          "scope": "structured_input",
+          "proposed_count": 4,
+          "valid_count": 4,
+          "mapped_count": 4,
+          "uncovered_signals": [],
+          "program_mapping_coverage": 1,
+          "semantic_completeness": "not_verified_requires_independent_review",
+          "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+        }
+      },
+      "candidate_checks": {
+        "checks_performed": true,
+        "valid_candidate_count": 1,
+        "unique_valid_candidate_count": 1,
+        "records": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_a0df685cad8000bb206c33523c9f44c629227664b49d2d55db8f3fae6454e4fe",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s2",
+                "status": "pass"
+              }
+            ]
+          }
+        ]
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 1
+        },
+        "engine_calls": [
+          {
+            "batch_size": 1,
+            "actual_engine_request": {
+              "engine": "diffcsp",
+              "model_name": "mp_csp",
+              "conditions": {
+                "spacegroup": 221,
+                "wyckoff_letters": [
+                  "a",
+                  "b"
+                ],
+                "atom_types": [
+                  "Na",
+                  "Cl"
+                ]
+              },
+              "parameters": {
+                "step_lr": 0.00001
+              },
+              "num_samples": 1
+            },
+            "returned_candidate_ids": [
+              "c_a"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_missing_information_0",
+          "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 1,
+          "sampling_cap": 1,
+          "remaining_budget": 0,
+          "requested_samples": 1,
+          "candidate_ids": [
+            "c_a"
+          ],
+          "events_recorded": 1,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_missing_information_0",
+            "fixture_sha256": "18e24073a54646c9ca00638c79351e36185bff1d62d9ac641df24b6027f2ac08",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 1,
+            "event_sha256": "6bf158ba9544fd31ea316f4f13b7a608f8d8cf2c2fc9e9a0e243fdda39ee3537"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_c9aa35041262889116df98988a77498192e45b457944bd1ab2e64cdc1fbb836c",
+            "parent_version_id": "s_a0df685cad8000bb206c33523c9f44c629227664b49d2d55db8f3fae6454e4fe",
+            "sha256": "8ddc640ff31b5cca39b2ec4ba710b5d1ee823e993fa2d9e9239280bfcb5ff23d",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 2,
+      "wall_seconds": 2.9662978999999994
+    },
+    {
+      "id": "m-without-mapping",
+      "group": "M_without_mapping",
+      "engine": "mattergen",
+      "fixture": "development_control_semantics_0",
+      "cap": 4,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual MatPilot structured prepare -> actual patched upstream execute -> candidate-ID checks",
+        "ablation changes executed feature flags and observable checking behavior",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "M_without_mapping",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": {
+          "version": "matpilot-study-checks-v1",
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "acceptance": "isolated_checking_layer_not_complete_Harness_M_driver"
+        }
+      },
+      "plan": {
+        "state": "ready",
+        "model_id": "mattergen",
+        "checkpoint": "chemical_system",
+        "num_samples": 4,
+        "requirement_mapping_count": 0,
+        "coverage": {
+          "scope": "disabled_by_predeclared_mapping_ablation",
+          "proposed_count": 3,
+          "valid_count": 3,
+          "mapped_count": null,
+          "uncovered_signals": null,
+          "program_mapping_coverage": null,
+          "semantic_completeness": "not_verified",
+          "limitations": "Source anchoring, omission detection and requirement-to-action mapping are disabled; type/unit normalization remains for independent result checks."
+        }
+      },
+      "candidate_checks": {
+        "checks_performed": true,
+        "valid_candidate_count": 3,
+        "unique_valid_candidate_count": 1,
+        "records": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "all_hard_requirements_pass": false,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "fail"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "all_hard_requirements_pass": true,
+            "checks": [
+              {
+                "requirement_id": "s1",
+                "status": "pass"
+              },
+              {
+                "requirement_id": "s3",
+                "status": "unknown"
+              }
+            ]
+          }
+        ]
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 4,
+          "sampling_attempts": 4,
+          "status": "completed"
+        },
+        "engine_calls": [
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_a",
+              "c_b"
+            ]
+          },
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_c",
+              "c_d"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_control_semantics_0",
+          "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 4,
+          "sampling_cap": 4,
+          "remaining_budget": 0,
+          "requested_samples": 4,
+          "candidate_ids": [
+            "c_a",
+            "c_b",
+            "c_c",
+            "c_d"
+          ],
+          "events_recorded": 2,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_control_semantics_0",
+            "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 2,
+            "event_sha256": "e1d6ec28d08629db89dec21e889393642db0925ef52ecce77abe6cf95f4e2352"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_0a1158b31340a8adf8e6ae1c1b8461299b47a75148e1f400cf1b25eb944e110e",
+            "parent_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_53dcb5df5fbb8f17e661976c3d16eaf4ada840ce3aeb128c640c2c564cb87575",
+            "parent_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_44d0eac1c2315f1fc9fb26b064539b0d51cd89f901c9e2db48840d66fd452e25",
+            "parent_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "sha256": "bf69f44019d20bf686f5cbc7e65f418c4113b39a3a83d10afe4f33129bdff22b",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_cc641de057c06ae142ebeec2e2cffde8906e04f09df780ccfc942a75bcfb77e5",
+            "parent_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 5,
+      "wall_seconds": 2.8744710000000016
+    },
+    {
+      "id": "m-without-evidence",
+      "group": "M_without_evidence",
+      "engine": "mattergen",
+      "fixture": "development_control_semantics_0",
+      "cap": 4,
+      "passed": true,
+      "checks": [
+        "shared read access and raw-sample exclusion",
+        "actual MatPilot structured prepare -> actual patched upstream execute -> candidate-ID checks",
+        "ablation changes executed feature flags and observable checking behavior",
+        "shared sampling cap never exceeded"
+      ],
+      "identity": {
+        "group": "M_without_evidence",
+        "real_compute_allowed": false,
+        "scientific_defaults": {
+          "guidance_scale": 2,
+          "step_lr": 0.00001
+        },
+        "execution_backend": "shared_condition_bound_replay",
+        "upstream": {
+          "source_revision": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+          "source_manifest_sha256": "336d098c235b16fda44956276fc887bcc30b8e441c4ec29d40ad8be1568cb009",
+          "applied_patch_sha256": "54a016ce8516805647addc8f25cb3c9fb8486c23b7dde0fcf11095291ff0f384",
+          "source_files": {
+            "src/mcp_server/mattergen_server.py": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+            "src/utils/generative_models/mattergen/mattergen_wrapper.py": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+            "src/mcp_server/diffcsp_server.py": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+            "src/utils/generative_models/diffcsp/diffcsp_wrapper.py": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+            "src/utils/mcp_utils.py": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+            "src/utils/serialization_utils.py": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+            "src/utils/research_utils.py": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+            "src/utils/config_utils.py": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+            "skills/mat-stability/scripts/compute_ehull.py": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+            "skills/mat-structure-novelty/scripts/match_structure.py": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+          },
+          "executed_function_hashes": {
+            "server.generate_structures": "f876a538f3deca2f165bdc12122543933ae07f0fb805a1ab304610ca64796f4b",
+            "wrapper.__init__": "bcdf0512e2aa7d105badbe4742a7d54e3e02bc2cbd6f911d3ace77d8787138e5",
+            "wrapper.generate_structures": "71428e7c8ec6affc41e410f6d1b94251e01c2a5e6e33bd74c390297688d29588",
+            "diffcsp.server.generate_structures_with_symmetry": "55d2dacb1b027e88856511e612811de08a5e007a9569a3eb7a94fce23ae67934",
+            "diffcsp.wrapper.generate_with_symmetry": "0e9329a4fdca63b3b1427c6186a9076873858eb347fbb918d3fec4c782841764"
+          },
+          "template_config_sha256": "d4482fda62ff5f9d5b7835bd22429c3c71f16998f2e61010680c673127b7e805",
+          "science_computation_performed": false,
+          "limitations": [
+            "This JSONL transport calls the actual registered function; it does not test the MCP JSON-RPC transport.",
+            "No real MatterGen checkpoint, CUDA runtime or scientific inference is tested.",
+            "DiffCSP PyXtal operations, torch geometric tensors and real checkpoint loading are not tested or claimed equivalent; only the registered template subset is available.",
+            "Skills are supplied verbatim; this worker cannot establish that an LLM followed them.",
+            "All synthetic fixture numbers and structures remain workflow test data, not material evidence."
+          ]
+        },
+        "checking_layer": {
+          "version": "matpilot-study-checks-v1",
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "acceptance": "isolated_checking_layer_not_complete_Harness_M_driver"
+        }
+      },
+      "plan": {
+        "state": "ready",
+        "model_id": "mattergen",
+        "checkpoint": "chemical_system",
+        "num_samples": 4,
+        "requirement_mapping_count": 3,
+        "coverage": {
+          "scope": "structured_input",
+          "proposed_count": 3,
+          "valid_count": 3,
+          "mapped_count": 3,
+          "uncovered_signals": [],
+          "program_mapping_coverage": 1,
+          "semantic_completeness": "not_verified_requires_independent_review",
+          "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+        }
+      },
+      "candidate_checks": {
+        "checks_performed": false,
+        "valid_candidate_count": null,
+        "unique_valid_candidate_count": null,
+        "records": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "all_hard_requirements_pass": null,
+            "checks": []
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "all_hard_requirements_pass": null,
+            "checks": []
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "all_hard_requirements_pass": null,
+            "checks": []
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "all_hard_requirements_pass": null,
+            "checks": []
+          }
+        ]
+      },
+      "execution": {
+        "upstream_result": {
+          "num_generated": 4,
+          "sampling_attempts": 4,
+          "status": "completed"
+        },
+        "engine_calls": [
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_a",
+              "c_b"
+            ]
+          },
+          {
+            "batch_size": 2,
+            "actual_engine_request": {
+              "engine": "mattergen",
+              "model_name": "chemical_system",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "parameters": {
+                "guidance_scale": 2
+              },
+              "num_samples": 2
+            },
+            "returned_candidate_ids": [
+              "c_c",
+              "c_d"
+            ]
+          }
+        ],
+        "replay_status": {
+          "backend": "study-replay-v1",
+          "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+          "fixture_id": "development_control_semantics_0",
+          "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+          "review_sha256": null,
+          "formal": false,
+          "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+          "runtime": {
+            "python": "3.12.14",
+            "pymatgen": "2026.9.24",
+            "structure_serializer": "pymatgen.io.cif.CifWriter"
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+          "science_computation_performed": false,
+          "attempts_used": 4,
+          "sampling_cap": 4,
+          "remaining_budget": 0,
+          "requested_samples": 4,
+          "candidate_ids": [
+            "c_a",
+            "c_b",
+            "c_c",
+            "c_d"
+          ],
+          "events_recorded": 2,
+          "replay": {
+            "backend": "study-replay-v1",
+            "manifest_sha256": "fb81fe895472f5b113a394334fdb9cdd7738498f02c1ad5c1efdb1bfd3b3c192",
+            "fixture_id": "development_control_semantics_0",
+            "fixture_sha256": "73a721ec0eec4057f769a4fdad62fc05a6234109d511c3c40cbca29e0bfcb249",
+            "review_sha256": null,
+            "formal": false,
+            "backend_source_sha256": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+            "runtime": {
+              "python": "3.12.14",
+              "pymatgen": "2026.9.24",
+              "structure_serializer": "pymatgen.io.cif.CifWriter"
+            },
+            "provenance": {
+              "kind": "synthetic",
+              "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+            },
+            "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+            "science_computation_performed": false
+          },
+          "receipt": {
+            "event_index": 2,
+            "event_sha256": "f444d45ae321b6fec1138e906fba6484a887a1ec4fbd74b12a7e043920ebc06e"
+          }
+        },
+        "candidate_versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_0a1158b31340a8adf8e6ae1c1b8461299b47a75148e1f400cf1b25eb944e110e",
+            "parent_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_b",
+            "structure_version_id": "s_53dcb5df5fbb8f17e661976c3d16eaf4ada840ce3aeb128c640c2c564cb87575",
+            "parent_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_c",
+            "structure_version_id": "s_44d0eac1c2315f1fc9fb26b064539b0d51cd89f901c9e2db48840d66fd452e25",
+            "parent_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+            "sha256": "bf69f44019d20bf686f5cbc7e65f418c4113b39a3a83d10afe4f33129bdff22b",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          },
+          {
+            "candidate_id": "c_d",
+            "structure_version_id": "s_cc641de057c06ae142ebeec2e2cffde8906e04f09df780ccfc942a75bcfb77e5",
+            "parent_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+            "sha256": "b74cb37280101fbab68b037fe1b3a2f3e1da97ed7578e8fcdc21232414fc5167",
+            "metric_inheritance": "none; property evidence remains bound to its explicit input version"
+          }
+        ]
+      },
+      "upstream_artifact_count": 5,
+      "wall_seconds": 2.6738066
+    }
+  ],
+  "private_evidence_directory": ".work/study-cpu-smoke-20261022T142357975Z-1598c9df",
+  "limitations": [
+    "No LLM or actual Harness agent was invoked.",
+    "No independently reviewed fixture set or formal U/U+/M outcome is established.",
+    "Actual upstream functions and MatPilot checks run; heavy generative engines and DiffCSP symmetry setup are replaced by explicitly synthetic CPU fixtures.",
+    "Wall time includes local process startup and is not evidence of AI task acceleration."
+  ],
+  "source_files_unchanged_during_run": true,
+  "completed_at": "2026-10-22T14:24:21.149Z",
+  "wall_seconds": 23.1347946,
+  "passed_cases": 8,
+  "total_cases": 8
+}

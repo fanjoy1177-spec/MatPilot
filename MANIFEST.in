@@ -10,3 +10,10 @@ recursive-include docs/atomisticskills_review *.json *.py
 include artifacts/v02-deployment-validation.json artifacts/v03-deployment-validation.json artifacts/v03-live-acceptance.json
 
 include artifacts/v04-deployment-validation.json artifacts/v04-live-acceptance.json
+
+recursive-include benchmarks/study_drivers *.txt *.yaml *.yml LICENSE
+include artifacts/study-tooling-validation.json artifacts/study-harness-js-validation.json artifacts/study-driver-cpu-validation.json
+
+include artifacts/v05-deployment-validation.json artifacts/study-harness-development-validation.json
+
+include artifacts/figures/study_r3_workflow.png

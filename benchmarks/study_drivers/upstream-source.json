@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "upstream": "https://github.com/learningmatter-mit/AtomisticSkills",
+  "commit": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+  "normalization": "UTF-8 LF; original_raw_sha256 is acquisition evidence, sha256_utf8_lf is portable execution identity",
+  "files": [
+    {
+      "path": "src/mcp_server/mattergen_server.py",
+      "sha256_utf8_lf": "d6e67af69dc5facdbfc7755d08c9919e35e9723e832acc26181bf60792aa8d8c",
+      "original_raw_sha256": "ddb7321f4cf6ce88b7c96001f94db988fb069d8b3687999c545bc34a97e4a8e6"
+    },
+    {
+      "path": "src/utils/generative_models/mattergen/mattergen_wrapper.py",
+      "sha256_utf8_lf": "cb69af074a0daf2cec2bbe3344cf5eba8dbd62eec7192d6074b3ddbad21d4bbe",
+      "original_raw_sha256": "c1dffee225bc5b37126a86d77d11333aed2d0ce9d75f5fe8d68d86b6308fed3c"
+    },
+    {
+      "path": "src/mcp_server/diffcsp_server.py",
+      "sha256_utf8_lf": "260abf51243c0baece25523e26729f6b9b0e11fe8bcac731cf46a3c480e45b2f",
+      "original_raw_sha256": "e8ded878fc15f148c9bc7113ee56174a6fc0da5c30c136aa0b39f656154002b9"
+    },
+    {
+      "path": "src/utils/generative_models/diffcsp/diffcsp_wrapper.py",
+      "sha256_utf8_lf": "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0",
+      "original_raw_sha256": "e4f76fedefc17e983949a97103e75298007667d41b894f82f3f0ade5104269c9"
+    },
+    {
+      "path": "src/utils/mcp_utils.py",
+      "sha256_utf8_lf": "a14c465ce16edb3b456b6722ded2deb5ab1369640b8be1392fc60e4078d9d73c",
+      "original_raw_sha256": "27d24d146fc201c6b1f420e0f467ab127d81f732a889a40b5e0a05d928298db6"
+    },
+    {
+      "path": "src/utils/serialization_utils.py",
+      "sha256_utf8_lf": "9a39910daadc900b89937cbe4377d8cc9b2ec1c92cdd57109ab4e887731ad64b",
+      "original_raw_sha256": "1dec9e1f349098ef13d4d7eae7404b3f058b03c0456e15a694b58515b06c577b"
+    },
+    {
+      "path": "src/utils/research_utils.py",
+      "sha256_utf8_lf": "7de83b51ce6b246f3406b661652a2d74920695cf52e5d05c2d5ac37260ebd931",
+      "original_raw_sha256": "9fa03dd63785935a2d8232aa2becbeab837ed4b84a3b86f15e6ecf4ff5e72e63"
+    },
+    {
+      "path": "src/utils/config_utils.py",
+      "sha256_utf8_lf": "d92fe366c6ba26e189692999424de3282efe5f2908a782c648ccfef233ec3a72",
+      "original_raw_sha256": "dfee4c2cf728de6712b55b92533ee87164d59a7ab0aab7f3a0922a1e366ab554"
+    },
+    {
+      "path": "skills/ml-generative-mattergen/SKILL.md",
+      "sha256_utf8_lf": "1934730b569285d7cab449423cebb002ded916c0c51ae251624728766901b064",
+      "original_raw_sha256": "c344e87db2de1bdf65d37b332cb374d73b52e2ead5e1b5d3bc25179caf5975ca"
+    },
+    {
+      "path": "skills/ml-generative-diffcsp/SKILL.md",
+      "sha256_utf8_lf": "6b0b98e46f80b57b863108040fb88d4b3d3f99a561f2934716229cb522c781d8",
+      "original_raw_sha256": "2bdaaa4f3652390b095ee7c6b40cb96420b9cfd0b45acdcf830d9cd45c6bc649"
+    },
+    {
+      "path": "skills/general-property-units/SKILL.md",
+      "sha256_utf8_lf": "38ec9361a82fc7b6ea64c437a24c219116060aca5282f239667b7ef5630008fd",
+      "original_raw_sha256": "a0b301a589f8bc557abf6b527ed6d05d65a8b8423bef5efce647702bbf1b6dea"
+    },
+    {
+      "path": "skills/mat-stability/SKILL.md",
+      "sha256_utf8_lf": "324dcd4d2a67f196f4395cbcefa796a21cf1214ad21b59f0b79a8152ffa4ac6c",
+      "original_raw_sha256": "b5184ac7da49933b353205663dcc2b04c41cec9c97daf37a7045aebcd8ef47d4"
+    },
+    {
+      "path": "skills/mat-structure-novelty/SKILL.md",
+      "sha256_utf8_lf": "7a6a354420570e1bc7659fbcfc51c8bc539618a06cfea373371655ac796b085e",
+      "original_raw_sha256": "0c775c667c1fb7828bd9ec04eb8444f7b4d31660f73607f7664116ef02fdde13"
+    },
+    {
+      "path": "skills/mat-stability/scripts/compute_ehull.py",
+      "sha256_utf8_lf": "688e7eca1f68e0cd8578dcabe10505a07afe69782f5d4eda7f372b434d6e0552",
+      "original_raw_sha256": "b44669e8f049ea797036426a890caec1ee54ddaddbf9f8112e48c51b3664f23f"
+    },
+    {
+      "path": "skills/mat-structure-novelty/scripts/match_structure.py",
+      "sha256_utf8_lf": "eb1b24b2ff66fae80d5e4bb358f577fdb8bf34fdc2e3581e7a7c866ba9689fd6",
+      "original_raw_sha256": "e4254ed68d6d8aee79d7816103ae72aea01ac568e8dd1c0ac143ca86363dec3a"
+    },
+    {
+      "path": "LICENSE",
+      "sha256_utf8_lf": "9b2328c5b4db3992940035283da40649f16bb8885a47b688314ab358cfafff19",
+      "original_raw_sha256": "5602d8bf7f2e0417b48ece1a982f2fc51923bc27c3254e946d66b1243fe1500a"
+    }
+  ],
+  "acquisition_verification": {
+    "git_head": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+    "git_status_porcelain": "",
+    "scope": "Read-only local upstream checkout verified when copying this snapshot; source execution verifies every UTF-8 LF content hash."
+  }
+}

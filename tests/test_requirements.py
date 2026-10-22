@@ -1,5 +1,6 @@
 import tempfile
 import unittest
+from copy import deepcopy
 from pathlib import Path
 
 from matpilot.config import Settings
@@ -189,3 +190,72 @@ class RequirementTests(unittest.TestCase):
         self.assertEqual(self.plan(raw, [dict(r1, unit="eV"), r2], **kw)["state"], "blocked")
         kw["num_samples"] = 4
         self.assertEqual(self.plan(raw, [r1, r2], **kw)["state"], "blocked")
+
+    def test_batch_cap_accepts_smaller_batches_but_blocks_overrun(self):
+        raw = "使用 MatterGen 无条件生成，每批最多4个"
+        r = requirement(raw, "每批最多4个", "execution_parameter", "batch_size", 4, relation="at_most")
+        for size in (1, 2, 4):
+            with self.subTest(batch_size=size):
+                p = self.plan(raw, [r], unconditional=True, batch_size=size)
+                self.assertEqual(p["state"], "ready", p["issues"])
+                self.assertEqual(p["coverage"]["uncovered_signals"], [])
+                self.assertEqual(p["requirement_mappings"][0]["routes"][0]["relation"], "at_most")
+                self.assertEqual(p["requirement_mappings"][0]["routes"][0]["value"], 4)
+        p = self.plan(raw, [r], unconditional=True, batch_size=5)
+        self.assertEqual(p["state"], "blocked")
+        self.assertTrue(any(i["code"] == "requirement_mismatch" for i in p["issues"]))
+
+    def test_exact_batch_size_remains_exact(self):
+        raw = "每批4个"
+        r = requirement(raw, raw, "execution_parameter", "batch_size", 4)
+        self.assertEqual(self.plan(raw, [r], unconditional=True, batch_size=4)["state"], "ready")
+        self.assertEqual(self.plan(raw, [r], unconditional=True, batch_size=2)["state"], "blocked")
+
+    def test_batch_bound_language_cannot_be_hidden_or_relabelled(self):
+        for text in ("每批最多4个", "每批不超过4个", "每批上限为4个", "batch size at most 4"):
+            with self.subTest(text=text):
+                correct = requirement(text, text, "execution_parameter", "batch_size", 4, relation="at_most")
+                self.assertEqual(self.plan(text, [correct], unconditional=True, batch_size=2)["state"], "ready")
+                relabelled = dict(correct, relation="equal")
+                self.assertEqual(self.plan(text, [relabelled], unconditional=True, batch_size=4)["state"], "blocked")
+                shortened = dict(relabelled, source={"quote": "4"})
+                self.assertNotEqual(self.plan(text, [shortened], unconditional=True, batch_size=4)["state"], "ready")
+        for relation in ("equal", "at_most", "at_least"):
+            text = "每批至少4个"
+            r = requirement(text, text, "execution_parameter", "batch_size", 4, relation=relation)
+            self.assertEqual(self.plan(text, [r], unconditional=True, batch_size=4)["state"], "blocked")
+
+    def test_seed_still_requires_an_exact_original_value(self):
+        raw = "seed=42"
+        r = requirement(raw, raw, "execution_parameter", "seed", 42)
+        self.assertEqual(self.plan(raw, [r], unconditional=True, seed=42)["state"], "ready")
+        for relation in ("at_most", "at_least", "range"):
+            self.assertEqual(self.plan(raw, [dict(r, relation=relation)], unconditional=True, seed=42)["state"], "blocked")
+        for raw in ("seed至少42", "seed上限42"):
+            r = requirement(raw, raw, "execution_parameter", "seed", 42)
+            self.assertEqual(self.plan(raw, [r], unconditional=True, seed=42)["state"], "blocked")
+
+    def test_real_d0601_request_requires_upper_bound_and_then_becomes_ready(self):
+        # Exact second prepare_plan request in r2 D0601--M--1; keep the original
+        # prompt and sampling/batch values. Only repair its incorrect relation.
+        request = {
+            "batch_size": 1, "clarifications": [], "conditions": {}, "model_id": "mattergen", "num_samples": 3,
+            "raw_request": "开发调试题：使用 MatterGen 无条件生成，最多采样 3 次、每批最多 1 个，最后一批不要多算。",
+            "requirements": [
+                {"kind": "sample_budget", "property": "max_samples", "relation": "at_most", "requirement_id": "r1",
+                 "source": {"quote": "最多采样 3 次"}, "strength": "hard", "value": 3},
+                {"kind": "execution_parameter", "property": "batch_size", "relation": "equal", "requirement_id": "r2",
+                 "source": {"quote": "每批最多 1 个"}, "strength": "hard", "value": 1}],
+            "review_targets": [], "search_mode": "direct", "seed": 42, "unconditional": True}
+        original = deepcopy(request)
+        rejected = self.service.prepare_plan(request)
+        self.assertEqual(rejected["state"], "blocked")
+        self.assertTrue(any(i["code"] == "invalid_requirement" and i["requirement_id"] == "r2" for i in rejected["issues"]))
+        request["requirements"][1]["relation"] = "at_most"
+        ready = self.service.prepare_plan(request)
+        self.assertEqual(ready["state"], "ready", ready["issues"])
+        self.assertEqual(ready["coverage"]["uncovered_signals"], [])
+        self.assertEqual(ready["raw_request"], original["raw_request"])
+        self.assertEqual((ready["num_samples"], ready["batch_size"]), (3, 1))
+        self.assertIn("batch_size accepts equal", contract()["kind_rules"]["execution_parameter"])
+        self.assertIn("seed requires equal", contract()["kind_rules"]["execution_parameter"])

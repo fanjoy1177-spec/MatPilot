@@ -1,0 +1,1052 @@
+{
+  "schema_version": 1,
+  "purpose": "development",
+  "author": "MatPilot implementation development fixtures",
+  "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+  "notes": [
+    "Every lattice, coordinate and numeric property in this file is synthetic and must remain labelled synthetic in reports.",
+    "No real trained model, DFT or property evaluator is invoked.",
+    "Conditions and scientific parameters are exact routes. Common study defaults must explicitly set MatterGen guidance_scale=2.0 and DiffCSP step_lr=1e-5 for every group.",
+    "No route catalog, future attempts, gold labels or unreturned candidates may be passed as agent context.",
+    "These fixtures are not independently reviewed and cannot be used as formal study fixtures."
+  ],
+  "fixtures": {
+    "development_control_semantics_0": {
+      "sampling_cap": 4,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system",
+          "conditions": {
+            "chemical_system": "Fe-Ni-O"
+          },
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_c": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_d": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_c",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_d",
+          "error": null
+        }
+      ]
+    },
+    "development_control_semantics_1": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "development_units_language_0": {
+      "sampling_cap": 1,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "dft_band_gap",
+          "conditions": {
+            "dft_band_gap": 1.2
+          },
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ]
+    },
+    "development_units_language_1": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "development_missing_information_0": {
+      "sampling_cap": 1,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "diffcsp",
+          "model_name": "mp_csp",
+          "conditions": {
+            "spacegroup": 221,
+            "wyckoff_letters": [
+              "a",
+              "b"
+            ],
+            "atom_types": [
+              "Na",
+              "Cl"
+            ]
+          },
+          "parameters": {
+            "step_lr": 0.00001
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ]
+    },
+    "development_missing_information_1": {
+      "sampling_cap": 1,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "mattergen_base",
+          "conditions": {},
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ]
+    },
+    "development_condition_conflicts_0": {
+      "sampling_cap": 1,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "diffcsp",
+          "model_name": "mp_csp",
+          "conditions": {
+            "spacegroup": 221,
+            "wyckoff_letters": [
+              "a",
+              "b"
+            ],
+            "atom_types": [
+              "Na",
+              "Cl"
+            ]
+          },
+          "parameters": {
+            "step_lr": 0.00001
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ]
+    },
+    "development_condition_conflicts_1": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "development_candidate_evidence_0": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "band_gap",
+              "value": 0.75,
+              "unit": "eV",
+              "method": {
+                "name": "synthetic-gap-evaluator",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-model-weights",
+                "parameters": {
+                  "fixture": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+              }
+            }
+          ]
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "band_gap",
+              "value": 1.25,
+              "unit": "eV",
+              "method": {
+                "name": "synthetic-gap-evaluator",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-model-weights",
+                "parameters": {
+                  "fixture": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+              }
+            }
+          ]
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": []
+    },
+    "development_candidate_evidence_1": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "energy",
+              "value": -1,
+              "unit": "eV/atom",
+              "method": {
+                "name": "synthetic-potential-A",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-model-weights",
+                "parameters": {
+                  "fixture": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+              }
+            }
+          ]
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "energy",
+              "value": -2,
+              "unit": "eV/atom",
+              "method": {
+                "name": "synthetic-potential-B",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-model-weights",
+                "parameters": {
+                  "fixture": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+              }
+            }
+          ]
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": []
+    },
+    "development_partial_failure_0": {
+      "sampling_cap": 3,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "mattergen_base",
+          "conditions": {},
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": null,
+          "error": {
+            "code": "synthetic_timeout",
+            "message": "Injected attempt timeout; sampling budget remains consumed."
+          }
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "development_partial_failure_1": {
+      "sampling_cap": 1,
+      "initial_attempts": 1,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU workflow fixture; not a trained-model output, measured material property or scientific result."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": []
+    }
+  }
+}

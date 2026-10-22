@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0.dev5 — 2026-10-22
+
+- Preserve batch-size upper bounds separately from exact settings; allow smaller batches and block excess or changed bound semantics.
+- Add pinned U/U+/M replay drivers, real Harness study execution, cumulative API accounting and per-session cost isolation.
+- Add reproducible development-pack preparation and reviewable trace reports; no automatic correctness or speedup claims.
+- Keep all model inference disabled in the current acceptance workflow. Development replay and real scientific validation remain separate.
+
 ## 0.2.0.dev4 / Harness 0.2.0-dev.4
 
 - Make published U+ patch tests independent of Windows CRLF versus Linux LF, retaining raw and canonical source hashes.

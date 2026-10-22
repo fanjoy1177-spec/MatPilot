@@ -20,7 +20,9 @@ NUMERIC = re.compile(r"(?<![\w.])[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?")
 CHEMICAL_SET = re.compile(r"(?<![A-Za-z])(?:[A-Z][a-z]?-)+[A-Z][a-z]?(?![A-Za-z])")
 FORMULA = re.compile(r"(?<![A-Za-z])(?:[A-Z][a-z]?\d*){2,}(?![A-Za-z])")
 GOAL_TERMS = ("析氧", "耐氯", "耐腐蚀", "催化活性", "OER", "corrosion", "catalytic")
-BOUND_WORDS = r"至少|不低于|不小于|至多|最多|不超过|不高于|不大于|>=|<=|≥|≤|at\s+least|at\s+most"
+LOWER_BOUND_WORDS = r"至少|不低于|不小于|下限(?:为|是)?|>=|≥|at\s+least"
+UPPER_BOUND_WORDS = r"至多|最多|不超过|不高于|不大于|上限(?:为|是)?|<=|≤|at\s+most"
+BOUND_WORDS = LOWER_BOUND_WORDS + "|" + UPPER_BOUND_WORDS
 BOUND_SIGNAL = re.compile(r"(?:" + BOUND_WORDS + r")\s*[+-]?\d+(?:\.\d+)?", re.IGNORECASE)
 UNIT_TOKEN = re.compile(r"(?<![A-Za-z])(?:meV/atom|eV/atom|mu_B/angstrom\^3|MPa|GPa|meV|eV)(?![A-Za-z/])")
 
@@ -39,7 +41,7 @@ def contract() -> dict:
             "stoichiometry": "property=chemical_formula; value=original formula; relation=equal; no unit",
             "symmetry": "property=space_group; value=integer 1..230; relation=equal; no unit",
             "sample_budget": "property=max_samples with relation=at_most or equal; valid_candidates_target with relation=at_least or equal; positive integer, no unit",
-            "execution_parameter": "ONLY property=batch_size or seed; integer value; relation=equal; no unit",
+            "execution_parameter": "ONLY property=batch_size or seed; integer value, no unit. batch_size accepts equal (exact size) or at_most (hard per-batch cap; actual size may be smaller). seed requires equal. Preserve explicit upper-bound language as at_most; never relabel an upper or lower bound as equal, and do not interpret a batch minimum as a supported cap.",
             "numeric_target": "property from model units; original numeric value and unit; relation=target; strength=goal",
             "numeric_bound": "property from model units; original value and unit; relation=at_most, at_least or range; preserve hard bounds",
             "template": "property=template_id; value=registered identifier; relation=equal; no unit",
@@ -104,8 +106,10 @@ def _normalize(record: dict) -> dict:
             raise ValueError("A sampling budget cannot be a minimum.")
         if prop == "valid_candidates_target" and relation not in {"equal", "at_least"}:
             raise ValueError("A valid-candidate target is separate from the sampling cap.")
-        if kind == "execution_parameter" and relation != "equal":
-            raise ValueError("Execution parameters must have exact values.")
+        if prop == "batch_size" and relation not in {"equal", "at_most"}:
+            raise ValueError("Batch size supports an exact size or an upper bound, not a minimum.")
+        if prop == "seed" and relation != "equal":
+            raise ValueError("A seed must have an exact value, not a bound or range.")
     elif kind in {"numeric_target", "numeric_bound"}:
         if prop not in UNITS or prop == "space_group":
             raise ValueError("Unknown quantitative property; an explicit property contract is needed.")
@@ -160,6 +164,11 @@ def _source_check(raw: str, record: dict):
     kind, value, quote = record["kind"], record["value"], source["quote"]
     if kind == "numeric_target" and re.search(BOUND_WORDS, quote, re.IGNORECASE):
         raise ValueError("The source contains a numerical bound; it cannot become a target.")
+    if kind == "execution_parameter":
+        for bound in BOUND_SIGNAL.finditer(quote):
+            direction = "at_most" if re.match(UPPER_BOUND_WORDS, bound.group(), re.IGNORECASE) else "at_least"
+            if record["property"] != "batch_size" or direction != "at_most" or record["relation"] != direction:
+                raise ValueError("Preserve execution-parameter bound semantics: only batch_size at_most is supported; a bound cannot become equal or a seed value.")
     if kind in {"numeric_target", "numeric_bound"}:
         quoted_units = {m.group() for m in UNIT_TOKEN.finditer(quote)}
         if quoted_units and quoted_units != {record.get("unit")}:
@@ -316,9 +325,11 @@ def audit_requirements(request: dict, plan: dict) -> dict:
                 issue("The registered template requirement is missing or invalid.")
             routes.append({"stage": "execution", "parameter": "template_id", "checker": "registered_CIF_hash_and_symmetry"})
         elif kind == "execution_parameter":
-            if plan.get(prop) != value:
+            actual = plan.get(prop)
+            matches = (type(actual) is int and actual <= value) if prop == "batch_size" and r["relation"] == "at_most" else actual == value
+            if not matches:
                 issue("Execution parameter differs from its original requirement.")
-            routes.append({"stage": "execution", "parameter": prop})
+            routes.append({"stage": "execution", "parameter": prop, "relation": r["relation"], "value": value})
         else:
             routes.append({"stage": "review", "status": "unavailable", "checker": None, "goal": value, "reason": "Research property has not been evaluated."})
             covered_reviews.add(value)
@@ -336,8 +347,19 @@ def audit_requirements(request: dict, plan: dict) -> dict:
     review_targets = list(dict.fromkeys([*plan.get("review_targets", []), *[r["normalized_value"] for r in normalized if r["kind"] == "research_goal"]]))
     compatible_kinds = {"elements": {"element_set"}, "formula": {"stoichiometry"},
                         "number": {"symmetry", "sample_budget", "execution_parameter", "numeric_target", "numeric_bound"}, "research_goal": {"research_goal", "numeric_bound", "numeric_target"},
-                        "bound": {"sample_budget", "numeric_bound"}}
-    uncovered = [s for s in _signals(raw) if not any(r["kind"] in compatible_kinds[s["kind"]] and r["source"] and r["source"]["start"] <= s["start"] and s["end"] <= r["source"]["end"] for r in normalized)]
+                        "bound": {"sample_budget", "numeric_bound", "execution_parameter"}}
+    def covers_signal(record, signal):
+        source = record["source"]
+        if (record["kind"] not in compatible_kinds[signal["kind"]] or not source
+                or not source["start"] <= signal["start"] or not signal["end"] <= source["end"]):
+            return False
+        if signal["kind"] != "bound":
+            return True
+        direction = "at_most" if re.match(UPPER_BOUND_WORDS, signal["text"], re.IGNORECASE) else "at_least"
+        if record["kind"] == "execution_parameter":
+            return record["property"] == "batch_size" and record["relation"] == direction == "at_most"
+        return record["relation"] == direction or record["kind"] == "numeric_bound" and record["relation"] == "range"
+    uncovered = [signal for signal in _signals(raw) if not any(covers_signal(record, signal) for record in normalized)]
     if uncovered:
         issues.append({"code": "clarification_required", "detail": "uncovered_source_signals", "message": "Some explicit source tokens have no corresponding requirement record; review them before execution."})
     return {"requirements": normalized, "requirement_mappings": mappings, "review_targets": review_targets, "issues": issues,

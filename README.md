@@ -1,6 +1,6 @@
 # 材策 MatPilot
 
-**让材料研究需求更快成为可执行、可追溯的任务。**
+**让材料研究需求成为可检查、可执行、可追溯的任务。**
 
 MatPilot 是 DeepSeek Harness 的材料研究工具插件，直接使用 Harness 界面。第一版接入 MatterGen，提供能力查询、完整条件检查、持久化任务、候选检查和证据报告。开发版已增加 DiffCSP++ 模板适配器及统一核验；第二模型尚未通过真实计算验收，当前不宣称已获得双模型科学成果。
 
@@ -8,9 +8,9 @@ MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V
 
 ## 当前开发范围
 
-当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev4`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
+当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev5`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
 
-自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。当前 0.2.0.dev4 已通过85项软件回归与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v04.md)；不把 demo 作为真实双模型验收。
+自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。当前 0.2.0.dev5 已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
 ## 0.1.1 历史已验证状态
 
@@ -42,7 +42,7 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [发行文件目录](releases/0.2.0.dev4/) 下载 Python wheel 和 Harness 插件包，按其中 SHA256SUMS.txt 核对。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [发行文件目录](releases/0.2.0.dev5/) 下载 Python wheel 和 Harness 插件包，按其中 SHA256SUMS.txt 核对。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
@@ -54,7 +54,7 @@ dsh --profile matpilot --from-default-profile web --dump-config
 dsh plugin --profile matpilot add ./packages/dsh-matpilot
 ```
 
-发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.4.tgz`。这是本地发行名称，不代表已发布到 npm。
+发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.5.tgz`。这是本地发行名称，不代表已发布到 npm。
 
 以上命令用于 Harness 命令行/Web 配置。**桌面版的 `desktop` 配置由 Electron 应用管理，不能使用 `dsh plugin --profile desktop add` 安装。** 已验证的桌面接入方法见 [桌面配置说明](docs/desktop_setup.md)。
 
@@ -119,7 +119,7 @@ python -m matpilot --config examples/config.demo.json report JOB_ID
 
 ## 验证任务提升与流程提速
 
-减少查参数、改配置、报错返工及整理结果的人工时间，是主要研究目标。[作用与证据对照](docs/contribution_and_evidence.md) 分开说明实现、已验证行为和仍需测量的收益。工程封装与 AI 额外增益分别评估。主比较口径见 [评估执行说明](docs/study_protocol_v1.1.md)，旧入口比较保留在 docs/validation_protocol.md。第二模型配置见 [部署说明](docs/multimodel_setup.md)。不填入推测的提速百分比。
+减少查参数、改配置、报错返工及整理结果的人工时间，是主要研究目标。[作用与证据对照](docs/contribution_and_evidence.md) 分开说明实现、已验证行为和仍需测量的收益。工程封装与 AI 额外增益分别评估。主比较口径见 [评估执行说明](docs/study_protocol_v1.1.md)，旧入口比较保留在 docs/validation_protocol.md。第二模型配置见 [部署说明](docs/multimodel_setup.md)。不填入推测的提速百分比。[同题插件作用对照](docs/study_plugin_effects.md)保留全部12题及正反例：已观察到具体纠错作用，当前没有整体耗时或API费用下降的证据。新增研究驱动和回放/盲评工具的边界及用法见 [研究工具说明](docs/study_tooling.md)。dev5增加研究源码与待审报告工具；真实Harness开发联调及失败记录见 [开发对照记录](docs/study_development_results.md)。正式独立评分与用户时间测量仍未完成。
 
 ```text
 python -m unittest discover -s tests -v

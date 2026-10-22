@@ -28,3 +28,12 @@ artifacts/figures/*
 
 !artifacts/v04-deployment-validation.json
 !artifacts/v04-live-acceptance.json
+
+!artifacts/study-tooling-validation.json
+!artifacts/study-harness-js-validation.json
+!artifacts/study-driver-cpu-validation.json
+
+!artifacts/v05-deployment-validation.json
+!artifacts/study-harness-development-validation.json
+
+!artifacts/figures/study_r3_workflow.png

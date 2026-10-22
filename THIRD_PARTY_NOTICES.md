@@ -17,3 +17,5 @@ MatPilot 的 MIT 许可证只覆盖本仓库原创代码与文档。模型权重
 DiffCSP++ is an upstream generative model, not a MatPilot model. The bridge imports the operator-installed AtomisticSkills wrapper at commit 6afdd465a35088136e4875d7d2fbaefc633f4adf after identity checks. No checkpoint is redistributed. Verify the selected checkpoint terms separately.
 
 The four-file AtomisticSkills source snapshot and U+ modification patch in benchmarks/baseline are included for reproducible comparison. Copyright and MIT terms are preserved in benchmarks/baseline/LICENSE.AtomisticSkills. Changes cover condition preservation, exact sampling budgets, unique candidate selection and query-failure status. No affiliation or upstream endorsement is implied.
+
+The research replay driver also includes a 16-file source and normal-skill snapshot under benchmarks/study_drivers/upstream_snapshot from the same pinned commit. Its original MIT LICENSE and portable source hashes are retained in that directory and upstream-source.json. Scientific engine substitutions are documented explicitly; no trained weights are included. PyYAML is an additional research-driver dependency under its own MIT terms.

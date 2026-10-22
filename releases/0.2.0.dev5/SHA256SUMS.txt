@@ -1,0 +1,4 @@
+cae7b4cc0def1c417dad41004337042b572dc54f1898485fe7e26a0aacd54fc1  dsh-matpilot-0.2.0-dev.5.tgz
+942eed6b0d31ffdb9a42242fa9e9620340f4f596aeb34bf4bac337351759b265  matpilot_core-0.2.0.dev5-py3-none-any.whl
+0565af754076c036ca0ca61246085c381ebb0f52c1b8add5cd8f7793ad06cdc0  matpilot_core-0.2.0.dev5.tar.gz
+bbf8798951c5d8d9558ce3396b33d8a71b62ec86b570c289f47241c6870ff6af  MatPilot_development_review_r3.zip

@@ -1,6 +1,6 @@
 {
   "name": "dsh-matpilot",
-  "version": "0.2.0-dev.4",
+  "version": "0.2.0-dev.5",
   "description": "MatPilot materials workflow tools for DeepSeek Harness",
   "type": "module",
   "files": [
