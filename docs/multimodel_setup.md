@@ -23,3 +23,7 @@ DiffCSP++ 采用 AtomisticSkills 的独立包装器，固定提交 6afdd465a3508
 当前用户要求禁止真实计算，不能为完成验收把 real_compute_enabled 改为 true。没有实际模型通过的小任务证据前，只称为双适配器软件版本。
 
 官方资料：[DiffCSP++](https://github.com/jiaor17/DiffCSP-PP)、[固定版本 AtomisticSkills 包装器](https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/utils/generative_models/diffcsp/diffcsp_wrapper.py)。
+
+## 跨平台源文件身份
+
+0.2.0.dev4 起，DiffCSP 包装器哈希按 UTF-8/LF 文本计算，避免 Windows CRLF 与 Linux LF 检出差异。锁定提交仍必须干净，修改任何源码内容仍拒绝。此规范化哈希已与该提交的 Git 原始文件内容核对；它不是模型权重或真实推理验收。

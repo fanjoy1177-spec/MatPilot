@@ -8,9 +8,9 @@ MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V
 
 ## 当前开发范围
 
-当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev3`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
+当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev4`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
 
-自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。当前 0.2.0.dev3 已通过84项软件回归与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v02.md)；不把 demo 作为真实双模型验收。
+自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。当前 0.2.0.dev4 已通过85项软件回归与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v04.md)；不把 demo 作为真实双模型验收。
 
 ## 0.1.1 历史已验证状态
 
@@ -42,7 +42,7 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [发行文件目录](releases/0.2.0.dev3/) 下载 Python wheel 和 Harness 插件包，按其中 SHA256SUMS.txt 核对。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [发行文件目录](releases/0.2.0.dev4/) 下载 Python wheel 和 Harness 插件包，按其中 SHA256SUMS.txt 核对。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
@@ -54,7 +54,7 @@ dsh --profile matpilot --from-default-profile web --dump-config
 dsh plugin --profile matpilot add ./packages/dsh-matpilot
 ```
 
-发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.3.tgz`。这是本地发行名称，不代表已发布到 npm。
+发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.4.tgz`。这是本地发行名称，不代表已发布到 npm。
 
 以上命令用于 Harness 命令行/Web 配置。**桌面版的 `desktop` 配置由 Electron 应用管理，不能使用 `dsh plugin --profile desktop add` 安装。** 已验证的桌面接入方法见 [桌面配置说明](docs/desktop_setup.md)。
 

@@ -25,3 +25,6 @@ artifacts/figures/*
 
 !artifacts/v03-deployment-validation.json
 !artifacts/v03-live-acceptance.json
+
+!artifacts/v04-deployment-validation.json
+!artifacts/v04-live-acceptance.json

@@ -46,4 +46,4 @@
 
 ## 当前开发版注意事项
 
-当前为 0.2.0.dev3，九工具与两条固定样本路径已验证，真实生成仍禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；应等待插件就绪后重试能力查询，确认版本，再提交任务。开发版真实 API 的失败和重试见 release_acceptance_v02.md，不据此宣称提速。
+当前为 0.2.0.dev4，九工具与两条固定样本路径已验证，真实生成仍禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；应等待插件就绪后重试能力查询，确认版本，再提交任务。开发版真实 API 的失败和重试见 release_acceptance_v02.md，不据此宣称提速。

@@ -8,3 +8,5 @@ include artifacts/real-example/candidate.cif
 
 recursive-include docs/atomisticskills_review *.json *.py
 include artifacts/v02-deployment-validation.json artifacts/v03-deployment-validation.json artifacts/v03-live-acceptance.json
+
+include artifacts/v04-deployment-validation.json artifacts/v04-live-acceptance.json

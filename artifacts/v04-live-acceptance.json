@@ -1,0 +1,2149 @@
+{
+  "schema_version": 1,
+  "version": "0.2.0.dev4",
+  "date": "2026-10-22",
+  "host": "DeepSeek Harness desktop 0.2.1-rc.2",
+  "model": "deepseek-flash",
+  "reasoning": "off",
+  "real_scientific_computation": false,
+  "scope": "Six developer-visible probes, one attempt per prompt with all within-attempt repairs retained. Not independent grading, not U/U+/M or timing evidence.",
+  "cases": [
+    {
+      "id": "v04_qualitative_goal",
+      "prompt": "只准备计划，不执行：在 Fe-Ni-O 元素体系探索，最多采样4次；希望有较好的析氧活性和耐氯腐蚀性，但当前没有相关评价器，不保证性能达标。请保留这些研究目标。",
+      "expected": {
+        "ready": true,
+        "goals_unverified": true,
+        "no_submission": true
+      },
+      "started_at": "2026-10-22T12:48:02.967Z",
+      "ended_at": "2026-10-22T12:48:09.196Z",
+      "api_calls": 3,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只准备计划，不执行：在 Fe-Ni-O 元素体系探索，最多采样4次；希望有较好的析氧活性和耐氯腐蚀性，但当前没有相关评价器，不保证性能达标。请保留这些研究目标。",
+            "model_id": "mattergen",
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "在 Fe-Ni-O 元素体系探索"
+                },
+                "kind": "element_set",
+                "property": "chemical_system",
+                "value": "Fe-Ni-O",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "最多采样4次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 4,
+                "strength": "hard",
+                "relation": "at_most"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "希望有较好的析氧活性"
+                },
+                "kind": "research_goal",
+                "property": "oxygen_evolution_activity",
+                "value": "希望有较好的析氧活性",
+                "strength": "goal",
+                "relation": "goal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "耐氯腐蚀性"
+                },
+                "kind": "research_goal",
+                "property": "chlorine_corrosion_resistance",
+                "value": "耐氯腐蚀性",
+                "strength": "goal",
+                "relation": "goal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "不保证性能达标"
+                },
+                "kind": "research_goal",
+                "property": "performance_guarantee_disclaimer",
+                "value": "不保证性能达标",
+                "strength": "goal",
+                "relation": "goal"
+              }
+            ],
+            "conditions": {
+              "chemical_system": "Fe-Ni-O"
+            },
+            "review_targets": [
+              "希望有较好的析氧活性",
+              "耐氯腐蚀性"
+            ],
+            "num_samples": 4,
+            "batch_size": 2,
+            "seed": 42,
+            "unconditional": false,
+            "clarifications": []
+          },
+          "result": {
+            "state": "ready",
+            "issues": [],
+            "conditions": {
+              "chemical_system": "Fe-Ni-O"
+            },
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 10,
+                  "end": 26,
+                  "quote": "在 Fe-Ni-O 元素体系探索"
+                },
+                "kind": "element_set",
+                "property": "chemical_system",
+                "value": "Fe-Ni-O",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "Fe-Ni-O",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 27,
+                  "end": 33,
+                  "quote": "最多采样4次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 4,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 4,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "start": 34,
+                  "end": 44,
+                  "quote": "希望有较好的析氧活性"
+                },
+                "kind": "research_goal",
+                "property": "oxygen_evolution_activity",
+                "value": "希望有较好的析氧活性",
+                "strength": "goal",
+                "relation": "goal",
+                "normalized_value": "希望有较好的析氧活性",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "start": 45,
+                  "end": 50,
+                  "quote": "耐氯腐蚀性"
+                },
+                "kind": "research_goal",
+                "property": "chlorine_corrosion_resistance",
+                "value": "耐氯腐蚀性",
+                "strength": "goal",
+                "relation": "goal",
+                "normalized_value": "耐氯腐蚀性",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "start": 62,
+                  "end": 69,
+                  "quote": "不保证性能达标"
+                },
+                "kind": "research_goal",
+                "property": "performance_guarantee_disclaimer",
+                "value": "不保证性能达标",
+                "strength": "goal",
+                "relation": "goal",
+                "normalized_value": "不保证性能达标",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.chemical_system",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": "element_equality",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "希望有较好的析氧活性",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "耐氯腐蚀性",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "不保证性能达标",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [
+              "希望有较好的析氧活性",
+              "耐氯腐蚀性",
+              "不保证性能达标"
+            ],
+            "sampling_budget": {
+              "max_samples": 4,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "mattergen",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "chemical_system",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "## 计划已准备好（仅准备，未执行）\n\n**plan_id**：`a30cab41a029223d396c576fff184088813e42c3da9601ae63d79a6857f16997`\n状态：`ready`，无问题、无澄清项。\n\n| 项 | 内容 |\n|---|---|\n| 模型与检查点 | MatterGen / `chemical_system` |\n| 生成条件 | `chemical_system = Fe-Ni-O`（元素集合，非固定化学式） |\n| 采样预算 | 最多 4（num_samples=4，batch_size=2，seed=42） |\n| 后验研究目标 | 希望有较好的析氧活性；耐氯腐蚀性 |\n| 后端 | **demo**；`real_compute_enabled=false`，seed 不会实际生效 |\n\n**需求对应关系**\n- r1 元素体系 → 生成条件 + 生成后元素相等性检查（pymatgen）；这只是引导，不构成保证。\n- r2 采样上限 → 作为 `num_samples` 硬上限。\n- r3 析氧活性、r4 耐氯腐蚀性 → 只作为待后验的研究目标，**没有可用评价器**，不会作为数值条件，也不阻塞生成方案。\n- r5“不保证性能达标”已原样保留。研究目标、覆盖率证明与独立性都未经验证，需人工复核。\n\n**证据边界**：当前为演示模式，使用固定示例数据，不等同于 MatterGen 真实生成，也不代表 AI 性能提升；生成/结构检查不等于 DFT 或实验验证，析氧活性与耐氯腐蚀性均**未评估、不保证达标**。\n\n按您的“只准备计划，不执行”要求，我没有提交任务（因此没有 job_id，也没有任何结果）。如需执行，请先明确授权该 plan_id。"
+    },
+    {
+      "id": "v04_formula_missing_template",
+      "prompt": "只准备计划：固定化学式 LiFePO4，最多采样2次。我没有提供结构模板、空间群或 Wyckoff 信息，也没有同意放宽为元素集合。请判断当前工具能否直接执行，不要替我假定结构。",
+      "expected": {
+        "ready": false,
+        "no_guessed_template": true,
+        "no_submission": true
+      },
+      "started_at": "2026-10-22T12:48:09.238Z",
+      "ended_at": "2026-10-22T12:48:15.397Z",
+      "api_calls": 3,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只准备计划：固定化学式 LiFePO4，最多采样2次。我没有提供结构模板、空间群或 Wyckoff 信息，也没有同意放宽为元素集合。请判断当前工具能否直接执行，不要替我假定结构。",
+            "model_id": "diffcsp",
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "固定化学式 LiFePO4"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "LiFePO4",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "我没有提供结构模板、空间群或 Wyckoff 信息"
+                },
+                "kind": "template",
+                "property": "template_id",
+                "value": "未提供",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "也没有同意放宽为元素集合"
+                },
+                "kind": "element_set",
+                "property": "chemical_system",
+                "value": "Li-Fe-P-O",
+                "strength": "hard",
+                "relation": "equal"
+              }
+            ],
+            "conditions": {
+              "chemical_formula": "LiFePO4"
+            },
+            "review_targets": [],
+            "num_samples": 2,
+            "batch_size": 2,
+            "seed": 42,
+            "unconditional": false,
+            "clarifications": [
+              "DiffCSP++ 需要已登记的结构模板与空间群，用户未提供 template_id 与空间群；不得从化学式推断对称性或 Wyckoff 信息，也不得放宽为元素集合。"
+            ]
+          },
+          "result": {
+            "state": "blocked",
+            "issues": [
+              {
+                "code": "clarification_required",
+                "message": "DiffCSP++ 需要已登记的结构模板与空间群，用户未提供 template_id 与空间群；不得从化学式推断对称性或 Wyckoff 信息，也不得放宽为元素集合。"
+              },
+              {
+                "code": "clarification_required",
+                "message": "Provide the template's verified integer space_group from 1 to 230."
+              },
+              {
+                "code": "clarification_required",
+                "message": "Select a registered, reviewed template; no Wyckoff information will be invented."
+              },
+              {
+                "code": "invalid_requirement",
+                "requirement_id": "r3",
+                "message": "Template identifier is not present in its source span."
+              },
+              {
+                "code": "invalid_requirement",
+                "requirement_id": "r4",
+                "message": "Proposed elements are not present in the quoted span."
+              },
+              {
+                "code": "clarification_required",
+                "requirement_id": "r1",
+                "message": "This model cannot fix stoichiometry. Explicit generate_then_filter search or a supported model/template is needed."
+              },
+              {
+                "code": "unmapped_condition",
+                "field": "chemical_formula",
+                "message": "This generation condition has no matching requirement record."
+              }
+            ],
+            "conditions": {
+              "chemical_formula": "LiFePO4"
+            },
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 6,
+                  "end": 19,
+                  "quote": "固定化学式 LiFePO4"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "LiFePO4",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "LiFePO4",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 20,
+                  "end": 26,
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": "reduced_stoichiometry",
+                    "method": "pymatgen.Composition"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 4,
+              "valid_count": 2,
+              "mapped_count": 2,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 0.5,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "diffcsp",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "mp_csp",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "## 结论：当前工具不能直接执行，计划状态是 **blocked**（未提交、未执行）\n\n**用户要求的条件**\n\n| 项 | 你的要求 | 工具能否满足 |\n|---|---|---|\n| 化学式 | 固定 LiFePO4，不放宽为元素集合 | ⚠️ DiffCSP++ 只能通过模板提供固定化学式配比；MatterGen 的 `chemical_system` 只能选择元素，不能固定化学计量比 |\n| 结构模板、空间群与 Wyckoff | 未提供，也拒绝推定 | ❌ DiffCSP++ 的必需输入是 `template_id`、`space_group` 和固定化学式；**不能从化学式推断对称性** |\n| 采样预算 | 最多 2 次 | ✅ 已记录为硬上限 2（工具上限为 4） |\n\n**程序校验发现的主要问题**\n- 缺少 `template_id`，也缺少空间群（必须为 1–230 的整数），并且禁止虚构 Wyckoff 信息。\n- 该模型不能固定化学计量比；要固定化学计量比，需要显式的 `generate_then_filter` 搜索，或改用受支持的模板。\n- 已登记模板只有 `cubic_nacl`（NaCl 演示样本，备选模板有限，而且不是 LiFePO4），因此无法用于本化学式。\n\n**我没有做的事**：没有替你推断结构、空间群或 Wyckoff 信息，没有放宽为元素集合，也没有提交任务。当前后端是 `demo`，`real_compute_enabled=false`，运行的是固定 NaCl 演示样本，并不执行真实生成。\n\n**唯一修复选项（需你审阅，不会自动应用）**：提供与 LiFePO4 组成和对称性匹配、并经运营方登记校验的 CIF 模板，然后重新准备方案。\n\n若你需要，请提供该已登记模板的 `template_id` 和经核实的 `space_group`；或明确授权有限预算内“先生成再筛选”（`generate_then_filter`，保留化学计量后验检查，不保证足量合格结构），我再重新准备计划。"
+    },
+    {
+      "id": "v04_hard_bound",
+      "prompt": "只准备计划：每个候选的带隙必须不低于1.2 eV，最多采样2次。目前没有性质评价器，不能把下界改成引导目标。请判断是否能执行，不要开始任务。",
+      "expected": {
+        "ready": false,
+        "bound_preserved": true,
+        "no_submission": true
+      },
+      "started_at": "2026-10-22T12:48:15.438Z",
+      "ended_at": "2026-10-22T12:48:21.695Z",
+      "api_calls": 3,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只准备计划：每个候选的带隙必须不低于1.2 eV，最多采样2次。目前没有性质评价器，不能把下界改成引导目标。请判断是否能执行，不要开始任务。",
+            "model_id": "mattergen",
+            "conditions": {},
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "每个候选的带隙必须不低于1.2 eV"
+                },
+                "kind": "numeric_bound",
+                "property": "dft_band_gap",
+                "value": 1.2,
+                "unit": "eV",
+                "strength": "hard",
+                "relation": "at_least"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most"
+              }
+            ],
+            "review_targets": [],
+            "num_samples": 2,
+            "batch_size": 2,
+            "seed": 42,
+            "unconditional": false,
+            "clarifications": [],
+            "search_mode": "direct"
+          },
+          "result": {
+            "state": "blocked",
+            "issues": [
+              {
+                "code": "clarification_required",
+                "message": "Provide generation conditions or explicitly request unconditional generation."
+              },
+              {
+                "code": "unverified_hard_requirement",
+                "requirement_id": "r1",
+                "message": "A numerical bound requires an applicable evaluator; it cannot be replaced by a generation target."
+              }
+            ],
+            "conditions": {},
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 6,
+                  "end": 24,
+                  "quote": "每个候选的带隙必须不低于1.2 eV"
+                },
+                "kind": "numeric_bound",
+                "property": "dft_band_gap",
+                "value": 1.2,
+                "unit": "eV",
+                "strength": "hard",
+                "relation": "at_least",
+                "normalized_value": 1.2,
+                "normalized_unit": "eV",
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 25,
+                  "end": 31,
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": null,
+                    "status": "unavailable",
+                    "reason": "No method-verified property evaluator is configured."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 2,
+              "valid_count": 2,
+              "mapped_count": 2,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "mattergen",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "mattergen_base",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "## 结论：当前不能执行\n\n计划 `b182157af380262f4899139a049f50d6194204dc10efcc5853cbc78c404f82bb` 的状态是 **blocked**。按照规则，我不提交任务，也没有启动任何任务。\n\n**阻塞原因（2 项）**\n1. `unverified_hard_requirement`（r1）：硬性带隙下界「每个候选 ≥ 1.2 eV（at_least, hard）」找不到可用的评价器，因此不能用生成引导目标来替代。工具映射显示，后验检查阶段的 checker 为 null，说明本版本没有通用的性质评价器。\n2. `clarification_required`：请求里没有给出生成条件，也没有明确要求无条件生成。\n\n**已按原文记录且未改动的要求**\n| 编号 | 原文 | 类型 | 取值 |\n|---|---|---|---|\n| r1 | 每个候选的带隙必须不低于1.2 eV | numeric_bound / hard | dft_band_gap ≥ 1.2 eV |\n| r2 | 最多采样2次 | sample_budget / hard | max_samples ≤ 2（已映射到采样上限检查） |\n\n我不把「不能把下界改成引导目标」这条工作流指令本身当作材料性质要求或执行参数，但我仍然遵守该指令：没有把 r1 改成 target 或 goal。\n\n**修复选项（都只是建议，需要你审阅，不会自动套用）**\n- `0ae8ba699b7c4cbe`：保留科学上的硬性要求，先补齐经过验证的评价器（方法身份、单位、参考集），在此之前一直保持阻塞。**这符合你的原意。**\n- `f0813cea70cfdb42`：只有在你明确修改原请求后，才把带隙保证降级为尚未测量的研究目标。**与你的指令冲突，我不建议采用。**\n\n**执行环境说明**：当前后端为 `demo`，`real_compute_enabled=false`，计划上下文为 `backend: demo`；种子不会实际生效，固定样本也不等于 MatterGen 或 AI 生成结果。\n\n如果你希望继续，可选：① 指定一个经过验证的带隙评价器；② 明确修改需求（例如取消硬下界或放宽）。请告诉我你选哪条，我再重新准备计划。"
+    },
+    {
+      "id": "v04_supported_joint_units",
+      "prompt": "只准备计划，不执行：Fe-O 元素体系，energy_above_hull 引导目标50 meV/atom，最多采样2次。两个条件同时用于生成，数值只是引导目标，不承诺稳定性或可合成性。",
+      "expected": {
+        "ready": true,
+        "checkpoint": "chemical_system_energy_above_hull",
+        "energy_above_hull": 0.05,
+        "no_submission": true
+      },
+      "started_at": "2026-10-22T12:48:21.731Z",
+      "ended_at": "2026-10-22T12:48:30.466Z",
+      "api_calls": 4,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只准备计划，不执行：Fe-O 元素体系，energy_above_hull 引导目标50 meV/atom，最多采样2次。两个条件同时用于生成，数值只是引导目标，不承诺稳定性或可合成性。",
+            "model_id": "mattergen",
+            "checkpoint": "chemical_system_energy_above_hull",
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "Fe-O 元素体系"
+                },
+                "kind": "element_set",
+                "property": "chemical_system",
+                "value": "Fe-O",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "energy_above_hull 引导目标50 meV/atom"
+                },
+                "kind": "numeric_target",
+                "property": "energy_above_hull",
+                "value": 50,
+                "unit": "meV/atom",
+                "strength": "goal",
+                "relation": "target"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "两个条件同时用于生成"
+                },
+                "kind": "research_goal",
+                "property": "simultaneous_conditioning",
+                "value": "chemical_system 与 energy_above_hull 同时用于生成",
+                "strength": "goal",
+                "relation": "goal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "数值只是引导目标，不承诺稳定性或可合成性"
+                },
+                "kind": "research_goal",
+                "property": "no_performance_promise",
+                "value": "数值只是引导目标，不承诺稳定性或可合成性",
+                "strength": "goal",
+                "relation": "goal"
+              }
+            ],
+            "conditions": {
+              "chemical_system": "Fe-O",
+              "energy_above_hull": {
+                "value": 50,
+                "unit": "meV/atom",
+                "relation": "target"
+              }
+            },
+            "review_targets": [
+              "energy_above_hull 引导目标 50 meV/atom（目标值，非保证界限；不承诺热力学稳定性）",
+              "不承诺可合成性，稳定性与可合成性需后续独立验证"
+            ],
+            "num_samples": 2,
+            "batch_size": 2,
+            "seed": 42,
+            "unconditional": false,
+            "clarifications": [],
+            "search_mode": "direct"
+          },
+          "result": {
+            "state": "blocked",
+            "issues": [
+              {
+                "code": "unmapped_research_goal",
+                "message": "Each review target must have a requirement record with the same canonical text.",
+                "goal": "energy_above_hull 引导目标 50 meV/atom（目标值，非保证界限；不承诺热力学稳定性）"
+              },
+              {
+                "code": "unmapped_research_goal",
+                "message": "Each review target must have a requirement record with the same canonical text.",
+                "goal": "不承诺可合成性，稳定性与可合成性需后续独立验证"
+              }
+            ],
+            "conditions": {
+              "chemical_system": "Fe-O",
+              "energy_above_hull": 0.05
+            },
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 10,
+                  "end": 19,
+                  "quote": "Fe-O 元素体系"
+                },
+                "kind": "element_set",
+                "property": "chemical_system",
+                "value": "Fe-O",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "Fe-O",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 20,
+                  "end": 53,
+                  "quote": "energy_above_hull 引导目标50 meV/atom"
+                },
+                "kind": "numeric_target",
+                "property": "energy_above_hull",
+                "value": 50,
+                "unit": "meV/atom",
+                "strength": "goal",
+                "relation": "target",
+                "normalized_value": 0.05,
+                "normalized_unit": "eV/atom",
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "start": 54,
+                  "end": 60,
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "start": 61,
+                  "end": 71,
+                  "quote": "两个条件同时用于生成"
+                },
+                "kind": "research_goal",
+                "property": "simultaneous_conditioning",
+                "value": "chemical_system 与 energy_above_hull 同时用于生成",
+                "strength": "goal",
+                "relation": "goal",
+                "normalized_value": "chemical_system 与 energy_above_hull 同时用于生成",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "start": 72,
+                  "end": 92,
+                  "quote": "数值只是引导目标，不承诺稳定性或可合成性"
+                },
+                "kind": "research_goal",
+                "property": "no_performance_promise",
+                "value": "数值只是引导目标，不承诺稳定性或可合成性",
+                "strength": "goal",
+                "relation": "goal",
+                "normalized_value": "数值只是引导目标，不承诺稳定性或可合成性",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.chemical_system",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": "element_equality",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.energy_above_hull",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": null,
+                    "status": "unavailable",
+                    "reason": "No property evaluator is configured."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "chemical_system 与 energy_above_hull 同时用于生成",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "数值只是引导目标，不承诺稳定性或可合成性",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [
+              "energy_above_hull 引导目标 50 meV/atom（目标值，非保证界限；不承诺热力学稳定性）",
+              "不承诺可合成性，稳定性与可合成性需后续独立验证",
+              "chemical_system 与 energy_above_hull 同时用于生成",
+              "数值只是引导目标，不承诺稳定性或可合成性"
+            ],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "mattergen",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "chemical_system_energy_above_hull",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "batch_size": 2,
+            "checkpoint": "chemical_system_energy_above_hull",
+            "clarifications": [],
+            "conditions": {
+              "chemical_system": "Fe-O",
+              "energy_above_hull": {
+                "relation": "target",
+                "unit": "meV/atom",
+                "value": 50
+              }
+            },
+            "model_id": "mattergen",
+            "num_samples": 2,
+            "raw_request": "只准备计划，不执行：Fe-O 元素体系，energy_above_hull 引导目标50 meV/atom，最多采样2次。两个条件同时用于生成，数值只是引导目标，不承诺稳定性或可合成性。",
+            "requirements": [
+              {
+                "kind": "element_set",
+                "property": "chemical_system",
+                "relation": "equal",
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "Fe-O 元素体系"
+                },
+                "strength": "hard",
+                "value": "Fe-O"
+              },
+              {
+                "kind": "numeric_target",
+                "property": "energy_above_hull",
+                "relation": "target",
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "energy_above_hull 引导目标50 meV/atom"
+                },
+                "strength": "goal",
+                "unit": "meV/atom",
+                "value": 50
+              },
+              {
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "relation": "at_most",
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "strength": "hard",
+                "value": 2
+              },
+              {
+                "kind": "research_goal",
+                "property": "simultaneous_conditioning",
+                "relation": "goal",
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "两个条件同时用于生成"
+                },
+                "strength": "goal",
+                "value": "chemical_system 与 energy_above_hull 同时用于生成"
+              },
+              {
+                "kind": "research_goal",
+                "property": "no_performance_promise",
+                "relation": "goal",
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "数值只是引导目标，不承诺稳定性或可合成性"
+                },
+                "strength": "goal",
+                "value": "数值只是引导目标，不承诺稳定性或可合成性"
+              }
+            ],
+            "review_targets": [],
+            "search_mode": "direct",
+            "seed": 42,
+            "unconditional": false
+          },
+          "result": {
+            "state": "ready",
+            "issues": [],
+            "conditions": {
+              "chemical_system": "Fe-O",
+              "energy_above_hull": 0.05
+            },
+            "requirements": [
+              {
+                "kind": "element_set",
+                "property": "chemical_system",
+                "relation": "equal",
+                "requirement_id": "r1",
+                "source": {
+                  "start": 10,
+                  "end": 19,
+                  "quote": "Fe-O 元素体系"
+                },
+                "strength": "hard",
+                "value": "Fe-O",
+                "normalized_value": "Fe-O",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "numeric_target",
+                "property": "energy_above_hull",
+                "relation": "target",
+                "requirement_id": "r2",
+                "source": {
+                  "start": 20,
+                  "end": 53,
+                  "quote": "energy_above_hull 引导目标50 meV/atom"
+                },
+                "strength": "goal",
+                "unit": "meV/atom",
+                "value": 50,
+                "normalized_value": 0.05,
+                "normalized_unit": "eV/atom",
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "relation": "at_most",
+                "requirement_id": "r3",
+                "source": {
+                  "start": 54,
+                  "end": 60,
+                  "quote": "最多采样2次"
+                },
+                "strength": "hard",
+                "value": 2,
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "research_goal",
+                "property": "simultaneous_conditioning",
+                "relation": "goal",
+                "requirement_id": "r4",
+                "source": {
+                  "start": 61,
+                  "end": 71,
+                  "quote": "两个条件同时用于生成"
+                },
+                "strength": "goal",
+                "value": "chemical_system 与 energy_above_hull 同时用于生成",
+                "normalized_value": "chemical_system 与 energy_above_hull 同时用于生成",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "research_goal",
+                "property": "no_performance_promise",
+                "relation": "goal",
+                "requirement_id": "r5",
+                "source": {
+                  "start": 72,
+                  "end": 92,
+                  "quote": "数值只是引导目标，不承诺稳定性或可合成性"
+                },
+                "strength": "goal",
+                "value": "数值只是引导目标，不承诺稳定性或可合成性",
+                "normalized_value": "数值只是引导目标，不承诺稳定性或可合成性",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.chemical_system",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": "element_equality",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.energy_above_hull",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": null,
+                    "status": "unavailable",
+                    "reason": "No property evaluator is configured."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "chemical_system 与 energy_above_hull 同时用于生成",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "review",
+                    "status": "unavailable",
+                    "checker": null,
+                    "goal": "数值只是引导目标，不承诺稳定性或可合成性",
+                    "reason": "Research property has not been evaluated."
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [
+              "chemical_system 与 energy_above_hull 同时用于生成",
+              "数值只是引导目标，不承诺稳定性或可合成性"
+            ],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "mattergen",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "chemical_system_energy_above_hull",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "计划已准备（状态 ready），**尚未执行任何生成**。\n\n**方案要点**（plan_id：`11e8f315...fc4717c`）\n- 模型/检查点：mattergen · `chemical_system_energy_above_hull`\n- 条件（同时用于生成，均为引导而非保证）：\n  - `chemical_system` = Fe‑O（元素集合，非固定化学式）\n  - `energy_above_hull` = 50 meV/atom（已归一化为 0.05 eV/atom），relation=target，strength=goal\n- 采样预算：最多 2 个（num_samples=2，batch_size=2）\n- 后验复核目标（review_targets，自动生成）：两条件同时用于生成；数值仅为引导目标，不承诺稳定性或可合成性\n- 覆盖：无 uncovered signals，5 条需求全部映射；语义完整性未经验证，需独立复核\n\n**需要您知晓的边界**\n- 后端为 **demo**（real_compute_enabled=false，seed 不会实际生效，使用固定演示样本），因此执行结果不会是真实 MatterGen 生成，也不能作为材料证据。\n- `energy_above_hull` 生成侧是引导参数，**没有配置属性评估器**，无法验证是否达到 50 meV/atom；元素等式检查可用，但不等于稳定性或可合成性验证。\n\n后续如需执行，请您明确授权该方案；授权后我会用相同 plan_id 提交。本次不做进一步操作。"
+    },
+    {
+      "id": "v04_impossible_quota",
+      "prompt": "只做固定样本演示，使用已登记模板 cubic_nacl，NaCl、空间群221。最多采样2次，但必须交付3个合格候选；不能增加预算。先判断这个要求能否实现，不执行。",
+      "expected": {
+        "ready": false,
+        "no_submission": true
+      },
+      "started_at": "2026-10-22T12:48:30.502Z",
+      "ended_at": "2026-10-22T12:48:36.762Z",
+      "api_calls": 3,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只做固定样本演示，使用已登记模板 cubic_nacl，NaCl、空间群221。最多采样2次，但必须交付3个合格候选；不能增加预算。先判断这个要求能否实现，不执行。",
+            "model_id": "diffcsp",
+            "template_id": "cubic_nacl",
+            "conditions": {
+              "chemical_formula": "NaCl",
+              "space_group": 221
+            },
+            "review_targets": [],
+            "num_samples": 2,
+            "valid_candidates_target": 3,
+            "batch_size": 2,
+            "seed": 42,
+            "unconditional": false,
+            "clarifications": [],
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "使用已登记模板 cubic_nacl"
+                },
+                "kind": "template",
+                "property": "template_id",
+                "value": "cubic_nacl",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "NaCl"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "NaCl",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "空间群221"
+                },
+                "kind": "symmetry",
+                "property": "space_group",
+                "value": 221,
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "必须交付3个合格候选"
+                },
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "value": 3,
+                "strength": "hard",
+                "relation": "at_least"
+              }
+            ]
+          },
+          "result": {
+            "state": "blocked",
+            "issues": [
+              {
+                "code": "invalid_valid_target",
+                "message": "Valid-candidate target must be a positive integer no larger than the maximum sampling budget."
+              }
+            ],
+            "conditions": {
+              "chemical_formula": "NaCl",
+              "space_group": 221
+            },
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 9,
+                  "end": 27,
+                  "quote": "使用已登记模板 cubic_nacl"
+                },
+                "kind": "template",
+                "property": "template_id",
+                "value": "cubic_nacl",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "cubic_nacl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 28,
+                  "end": 32,
+                  "quote": "NaCl"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "NaCl",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "NaCl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "start": 33,
+                  "end": 39,
+                  "quote": "空间群221"
+                },
+                "kind": "symmetry",
+                "property": "space_group",
+                "value": 221,
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": 221,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "start": 40,
+                  "end": 46,
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "start": 48,
+                  "end": 58,
+                  "quote": "必须交付3个合格候选"
+                },
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "value": 3,
+                "strength": "hard",
+                "relation": "at_least",
+                "normalized_value": 3,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "template_id",
+                    "checker": "registered_CIF_hash_and_symmetry"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": "reduced_stoichiometry",
+                    "method": "pymatgen.Composition"
+                  },
+                  {
+                    "stage": "generation",
+                    "parameter": "template.wyckoff_letters+atom_types",
+                    "semantics": "composition_from_verified_template; outputs_checked"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.space_group",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": "space_group",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "parameter": "valid_candidates_target",
+                    "checker": "valid_candidate_count"
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": 3,
+              "target_guaranteed": false
+            },
+            "model_id": "diffcsp",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "mp_csp",
+            "valid_candidates_target": 3
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "## 结论：这个要求**无法实现**，方案校验结果为 `blocked`\n\n**问题原因**\n- 交付 3 个合格候选、最多采样 2 次属于**逻辑矛盾**：每个样本最多只能产生 1 个合格候选，全部 2 个样本都合格也只有 2 个，不足 3 个。\n- MatPilot 校验直接报错：\n  - `invalid_valid_target`：合格候选目标必须是正整数，且**不得大于最大采样预算**。\n  - `sampling_budget.target_guaranteed = false`，即合格候选目标本身也不受保证。\n\n**要求记录（5 条全部完成定位并建立映射）**\n\n| 编号 | 原文 | 类型 | 值 | 关系 |\n|---|---|---|---|---|\n| r1 | 使用已登记模板 cubic_nacl | template | cubic_nacl | 等于 |\n| r2 | NaCl | stoichiometry | NaCl | 等于 |\n| r3 | 空间群221 | symmetry | 221 | 等于 |\n| r4 | 最多采样2次 | sample_budget / max_samples | 2 | 至多 |\n| r5 | 必须交付3个合格候选 | sample_budget / valid_candidates_target | 3 | 至少 |\n\n**方案关键信息**\n- 模型：DiffCSP++（`diffcsp`），检查点 `mp_csp`；模板 `cubic_nacl` 已登记且结构已核对。\n- 条件：`chemical_formula = NaCl`、`space_group = 221`；`num_samples = 2`、`batch_size = 2`、`seed = 42`、`search_mode = direct`。\n- 后端：**demo**，`real_compute_enabled = false`，固定 NaCl 样本，并非真实模型或 AI 生成。\n- 模板来源声明为确定性软件夹具、CsCl 型排布，**不是实验 NaCl**；其“review”仅为自动构造记录，不构成独立科学评审。\n- 未创建任何任务，未执行，也没有 job_id。\n\n**仅供审阅的修复选项（未自动应用）**\n- `clarify_exact_issue`（option_id `208a4013faf17251`）：由您明确取舍，例如：放宽采样预算至 ≥3，或把合格候选目标降到 ≤2。预算未被增大，条件未被放宽，我也不会擅自改动。\n\n请您给出取舍意见后，我再重新生成方案供您审批；在此之前不会提交或执行。说明：以上均为结构/流程层面的软件验收信息，不代表任何材料性能或实验验证。"
+    },
+    {
+      "id": "v04_duplicate_target",
+      "prompt": "只做固定样本演示，不运行真实模型。用已登记模板 cubic_nacl，NaCl、空间群221，最多采样2次，希望获得2个去重后的合格候选。不保证达到这个数量，预算用完不能自动补采。先展示计划等确认，报告必须区分文件数量和独立结构数量。",
+      "expected": {
+        "ready": true,
+        "unique_valid": 1,
+        "valid_target_met": false,
+        "no_budget_expansion": true
+      },
+      "started_at": "2026-10-22T12:48:36.803Z",
+      "ended_at": "2026-10-22T12:48:56.063Z",
+      "api_calls": 11,
+      "followup_error": null,
+      "tools": [
+        {
+          "tool": "mcp__matpilot__get_capabilities",
+          "result": {
+            "version": "0.2.0.dev4",
+            "backend": "demo"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "raw_request": "只做固定样本演示，不运行真实模型。用已登记模板 cubic_nacl，NaCl、空间群221，最多采样2次，希望获得2个去重后的合格候选。不保证达到这个数量，预算用完不能自动补采。先展示计划等确认，报告必须区分文件数量和独立结构数量。",
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "已登记模板 cubic_nacl"
+                },
+                "kind": "template",
+                "property": "template_id",
+                "value": "cubic_nacl",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "NaCl"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "NaCl",
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "空间群221"
+                },
+                "kind": "symmetry",
+                "property": "space_group",
+                "value": 221,
+                "strength": "hard",
+                "relation": "equal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "希望获得2个去重后的合格候选"
+                },
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_least"
+              }
+            ]
+          },
+          "result": {
+            "state": "blocked",
+            "issues": [
+              {
+                "code": "clarification_required",
+                "message": "Provide generation conditions or explicitly request unconditional generation."
+              },
+              {
+                "code": "invalid_budget",
+                "field": "num_samples",
+                "message": "Expected integer in [1, 4]."
+              },
+              {
+                "code": "requirement_mismatch",
+                "requirement_id": "r1",
+                "message": "The registered template requirement is missing or invalid."
+              },
+              {
+                "code": "clarification_required",
+                "requirement_id": "r2",
+                "message": "This model cannot fix stoichiometry. Explicit generate_then_filter search or a supported model/template is needed."
+              },
+              {
+                "code": "requirement_mismatch",
+                "requirement_id": "r3",
+                "message": "Requirement has no matching generation parameter. Explicitly choose a supported condition or generate-then-filter search."
+              },
+              {
+                "code": "requirement_mismatch",
+                "requirement_id": "r4",
+                "message": "Requested sampling cap/valid-candidate target does not match the plan; budgets must not be expanded."
+              },
+              {
+                "code": "requirement_mismatch",
+                "requirement_id": "r5",
+                "message": "Requested sampling cap/valid-candidate target does not match the plan; budgets must not be expanded."
+              }
+            ],
+            "conditions": {},
+            "requirements": [
+              {
+                "requirement_id": "r1",
+                "source": {
+                  "start": 18,
+                  "end": 34,
+                  "quote": "已登记模板 cubic_nacl"
+                },
+                "kind": "template",
+                "property": "template_id",
+                "value": "cubic_nacl",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "cubic_nacl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r2",
+                "source": {
+                  "start": 35,
+                  "end": 39,
+                  "quote": "NaCl"
+                },
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "value": "NaCl",
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": "NaCl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r3",
+                "source": {
+                  "start": 40,
+                  "end": 46,
+                  "quote": "空间群221"
+                },
+                "kind": "symmetry",
+                "property": "space_group",
+                "value": 221,
+                "strength": "hard",
+                "relation": "equal",
+                "normalized_value": 221,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r4",
+                "source": {
+                  "start": 47,
+                  "end": 53,
+                  "quote": "最多采样2次"
+                },
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_most",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "requirement_id": "r5",
+                "source": {
+                  "start": 54,
+                  "end": 68,
+                  "quote": "希望获得2个去重后的合格候选"
+                },
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "value": 2,
+                "strength": "hard",
+                "relation": "at_least",
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "template_id",
+                    "checker": "registered_CIF_hash_and_symmetry"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": "reduced_stoichiometry",
+                    "method": "pymatgen.Composition"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": "space_group",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "parameter": "valid_candidates_target",
+                    "checker": "valid_candidate_count"
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [],
+            "sampling_budget": {
+              "max_samples": 16,
+              "valid_candidates_target": null,
+              "target_guaranteed": false
+            },
+            "model_id": "mattergen",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "mattergen_base",
+            "valid_candidates_target": null
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__prepare_plan",
+          "request": {
+            "batch_size": 2,
+            "conditions": {
+              "chemical_formula": "NaCl",
+              "space_group": 221
+            },
+            "model_id": "diffcsp",
+            "num_samples": 2,
+            "raw_request": "只做固定样本演示，不运行真实模型。用已登记模板 cubic_nacl，NaCl、空间群221，最多采样2次，希望获得2个去重后的合格候选。不保证达到这个数量，预算用完不能自动补采。先展示计划等确认，报告必须区分文件数量和独立结构数量。",
+            "requirements": [
+              {
+                "kind": "template",
+                "property": "template_id",
+                "relation": "equal",
+                "requirement_id": "r1",
+                "source": {
+                  "quote": "已登记模板 cubic_nacl"
+                },
+                "strength": "hard",
+                "value": "cubic_nacl"
+              },
+              {
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "relation": "equal",
+                "requirement_id": "r2",
+                "source": {
+                  "quote": "NaCl"
+                },
+                "strength": "hard",
+                "value": "NaCl"
+              },
+              {
+                "kind": "symmetry",
+                "property": "space_group",
+                "relation": "equal",
+                "requirement_id": "r3",
+                "source": {
+                  "quote": "空间群221"
+                },
+                "strength": "hard",
+                "value": 221
+              },
+              {
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "relation": "at_most",
+                "requirement_id": "r4",
+                "source": {
+                  "quote": "最多采样2次"
+                },
+                "strength": "hard",
+                "value": 2
+              },
+              {
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "relation": "at_least",
+                "requirement_id": "r5",
+                "source": {
+                  "quote": "希望获得2个去重后的合格候选"
+                },
+                "strength": "hard",
+                "value": 2
+              }
+            ],
+            "review_targets": [],
+            "seed": 42,
+            "template_id": "cubic_nacl",
+            "unconditional": false,
+            "valid_candidates_target": 2
+          },
+          "result": {
+            "state": "ready",
+            "issues": [],
+            "conditions": {
+              "chemical_formula": "NaCl",
+              "space_group": 221
+            },
+            "requirements": [
+              {
+                "kind": "template",
+                "property": "template_id",
+                "relation": "equal",
+                "requirement_id": "r1",
+                "source": {
+                  "start": 18,
+                  "end": 34,
+                  "quote": "已登记模板 cubic_nacl"
+                },
+                "strength": "hard",
+                "value": "cubic_nacl",
+                "normalized_value": "cubic_nacl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "stoichiometry",
+                "property": "chemical_formula",
+                "relation": "equal",
+                "requirement_id": "r2",
+                "source": {
+                  "start": 35,
+                  "end": 39,
+                  "quote": "NaCl"
+                },
+                "strength": "hard",
+                "value": "NaCl",
+                "normalized_value": "NaCl",
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "symmetry",
+                "property": "space_group",
+                "relation": "equal",
+                "requirement_id": "r3",
+                "source": {
+                  "start": 40,
+                  "end": 46,
+                  "quote": "空间群221"
+                },
+                "strength": "hard",
+                "value": 221,
+                "normalized_value": 221,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "sample_budget",
+                "property": "max_samples",
+                "relation": "at_most",
+                "requirement_id": "r4",
+                "source": {
+                  "start": 47,
+                  "end": 53,
+                  "quote": "最多采样2次"
+                },
+                "strength": "hard",
+                "value": 2,
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              },
+              {
+                "kind": "sample_budget",
+                "property": "valid_candidates_target",
+                "relation": "at_least",
+                "requirement_id": "r5",
+                "source": {
+                  "start": 54,
+                  "end": 68,
+                  "quote": "希望获得2个去重后的合格候选"
+                },
+                "strength": "hard",
+                "value": 2,
+                "normalized_value": 2,
+                "normalized_unit": null,
+                "source_resolution": "unique_exact_quote",
+                "origin": "anchored_proposal"
+              }
+            ],
+            "requirement_mappings": [
+              {
+                "requirement_id": "r1",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "template_id",
+                    "checker": "registered_CIF_hash_and_symmetry"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r2",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "checker": "reduced_stoichiometry",
+                    "method": "pymatgen.Composition"
+                  },
+                  {
+                    "stage": "generation",
+                    "parameter": "template.wyckoff_letters+atom_types",
+                    "semantics": "composition_from_verified_template; outputs_checked"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r3",
+                "routes": [
+                  {
+                    "stage": "generation",
+                    "parameter": "conditions.space_group",
+                    "semantics": "guidance_not_guarantee"
+                  },
+                  {
+                    "stage": "post_check",
+                    "checker": "space_group",
+                    "method": "pymatgen"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r4",
+                "routes": [
+                  {
+                    "stage": "execution",
+                    "parameter": "num_samples",
+                    "checker": "sampling_cap"
+                  }
+                ]
+              },
+              {
+                "requirement_id": "r5",
+                "routes": [
+                  {
+                    "stage": "post_check",
+                    "parameter": "valid_candidates_target",
+                    "checker": "valid_candidate_count"
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "scope": "anchored_proposal",
+              "proposed_count": 5,
+              "valid_count": 5,
+              "mapped_count": 5,
+              "uncovered_signals": [],
+              "program_mapping_coverage": 1,
+              "semantic_completeness": "not_verified_requires_independent_review",
+              "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+            },
+            "review_targets": [],
+            "sampling_budget": {
+              "max_samples": 2,
+              "valid_candidates_target": 2,
+              "target_guaranteed": false
+            },
+            "model_id": "diffcsp",
+            "scientific_status": "Generation targets do not prove material properties. Structural checks are not DFT or experimental validation.",
+            "checkpoint": "mp_csp",
+            "valid_candidates_target": 2
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__submit_job",
+          "result": {
+            "backend": "demo",
+            "status": "queued",
+            "scientific_status": "unvalidated_candidates",
+            "provenance": "demonstration_fixture",
+            "sampling_attempts_charged": 0,
+            "sampling_budget_remaining": 2
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__get_job",
+          "result": {
+            "backend": "demo",
+            "status": "running",
+            "scientific_status": "unvalidated_candidates",
+            "provenance": "demonstration_fixture",
+            "sampling_attempts_charged": 2,
+            "sampling_budget_remaining": 0
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__get_job",
+          "result": {
+            "backend": "demo",
+            "status": "completed",
+            "scientific_status": "unvalidated_candidates",
+            "provenance": "demonstration_fixture",
+            "sampling_attempts_charged": 2,
+            "sampling_budget_remaining": 0
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__screen_candidates",
+          "result": {
+            "status": "completed",
+            "count": 2,
+            "valid_candidate_count": 2,
+            "unique_valid_candidate_count": 1,
+            "scientific_status": "structural_sanity_only; properties not measured",
+            "provenance": "demonstration_fixture",
+            "valid_candidates_target": 2,
+            "valid_target_met": false
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__build_report",
+          "result": {
+            "scientific_status": "unvalidated_candidates",
+            "provenance": "demonstration_fixture",
+            "execution_status": "completed"
+          },
+          "isError": false
+        },
+        {
+          "tool": "mcp__matpilot__get_results",
+          "result": {
+            "status": "completed",
+            "count": 2,
+            "scientific_status": "structural_sanity_only; properties not measured",
+            "provenance": "demonstration_fixture"
+          },
+          "isError": false
+        }
+      ],
+      "final_answer": "## 执行完成，结论：未达到 2 个去重合格候选目标\n\n**来源声明：本次结果全部来自固定演示样本**（`provenance=demonstration_fixture`，后端 demo，批次命令为 `internal:demonstration_fixture`，即“内部演示样本”）。该结果**不是** MatterGen/DiffCSP 真实模型产物，也未进行任何真实计算。\n\n| 指标 | 数值 |\n|---|---|\n| job_id | `c1df04db38e345fa84cfdc2090499b6e` |\n| 状态 | completed，尝试 1 次，未停止、未恢复 |\n| 采样计费（charged）/ 剩余（remaining） | 2 / 0 （预算已用尽，未补采） |\n| **文件数量** | **2**（candidate_0000.cif、candidate_0001.cif） |\n| **独立结构数量（去重后）** | **1** |\n| 合格候选计数 | 2（逐文件通过硬性要求）→ 去重后 **1** |\n| 目标达成 valid_target_met | **false**（目标 2，实际 1） |\n\n**去重依据：**两个文件 SHA256 完全相同（`d469ee82…b97b7c5`，与模板哈希一致），第二个文件被判定为第一个文件的完全重复（`exact_duplicate_of = c_e19f7f27…`，StructureMatcher 判为 equivalent）。因此它是同一结构的两次文件落盘，不能算作两个独立候选。\n\n**逐项检查：**r2 化学计量 = NaCl ✅；r3 空间群 = 221 ✅（symprec 0.01 Å）；解析与基础几何 ✅；证据级别仅为 structural_sanity_only。\n\n**边界说明：**该结构为软件验收用的确定性样本（模板本身标注为 CsCl 型排布的夹具，并非实验 NaCl），不构成材料性能、能量、新颖性或实验验证结论；seed 在 demo 后端未应用。\n\n报告与证据：[report.md](<[local-artifact]>) · [evidence.json](<[local-artifact]>)"
+    }
+  ],
+  "budget": {
+    "cumulative_calls": 97,
+    "cumulative_accounted_upper_bound_cny": 3.5573940000000004,
+    "billing_actual_cny": null,
+    "user_notification_threshold_cny": 20,
+    "user_hard_limit_cny": null,
+    "current_batch_internal_guard_cny": 19,
+    "extended_batch_calls": 27,
+    "note": "The user changed 20 CNY to a notification threshold before this batch. No extra authorization is needed solely to cross 20; notify the user. The lower internal batch guard was not reached."
+  },
+  "observations": [
+    "All five plan-only prompts remained unsubmitted.",
+    "Qualitative goals retained without invented values. Missing templates, hard bounds without evaluators, and impossible count requests were blocked.",
+    "Supported joint conditions and unit conversion reached ready after one review-target correction.",
+    "The duplicate-target fixture completed after one plan repair: two files, one unique valid structure, target unmet, sampling cap exhausted without extra sampling.",
+    "Missing-template refusal was appropriate, but the attempted ledger invented invalid negative-condition fields; source checks rejected them. Some explanatory wording is overgeneral.",
+    "These are development observations; no percentage AI benefit or total scientific correctness score is inferred."
+  ],
+  "private_raw_results_sha256": "9eb3913776e7f1ad29eff8ee970e9824cb22487792ce3de3f1df25c1a1b79b49"
+}

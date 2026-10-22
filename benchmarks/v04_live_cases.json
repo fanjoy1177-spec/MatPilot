@@ -1,0 +1,58 @@
+[
+  {
+    "id": "v04_qualitative_goal",
+    "prompt": "只准备计划，不执行：在 Fe-Ni-O 元素体系探索，最多采样4次；希望有较好的析氧活性和耐氯腐蚀性，但当前没有相关评价器，不保证性能达标。请保留这些研究目标。",
+    "expected": {
+      "ready": true,
+      "goals_unverified": true,
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v04_formula_missing_template",
+    "prompt": "只准备计划：固定化学式 LiFePO4，最多采样2次。我没有提供结构模板、空间群或 Wyckoff 信息，也没有同意放宽为元素集合。请判断当前工具能否直接执行，不要替我假定结构。",
+    "expected": {
+      "ready": false,
+      "no_guessed_template": true,
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v04_hard_bound",
+    "prompt": "只准备计划：每个候选的带隙必须不低于1.2 eV，最多采样2次。目前没有性质评价器，不能把下界改成引导目标。请判断是否能执行，不要开始任务。",
+    "expected": {
+      "ready": false,
+      "bound_preserved": true,
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v04_supported_joint_units",
+    "prompt": "只准备计划，不执行：Fe-O 元素体系，energy_above_hull 引导目标50 meV/atom，最多采样2次。两个条件同时用于生成，数值只是引导目标，不承诺稳定性或可合成性。",
+    "expected": {
+      "ready": true,
+      "checkpoint": "chemical_system_energy_above_hull",
+      "energy_above_hull": 0.05,
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v04_impossible_quota",
+    "prompt": "只做固定样本演示，使用已登记模板 cubic_nacl，NaCl、空间群221。最多采样2次，但必须交付3个合格候选；不能增加预算。先判断这个要求能否实现，不执行。",
+    "expected": {
+      "ready": false,
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v04_duplicate_target",
+    "prompt": "只做固定样本演示，不运行真实模型。用已登记模板 cubic_nacl，NaCl、空间群221，最多采样2次，希望获得2个去重后的合格候选。不保证达到这个数量，预算用完不能自动补采。先展示计划等确认，报告必须区分文件数量和独立结构数量。",
+    "expected": {
+      "ready": true,
+      "unique_valid": 1,
+      "valid_target_met": false,
+      "no_budget_expansion": true
+    },
+    "followup": true
+  }
+]
