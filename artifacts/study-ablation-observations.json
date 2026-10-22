@@ -1,0 +1,3610 @@
+{
+  "format": "matpilot-development-ablation-observations/v1",
+  "status": "awaiting_user_review",
+  "mode": "development",
+  "protocol_sha256": "ead21d2f70b167c65f79b6af36c88ce440e33d2471552d7ddf8234941bf15df3",
+  "public_review_metrics_sha256": "34596429ba67928ff2f03eb4f2cf00f286459ab4a0c95797cddc6d870445172e",
+  "runtime_pack_sha256": "e8664e149eca243bbfb928bbfde95783a6e96793cc0f44bd1ead4600f841902f",
+  "suite_sha256": "2351465da4baafca3b2d323196991cf0bbc148f1f801ba4ad1827adc626f38e8",
+  "plan_sha256": "37025c8b489b6ce340d305fbec71f51737167a9558026ca5c70fe06bad2f195c",
+  "ledger_snapshot_sha256": "df9d2e0f08305a33a1cbd2e7dfc9fc1becc9aa967374079effdfcbe7b0f2ee67",
+  "planned_runs": 12,
+  "observed_runs": 12,
+  "groups": {
+    "M": {
+      "runs": 4,
+      "completed": 4,
+      "failed": 0,
+      "timeout": 0,
+      "budget_stopped": 0,
+      "api_request_count": 21,
+      "api_accounted_cny": 0.965612,
+      "wall_seconds": 65.55500699999928,
+      "tool_call_count": 34,
+      "clarification_count": 1
+    },
+    "M_without_mapping": {
+      "runs": 4,
+      "completed": 4,
+      "failed": 0,
+      "timeout": 0,
+      "budget_stopped": 0,
+      "api_request_count": 27,
+      "api_accounted_cny": 1.297414,
+      "wall_seconds": 58.16051880000532,
+      "tool_call_count": 44,
+      "clarification_count": 0
+    },
+    "M_without_evidence": {
+      "runs": 4,
+      "completed": 4,
+      "failed": 0,
+      "timeout": 0,
+      "budget_stopped": 0,
+      "api_request_count": 26,
+      "api_accounted_cny": 1.1711179999999999,
+      "wall_seconds": 56.67714100000262,
+      "tool_call_count": 36,
+      "clarification_count": 1
+    }
+  },
+  "runs": [
+    {
+      "run_id": "D0101--M--1",
+      "task_id": "D0101",
+      "group": "M",
+      "repeat": 1,
+      "configuration_hash": "a9c275d5ff877deffe32ecb90038721f6ad9c4395d3bd399d9fcfe09704859a4",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 8,
+      "api_accounted_cny": 0.422818,
+      "wall_seconds": 24.278995600000023,
+      "tool_call_count": 12,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "6b540227072ab3088bca14e0e482e9b756e1496ddb5691f8f93ec46fb9e37815",
+        "trace.json": "69628ae8f7862a3388ee60b0ab8af4683722fa29bd050dd4a07a2b73f924ad26",
+        "trace.partial.json": "dd39991846700c925e537076c8122cf4e6ec2b29b884548371dfe65b0e6bfd64",
+        "events.jsonl": "54b6a81a67faf6a2b1ebe76a81db6028f8c1de72d24a4d0e9f4d13d0ec50fa82",
+        "journal.jsonl": "1d704384c25145c3e1ec1778800c0050942804aa700567d27cab273280e37eab"
+      },
+      "ledger_records_sha256": "7bb7336d347874b7ddf23b8cbfa220b6d13733bee974ea904321e7be586ff89c",
+      "public_record_sha256": "30ed8c1c0c9515460fd5a44917e1e479060619a7fcaa0fcf6d76bf5319f3f8fe",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "get_capabilities": 1,
+        "status": 2,
+        "get_input_capabilities": 1,
+        "list_templates": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "get_candidates": 1,
+        "check_candidates": 1,
+        "list_artifacts": 1,
+        "read_artifact": 2
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 5,
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 8,
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：在 Fe-Ni-O 元素体系探索，最多采样 4 个；析氧活性保留为未评价目标。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "Fe-Ni-O 元素体系探索"
+                      },
+                      "kind": "element_set",
+                      "property": "chemical_system",
+                      "value": "Fe-Ni-O",
+                      "strength": "hard",
+                      "relation": "equal"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 4 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 4,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "析氧活性保留为未评价目标"
+                      },
+                      "kind": "research_goal",
+                      "property": "oxygen_evolution_activity",
+                      "value": "析氧活性保留为未评价目标",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "chemical_system",
+                  "conditions": {
+                    "chemical_system": "Fe-Ni-O"
+                  },
+                  "review_targets": [
+                    "析氧活性保留为未评价目标"
+                  ],
+                  "num_samples": 4,
+                  "batch_size": 2,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": [],
+                  "search_mode": "direct"
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "a82ceb8afaa2dfbd0da99685267a454b2487a7b2c0cd68ebb756869355d23f2b",
+              "state": "ready",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "num_samples": 4,
+              "batch_size": 2,
+              "review_targets": [
+                "析氧活性保留为未评价目标"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": 3,
+                "uncovered_signals": [],
+                "program_mapping_coverage": 1,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "element_set",
+                  "property": "chemical_system",
+                  "value": "Fe-Ni-O",
+                  "normalized_value": "Fe-Ni-O",
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "equal",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 4,
+                  "normalized_value": 4,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "oxygen_evolution_activity",
+                  "value": "析氧活性保留为未评价目标",
+                  "normalized_value": "析氧活性保留为未评价目标",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "plan_id": "a82ceb8afaa2dfbd0da99685267a454b2487a7b2c0cd68ebb756869355d23f2b"
+              },
+              "tool_error_returned": false,
+              "plan_id": "a82ceb8afaa2dfbd0da99685267a454b2487a7b2c0cd68ebb756869355d23f2b",
+              "actual_upstream_arguments": {
+                "num_structures": 4,
+                "batch_size": 2,
+                "model_name": "chemical_system",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "chemical_system": "Fe-Ni-O"
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 4,
+                "sampling_attempts": 4,
+                "num_generated": 4
+              },
+              "replay_status": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 2,
+                    "remaining_budget": 2,
+                    "sampling_cap": 4,
+                    "requested_samples": 2,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b"
+                    ]
+                  }
+                },
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 4,
+                    "remaining_budget": 0,
+                    "sampling_cap": 4,
+                    "requested_samples": 4,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b",
+                      "c_c",
+                      "c_d"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 8,
+              "arguments": {
+                "plan_id": "a82ceb8afaa2dfbd0da99685267a454b2487a7b2c0cd68ebb756869355d23f2b",
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "a82ceb8afaa2dfbd0da99685267a454b2487a7b2c0cd68ebb756869355d23f2b",
+              "planning_state": "ready",
+              "checks_performed": true,
+              "requirements_audited": true,
+              "valid_candidate_count": 3,
+              "unique_valid_candidate_count": 1,
+              "equivalence_unknown_count": 0,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                },
+                {
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_b",
+                      "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_b",
+                      "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "equivalent",
+                  "equivalent_to_candidate_id": "c_a",
+                  "exact_file_duplicate": true
+                },
+                {
+                  "candidate_id": "c_c",
+                  "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": false,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_c",
+                      "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                      "status": "fail",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_c",
+                      "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                },
+                {
+                  "candidate_id": "c_d",
+                  "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_d",
+                      "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_d",
+                      "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "equivalent",
+                  "equivalent_to_candidate_id": "c_a",
+                  "exact_file_duplicate": true
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 2,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 4,
+                "sampling_cap": 4,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            },
+            {
+              "tool_index": 10,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0101--M_without_mapping--1",
+      "task_id": "D0101",
+      "group": "M_without_mapping",
+      "repeat": 1,
+      "configuration_hash": "4481d0af3cb4828eaccbf5a77761886dc4ae057f400a1963ea71fce9b7b39e26",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 10,
+      "api_accounted_cny": 0.56569,
+      "wall_seconds": 18.588867100000382,
+      "tool_call_count": 17,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "3420d2c6bc94a06398ffc86b49285f506c50e2b3a3c2e0b7bfc5b11c6af6d9f9",
+        "trace.json": "ecfb2f866ddf10e14d3b9d825939280443196ec19f2658e15d3c2d92fa91d83d",
+        "trace.partial.json": "f8b387e78e7d484c4eeca0d649638956281e35d9075f628c717b8290f63da64c",
+        "events.jsonl": "38af69067fd4875b47283b3147507f18265efa2645bee7bb8aa7e7de972cd2a5",
+        "journal.jsonl": "0498fb8f926cb507a0bd4a58c698697654068db7a719a5c02a634dbba91c7438"
+      },
+      "ledger_records_sha256": "13d5d90c03c328fa856981ff080a43721d5555a4c4b392e1937a608df20437df",
+      "public_record_sha256": "f3525dcdf9b8bf136372447fc965222c0bdd63dcaff999b32f25fcaf99c59f9c",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 2,
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "list_templates": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "get_candidates": 1,
+        "check_candidates": 1,
+        "get_metrics": 2,
+        "list_artifacts": 1,
+        "list_upstream_artifacts": 1,
+        "read_artifact": 2,
+        "read_upstream_artifact": 2
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 5,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 8,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：在 Fe-Ni-O 元素体系探索，最多采样 4 个；析氧活性保留为未评价目标。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "Fe-Ni-O"
+                      },
+                      "kind": "element_set",
+                      "property": "chemical_system",
+                      "value": "Fe-Ni-O",
+                      "strength": "hard",
+                      "relation": "equal"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 4 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 4,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "析氧活性保留为未评价目标"
+                      },
+                      "kind": "research_goal",
+                      "property": "oxygen_evolution_activity",
+                      "value": "析氧活性保留为未评价目标",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "chemical_system",
+                  "conditions": {
+                    "chemical_system": "Fe-Ni-O"
+                  },
+                  "review_targets": [
+                    "析氧活性保留为未评价目标"
+                  ],
+                  "num_samples": 4,
+                  "batch_size": 2,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": []
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "55a614da13834a552b748c95f5b136303e5121ac1f5b8faa5126fe5a9f5f3c32",
+              "state": "ready",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "num_samples": 4,
+              "batch_size": 2,
+              "review_targets": [
+                "析氧活性保留为未评价目标"
+              ],
+              "coverage": {
+                "scope": "disabled_by_predeclared_mapping_ablation",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": null,
+                "uncovered_signals": null,
+                "program_mapping_coverage": null,
+                "semantic_completeness": "not_verified",
+                "limitations": "Source anchoring, omission detection and requirement-to-action mapping are disabled; type/unit normalization remains for independent result checks."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "element_set",
+                  "property": "chemical_system",
+                  "value": "Fe-Ni-O",
+                  "normalized_value": "Fe-Ni-O",
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "equal",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 4,
+                  "normalized_value": 4,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "oxygen_evolution_activity",
+                  "value": "析氧活性保留为未评价目标",
+                  "normalized_value": "析氧活性保留为未评价目标",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "plan_id": "55a614da13834a552b748c95f5b136303e5121ac1f5b8faa5126fe5a9f5f3c32"
+              },
+              "tool_error_returned": false,
+              "plan_id": "55a614da13834a552b748c95f5b136303e5121ac1f5b8faa5126fe5a9f5f3c32",
+              "actual_upstream_arguments": {
+                "num_structures": 4,
+                "batch_size": 2,
+                "model_name": "chemical_system",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "chemical_system": "Fe-Ni-O"
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 4,
+                "sampling_attempts": 4,
+                "num_generated": 4
+              },
+              "replay_status": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 2,
+                    "remaining_budget": 2,
+                    "sampling_cap": 4,
+                    "requested_samples": 2,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b"
+                    ]
+                  }
+                },
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 4,
+                    "remaining_budget": 0,
+                    "sampling_cap": 4,
+                    "requested_samples": 4,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b",
+                      "c_c",
+                      "c_d"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 8,
+              "arguments": {
+                "plan_id": "55a614da13834a552b748c95f5b136303e5121ac1f5b8faa5126fe5a9f5f3c32",
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "55a614da13834a552b748c95f5b136303e5121ac1f5b8faa5126fe5a9f5f3c32",
+              "planning_state": "ready",
+              "checks_performed": true,
+              "requirements_audited": true,
+              "valid_candidate_count": 3,
+              "unique_valid_candidate_count": 1,
+              "equivalence_unknown_count": 0,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                },
+                {
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_b",
+                      "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_b",
+                      "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "equivalent",
+                  "equivalent_to_candidate_id": "c_a",
+                  "exact_file_duplicate": true
+                },
+                {
+                  "candidate_id": "c_c",
+                  "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": false,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_c",
+                      "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                      "status": "fail",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_c",
+                      "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                },
+                {
+                  "candidate_id": "c_d",
+                  "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_d",
+                      "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                      "status": "pass",
+                      "strength": "hard",
+                      "property": "chemical_system",
+                      "expected": "Fe-Ni-O",
+                      "observed": [
+                        "Fe",
+                        "Ni",
+                        "O"
+                      ],
+                      "method": "pymatgen element equality",
+                      "reason": null
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_d",
+                      "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "oxygen_evolution_activity",
+                      "expected": "析氧活性保留为未评价目标",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "equivalent",
+                  "equivalent_to_candidate_id": "c_a",
+                  "exact_file_duplicate": true
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 4,
+                "sampling_cap": 4,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            },
+            {
+              "tool_index": 11,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0101--M_without_evidence--1",
+      "task_id": "D0101",
+      "group": "M_without_evidence",
+      "repeat": 1,
+      "configuration_hash": "3943c8dfd93d5499cf612d28d2dd5ddb71b17a4d1564e71041bc7cc647a3538f",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 7,
+      "api_accounted_cny": 0.339644,
+      "wall_seconds": 13.860777500003577,
+      "tool_call_count": 9,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "068869e817093d3175a196188056057872e0e4cae9fc513816912f92149105aa",
+        "trace.json": "f0f95c01d2b43f72ae42f60de37e7cebea1eac18aca11b3f14367b8f2a159ba0",
+        "trace.partial.json": "ba2ae6f9b8a65078297ef921bcc15e0c5baa547fecb7254f1a1216686c05ebc0",
+        "events.jsonl": "d3e6083e21ebaccd4befc245eb18a15ba733d6428d3708ebf5625f7fc99cbe9d",
+        "journal.jsonl": "2482c841e759aa193458bf445382d5d45444c7aacd56ed0ef66e8cc2d9cfa1f0"
+      },
+      "ledger_records_sha256": "5d04d260d6f88a2b282476b017452736560ca355d46e4544e532087ae5fe82ed",
+      "public_record_sha256": "a48bba4e3ce991fc493cccdda6f3d477657fc6bd71ced3c089482afedf461864",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "status": 2,
+        "list_templates": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "check_candidates": 1,
+        "get_candidates": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 5,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 7,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：在 Fe-Ni-O 元素体系探索，最多采样 4 个；析氧活性保留为未评价目标。",
+                  "model_id": "mattergen",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "Fe-Ni-O 元素体系"
+                      },
+                      "kind": "element_set",
+                      "property": "chemical_system",
+                      "value": "Fe-Ni-O",
+                      "strength": "hard",
+                      "relation": "equal"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 4 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 4,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "析氧活性保留为未评价目标"
+                      },
+                      "kind": "research_goal",
+                      "property": "oxygen evolution activity",
+                      "value": "析氧活性保留为未评价目标",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "conditions": {
+                    "chemical_system": "Fe-Ni-O"
+                  },
+                  "review_targets": [
+                    "析氧活性保留为未评价目标"
+                  ],
+                  "num_samples": 4,
+                  "batch_size": 2,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": []
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "40eb77da2c550004a6d8caec7212815961b2bc6a4a95e732356f1a642dcf1191",
+              "state": "ready",
+              "conditions": {
+                "chemical_system": "Fe-Ni-O"
+              },
+              "num_samples": 4,
+              "batch_size": 2,
+              "review_targets": [
+                "析氧活性保留为未评价目标"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": 3,
+                "uncovered_signals": [],
+                "program_mapping_coverage": 1,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "element_set",
+                  "property": "chemical_system",
+                  "value": "Fe-Ni-O",
+                  "normalized_value": "Fe-Ni-O",
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "equal",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 4,
+                  "normalized_value": 4,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "oxygen evolution activity",
+                  "value": "析氧活性保留为未评价目标",
+                  "normalized_value": "析氧活性保留为未评价目标",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "plan_id": "40eb77da2c550004a6d8caec7212815961b2bc6a4a95e732356f1a642dcf1191"
+              },
+              "tool_error_returned": false,
+              "plan_id": "40eb77da2c550004a6d8caec7212815961b2bc6a4a95e732356f1a642dcf1191",
+              "actual_upstream_arguments": {
+                "num_structures": 4,
+                "batch_size": 2,
+                "model_name": "chemical_system",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "chemical_system": "Fe-Ni-O"
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 4,
+                "sampling_attempts": 4,
+                "num_generated": 4
+              },
+              "replay_status": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 2,
+                    "remaining_budget": 2,
+                    "sampling_cap": 4,
+                    "requested_samples": 2,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b"
+                    ]
+                  }
+                },
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "chemical_system",
+                    "conditions": {
+                      "chemical_system": "Fe-Ni-O"
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 2,
+                    "attempts_consumed": 2,
+                    "num_generated": 2,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 4,
+                    "remaining_budget": 0,
+                    "sampling_cap": 4,
+                    "requested_samples": 4,
+                    "candidate_ids": [
+                      "c_a",
+                      "c_b",
+                      "c_c",
+                      "c_d"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "plan_id": "40eb77da2c550004a6d8caec7212815961b2bc6a4a95e732356f1a642dcf1191",
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "40eb77da2c550004a6d8caec7212815961b2bc6a4a95e732356f1a642dcf1191",
+              "checks_performed": false,
+              "valid_candidate_count": null,
+              "unique_valid_candidate_count": null,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_8e2e53a92e5aa2cbce164de3ffece25f87e6e8f40c7141ab1bf4861e8fbda6e2",
+                  "parent_version_id": null
+                },
+                {
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_b48f0f07503a6d0fbb1b063a0f543c37ff4c65cd1f63b1588c93cefd24312b34",
+                  "parent_version_id": null
+                },
+                {
+                  "candidate_id": "c_c",
+                  "structure_version_id": "s_ac5c3587bebf35ceb4739989486c08a0f9f4ff54fed30d8614242e52c27e0a11",
+                  "parent_version_id": null
+                },
+                {
+                  "candidate_id": "c_d",
+                  "structure_version_id": "s_1f9f9cfde00fe0f0b973b485f24e250e164556048bc801a52bb165ccd7b0dc70",
+                  "parent_version_id": null
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 3,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 4,
+                "sampling_cap": 4,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            },
+            {
+              "tool_index": 9,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 4,
+                "remaining_budget": 0,
+                "sampling_cap": 4,
+                "requested_samples": 4,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b",
+                  "c_c",
+                  "c_d"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0201--M--1",
+      "task_id": "D0201",
+      "group": "M",
+      "repeat": 1,
+      "configuration_hash": "a9c275d5ff877deffe32ecb90038721f6ad9c4395d3bd399d9fcfe09704859a4",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 7,
+      "api_accounted_cny": 0.325566,
+      "wall_seconds": 20.59877609999478,
+      "tool_call_count": 11,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "23662663357ad101401380f03ff98acfedd21ed01dc3110bd5ecb6a343d5c21d",
+        "trace.json": "20038d1dd6f2fdbc7db1b13f9e5655099115e668bd0c75ba18bc22a4dd33c254",
+        "trace.partial.json": "7575bc4b2466eb1e8a273638b292020f4082a22097e2d9a623415bf21e32d9ef",
+        "events.jsonl": "88a94ef76401dceed1f4ae3491c2b3cf01abd17a743b7efa7be8d4ebff8c134b",
+        "journal.jsonl": "aad1d7db2452239cb944826131b407248b40b85a0f6e635b5adc066718118e87"
+      },
+      "ledger_records_sha256": "485ae884ed1eb6d69983d87104f89ee64a2f0bd10304fd4fe89d5e290f9a3a65",
+      "public_record_sha256": "bc51ab6e4269b567b84111693d5262b00dc1e16224f294362a86350569f229a5",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_capabilities": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "get_candidates": 1,
+        "get_metrics": 1,
+        "check_candidates": 1,
+        "list_upstream_artifacts": 1,
+        "list_artifacts": 1,
+        "read_upstream_artifact": 1,
+        "read_artifact": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 3,
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 7,
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 3,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：带隙引导目标 1200 meV，最多采样 1 个；不要求保证带隙。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙引导目标 1200 meV"
+                      },
+                      "kind": "numeric_target",
+                      "property": "dft_band_gap",
+                      "value": 1200,
+                      "unit": "meV",
+                      "strength": "goal",
+                      "relation": "target"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 1 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 1,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "不要求保证带隙"
+                      },
+                      "kind": "research_goal",
+                      "property": "band_gap_not_guaranteed",
+                      "value": "不要求保证带隙（带隙仅为引导目标，不要求达标）",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "dft_band_gap",
+                  "conditions": {
+                    "dft_band_gap": {
+                      "value": 1200,
+                      "unit": "meV",
+                      "relation": "target"
+                    }
+                  },
+                  "review_targets": [],
+                  "num_samples": 1,
+                  "batch_size": 1,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": [],
+                  "search_mode": "direct"
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "805563f4266b0ee61925e3b181fc59fae51419415be9c2bc111f41c1f68ef4dc",
+              "state": "ready",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 1,
+              "batch_size": 1,
+              "review_targets": [
+                "不要求保证带隙（带隙仅为引导目标，不要求达标）"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": 3,
+                "uncovered_signals": [],
+                "program_mapping_coverage": 1,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "numeric_target",
+                  "property": "dft_band_gap",
+                  "value": 1200,
+                  "unit": "meV",
+                  "normalized_value": 1.2,
+                  "normalized_unit": "eV",
+                  "strength": "goal",
+                  "relation": "target",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 1,
+                  "normalized_value": 1,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "band_gap_not_guaranteed",
+                  "value": "不要求保证带隙（带隙仅为引导目标，不要求达标）",
+                  "normalized_value": "不要求保证带隙（带隙仅为引导目标，不要求达标）",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 4,
+              "arguments": {
+                "plan_id": "805563f4266b0ee61925e3b181fc59fae51419415be9c2bc111f41c1f68ef4dc"
+              },
+              "tool_error_returned": false,
+              "plan_id": "805563f4266b0ee61925e3b181fc59fae51419415be9c2bc111f41c1f68ef4dc",
+              "actual_upstream_arguments": {
+                "num_structures": 1,
+                "batch_size": 1,
+                "model_name": "dft_band_gap",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "properties": {
+                  "dft_band_gap": 1.2
+                }
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 1,
+                "sampling_attempts": 1,
+                "num_generated": 1
+              },
+              "replay_status": {
+                "attempts_used": 1,
+                "remaining_budget": 0,
+                "sampling_cap": 1,
+                "requested_samples": 1,
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "dft_band_gap",
+                    "conditions": {
+                      "dft_band_gap": 1.2
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 1
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 1,
+                    "attempts_consumed": 1,
+                    "num_generated": 1,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 1,
+                    "remaining_budget": 0,
+                    "sampling_cap": 1,
+                    "requested_samples": 1,
+                    "candidate_ids": [
+                      "c_a"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "plan_id": "805563f4266b0ee61925e3b181fc59fae51419415be9c2bc111f41c1f68ef4dc",
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "805563f4266b0ee61925e3b181fc59fae51419415be9c2bc111f41c1f68ef4dc",
+              "planning_state": "ready",
+              "checks_performed": true,
+              "requirements_audited": true,
+              "valid_candidate_count": 1,
+              "unique_valid_candidate_count": 1,
+              "equivalence_unknown_count": 0,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "dft_band_gap",
+                      "expected": 1.2,
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "band_gap_not_guaranteed",
+                      "expected": "不要求保证带隙（带隙仅为引导目标，不要求达标）",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 1,
+                "sampling_cap": 1,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0201--M_without_mapping--1",
+      "task_id": "D0201",
+      "group": "M_without_mapping",
+      "repeat": 1,
+      "configuration_hash": "4481d0af3cb4828eaccbf5a77761886dc4ae057f400a1963ea71fce9b7b39e26",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 7,
+      "api_accounted_cny": 0.34196,
+      "wall_seconds": 15.978426799997687,
+      "tool_call_count": 12,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "07451a653ceb63584aacc53a7bf8508de2492d49ec249d940fd5c477f92d4f4e",
+        "trace.json": "db0b48752692900eb7687a0b287a5dc6812e244ebdd0da2df7c37b48515e19b1",
+        "trace.partial.json": "10381d7ea53d57b90cec5324eb988f4f33f4a99edc5de2106ccc077058605659",
+        "events.jsonl": "395013d412d17743a3e6d9aee21a6f0bcee7057a64b530f9336ffe9ec85c27be",
+        "journal.jsonl": "5e5c8b3c327e3be81ec6787d55929b21046617a5d1482d4cb597c5bf70bb8c31"
+      },
+      "ledger_records_sha256": "d2afa2c1ca57e478f899a20e2db29f4954e5da37794ead80f6d02ea762f47394",
+      "public_record_sha256": "68c4801f31ae0e6adf8c27ba093f6f518f4bc9ca3fe971f834c912b5254a83ef",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "status": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "get_candidates": 1,
+        "check_candidates": 1,
+        "get_metrics": 1,
+        "list_artifacts": 1,
+        "list_upstream_artifacts": 1,
+        "read_artifact": 1,
+        "read_upstream_artifact": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 4,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 7,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 4,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：带隙引导目标 1200 meV，最多采样 1 个；不要求保证带隙。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙引导目标 1200 meV"
+                      },
+                      "kind": "numeric_target",
+                      "property": "dft_band_gap",
+                      "value": 1200,
+                      "unit": "meV",
+                      "strength": "goal",
+                      "relation": "target"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 1 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 1,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "不要求保证带隙"
+                      },
+                      "kind": "research_goal",
+                      "property": "band_gap_no_guarantee",
+                      "value": "带隙仅作为引导目标，不要求保证命中 1200 meV",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "dft_band_gap",
+                  "conditions": {
+                    "dft_band_gap": {
+                      "value": 1200,
+                      "unit": "meV",
+                      "relation": "target"
+                    }
+                  },
+                  "review_targets": [
+                    "带隙仅作为引导目标，不要求保证命中 1200 meV"
+                  ],
+                  "num_samples": 1,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": [],
+                  "search_mode": "direct"
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "2f34a7e5d25c0991d25fed35d023551d9ed3345378d013b3d1dcdcf80a022d5c",
+              "state": "ready",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 1,
+              "batch_size": 2,
+              "review_targets": [
+                "带隙仅作为引导目标，不要求保证命中 1200 meV"
+              ],
+              "coverage": {
+                "scope": "disabled_by_predeclared_mapping_ablation",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": null,
+                "uncovered_signals": null,
+                "program_mapping_coverage": null,
+                "semantic_completeness": "not_verified",
+                "limitations": "Source anchoring, omission detection and requirement-to-action mapping are disabled; type/unit normalization remains for independent result checks."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "numeric_target",
+                  "property": "dft_band_gap",
+                  "value": 1200,
+                  "unit": "meV",
+                  "normalized_value": 1.2,
+                  "normalized_unit": "eV",
+                  "strength": "goal",
+                  "relation": "target",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 1,
+                  "normalized_value": 1,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "band_gap_no_guarantee",
+                  "value": "带隙仅作为引导目标，不要求保证命中 1200 meV",
+                  "normalized_value": "带隙仅作为引导目标，不要求保证命中 1200 meV",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "plan_id": "2f34a7e5d25c0991d25fed35d023551d9ed3345378d013b3d1dcdcf80a022d5c"
+              },
+              "tool_error_returned": false,
+              "plan_id": "2f34a7e5d25c0991d25fed35d023551d9ed3345378d013b3d1dcdcf80a022d5c",
+              "actual_upstream_arguments": {
+                "num_structures": 1,
+                "batch_size": 2,
+                "model_name": "dft_band_gap",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "properties": {
+                  "dft_band_gap": 1.2
+                }
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 1,
+                "sampling_attempts": 1,
+                "num_generated": 1
+              },
+              "replay_status": {
+                "attempts_used": 1,
+                "remaining_budget": 0,
+                "sampling_cap": 1,
+                "requested_samples": 1,
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "dft_band_gap",
+                    "conditions": {
+                      "dft_band_gap": 1.2
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 1
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 1,
+                    "attempts_consumed": 1,
+                    "num_generated": 1,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 1,
+                    "remaining_budget": 0,
+                    "sampling_cap": 1,
+                    "requested_samples": 1,
+                    "candidate_ids": [
+                      "c_a"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "plan_id": "2f34a7e5d25c0991d25fed35d023551d9ed3345378d013b3d1dcdcf80a022d5c",
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "2f34a7e5d25c0991d25fed35d023551d9ed3345378d013b3d1dcdcf80a022d5c",
+              "planning_state": "ready",
+              "checks_performed": true,
+              "requirements_audited": true,
+              "valid_candidate_count": 1,
+              "unique_valid_candidate_count": 1,
+              "equivalence_unknown_count": 0,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                  "parent_version_id": null,
+                  "basic_checks_pass": true,
+                  "all_hard_requirements_pass": true,
+                  "research_goals_verified": false,
+                  "requirement_checks": [
+                    {
+                      "requirement_id": "r1",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "dft_band_gap",
+                      "expected": 1.2,
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "candidate_id": "c_a",
+                      "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                      "status": "unknown",
+                      "strength": "goal",
+                      "property": "band_gap_no_guarantee",
+                      "expected": "带隙仅作为引导目标，不要求保证命中 1200 meV",
+                      "observed": null,
+                      "method": null,
+                      "reason": "Property has not been evaluated."
+                    }
+                  ],
+                  "structural_equivalence_status": "distinct_within_checked_set",
+                  "equivalent_to_candidate_id": null,
+                  "exact_file_duplicate": false
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 3,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 1,
+                "sampling_cap": 1,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0201--M_without_evidence--1",
+      "task_id": "D0201",
+      "group": "M_without_evidence",
+      "repeat": 1,
+      "configuration_hash": "3943c8dfd93d5499cf612d28d2dd5ddb71b17a4d1564e71041bc7cc647a3538f",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 8,
+      "api_accounted_cny": 0.37749,
+      "wall_seconds": 14.740422900006175,
+      "tool_call_count": 12,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "d6c896ff8fe35b3e496f542e6e721ccb62c2e7dea922559bae76e843eda9a3af",
+        "trace.json": "2864d3f5e7bfb2e61f570d9067ec301de76c5bca4de96a00fba96efc74654c1a",
+        "trace.partial.json": "1808a19407f183ab953c54f0915471c073bb987f8cf49c5d7413725dcbe68a5e",
+        "events.jsonl": "93c51558c937c572a0d6902a66395add72e4c47bbca04b892f66f027cceb7c8b",
+        "journal.jsonl": "4e81d9581b072240270663b3f15ffca1ef58ca7d5030c842028b6231df8d1131"
+      },
+      "ledger_records_sha256": "a4367fca7daf25caf4dc49989b17f6d146a4cd871a433ef16d85459bb86855eb",
+      "public_record_sha256": "8a324ac572bed7719c98c3ee3898e8f1cce364bc4e0e6a459ab510a4db0af40f",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "list_templates": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "check_candidates": 1,
+        "get_metrics": 1,
+        "list_artifacts": 1,
+        "list_upstream_artifacts": 1,
+        "read_artifact": 1,
+        "read_upstream_artifact": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 5,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 7,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：带隙引导目标 1200 meV，最多采样 1 个；不要求保证带隙。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙引导目标 1200 meV"
+                      },
+                      "kind": "numeric_target",
+                      "property": "dft_band_gap",
+                      "value": 1200,
+                      "unit": "meV",
+                      "strength": "goal",
+                      "relation": "target"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "最多采样 1 个"
+                      },
+                      "kind": "sample_budget",
+                      "property": "max_samples",
+                      "value": 1,
+                      "strength": "hard",
+                      "relation": "at_most"
+                    },
+                    {
+                      "requirement_id": "r3",
+                      "source": {
+                        "quote": "不要求保证带隙"
+                      },
+                      "kind": "research_goal",
+                      "property": "band_gap_not_guaranteed",
+                      "value": "不要求保证带隙（带隙仅为引导目标，非硬性保证条件）",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "dft_band_gap",
+                  "conditions": {
+                    "dft_band_gap": {
+                      "value": 1200,
+                      "unit": "meV",
+                      "relation": "target"
+                    }
+                  },
+                  "review_targets": [],
+                  "num_samples": 1,
+                  "batch_size": 1,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": [],
+                  "search_mode": "direct"
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "b23437b5c45ddacea5ff4ca78afcaabd499a449090f75f0d8446e2f8a1f70a0a",
+              "state": "ready",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 1,
+              "batch_size": 1,
+              "review_targets": [
+                "不要求保证带隙（带隙仅为引导目标，非硬性保证条件）"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 3,
+                "valid_count": 3,
+                "mapped_count": 3,
+                "uncovered_signals": [],
+                "program_mapping_coverage": 1,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "numeric_target",
+                  "property": "dft_band_gap",
+                  "value": 1200,
+                  "unit": "meV",
+                  "normalized_value": 1.2,
+                  "normalized_unit": "eV",
+                  "strength": "goal",
+                  "relation": "target",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "sample_budget",
+                  "property": "max_samples",
+                  "value": 1,
+                  "normalized_value": 1,
+                  "normalized_unit": null,
+                  "strength": "hard",
+                  "relation": "at_most",
+                  "origin": "anchored_proposal"
+                },
+                {
+                  "requirement_id": "r3",
+                  "kind": "research_goal",
+                  "property": "band_gap_not_guaranteed",
+                  "value": "不要求保证带隙（带隙仅为引导目标，非硬性保证条件）",
+                  "normalized_value": "不要求保证带隙（带隙仅为引导目标，非硬性保证条件）",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "plan_id": "b23437b5c45ddacea5ff4ca78afcaabd499a449090f75f0d8446e2f8a1f70a0a"
+              },
+              "tool_error_returned": false,
+              "plan_id": "b23437b5c45ddacea5ff4ca78afcaabd499a449090f75f0d8446e2f8a1f70a0a",
+              "actual_upstream_arguments": {
+                "num_structures": 1,
+                "batch_size": 1,
+                "model_name": "dft_band_gap",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "properties": {
+                  "dft_band_gap": 1.2
+                }
+              },
+              "upstream": {
+                "status": "completed",
+                "num_requested": 1,
+                "sampling_attempts": 1,
+                "num_generated": 1
+              },
+              "replay_status": {
+                "attempts_used": 1,
+                "remaining_budget": 0,
+                "sampling_cap": 1,
+                "requested_samples": 1,
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "dft_band_gap",
+                    "conditions": {
+                      "dft_band_gap": 1.2
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 1
+                  },
+                  "result": {
+                    "status": "completed",
+                    "requested_samples": 1,
+                    "attempts_consumed": 1,
+                    "num_generated": 1,
+                    "errors": []
+                  },
+                  "budget": {
+                    "attempts_used": 1,
+                    "remaining_budget": 0,
+                    "sampling_cap": 1,
+                    "requested_samples": 1,
+                    "candidate_ids": [
+                      "c_a"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "plan_id": "b23437b5c45ddacea5ff4ca78afcaabd499a449090f75f0d8446e2f8a1f70a0a",
+                "candidate_ids": [
+                  "c_a"
+                ]
+              },
+              "tool_error_returned": false,
+              "plan_id": "b23437b5c45ddacea5ff4ca78afcaabd499a449090f75f0d8446e2f8a1f70a0a",
+              "checks_performed": false,
+              "valid_candidate_count": null,
+              "unique_valid_candidate_count": null,
+              "records": [
+                {
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_35f8ab568894f9c59ca5764fabc118776585a2e1b8e226fa387b5dc7ad907c41",
+                  "parent_version_id": null
+                }
+              ]
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 1,
+                "sampling_cap": 1,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0202--M--1",
+      "task_id": "D0202",
+      "group": "M",
+      "repeat": 1,
+      "configuration_hash": "a9c275d5ff877deffe32ecb90038721f6ad9c4395d3bd399d9fcfe09704859a4",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 3,
+      "api_accounted_cny": 0.108252,
+      "wall_seconds": 9.389108500003815,
+      "tool_call_count": 5,
+      "clarification_count": 1,
+      "source_hashes": {
+        "result.json": "4067dcb3432732a01c225620d0b4ee5573e21ce76ec0d17f6993925a2b6a4c33",
+        "trace.json": "dc509449e970fbc5b20261c76d41ce8c5b73e3b665ee4b7902c3303634395233",
+        "trace.partial.json": "89ddcbb54cc5582c67002ac7ca7fbda5cc82ce9dc8be20fd6fa0cc08a230d807",
+        "events.jsonl": "8d4c3d41b5d48f28dca0adc11cdec5987165a422caefa2fd1edf73da59aa51f2",
+        "journal.jsonl": "0cf468637da77c6e0c275204f61cc3e093539ad48791282d3bb4d68fd37ec760"
+      },
+      "ledger_records_sha256": "732936074b5c690d4c44d30064ef19cec93d60a3c4b10a425e67b9a6f0950627",
+      "public_record_sha256": "32917f2122b1631251ebd237c8f7ddad596975cbeea7c426179a871078ee6266",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "ask_clarification": 1,
+        "list_templates": 1
+      },
+      "observed_checking_switches": [],
+      "operations": {
+        "prepare_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "execute_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "check_candidates": {
+          "invoked": false,
+          "calls": []
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0202--M_without_mapping--1",
+      "task_id": "D0202",
+      "group": "M_without_mapping",
+      "repeat": 1,
+      "configuration_hash": "4481d0af3cb4828eaccbf5a77761886dc4ae057f400a1963ea71fce9b7b39e26",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 6,
+      "api_accounted_cny": 0.25023,
+      "wall_seconds": 12.940756600007415,
+      "tool_call_count": 8,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "74f4d4dadca46c69290b89ec665d18eb5c92fddabb8de7493f99afe4a72c16f5",
+        "trace.json": "47e35f075c569344a66842c5afe5411079e46dc08e15b9641510834c5583234d",
+        "trace.partial.json": "0c6b9df9580318ef16d3edbdc2bf384d55638e0f1557df8ed493facaee2711f1",
+        "events.jsonl": "ecac35436e1eb0aa71d4a19aaa37d376aa1c14c2e4dcdeb2ca0725d7f09e8cf7",
+        "journal.jsonl": "884414dc86b7530250d29222d72eab9564d81cba1651d96de1156b1e74d392a0"
+      },
+      "ledger_records_sha256": "adbe228522368df5ad9839e379b8b9902feaef1dd224ebe1d09edc1823385b2b",
+      "public_record_sha256": "31e97690c51a426ee1c6eaf84b9edc184d787b72054e37b49d9fdf56b2c02e4a",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "status": 2,
+        "list_templates": 1,
+        "prepare_plan": 1,
+        "execute_plan": 1,
+        "get_candidates": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 5,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：带隙必须不低于 1.2 eV；目前没有任何性质评价器。",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙必须不低于 1.2 eV"
+                      },
+                      "kind": "numeric_bound",
+                      "property": "dft_band_gap",
+                      "value": 1.2,
+                      "unit": "eV",
+                      "strength": "hard",
+                      "relation": "at_least"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "带隙必须不低于 1.2 eV"
+                      },
+                      "kind": "research_goal",
+                      "property": "band_gap_not_below_1.2eV_verification",
+                      "value": "带隙必须不低于 1.2 eV",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "model_id": "mattergen",
+                  "checkpoint": "dft_band_gap",
+                  "conditions": {
+                    "dft_band_gap": {
+                      "value": 1.2,
+                      "unit": "eV",
+                      "relation": "target"
+                    }
+                  },
+                  "review_targets": [
+                    "带隙必须不低于 1.2 eV"
+                  ],
+                  "num_samples": 16,
+                  "batch_size": 2,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": []
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "4ca2b576c161e8524d21fef910995cd066a06b052f3a0fce41bc04d4daa73143",
+              "state": "ready",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 16,
+              "batch_size": 2,
+              "review_targets": [
+                "带隙必须不低于 1.2 eV"
+              ],
+              "coverage": {
+                "scope": "disabled_by_predeclared_mapping_ablation",
+                "proposed_count": 2,
+                "valid_count": 2,
+                "mapped_count": null,
+                "uncovered_signals": null,
+                "program_mapping_coverage": null,
+                "semantic_completeness": "not_verified",
+                "limitations": "Source anchoring, omission detection and requirement-to-action mapping are disabled; type/unit normalization remains for independent result checks."
+              },
+              "issues": [],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "numeric_bound",
+                  "property": "dft_band_gap",
+                  "value": 1.2,
+                  "unit": "eV",
+                  "normalized_value": 1.2,
+                  "normalized_unit": "eV",
+                  "strength": "hard",
+                  "relation": "at_least",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                },
+                {
+                  "requirement_id": "r2",
+                  "kind": "research_goal",
+                  "property": "band_gap_not_below_1.2eV_verification",
+                  "value": "带隙必须不低于 1.2 eV",
+                  "normalized_value": "带隙必须不低于 1.2 eV",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "study_mapping_ablation_unchecked_source"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "plan_id": "4ca2b576c161e8524d21fef910995cd066a06b052f3a0fce41bc04d4daa73143"
+              },
+              "tool_error_returned": false,
+              "plan_id": "4ca2b576c161e8524d21fef910995cd066a06b052f3a0fce41bc04d4daa73143",
+              "actual_upstream_arguments": {
+                "num_structures": 16,
+                "batch_size": 2,
+                "model_name": "dft_band_gap",
+                "guidance_scale": 2,
+                "device": "cpu",
+                "properties": {
+                  "dft_band_gap": 1.2
+                }
+              },
+              "upstream": {
+                "error": "Generation failed: Generation failed: Entire request denied: it exceeds the remaining hard sampling budget."
+              },
+              "replay_status": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 2,
+                "candidate_ids": []
+              },
+              "generator_calls": [
+                {
+                  "actual_engine_request": {
+                    "engine": "mattergen",
+                    "model_name": "dft_band_gap",
+                    "conditions": {
+                      "dft_band_gap": 1.2
+                    },
+                    "parameters": {
+                      "guidance_scale": 2
+                    },
+                    "num_samples": 2
+                  },
+                  "result": {},
+                  "budget": {}
+                }
+              ]
+            }
+          ]
+        },
+        "check_candidates": {
+          "invoked": false,
+          "calls": []
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 3,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            },
+            {
+              "tool_index": 7,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 2,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0202--M_without_evidence--1",
+      "task_id": "D0202",
+      "group": "M_without_evidence",
+      "repeat": 1,
+      "configuration_hash": "3943c8dfd93d5499cf612d28d2dd5ddb71b17a4d1564e71041bc7cc647a3538f",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 6,
+      "api_accounted_cny": 0.243092,
+      "wall_seconds": 15.123912799999118,
+      "tool_call_count": 6,
+      "clarification_count": 1,
+      "source_hashes": {
+        "result.json": "5732d3f1664725cef0402e566efe05a38c97214f256f2a728b727be48f41afce",
+        "trace.json": "a953708fb3f6ea202fb00412c6485ce25aa0e3d48776283d2795368ff65d6a9e",
+        "trace.partial.json": "996a5ee18ec7dd250fce82f0c9bf4dffab2cffc1ba9c9058465e9f2df76310ac",
+        "events.jsonl": "aaca3dd9e3e5c1938adb699b661f8d324e13edc4d51376b99f0408f7dfa560ef",
+        "journal.jsonl": "3fef7d5d23f262c71aac10273e1cd3aa86ec8c8c19d0c4df52454015c1427e63"
+      },
+      "ledger_records_sha256": "cd52ad2dd7c6a3ed909dbab0d6d8cfa9514742ad43b698dd07114fc56d9a96fc",
+      "public_record_sha256": "13fcf09f5a1dab0192c2dca9b972b2b730d295398d0c211bcee3cd29588fc3af",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "get_capabilities": 1,
+        "status": 1,
+        "get_input_capabilities": 1,
+        "prepare_plan": 2,
+        "ask_clarification": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 4,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        },
+        {
+          "tool_index": 5,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 4,
+              "arguments": {
+                "request": {
+                  "raw_request": "开发调试题：带隙必须不低于 1.2 eV；目前没有任何性质评价器。",
+                  "model_id": "mattergen",
+                  "requirements": [
+                    {
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙必须不低于 1.2 eV"
+                      },
+                      "kind": "numeric_bound",
+                      "property": "dft_band_gap",
+                      "value": 1.2,
+                      "unit": "eV",
+                      "strength": "goal",
+                      "relation": "at_least"
+                    },
+                    {
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "目前没有任何性质评价器"
+                      },
+                      "kind": "research_goal",
+                      "property": "property_evaluator_availability",
+                      "value": "目前没有任何性质评价器(no property evaluator available; band gap cannot be verified post hoc)",
+                      "strength": "goal",
+                      "relation": "goal"
+                    }
+                  ],
+                  "conditions": {
+                    "dft_band_gap": {
+                      "value": 1.2,
+                      "unit": "eV",
+                      "relation": "target"
+                    }
+                  },
+                  "review_targets": [
+                    "带隙不低于 1.2 eV（当前无性质评价器，无法后验验证）"
+                  ],
+                  "num_samples": 16,
+                  "batch_size": 2,
+                  "seed": 42,
+                  "unconditional": false,
+                  "clarifications": []
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "681e49315afa1fec5aa93ed2f0a43976c92fff6892f10c2b4156d0c6fdcc95a4",
+              "state": "blocked",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 16,
+              "batch_size": 2,
+              "review_targets": [
+                "带隙不低于 1.2 eV（当前无性质评价器，无法后验验证）",
+                "目前没有任何性质评价器(no property evaluator available; band gap cannot be verified post hoc)"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 2,
+                "valid_count": 1,
+                "mapped_count": 1,
+                "uncovered_signals": [
+                  {
+                    "start": 14,
+                    "end": 17,
+                    "text": "1.2",
+                    "kind": "number"
+                  },
+                  {
+                    "start": 10,
+                    "end": 17,
+                    "text": "不低于 1.2",
+                    "kind": "bound"
+                  }
+                ],
+                "program_mapping_coverage": 0.5,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [
+                {
+                  "code": "invalid_requirement",
+                  "requirement_id": "r1",
+                  "message": "An explicit hard requirement cannot be relabeled as a soft goal."
+                },
+                {
+                  "code": "unmapped_condition",
+                  "message": "This generation condition has no matching requirement record."
+                },
+                {
+                  "code": "unmapped_research_goal",
+                  "message": "Each review target must have a requirement record with the same canonical text."
+                },
+                {
+                  "code": "clarification_required",
+                  "message": "Some explicit source tokens have no corresponding requirement record; review them before execution."
+                }
+              ],
+              "requirements": [
+                {
+                  "requirement_id": "r2",
+                  "kind": "research_goal",
+                  "property": "property_evaluator_availability",
+                  "value": "目前没有任何性质评价器(no property evaluator available; band gap cannot be verified post hoc)",
+                  "normalized_value": "目前没有任何性质评价器(no property evaluator available; band gap cannot be verified post hoc)",
+                  "normalized_unit": null,
+                  "strength": "goal",
+                  "relation": "goal",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            },
+            {
+              "tool_index": 5,
+              "arguments": {
+                "request": {
+                  "batch_size": 2,
+                  "conditions": {
+                    "dft_band_gap": {
+                      "relation": "target",
+                      "unit": "eV",
+                      "value": 1.2
+                    }
+                  },
+                  "model_id": "mattergen",
+                  "num_samples": 16,
+                  "raw_request": "开发调试题：带隙必须不低于 1.2 eV；目前没有任何性质评价器。",
+                  "requirements": [
+                    {
+                      "kind": "numeric_bound",
+                      "property": "dft_band_gap",
+                      "relation": "at_least",
+                      "requirement_id": "r1",
+                      "source": {
+                        "quote": "带隙必须不低于 1.2 eV"
+                      },
+                      "strength": "hard",
+                      "unit": "eV",
+                      "value": 1.2
+                    },
+                    {
+                      "kind": "research_goal",
+                      "property": "band_gap_lower_bound_verification",
+                      "relation": "goal",
+                      "requirement_id": "r2",
+                      "source": {
+                        "quote": "带隙必须不低于 1.2 eV"
+                      },
+                      "strength": "goal",
+                      "value": "带隙不低于 1.2 eV（当前无性质评价器，无法后验验证）"
+                    }
+                  ],
+                  "review_targets": [
+                    "带隙不低于 1.2 eV（当前无性质评价器，无法后验验证）"
+                  ]
+                }
+              },
+              "tool_error_returned": false,
+              "plan_id": "f29021edd5701903377e6eff1026330d181700365645d9fd46b288122f8f20e3",
+              "state": "blocked",
+              "conditions": {
+                "dft_band_gap": 1.2
+              },
+              "num_samples": 16,
+              "batch_size": 2,
+              "review_targets": [
+                "带隙不低于 1.2 eV（当前无性质评价器，无法后验验证）"
+              ],
+              "coverage": {
+                "scope": "anchored_proposal",
+                "proposed_count": 2,
+                "valid_count": 1,
+                "mapped_count": 1,
+                "uncovered_signals": [],
+                "program_mapping_coverage": 0.5,
+                "semantic_completeness": "not_verified_requires_independent_review",
+                "limitations": "Lexical checks cover explicit Arabic numerals, element sets, formulae and a limited goal vocabulary. They do not prove absence of all semantic omissions."
+              },
+              "issues": [
+                {
+                  "code": "invalid_requirement",
+                  "requirement_id": "r2",
+                  "message": "An explicit hard requirement cannot be relabeled as a soft goal."
+                },
+                {
+                  "code": "unverified_hard_requirement",
+                  "requirement_id": "r1",
+                  "message": "A numerical bound requires an applicable evaluator; it cannot be replaced by a generation target."
+                },
+                {
+                  "code": "unmapped_condition",
+                  "message": "This generation condition has no matching requirement record."
+                },
+                {
+                  "code": "unmapped_research_goal",
+                  "message": "Each review target must have a requirement record with the same canonical text."
+                }
+              ],
+              "requirements": [
+                {
+                  "requirement_id": "r1",
+                  "kind": "numeric_bound",
+                  "property": "dft_band_gap",
+                  "value": 1.2,
+                  "unit": "eV",
+                  "normalized_value": 1.2,
+                  "normalized_unit": "eV",
+                  "strength": "hard",
+                  "relation": "at_least",
+                  "origin": "anchored_proposal"
+                }
+              ]
+            }
+          ]
+        },
+        "execute_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "check_candidates": {
+          "invoked": false,
+          "calls": []
+        },
+        "compare_candidate_metrics": {
+          "invoked": false,
+          "calls": []
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 2,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0502--M--1",
+      "task_id": "D0502",
+      "group": "M",
+      "repeat": 1,
+      "configuration_hash": "a9c275d5ff877deffe32ecb90038721f6ad9c4395d3bd399d9fcfe09704859a4",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 3,
+      "api_accounted_cny": 0.108976,
+      "wall_seconds": 11.288126800000667,
+      "tool_call_count": 6,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "d25730a0a8c66433abad313dce0e562b564452adefe6ba55eaa8543c1a1bd51c",
+        "trace.json": "8d1e30ab22d4b905dfbf5f798423bb6b523612151ff265edfa43b06d8f3a4c5b",
+        "trace.partial.json": "27cf5b0c1c6d35688a6494367d93a86d2e5fd4bd5c73ca8e3313513d445c1623",
+        "events.jsonl": "21c75d924c2b9216a2c12edd98386a76f2d38d1072b8a348fb7d93926f71bf85",
+        "journal.jsonl": "0400b086210ad9ad7d4dd262cfa57f7623bf8dd10f20e198b423d919f33f2179"
+      },
+      "ledger_records_sha256": "16d21c9352008a049f31b17570885e5db3da5f1501cbcd84259df308f5e4dcc1",
+      "public_record_sha256": "8d5d17137fd9ce89e98e457c199206f696855f70ed61e99c3ee906ddad0a2c00",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_candidates": 1,
+        "get_metrics": 2,
+        "get_input_capabilities": 1,
+        "compare_candidate_metrics": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 6,
+          "requirement_mapping": true,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "execute_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "check_candidates": {
+          "invoked": false,
+          "calls": []
+        },
+        "compare_candidate_metrics": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ],
+                "property_name": "energy",
+                "metric_ids": [
+                  "m_80159f098fa810475f3d70fc4f110026465f300ee87e5d5daba1f79d34c25033",
+                  "m_315d61ff39045fb1a023603ffe2bb76c4b945f2348a38acd774c202d15bbefcc"
+                ]
+              },
+              "tool_error_returned": false,
+              "checks_performed": true,
+              "comparable": false,
+              "reasons": [
+                "Property, units, scientific method or reference sets differ."
+              ],
+              "metric_ids": [
+                "m_80159f098fa810475f3d70fc4f110026465f300ee87e5d5daba1f79d34c25033",
+                "m_315d61ff39045fb1a023603ffe2bb76c4b945f2348a38acd774c202d15bbefcc"
+              ],
+              "interpretation": "Comparable metadata does not establish a universal quality ranking or a measured catalytic/synthesis outcome.",
+              "metrics": [
+                {
+                  "metric_id": "m_80159f098fa810475f3d70fc4f110026465f300ee87e5d5daba1f79d34c25033",
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_792933ec2faf91d691689c88e1be44446005fefafaf7ad22aa8f7a71f82ad90d",
+                  "property": "energy",
+                  "value": -1,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-A",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                },
+                {
+                  "metric_id": "m_315d61ff39045fb1a023603ffe2bb76c4b945f2348a38acd774c202d15bbefcc",
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_de1db5cc104beca4e8f1c025f20bdc17d5d1a6e4841cfac2168ecb34953b6c2d",
+                  "property": "energy",
+                  "value": -2,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-B",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                }
+              ]
+            }
+          ]
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0502--M_without_mapping--1",
+      "task_id": "D0502",
+      "group": "M_without_mapping",
+      "repeat": 1,
+      "configuration_hash": "4481d0af3cb4828eaccbf5a77761886dc4ae057f400a1963ea71fce9b7b39e26",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 4,
+      "api_accounted_cny": 0.139534,
+      "wall_seconds": 10.652468299999834,
+      "tool_call_count": 7,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "8a1547a827171421aa65fb43db3f0bc3498d6d3ed1bf61c035f3de57bba90557",
+        "trace.json": "d507a48769d2a6e60ac30ad3d0f489b90c113acaf06eeda4618f21a6f45c87a1",
+        "trace.partial.json": "0bfdbf0d75238adf8d5ab75ae8f0768dad15709fb797742141bfa3f62b202234",
+        "events.jsonl": "02b2ddde185fe730320e94a7fca1e46b2d57b877372a476a1b13cc2606d676be",
+        "journal.jsonl": "94111066596b43534fb8db2a69f90bd0ffee6db562791bbbf99a249316b46418"
+      },
+      "ledger_records_sha256": "81c627c2e7c5e293f392ccacf9cbf59dd81c9c678b443b7bdb643efa3be0ebea",
+      "public_record_sha256": "e636b00a8da7711f704be5e499934204f9874ff5d8f6c70b0390f6648d88c73f",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_candidates": 1,
+        "get_metrics": 2,
+        "get_input_capabilities": 1,
+        "compare_candidate_metrics": 1,
+        "check_candidates": 1
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 6,
+          "requirement_mapping": false,
+          "evidence_checks": true,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "execute_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "check_candidates": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "plan_id": "none",
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ]
+              },
+              "tool_error_returned": true,
+              "error": "Error: broker_error: Unknown plan_id. Prepare a plan first."
+            }
+          ]
+        },
+        "compare_candidate_metrics": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 6,
+              "arguments": {
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ],
+                "property_name": "energy",
+                "metric_ids": [
+                  "m_2f17a842c6e373df8565fc7319b1e8487c56e04737dbf81f5ec79e5dfcb9f7cb",
+                  "m_8442e9200d277f96a90e3e87f54e3bfb839d4d40c6afbeb1310c1070a9966023"
+                ]
+              },
+              "tool_error_returned": false,
+              "checks_performed": true,
+              "comparable": false,
+              "reasons": [
+                "Property, units, scientific method or reference sets differ."
+              ],
+              "metric_ids": [
+                "m_2f17a842c6e373df8565fc7319b1e8487c56e04737dbf81f5ec79e5dfcb9f7cb",
+                "m_8442e9200d277f96a90e3e87f54e3bfb839d4d40c6afbeb1310c1070a9966023"
+              ],
+              "interpretation": "Comparable metadata does not establish a universal quality ranking or a measured catalytic/synthesis outcome.",
+              "metrics": [
+                {
+                  "metric_id": "m_2f17a842c6e373df8565fc7319b1e8487c56e04737dbf81f5ec79e5dfcb9f7cb",
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_792933ec2faf91d691689c88e1be44446005fefafaf7ad22aa8f7a71f82ad90d",
+                  "property": "energy",
+                  "value": -1,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-A",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                },
+                {
+                  "metric_id": "m_8442e9200d277f96a90e3e87f54e3bfb839d4d40c6afbeb1310c1070a9966023",
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_de1db5cc104beca4e8f1c025f20bdc17d5d1a6e4841cfac2168ecb34953b6c2d",
+                  "property": "energy",
+                  "value": -2,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-B",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                }
+              ]
+            }
+          ]
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "D0502--M_without_evidence--1",
+      "task_id": "D0502",
+      "group": "M_without_evidence",
+      "repeat": 1,
+      "configuration_hash": "3943c8dfd93d5499cf612d28d2dd5ddb71b17a4d1564e71041bc7cc647a3538f",
+      "audit_status": "verified_record",
+      "execution_status": "completed",
+      "failure": null,
+      "turn_end_reason": {
+        "kind": "completed"
+      },
+      "api_request_count": 5,
+      "api_accounted_cny": 0.210892,
+      "wall_seconds": 12.952027799993754,
+      "tool_call_count": 9,
+      "clarification_count": 0,
+      "source_hashes": {
+        "result.json": "eceecec342f54af612a6da4908cbd402030b31702c24b2db3d7f1f746482674c",
+        "trace.json": "9ee93b6b138b07fd27777dbb095cce7e6a9672937eb933b377fb317006dc96f4",
+        "trace.partial.json": "eaf3ddcf314db71aee78df262db70bfd24d03aa59b32f531e49eba291e7a5e5f",
+        "events.jsonl": "40c962ec8aaa6ad0f9fbd0d80cf90bfede844bf2857b884a03f7843ece79b4c9",
+        "journal.jsonl": "53523877d832d6a85b94c84d8ac4572a58b1702974a054a480b53f535f9a99d6"
+      },
+      "ledger_records_sha256": "cd33c1b32efb5543c6f3bb75fb8452ea0f4be96b4c9a4960d833f0f41b463251",
+      "public_record_sha256": "d952356883d04c7b47162a378a0bba0308049cf9153531ab53c2b79a0bc9c7ad",
+      "correctness": "ungraded",
+      "human_active_seconds": null,
+      "tool_calls_by_name": {
+        "status": 1,
+        "get_capabilities": 1,
+        "get_input_capabilities": 1,
+        "get_candidates": 1,
+        "get_metrics": 2,
+        "compare_candidate_metrics": 1,
+        "read_artifact": 2
+      },
+      "observed_checking_switches": [
+        {
+          "tool_index": 7,
+          "requirement_mapping": true,
+          "evidence_checks": false,
+          "version": "matpilot-study-checks-v1",
+          "source_sha256": {
+            "checking_layer": "0d6983bbe8ba629488243e618172ab484bfac4c60d2635df6b7beaef1adf4174",
+            "service": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+            "requirements": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+            "evidence": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+            "structures": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+            "templates": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140"
+          }
+        }
+      ],
+      "operations": {
+        "prepare_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "execute_plan": {
+          "invoked": false,
+          "calls": []
+        },
+        "check_candidates": {
+          "invoked": false,
+          "calls": []
+        },
+        "compare_candidate_metrics": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 7,
+              "arguments": {
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ],
+                "property_name": "energy",
+                "metric_ids": [
+                  "m_b7836c94576fb12609e3eeca49e32c5dbe8c37dcf17f41b68eced1c893f4ca76",
+                  "m_7dc402e4167c46ff58c59b390a401cb303b48ff40df6c8240bf78e79a7d67e13"
+                ]
+              },
+              "tool_error_returned": false,
+              "checks_performed": false,
+              "comparable": null,
+              "reasons": [
+                "Result-checking ablation: comparability has not been evaluated."
+              ],
+              "metric_ids": [
+                "m_b7836c94576fb12609e3eeca49e32c5dbe8c37dcf17f41b68eced1c893f4ca76",
+                "m_7dc402e4167c46ff58c59b390a401cb303b48ff40df6c8240bf78e79a7d67e13"
+              ],
+              "metrics": [
+                {
+                  "metric_id": "m_b7836c94576fb12609e3eeca49e32c5dbe8c37dcf17f41b68eced1c893f4ca76",
+                  "candidate_id": "c_a",
+                  "structure_version_id": "s_792933ec2faf91d691689c88e1be44446005fefafaf7ad22aa8f7a71f82ad90d",
+                  "property": "energy",
+                  "value": -1,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-A",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                },
+                {
+                  "metric_id": "m_7dc402e4167c46ff58c59b390a401cb303b48ff40df6c8240bf78e79a7d67e13",
+                  "candidate_id": "c_b",
+                  "structure_version_id": "s_de1db5cc104beca4e8f1c025f20bdc17d5d1a6e4841cfac2168ecb34953b6c2d",
+                  "property": "energy",
+                  "value": -2,
+                  "unit": "eV/atom",
+                  "method": {
+                    "name": "synthetic-potential-B",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-model-weights",
+                    "parameters": {
+                      "fixture": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null
+                }
+              ]
+            }
+          ]
+        },
+        "status": {
+          "invoked": true,
+          "calls": [
+            {
+              "tool_index": 1,
+              "arguments": {},
+              "tool_error_returned": false,
+              "budget": {
+                "attempts_used": 0,
+                "remaining_budget": 0,
+                "sampling_cap": 0,
+                "requested_samples": 0,
+                "candidate_ids": [
+                  "c_a",
+                  "c_b"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "correctness_scored": false,
+  "improvement_or_speedup_estimated": false,
+  "limitations": [
+    "Known public development diagnostics; no generalization or causal effectiveness estimate.",
+    "Not invoked is represented by invoked=false and an empty calls list. Missing return fields stay absent; recorded null/false stay distinct.",
+    "A tool check, blocked plan or normal controller termination is not a task correctness grade.",
+    "Sampling attempts, returned structures, valid candidates and unique candidates are separate observed quantities.",
+    "Original private source hashes are checked for format and consistency with the audited public review; original bytes are not available to this script.",
+    "Public file hashes are recomputed. A protocol with null runtime_pack_sha256 needs its separate launch receipt to establish pre-run binding.",
+    "Costs are recorded accounting, not invoices. Wall time is not human time or scientific compute speed. Failed terminal runs remain included."
+  ]
+}

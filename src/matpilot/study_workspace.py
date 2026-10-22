@@ -13,7 +13,7 @@ from pathlib import Path
 import random
 import re
 
-from .evaluation import (FLAGS, GROUPS, RUBRIC, SHARED, _validate_environment,
+from .evaluation import (ABLATIONS, FLAGS, GROUPS, RUBRIC, SHARED, _validate_configuration, _validate_environment,
                          audit_suite, blind_packet, digest, load, record_run,
                          save_new, validate_grade, validate_plan)
 
@@ -183,43 +183,91 @@ absolute paths to preserve module dependencies; this pack is not a public releas
     return pack
 
 
-def export_development(suite, environment, inventory, output, *, inventory_base=".", repeats=1, seed=20261022):
-    """Export public development cases without inventing an independent freeze."""
+def development_selection(suite, task_ids=None, groups=None):
+    """Validate an explicit public subset before any preparation side effects."""
     audit = audit_suite(suite)
     if not audit["valid"] or suite.get("split") != "development":
         raise ValueError("Development export requires an explicit valid development split.")
+    available = [task["id"] for task in suite["tasks"]]
+    selected_ids = available if task_ids is None else task_ids
+    selected_groups = list(GROUPS) if groups is None else groups
+    for label, selected, allowed in (("task_ids", selected_ids, available),
+                                     ("groups", selected_groups, (*GROUPS, *ABLATIONS))):
+        if (not isinstance(selected, (list, tuple)) or not selected
+                or not all(isinstance(value, str) for value in selected)
+                or len(set(selected)) != len(selected) or not set(selected) <= set(allowed)):
+            raise ValueError("Development " + label + " must be a nonempty selection without unknown or duplicate values.")
+    if any(group in ABLATIONS for group in selected_groups) and "M" not in selected_groups:
+        raise ValueError("Development ablations require the matched M control in selected groups.")
+    return list(selected_ids), list(selected_groups)
+
+
+def export_development(suite, environment, inventory, output, *, inventory_base=".", repeats=1, seed=20261022,
+                       task_ids=None, groups=None):
+    """Export public development cases without inventing an independent freeze."""
+    selected_ids, selected_groups = development_selection(suite, task_ids, groups)
     if type(repeats) is not int or repeats not in (1, 2, 3):
         raise ValueError("Development repeats must be 1, 2 or 3.")
-    _validate_environment(environment, {}, [])
-    if set(inventory.get("drivers", {})) != set(GROUPS):
-        raise ValueError("Development export needs all three real comparator implementations.")
+    if type(seed) is not int:
+        raise ValueError("Development randomization seed must be an integer.")
+    required_groups = set(GROUPS) | set(selected_groups)
+    if (not isinstance(environment, dict) or set(environment) != required_groups
+            or set(inventory.get("drivers", {})) != required_groups):
+        raise ValueError("Development export needs all three comparator definitions and exactly the selected ablation drivers.")
+    _validate_environment({g: environment[g] for g in GROUPS}, {}, [])
+    for group in selected_groups:
+        if group not in ABLATIONS:
+            continue
+        config = environment[group]
+        _validate_configuration(config, group)
+        # A component ablation changes executed switches, not instructions, model or source.
+        for key in (*SHARED, "source_revision", "source_manifest_sha256", "baseline_patch_hash",
+                    "driver_sha256", "instruction_hash"):
+            if config.get(key) != environment["M"].get(key):
+                raise ValueError("Development ablation changed a non-ablated condition: " + key)
+        options = inventory["drivers"][group].get("options", {})
+        reference = inventory["drivers"]["M"].get("options", {})
+        flags = {"implementation_group", "requirement_mapping", "evidence_checks", "ablation"}
+        if {k: v for k, v in options.items() if k not in flags} != {k: v for k, v in reference.items() if k not in flags}:
+            raise ValueError("Development ablation changed a non-ablated driver option.")
+        for name in ("M", group):
+            bound = inventory["drivers"][name].get("options", {})
+            if bound.get("implementation_group") != name or any(
+                    key not in bound or bound[key] != environment[name][key]
+                    for key in ("requirement_mapping", "evidence_checks", "ablation")):
+                raise ValueError("Development ablation requires explicitly bound implementation and feature options.")
     drivers = {g: _driver(c, inventory["drivers"][g], inventory_base, formal=False) for g, c in environment.items()}
     c = environment["U"]
     fixture_path = _verified_path(inventory, "fixture_manifest_path", c["replay_fixture_hash"], inventory_base)
     manifest = load(fixture_path)
     from .study_replay import _validate_manifest
     _validate_manifest(manifest)
-    if manifest.get("purpose") != "development" or not {t["fixture_id"] for t in suite["tasks"]} <= set(manifest["fixtures"]):
+    selected_suite = {**suite, "tasks": [next(t for t in suite["tasks"] if t["id"] == tid) for tid in selected_ids]}
+    if manifest.get("purpose") != "development" or not {t["fixture_id"] for t in selected_suite["tasks"]} <= set(manifest["fixtures"]):
         raise ValueError("Development fixtures must cover every development task.")
     shared = {"provider": c["llm_provider"], "model": c["llm_version"], "reasoning_effort": c["reasoning_mode"],
               **{k: c[k] for k in SHARED if k not in {"llm_provider", "llm_version", "reasoning_mode"}}}
     shared["scientific_defaults"] = {"guidance_scale": c["guidance_scale"], "step_lr": 1e-5}
-    tasks = _runtime_tasks(suite)
+    tasks = _runtime_tasks(selected_suite)
     rng = random.Random(seed)
     ordered = list(tasks)
     rng.shuffle(ordered)
     rows = []
     for task in ordered:
         for repeat in range(1, repeats + 1):
-            groups = list(GROUPS)
-            rng.shuffle(groups)
-            for g in groups:
+            order = list(selected_groups)
+            rng.shuffle(order)
+            for g in order:
                 rows.append({"run_id": task["id"] + "--" + g.replace("+", "plus") + "--" + str(repeat),
                              "task_id": task["id"], "group": g, "repeat": repeat, "mode": "development", "configuration_hash": digest(environment[g])})
-    provenance = {"suite_sha256": digest(suite), "plan_sha256": digest({"suite_sha256": digest(suite),
-                  "environment": environment, "runs": rows, "seed": seed}), "exporter_version": 1}
+    selection = {"task_ids": selected_ids, "groups": selected_groups, "repeats": repeats,
+                 "random_seed": seed, "available_task_count": len(suite["tasks"]),
+                 "scope": "public_development_subset_not_formal_effectiveness"}
+    provenance = {"suite_sha256": digest(suite), "selection_sha256": digest(selection),
+                  "plan_sha256": digest({"suite_sha256": digest(suite), "selection": selection,
+                  "environment": environment, "runs": rows, "seed": seed}), "exporter_version": 2}
     pack = {"format": "matpilot-study-runtime/v1", "mode": "development", "real_compute_allowed": False,
-            "provenance": provenance, "shared": shared, "drivers": drivers, "tasks": tasks, "rows": rows,
+            "provenance": provenance, "selection": selection, "shared": shared, "drivers": drivers, "tasks": tasks, "rows": rows,
             "replay": {"manifest_path": fixture_path, "manifest_sha256": c["replay_fixture_hash"]},
             "limitations": ["Public development cases; no independent review or formal effectiveness result.",
                             "Controller replies are released only through clarification tools."]}
@@ -369,6 +417,8 @@ def main():
     p = commands.add_parser("export-development")
     p.add_argument("suite"); p.add_argument("environment"); p.add_argument("inventory"); p.add_argument("output")
     p.add_argument("--repeats", type=int, default=1)
+    p.add_argument("--task-id", "--task-ids", dest="task_ids", nargs="+", action="extend")
+    p.add_argument("--group", "--groups", dest="groups", nargs="+", action="extend", choices=(*GROUPS, *ABLATIONS))
     p = commands.add_parser("import-run")
     for name in ("frozen", "plan", "output", "row", "outcome", "trace"):
         p.add_argument(name)
@@ -386,7 +436,8 @@ def main():
         result = {"status": "exported_not_executed", "rows": len(pack["rows"])}
     elif args.command == "export-development":
         pack = export_development(load(args.suite), load(args.environment), load(args.inventory), args.output,
-                                  inventory_base=Path(args.inventory).resolve().parent, repeats=args.repeats)
+                                  inventory_base=Path(args.inventory).resolve().parent, repeats=args.repeats,
+                                  task_ids=args.task_ids, groups=args.groups)
         result = {"status": "development_exported_not_executed", "rows": len(pack["rows"])}
     elif args.command == "import-run":
         result = import_run(load(args.frozen), load(args.plan), args.output, load(args.row), load(args.outcome), args.trace)

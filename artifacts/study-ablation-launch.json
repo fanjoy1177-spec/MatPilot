@@ -1,0 +1,62 @@
+{
+  "format": "matpilot-development-ablation-launch/v1",
+  "created_at": "2026-10-22T15:14:37.030Z",
+  "protocol_sha256": "ead21d2f70b167c65f79b6af36c88ce440e33d2471552d7ddf8234941bf15df3",
+  "runtime_pack_sha256": "e8664e149eca243bbfb928bbfde95783a6e96793cc0f44bd1ead4600f841902f",
+  "source_manifest_sha256": "2c0f9196d88d76e4da9a5adcfd71d5d5dbc57bff14942fba221c23ffe189b3d4",
+  "selection_sha256": "cb9cd3c486630272e94ebaebe4f64c646ffb762988752e9c1686d670520866d3",
+  "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+  "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+  "cpu_smoke_report_sha256": "aaa081c91770197e41373b4855aa4ffa47ceb8f63ad68ecd63448d0a8b20698b",
+  "cpu_passed_cases": 8,
+  "ordered_run_ids": [
+    "D0101--M_without_mapping--1",
+    "D0101--M_without_evidence--1",
+    "D0101--M--1",
+    "D0201--M_without_mapping--1",
+    "D0201--M_without_evidence--1",
+    "D0201--M--1",
+    "D0502--M_without_mapping--1",
+    "D0502--M_without_evidence--1",
+    "D0502--M--1",
+    "D0202--M_without_mapping--1",
+    "D0202--M--1",
+    "D0202--M_without_evidence--1"
+  ],
+  "groups": {
+    "M": {
+      "configuration_hash": "a9c275d5ff877deffe32ecb90038721f6ad9c4395d3bd399d9fcfe09704859a4",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "options": {
+        "implementation_group": "M",
+        "requirement_mapping": true,
+        "evidence_checks": true,
+        "ablation": null
+      }
+    },
+    "M_without_mapping": {
+      "configuration_hash": "4481d0af3cb4828eaccbf5a77761886dc4ae057f400a1963ea71fce9b7b39e26",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "options": {
+        "implementation_group": "M_without_mapping",
+        "requirement_mapping": false,
+        "evidence_checks": true,
+        "ablation": "without_mapping"
+      }
+    },
+    "M_without_evidence": {
+      "configuration_hash": "3943c8dfd93d5499cf612d28d2dd5ddb71b17a4d1564e71041bc7cc647a3538f",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "options": {
+        "implementation_group": "M_without_evidence",
+        "requirement_mapping": true,
+        "evidence_checks": false,
+        "ablation": "without_evidence"
+      }
+    }
+  },
+  "started_api_requests": false,
+  "real_compute_allowed": false,
+  "cumulative_ledger_start_cny": 18.839824000000007,
+  "cumulative_requests_start": 475
+}

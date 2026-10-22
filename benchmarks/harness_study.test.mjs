@@ -187,6 +187,61 @@ test('M instructions intentionally pinned in its research section survive the in
   assert.equal(evidence.retained_sections.find(s => s.name === 'matpilot-group-instructions').text_sha256, hash(text));
 });
 
+test('five pinned drivers support rows containing only the three M arms with option binding and scoped prompts', async t => {
+  const f = fixture(t), host = fakeHarness();
+  const groups = ['M', 'M_without_mapping', 'M_without_evidence'];
+  // One CPU-only mock module and one identical instruction file for all M arms.
+  // The broker's actual switches have separate Python/CPU integration coverage.
+  replaceDriver(f, 'M', `export async function open(context) {
+    const group = context.options.implementation_group;
+    if (group !== context.run.group) throw new Error('implementation binding changed');
+    const flags = { requirement_mapping: group !== 'M_without_mapping', evidence_checks: group !== 'M_without_evidence' };
+    context.journal({ event: 'mock-implementation-selected', group, ...flags });
+    return { tools: [{ name: 'inspect_fixture', description: 'CPU contract fixture only', parameters: { type: 'object' },
+      output: { schema: { type: 'object' }, render: (_args, value) => [{ type: 'text', text: JSON.stringify(value) }] },
+      async execute() { return { implementation: group, ...flags, fixture_id: context.task.fixture_id }; }
+    }] };
+  }`);
+  for (const group of groups.slice(1)) {
+    f.pack.drivers[group] = { ...f.pack.drivers.M, configuration_hash: hash(group), options: { implementation_group: group } };
+  }
+  f.pack.rows = groups.map(group => ({ run_id: 'D01--' + group + '--1', task_id: 'D01', group, repeat: 1,
+    mode: 'development', configuration_hash: f.pack.drivers[group].configuration_hash }));
+  fs.writeFileSync(f.config.packPath, JSON.stringify(f.pack));
+  const loaded = loadRuntimePack(f.config.packPath);
+  assert.equal(loaded.drivers.size, 5);
+  assert.deepEqual(loaded.pack.rows.map(row => row.group), groups);
+  assert.equal(new Set(groups.map(group => loaded.drivers.get(group).instruction_sha256)).size, 1);
+  const inheritedBefore = structuredClone([...host.globalPromptSections]);
+  const result = await runStudy({ ctx: host.ctx, config: f.config, createUserMessage: input });
+  assert.deepEqual(result.outcomes.map(row => row.status), ['completed', 'completed', 'completed']);
+  assert.deepEqual([...host.globalPromptSections], inheritedBefore);
+  assert.equal(host.creations.length, 3);
+  for (const [index, group] of groups.entries()) {
+    assert.deepEqual([...host.creations[index].tools.keys()], ['inspect_fixture', 'ask_clarification']);
+    assert.deepEqual(host.creations[index].restriction, { allow: [] });
+    const trace = JSON.parse(fs.readFileSync(path.join(f.config.outputDir, 'runs', f.pack.rows[index].run_id, 'trace.json')));
+    const expected = { implementation: group, requirement_mapping: group !== 'M_without_mapping',
+      evidence_checks: group !== 'M_without_evidence', fixture_id: 'fixture01' };
+    assert.deepEqual(trace.tools.find(tool => tool.name === 'inspect_fixture').result.value, expected);
+    const selected = trace.driver_events.find(event => event.event === 'mock-implementation-selected');
+    assert.equal(selected.group, group);
+    assert.equal(selected.requirement_mapping, expected.requirement_mapping);
+    assert.equal(selected.evidence_checks, expected.evidence_checks);
+    const rendered = trace.events.find(event => event.type === 'system/message').data.message.content[0].text;
+    assert.ok(!rendered.includes('PRODUCTION MATPILOT'));
+    assert.ok(!rendered.includes('PRODUCTION MCP RESOURCE ADVERTISEMENT'));
+    assert.ok(rendered.includes('UNRELATED HOST GUIDANCE'));
+    assert.ok(rendered.includes('ORDINARY SHARED SKILL'));
+    assert.ok(rendered.includes('Ordinary documentation for M'));
+    const isolation = trace.driver_events.find(event => event.event === 'prompt-isolation-checked');
+    assert.deepEqual(isolation.shadowed_sections, STUDY_PROMPT_SHADOWS);
+    assert.equal(isolation.retained_sections.find(section => section.name === 'matpilot-group-instructions').text_sha256,
+      f.pack.drivers.M.instruction_sha256);
+    assert.equal(trace.provenance.module_sha256, f.pack.drivers[group].module_sha256);
+  }
+});
+
 test('failed and timed-out runs remain recorded while later rows execute', async t => {
   for (const options of [{ failFirst: true }, { timeoutFirst: true }]) {
     const f = fixture(t, p => { p.shared.timeout_ms = 20; });

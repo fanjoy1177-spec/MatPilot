@@ -22,8 +22,8 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from matpilot.adapters.mattergen import CHECKPOINTS, UNITS
-from matpilot.evaluation import configuration_identity, digest
-from matpilot.study_workspace import export_development
+from matpilot.evaluation import ABLATIONS, GROUPS, configuration_identity, digest
+from matpilot.study_workspace import development_selection, export_development
 
 
 ENV_KEYS = {"PATH", "PATHEXT", "SYSTEMROOT", "WINDIR", "COMSPEC", "TEMP", "TMP", "TMPDIR",
@@ -127,7 +127,9 @@ def build_instructions(source: Path, capability: dict):
     matpilot_path = instruction_dir / "matpilot.txt"
     matpilot_path.write_text(common + "\n--- ACTUAL MatPilot server.INSTRUCTIONS ---\n" + production + override,
                              encoding="utf-8", newline="\n")
-    return {"U": common_path, "U+": common_path, "M": matpilot_path}
+    # Identical M-arm instructions: only the actual broker/checker switches vary.
+    return {"U": common_path, "U+": common_path, "M": matpilot_path,
+            **{group: matpilot_path for group in ABLATIONS}}
 
 
 def source_manifest(source: Path):
@@ -142,7 +144,7 @@ def source_manifest(source: Path):
     return path, manifest
 
 
-def verify_smoke(report, source: Path, manifest, fixture_hash):
+def verify_smoke(report, source: Path, manifest, fixture_hash, groups=GROUPS):
     """Validate real smoke evidence before deriving configuration receipts."""
     if (report.get("format") != "matpilot-study-cpu-validation/v1"
             or report.get("passed") is not True or report.get("evidence_scope") != "cpu_tool_contract_only"
@@ -169,19 +171,36 @@ def verify_smoke(report, source: Path, manifest, fixture_hash):
     cases = report.get("cases", [])
     if not cases or any(case.get("passed") is not True or not case.get("checks") for case in cases):
         raise ValueError("CPU validation contains failed or undocumented checks.")
-    for group in ("U", "U+", "M"):
+    for group in dict.fromkeys((*GROUPS, *groups)):
         selected = [case for case in cases if case.get("group") == group]
-        if {case.get("engine") for case in selected} != {"mattergen", "diffcsp"}:
+        if group in GROUPS and {case.get("engine") for case in selected} != {"mattergen", "diffcsp"}:
             raise ValueError("Every main group requires actual CPU checks of both engines.")
+        if not selected:
+            raise ValueError("Selected ablation has no actual CPU validation case: " + group)
         for case in selected:
             identity = case.get("identity", {})
             if identity.get("group") != group or identity.get("real_compute_allowed") is not False:
                 raise ValueError("CPU report group identity or execution boundary is incorrect.")
+            if group == "M" or group in ABLATIONS:
+                mapping, evidence = ABLATIONS[group][1:] if group in ABLATIONS else (True, True)
+                layer = identity.get("checking_layer", {})
+                if layer.get("requirement_mapping") is not mapping or layer.get("evidence_checks") is not evidence:
+                    raise ValueError("CPU checking-layer flags do not implement the selected group.")
+                if case.get("candidate_checks", {}).get("checks_performed") is not evidence:
+                    raise ValueError("CPU candidate checking behavior does not match its feature switch.")
+                plan = case.get("plan", {})
+                if not mapping and (plan.get("requirement_mapping_count") != 0
+                                    or plan.get("coverage", {}).get("scope") != "disabled_by_predeclared_mapping_ablation"):
+                    raise ValueError("CPU mapping ablation did not actually disable requirement mapping.")
+                if not evidence and any(case["candidate_checks"].get(key) is not None for key in
+                                        ("valid_candidate_count", "unique_valid_candidate_count")):
+                    raise ValueError("Disabled evidence checks cannot report validated candidate counts.")
     return cases
 
 
 def prepare(output, *, provider, model, reasoning_mode, host_version, python_path=None, node_path=None,
-            max_turns=12, max_output_tokens=2048, max_requests=16, timeout_ms=180000, sampling_cap=32, repeats=1):
+            max_turns=12, max_output_tokens=2048, max_requests=16, timeout_ms=180000, sampling_cap=32, repeats=1,
+            task_ids=None, groups=None):
     for label, value in (("provider", provider), ("model", model), ("reasoning_mode", reasoning_mode), ("host_version", host_version)):
         if not isinstance(value, str) or not value.strip():
             raise ValueError("Explicit nonempty " + label + " is required; it will not be inferred.")
@@ -191,6 +210,9 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
             raise ValueError(label + " must be a positive integer.")
     if type(repeats) is not int or repeats not in (1, 2, 3):
         raise ValueError("Development repeats must be 1, 2 or 3.")
+    suite = json.loads((ROOT / "benchmarks/study/development_tasks.json").read_text(encoding="utf-8"))
+    task_ids, groups = development_selection(suite, task_ids, groups)
+    defined_groups = list(dict.fromkeys((*GROUPS, *groups)))
     python_path = executable(python_path, sys.executable, "Python")
     node_path = executable(node_path, "node", "Node")
     root = Path(output).resolve()
@@ -215,9 +237,9 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
     capability_path = source / "scientific-capability.json"
     save(capability_path, capability)
     instructions = build_instructions(source, capability)
-    suite = json.loads((ROOT / "benchmarks/study/development_tasks.json").read_text(encoding="utf-8"))
     clarification_policy = {"version": 1, "mode": "controller_only_fixed_replies", "no_invented_answers": True,
-                            "tasks": [{"id": task["id"], "fixed_clarifications": task["fixed_clarifications"]} for task in suite["tasks"]]}
+                            "tasks": [{"id": task["id"], "fixed_clarifications": task["fixed_clarifications"]}
+                                      for task in suite["tasks"] if task["id"] in task_ids]}
     clarification_path = source / "clarification-policy.json"
     save(clarification_path, clarification_policy)
     manifest_path, manifest = source_manifest(source)
@@ -234,7 +256,7 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
     if result.returncode or not report_path.is_file():
         raise ValueError("Actual CPU bridge smoke failed; inspect reports/smoke.*.txt. No runtime pack was exported.")
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    cases = verify_smoke(report, source, manifest, fixture_hash)
+    cases = verify_smoke(report, source, manifest, fixture_hash, groups=groups)
     # Also bind instructions/config files outside the smoke's narrower source list.
     if any(hash_file(source / item["path"]) != item["sha256"] for item in manifest["files"]):
         raise ValueError("Exported source changed during CPU validation.")
@@ -247,15 +269,17 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
               "source_revision": manifest["source_revision"], "source_manifest_sha256": hash_file(manifest_path),
               "driver_sha256": hash_file(module), "ablation": None}
     environment, inventory = {}, {"fixture_manifest_path": str(fixture_path), "drivers": {}}
-    for group in ("U", "U+", "M"):
+    for group in defined_groups:
+        ablation, mapping, evidence = ABLATIONS.get(group, (None, group == "M", group == "M"))
         driver_options = {"python_path": python_path,
                           "implementation_group": group,
+                          "requirement_mapping": mapping, "evidence_checks": evidence, "ablation": ablation,
                           "broker_path": str(source / "benchmarks/study_drivers/broker.py"),
                           "template_config": str(source / "examples/config.multimodel.demo.json"),
                           "request_timeout_ms": 30000}
         config = {**common, "instruction_hash": hash_file(instructions[group]),
                   "baseline_patch_hash": None if group == "U" else baseline["patch_sha256"],
-                  "requirement_mapping": group == "M", "evidence_checks": group == "M",
+                  "requirement_mapping": mapping, "evidence_checks": evidence, "ablation": ablation,
                   "driver_options_hash": digest(driver_options)}
         config_hash = configuration_identity(config)
         checks = [case for case in cases if case["group"] == group]
@@ -274,10 +298,13 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
             "validation_report_path": str(validation_path), "options": driver_options}
     save(root / "environment.json", environment)
     save(root / "inventory.json", inventory)
-    pack = export_development(suite, environment, inventory, root / "runtime.json", inventory_base=root, repeats=repeats)
+    pack = export_development(suite, environment, inventory, root / "runtime.json", inventory_base=root, repeats=repeats,
+                              task_ids=task_ids, groups=groups)
     summary = {"status": "development_prepared_cpu_validated_not_ai_run", "rows": len(pack["rows"]),
                "runtime_path": str(root / "runtime.json"), "runtime_sha256": hash_file(root / "runtime.json"),
                "source_manifest_sha256": common["source_manifest_sha256"], "cpu_passed_cases": report["passed_cases"],
+               "selection": pack["selection"], "selection_sha256": pack["provenance"]["selection_sha256"],
+               "defined_groups": defined_groups,
                "evidence_scope": "cpu_tool_contract_only", "api_requests": 0, "api_cny": 0,
                "cost_ledger_opened": False, "api_credentials_loaded": False, "real_material_model_runs": 0,
                "runtime_versions": runtime_versions}
@@ -289,7 +316,9 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
         "下一步在明确的Harness运行环境加载source/benchmarks/harness_study.mjs，packPath指向runtime.json。\n"
         "继续使用已配置的API凭据、实际价格和既有费用账本；本准备器没有读取或新建账本，也没有修改20元通知阈值。\n"
         "先检查运行器ready.json，再按runtime SHA和明确选择的run_ids创建启动请求。准备器不会创建start.json或自动调用API。\n"
-        "三组默认共36条开发运行；先选择少量端到端联调，实际完成后才能另存harness_replay_end_to_end验证报告。\n"
+        f"本包冻结{len(task_ids)}道公开开发题、{len(groups)}个执行组、每题每组{repeats}次，共{len(pack['rows'])}条运行；selection包含完整预选清单。\n"
+        "未排入rows的U/U+/M驱动定义仅供统一兼容核查，不会自动运行。消融臂与M使用完全相同提示，只改变已验证的执行开关。\n"
+        "实际完成Harness运行后才能另存harness_replay_end_to_end验证报告。\n"
         "正式比较仍需独立审定的题库/夹具与真正Harness验收。CPU报告不能升级成正式AI效果证据。\n"
         "本包包含本机绝对运行路径，属于本地运行工件；换机器须用明确provider/model/reasoning/host重建，不直接当作公开发布包。\n",
         encoding="utf-8")
@@ -311,6 +340,8 @@ def main(argv=None):
     parser.add_argument("--timeout-ms", type=int, default=180000)
     parser.add_argument("--sampling-cap", type=int, default=32)
     parser.add_argument("--repeats", type=int, default=1)
+    parser.add_argument("--task-id", "--task-ids", dest="task_ids", nargs="+", action="extend")
+    parser.add_argument("--group", "--groups", dest="groups", nargs="+", action="extend", choices=(*GROUPS, *ABLATIONS))
     args = parser.parse_args(argv)
     print(json.dumps(prepare(**vars(args)), ensure_ascii=False, indent=2))
     return 0

@@ -50,12 +50,42 @@ export-runtime 接受 frozen、plan、inventory 和输出路径。inventory 指�
 公开开发题使用 export-development 单独导出，不生成虚假的独立复核信息。也可用准备器一次完成源码复制、实际 CPU 烟测、身份绑定和导出：
 
 ```text
-python benchmarks/study_drivers/prepare_development.py LOCAL_OUTPUT --provider PROVIDER_ID --model MODEL_ID --reasoning-mode off --host-version HARNESS_VERSION --max-output-tokens 4096
+python benchmarks/study_drivers/prepare_development.py LOCAL_OUTPUT --provider PROVIDER_ID --model MODEL_ID --reasoning-mode off --host-version HARNESS_VERSION --max-output-tokens 8192
 ```
 
 这里的宿主与模型参数必须填写当前实际配置。准备器不读取密钥、不创建费用账本、不启动 API；输出 runtime.json、environment.json、inventory.json、源码快照及 CPU 报告。运行所需 Python、Node 和研究依赖必须已安装。开发题的待审核流程可先完成，不以老师做题作为软件开发或联调的前置条件。
 
 导出的控制器包只含公开题干、所需夹具编号和受控澄清回复，不含 gold、评分或允许答案。澄清回复只能经明确提问工具释放给 LLM。
+
+### 显式选择开发题与消融组
+
+不提供选择参数时，准备器仍导出全部 12 道开发题、U/U+/M 三组、每题每组 1 次，共 36 行。可用 `--task-ids` 和 `--groups` 在运行前固定较小的对照；例如按 `benchmarks/study/ablation_development_protocol.json` 选择四题和三个 MatPilot 组：
+
+```text
+python benchmarks/study_drivers/prepare_development.py ABLATION_OUTPUT --provider PROVIDER_ID --model MODEL_ID --reasoning-mode off --host-version HARNESS_VERSION --max-output-tokens 8192 --max-requests 16 --timeout-ms 180000 --task-ids D0101 D0201 D0202 D0502 --groups M M_without_mapping M_without_evidence
+```
+
+这条命令只准备本地包，不启动 LLM。输出保留 U、U+、M 和两个消融组的 **5 份驱动定义**，供运行器核验；实际 `tasks` 为 4 题，`rows` 仅包含所选三组的 **12 行**，未排入的 U/U+ 不会自动运行。`--repeats` 可显式设为 1、2 或 3；空列表、重复或未知题目/组名会被拒绝，选择任一消融组时必须同时选择 M 作为对照。
+
+| 执行组 | requirement_mapping | evidence_checks |
+|---|---|---|
+| M | true | true |
+| M_without_mapping | false | true |
+| M_without_evidence | true | false |
+
+三个 M 组使用完全相同的正常技能、研究预授权和 MatPilot 指令字节，指令哈希相等，不通过额外提示宣传某个开关已关闭。宿主、模型、推理模式、科学默认参数、采样及请求预算、源码和非消融运行选项保持一致。差别由 `implementation_group` 与上述真实功能开关传入同一 broker 执行；只改组名、改变提示或额外放宽预算不能通过配置核验。
+
+`runtime.json` 的 `selection` 记录题目 ID、执行组、重复数、随机种子和原题库数量，`provenance.selection_sha256` 绑定该选择，计划哈希同时绑定配置和全部运行行。`preparation.json` 保存相同选择及包哈希；完整题库只保留身份哈希，运行包不加入评分答案。题干和受控澄清回复沿用原开发题，不为消融修改问题。
+
+准备器运行实际复制源码的 CPU 工具链测试，再为各组生成绑定配置与源码的验证收据。收据会核对检查层实际开关及可观察行为，例如去映射时映射数量为 0、去核验时不产生已验证候选数量。其范围为 `cpu_tool_contract_only`，证明的是软件开关行为，**不是 LLM 已执行、任务正确率或插件提升结果**；不能据此填写 `harness_replay_end_to_end` 验收。
+
+已有相应配置和清单时，底层导出命令也支持同样的选择：
+
+```text
+python -m matpilot.study_workspace export-development benchmarks/study/development_tasks.json ENVIRONMENT_JSON INVENTORY_JSON RUNTIME_JSON --task-ids D0101 D0201 D0202 D0502 --groups M M_without_mapping M_without_evidence
+```
+
+清单仍须包含 U/U+/M 的完整定义及所选消融组，不能借此跳过源码和收据核验。这是已公开开发题上的功能诊断；本例子集依据既有开发轨迹选择，不是盲选或正式效果试验。后续真实 LLM 运行应保留所有预选行及失败，由独立结果报告说明正面、负面或无差异观察。该功能不改变正式题库、夹具审定、实际 Harness 验收或评分要求，也不把开发子集结果推及完整任务正确率和人工提速。
 
 ## Harness 运行与费用
 

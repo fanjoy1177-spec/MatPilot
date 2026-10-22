@@ -1,5 +1,11 @@
 # Changelog
 
+## Research supplement — 2026-10-22 (after dev5)
+
+- Export explicit public-development task/group subsets with real mapping/evidence ablations, matched M control and identical instructions; keep formal review gates.
+- Add offline audited observation summaries and retain all 12 real Harness development records; no automatic correctness or speedup claims.
+- Source regression: 189 Python and 27 JavaScript checks. Existing dev5 release archives and pinned desktop installation are unchanged.
+
 ## 0.2.0.dev5 — 2026-10-22
 
 - Preserve batch-size upper bounds separately from exact settings; allow smaller batches and block excess or changed bound semantics.

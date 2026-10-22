@@ -1,0 +1,86 @@
+{
+  "format": "matpilot-development-ablation-protocol/v1",
+  "created_at": "2026-10-22T15:08:00.243Z",
+  "status": "prespecified_before_ablation_api_runs",
+  "scope": "known_public_development_task_diagnostic_not_formal_effectiveness",
+  "task_ids": [
+    "D0101",
+    "D0201",
+    "D0202",
+    "D0502"
+  ],
+  "groups": [
+    "M",
+    "M_without_mapping",
+    "M_without_evidence"
+  ],
+  "repeats": 1,
+  "planned_runs": 12,
+  "selection_basis": "Chosen using existing r3 traces to exercise result checks, mapping repair overhead, unsupported hard bounds and metric comparability. Includes adverse prior M example. Selection is not blind and cannot estimate generalization.",
+  "unchanged_task_text": true,
+  "common": {
+    "host_version": "0.2.1-rc.2",
+    "provider": "deepseek-official",
+    "model": "deepseek-flash",
+    "reasoning": "off",
+    "max_turns": 12,
+    "max_output_tokens": 8192,
+    "max_requests": 16,
+    "timeout_ms": 180000,
+    "real_compute_allowed": false
+  },
+  "module_changes": {
+    "M": {
+      "requirement_mapping": true,
+      "evidence_checks": true
+    },
+    "M_without_mapping": {
+      "requirement_mapping": false,
+      "evidence_checks": true
+    },
+    "M_without_evidence": {
+      "requirement_mapping": true,
+      "evidence_checks": false
+    }
+  },
+  "metrics": [
+    "completed/failed/timeout and all retained failures",
+    "actual sample attempts and candidates, remaining budget",
+    "prepare_plan call count, ready/blocked and issue codes",
+    "check_candidates invoked, checks_performed, valid/unique counts and requirement statuses",
+    "compare_candidate_metrics invoked, comparable and method identities",
+    "API requests/accounted CNY, wall seconds, tool calls and clarification count"
+  ],
+  "task_observables": {
+    "D0101": "Check actual candidate c_c failure, valid/unique counts and unknown research goal; when evidence disabled report null/no checks, not a made-up error.",
+    "D0201": "Inspect normalized 1.2 eV target, prepare retries/blocked codes, actual sampling and unchanged budget; retain mapping overhead.",
+    "D0202": "Inspect hard lower-bound handling, execute calls and all blocking reasons. Adapter input rejection may survive mapping ablation; do not attribute all blocking to mapping.",
+    "D0502": "Inspect comparator calls, false vs unknown, metric IDs/method identities and visible final wording. LLM may correctly refuse comparison without program checks."
+  },
+  "ungraded": [
+    "complete-task correctness",
+    "semantic requirement completeness",
+    "false-rejection rate",
+    "unsupported final conclusions",
+    "human active time"
+  ],
+  "stop_rules": [
+    "Run exactly these planned rows once, retaining every failure. No rerun to improve scores.",
+    "Stop batch if runner quarantine, shared fixture/source integrity failure or unintended real computation is detected.",
+    "No additional task/model/LLM expansion merely to hide neutral or negative findings.",
+    "No formal correct-task rate or human speedup claims without subsequent user review and appropriately designed measurement."
+  ],
+  "cost": {
+    "notification_cny": 20,
+    "not_hard_cap": true,
+    "start_cumulative_conservative_cny": 18.839824,
+    "historical_reservation_retained_cny": 2.113536,
+    "prices_cny_per_million": {
+      "input_cache_miss": 2,
+      "output": 8
+    },
+    "provider_bill": false
+  },
+  "runtime_pack_sha256": null,
+  "note": "Exact runtime/source hashes will be bound in a separate launch receipt before creating start.json; this file remains unchanged."
+}

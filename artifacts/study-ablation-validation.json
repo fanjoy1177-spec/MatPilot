@@ -1,0 +1,493 @@
+{
+  "format": "matpilot-development-ablation-isolation-audit/v1",
+  "created_at": "2026-10-22T15:26:55.793257+00:00",
+  "mode": "development",
+  "scope": "recorded_prompt_isolation_tool_identity_and_cost_linkage_only",
+  "correctness_scored": false,
+  "scientific_results_validated": false,
+  "improvement_or_speedup_estimated": false,
+  "record_integrity_audit_passed": true,
+  "issues": [],
+  "runtime_pack_sha256": "e8664e149eca243bbfb928bbfde95783a6e96793cc0f44bd1ead4600f841902f",
+  "source_manifest_sha256": "2c0f9196d88d76e4da9a5adcfd71d5d5dbc57bff14942fba221c23ffe189b3d4",
+  "ledger_snapshot_sha256": "df9d2e0f08305a33a1cbd2e7dfc9fc1becc9aa967374079effdfcbe7b0f2ee67",
+  "ledger_record_count": 549,
+  "ledger_accounted_cumulative_cny": 22.273968,
+  "historical_reservation_retained_cny": 2.113536,
+  "runs_audited": 12,
+  "api_requests_audited": 74,
+  "prompt_isolation_checks": 74,
+  "current_batch_accounted_api_cny": 3.434144,
+  "current_batch_pending_reservations": 0,
+  "common_prompt_sections_equal": true,
+  "common_prompt_section_hashes": {
+    "app:web-surface": [
+      "7496863f7f81a12cad97ff5c643339f8ddf344b6525c191c29ab086bec5a400a"
+    ],
+    "context:file-reference": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ],
+    "deployment:persona-prefix": [
+      "e0eb4484e48650627aa9a07bae720c151efc5c331e6e237ad9861e255ba00743"
+    ],
+    "deployment:persona-suffix": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ],
+    "harness:identity": [
+      "1dd6363fa551837a710e2112cccb63d61feaa0e1b1070d91b51e840e171e9be1"
+    ],
+    "harness:source": [
+      "cacb12df44551f408df3e53d3d38cc680f55a62643ecc5102ed61e7965c83229"
+    ],
+    "matpilot-study-policy": [
+      "a55ea73956380f4f9f4a8c833c36531023a6e7fd3af08e2879ef449ee4f8b5ed"
+    ],
+    "ui:deliverable-file-references": [
+      "e8a2eb8da7f69017cd912b8ecf43cecb7b0cef1b52ae55be3d5038640f820852"
+    ]
+  },
+  "all_m_instructions_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+  "all_m_scientific_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+  "header_tool_normalization": "Harness sorts tools by name; each name/description/parameters record matches the frozen broker schema exactly. The task-specific shared clarification tool is counted separately.",
+  "tool_names": [
+    "status",
+    "list_artifacts",
+    "read_artifact",
+    "get_candidates",
+    "get_metrics",
+    "get_input_capabilities",
+    "list_templates",
+    "list_upstream_artifacts",
+    "read_upstream_artifact",
+    "get_capabilities",
+    "prepare_plan",
+    "execute_plan",
+    "check_candidates",
+    "compare_candidate_metrics",
+    "ask_clarification"
+  ],
+  "per_run": [
+    {
+      "run_id": "D0101--M_without_mapping--1",
+      "group": "M_without_mapping",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "ecfb2f866ddf10e14d3b9d825939280443196ec19f2658e15d3c2d92fa91d83d",
+      "actual_flags": {
+        "requirement_mapping": false,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 10,
+      "usage_record_count": 10,
+      "accounted_api_cny": 0.56569,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0101--M_without_evidence--1",
+      "group": "M_without_evidence",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "f0f95c01d2b43f72ae42f60de37e7cebea1eac18aca11b3f14367b8f2a159ba0",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": false
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 7,
+      "usage_record_count": 7,
+      "accounted_api_cny": 0.339644,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0101--M--1",
+      "group": "M",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "69628ae8f7862a3388ee60b0ab8af4683722fa29bd050dd4a07a2b73f924ad26",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 8,
+      "usage_record_count": 8,
+      "accounted_api_cny": 0.422818,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0201--M_without_mapping--1",
+      "group": "M_without_mapping",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "db0b48752692900eb7687a0b287a5dc6812e244ebdd0da2df7c37b48515e19b1",
+      "actual_flags": {
+        "requirement_mapping": false,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 7,
+      "usage_record_count": 7,
+      "accounted_api_cny": 0.34196,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0201--M_without_evidence--1",
+      "group": "M_without_evidence",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "2864d3f5e7bfb2e61f570d9067ec301de76c5bca4de96a00fba96efc74654c1a",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": false
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 8,
+      "usage_record_count": 8,
+      "accounted_api_cny": 0.37749,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0201--M--1",
+      "group": "M",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "20038d1dd6f2fdbc7db1b13f9e5655099115e668bd0c75ba18bc22a4dd33c254",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 7,
+      "usage_record_count": 7,
+      "accounted_api_cny": 0.325566,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 1,
+        "check_candidates_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0502--M_without_mapping--1",
+      "group": "M_without_mapping",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "d507a48769d2a6e60ac30ad3d0f489b90c113acaf06eeda4618f21a6f45c87a1",
+      "actual_flags": {
+        "requirement_mapping": false,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 4,
+      "usage_record_count": 4,
+      "accounted_api_cny": 0.139534,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 1,
+        "compare_candidate_metrics_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0502--M_without_evidence--1",
+      "group": "M_without_evidence",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "9ee93b6b138b07fd27777dbb095cce7e6a9672937eb933b377fb317006dc96f4",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": false
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 5,
+      "usage_record_count": 5,
+      "accounted_api_cny": 0.210892,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 2,
+        "compare_candidate_metrics_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0502--M--1",
+      "group": "M",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "8d1e30ab22d4b905dfbf5f798423bb6b523612151ff265edfa43b06d8f3a4c5b",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 3,
+      "usage_record_count": 3,
+      "accounted_api_cny": 0.108976,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 1,
+        "compare_candidate_metrics_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0202--M_without_mapping--1",
+      "group": "M_without_mapping",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "47e35f075c569344a66842c5afe5411079e46dc08e15b9641510834c5583234d",
+      "actual_flags": {
+        "requirement_mapping": false,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 6,
+      "usage_record_count": 6,
+      "accounted_api_cny": 0.25023,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 2,
+        "successful_prepare_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0202--M--1",
+      "group": "M",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "dc509449e970fbc5b20261c76d41ce8c5b73e3b665ee4b7902c3303634395233",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": true
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 3,
+      "usage_record_count": 3,
+      "accounted_api_cny": 0.108252,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 1
+      },
+      "terminal_status": "completed"
+    },
+    {
+      "run_id": "D0202--M_without_evidence--1",
+      "group": "M_without_evidence",
+      "record_integrity_passed": true,
+      "issues": [],
+      "trace_sha256": "a953708fb3f6ea202fb00412c6485ce25aa0e3d48776283d2795368ff65d6a9e",
+      "actual_flags": {
+        "requirement_mapping": true,
+        "evidence_checks": false
+      },
+      "actual_check_sources_match": true,
+      "actual_upstream_matches_cpu_identity": true,
+      "module_sha256": "0f1c8c1b8107e583de912379158d9709ae0e912af6230313b661638e36d1682a",
+      "instruction_sha256": "42dfbd3bb5add5e0272a4a177ca1c516f1974a0f156788f6c60ad0ce4e737adf",
+      "broker_tool_schema_sha256": "6c3dd09b153630a55684da98faee66cdba15938d097a991c0783d6c63b8538e7",
+      "request_header_tool_schema_sha256": [
+        "e1b4f159d37f50ba22ae26d7398083c83f7526efe5e8ab91eca11ad5ece30b68"
+      ],
+      "host_tool_schema_equal_by_name": true,
+      "production_mcp_prompt_absent": true,
+      "frozen_instructions_retained_once": true,
+      "system_message_text_sha256": [
+        "acd21e9e211588153812f50fb8a54ea4483776a19e81abbc3e701d929a61aefb"
+      ],
+      "prompt_isolation_check_count": 6,
+      "usage_record_count": 6,
+      "accounted_api_cny": 0.243092,
+      "pending_reservations": 0,
+      "observed_feature_responses": {
+        "checking_layer_responses": 3,
+        "successful_prepare_responses": 2
+      },
+      "terminal_status": "completed"
+    }
+  ],
+  "limitations": [
+    "Only implementation identity, recorded prompt isolation and accounting linkage are audited; controller completion is not task correctness.",
+    "Four public development tasks were selected using prior r3 results; these runs do not establish general effectiveness or human time savings.",
+    "Scientific engines use explicitly synthetic CPU replay; no real material model or scientific property validation occurred.",
+    "Isolation events have no request ID: per-run counts match unique ledger IDs, not provider-signed prompt attestations.",
+    "Implementation and tool-return feature labels remain observable; this is not a blinded LLM trial.",
+    "The mapping ablation retains normalization and ordinary input checks; the evidence ablation retains common raw-data and identity safeguards.",
+    "The ledger snapshot hash identifies bytes read at audit time; raw ledger, sessions, prompts, request contexts and stream records are excluded."
+  ]
+}

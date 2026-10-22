@@ -17,3 +17,6 @@ include artifacts/study-tooling-validation.json artifacts/study-harness-js-valid
 include artifacts/v05-deployment-validation.json artifacts/study-harness-development-validation.json
 
 include artifacts/figures/study_r3_workflow.png
+
+include artifacts/study-ablation-launch.json artifacts/study-ablation-observations.json
+include artifacts/study-ablation-validation.json

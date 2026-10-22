@@ -5,9 +5,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from matpilot.evaluation import GROUPS, RUBRIC, FLAGS, configuration_identity, digest, schedule
+from matpilot.evaluation import ABLATIONS, GROUPS, RUBRIC, FLAGS, configuration_identity, digest, schedule
 from matpilot.study_workspace import (collect_grades, create_blind_review, export_runtime, export_development,
-                                     file_hash, import_run, prepare_review)
+                                     development_selection, file_hash, import_run, prepare_review)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -138,6 +138,97 @@ class WorkspaceTests(unittest.TestCase):
         self.assertNotIn("review_path", pack["replay"])
         self.assertNotIn('"gold"', json.dumps(pack))
         self.assertEqual(next(t for t in pack["tasks"] if t["id"] == "D0302")["fixed_clarifications"][0]["slot"], "生成方式与元素体系")
+
+    def development_inputs(self, ablations=tuple(ABLATIONS)):
+        suite = json.loads((ROOT / "benchmarks/study/development_tasks.json").read_text(encoding="utf-8"))
+        (self.root / "fixtures.json").write_bytes((ROOT / "benchmarks/study/fixtures.development.json").read_bytes())
+        for group in ablations:
+            self.environment[group] = copy.deepcopy(self.environment["M"])
+            self.inventory["drivers"][group] = copy.deepcopy(self.inventory["drivers"]["M"])
+            ablation, mapping, evidence = ABLATIONS[group]
+            self.environment[group].update(ablation=ablation, requirement_mapping=mapping, evidence_checks=evidence)
+        for group, config in self.environment.items():
+            config.setdefault("ablation", None)
+            config["replay_fixture_hash"] = file_hash(self.root / "fixtures.json")
+            options = {"implementation_group": group, **{k: config[k] for k in ("ablation", "requirement_mapping", "evidence_checks")}}
+            self.inventory["drivers"][group]["options"] = options
+            config["driver_options_hash"] = digest(options)
+            self.refresh_development_receipt(group)
+        return suite
+
+    def refresh_development_receipt(self, group):
+        config = self.environment[group]
+        report_file = group.replace("+", "plus") + ".development-report.json"
+        self.write(report_file, {"configuration_sha256": configuration_identity(config), "passed": True,
+                                "checks": ["synthetic export fixture only"], "evidence_scope": "cpu_tool_contract_only"})
+        self.inventory["drivers"][group]["validation_report_path"] = report_file
+        config["driver_validation"] = {"configuration_sha256": configuration_identity(config),
+                                       "report_sha256": file_hash(self.root / report_file)}
+
+    def test_development_subset_retains_comparator_definitions_and_binds_selection(self):
+        suite = self.development_inputs()
+        ids, groups = ["D0201", "D0502"], ["M", *ABLATIONS]
+        pack = export_development(suite, self.environment, self.inventory, self.root / "subset.json", inventory_base=self.root,
+                                  task_ids=ids, groups=groups, repeats=2)
+        self.assertEqual(set(pack["drivers"]), set(GROUPS) | set(ABLATIONS))
+        self.assertEqual([t["id"] for t in pack["tasks"]], ids)
+        self.assertEqual(len(pack["rows"]), 12)
+        self.assertEqual({r["group"] for r in pack["rows"]}, set(groups))
+        self.assertEqual(pack["provenance"]["selection_sha256"], digest(pack["selection"]))
+        self.assertEqual(pack["provenance"]["suite_sha256"], digest(suite))
+        self.assertEqual(pack["selection"]["available_task_count"], 12)
+        self.assertEqual(len({pack["drivers"][g]["instruction_sha256"] for g in groups}), 1)
+        self.assertNotIn('"gold"', json.dumps(pack))
+        self.assertNotIn('"review_path"', json.dumps(pack))
+        repeat = export_development(suite, self.environment, self.inventory, self.root / "again.json", inventory_base=self.root,
+                                    task_ids=ids, groups=groups, repeats=2)
+        self.assertEqual(pack, repeat)
+        changed = export_development(suite, self.environment, self.inventory, self.root / "changed.json", inventory_base=self.root,
+                                     task_ids=ids[:1], groups=groups, repeats=2)
+        self.assertNotEqual(pack["provenance"]["plan_sha256"], changed["provenance"]["plan_sha256"])
+
+    def test_single_development_ablation_is_valid_with_matched_control(self):
+        suite = self.development_inputs(("M_without_mapping",))
+        pack = export_development(suite, self.environment, self.inventory, self.root / "single.json", inventory_base=self.root,
+                                  task_ids=["D0202"], groups=["M", "M_without_mapping"])
+        self.assertEqual(len(pack["rows"]), 2)
+        self.assertEqual(len(pack["drivers"]), 4)
+
+    def test_development_selection_rejects_empty_duplicate_unknown_and_unpaired_values(self):
+        suite = json.loads((ROOT / "benchmarks/study/development_tasks.json").read_text(encoding="utf-8"))
+        for values in ([], ["D0101", "D0101"], ["T0101"], "D0101", [None]):
+            with self.subTest(task_ids=values), self.assertRaisesRegex(ValueError, "task_ids"):
+                development_selection(suite, values)
+        for values in ([], ["M", "M"], ["unknown"], "M", ["M_without_evidence"]):
+            with self.subTest(groups=values), self.assertRaises(ValueError):
+                development_selection(suite, groups=values)
+        suite["split"] = "formal"
+        with self.assertRaisesRegex(ValueError, "development split"):
+            development_selection(suite)
+
+    def test_development_ablation_rejects_changed_instructions_options_and_false_flags(self):
+        suite = self.development_inputs()
+        group = "M_without_mapping"
+        original_config = copy.deepcopy(self.environment[group])
+        original_options = copy.deepcopy(self.inventory["drivers"][group]["options"])
+        for key, value in (("instruction_hash", "f" * 64), ("source_manifest_sha256", "f" * 64),
+                           ("max_requests", 13), ("requirement_mapping", True)):
+            self.environment[group] = {**copy.deepcopy(original_config), key: value}
+            self.refresh_development_receipt(group)
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                export_development(suite, self.environment, self.inventory, self.root / "rejected.json", inventory_base=self.root,
+                                   task_ids=["D0101"], groups=["M", *ABLATIONS])
+        self.environment[group] = original_config
+        for options in ({**original_options, "request_timeout_ms": 99999},
+                        {**original_options, "implementation_group": "M"},
+                        {k: v for k, v in original_options.items() if k != "requirement_mapping"}):
+            self.inventory["drivers"][group]["options"] = options
+            self.environment[group]["driver_options_hash"] = digest(options)
+            self.refresh_development_receipt(group)
+            with self.subTest(options=options), self.assertRaises(ValueError):
+                export_development(suite, self.environment, self.inventory, self.root / "rejected.json", inventory_base=self.root,
+                                   task_ids=["D0101"], groups=["M", *ABLATIONS])
+        self.assertFalse((self.root / "rejected.json").exists())
 
     def test_completed_label_cannot_override_failed_event(self):
         row, outcome, trace, _ = self.imported()

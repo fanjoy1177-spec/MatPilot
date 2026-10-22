@@ -12,7 +12,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from matpilot.evaluation import configuration_identity
+from matpilot.evaluation import ABLATIONS, GROUPS, configuration_identity
 from matpilot.study_workspace import _driver
 
 
@@ -163,6 +163,82 @@ class StudyPrepareTests(unittest.TestCase):
         self.assertFalse(missing.exists())
         self.assertFalse(any(self.output.rglob("start.json")))
         self.assertFalse(any(self.output.rglob("*ledger*")))
+
+    def test_selected_ablation_cli_freezes_actual_switches_and_identical_instructions(self):
+        output = self.root / "ablations"
+        command = [sys.executable, str(SCRIPT), str(output), "--provider", "TEST-ONLY-unexecuted-provider",
+                   "--model", "TEST-ONLY-unexecuted-model", "--reasoning-mode", "TEST-ONLY-off",
+                   "--host-version", "TEST-ONLY-unexecuted-host", "--node-path", self.node,
+                   "--task-ids", "D0101", "D0201", "D0202", "D0502",
+                   "--groups", "M", *ABLATIONS, "--max-output-tokens", "8192"]
+        result = subprocess.run(command, text=True, encoding="utf-8", capture_output=True, timeout=300,
+                                env=MODULE.safe_environment())
+        self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
+        summary = json.loads(result.stdout)
+        pack = json.loads((output / "runtime.json").read_text(encoding="utf-8"))
+        environment = json.loads((output / "environment.json").read_text(encoding="utf-8"))
+        inventory = json.loads((output / "inventory.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(pack["rows"]), 12)
+        self.assertEqual({r["group"] for r in pack["rows"]}, {"M", *ABLATIONS})
+        self.assertEqual(set(pack["drivers"]), {*GROUPS, *ABLATIONS})
+        self.assertEqual(pack["selection"]["task_ids"], ["D0101", "D0201", "D0202", "D0502"])
+        self.assertEqual(summary["selection_sha256"], MODULE.digest(pack["selection"]))
+        self.assertEqual(summary["api_requests"], 0)
+        self.assertEqual(summary["real_material_model_runs"], 0)
+        m_text = Path(inventory["drivers"]["M"]["instruction_path"]).read_bytes()
+        for group in ("M", *ABLATIONS):
+            config, driver = environment[group], inventory["drivers"][group]
+            self.assertEqual(Path(driver["instruction_path"]).read_bytes(), m_text)
+            self.assertEqual(config["driver_options_hash"], MODULE.digest(driver["options"]))
+            self.assertEqual(driver["options"]["implementation_group"], group)
+            expected = ABLATIONS.get(group, (None, True, True))
+            self.assertEqual(tuple(driver["options"][k] for k in ("ablation", "requirement_mapping", "evidence_checks")), expected)
+            receipt = json.loads(Path(driver["validation_report_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(receipt["configuration_sha256"], configuration_identity(config))
+            self.assertTrue(receipt["checks"])
+            self.assertTrue(all(c["group"] == group for c in receipt["checks"]))
+            for case in receipt["checks"]:
+                layer = case["identity"]["checking_layer"]
+                self.assertEqual((layer["requirement_mapping"], layer["evidence_checks"]), expected[1:])
+            with self.assertRaisesRegex(ValueError, "actual Harness replay end-to-end"):
+                _driver(config, driver, output, formal=True)
+        self.assertNotIn('"gold"', json.dumps(pack))
+        self.assertNotIn('"review_path"', json.dumps(pack))
+        self.assertFalse((output / "source/benchmarks/study/development_tasks.json").exists())
+        policy = json.loads((output / "source/clarification-policy.json").read_text(encoding="utf-8"))
+        self.assertEqual({t["id"] for t in policy["tasks"]}, set(pack["selection"]["task_ids"]))
+        source = output / "source"
+        code = ("import {loadRuntimePack} from " + json.dumps((source / "benchmarks/harness_study.mjs").as_uri()) + ";"
+                "const r=loadRuntimePack(" + json.dumps(str(output / "runtime.json")) + ");"
+                "console.log(JSON.stringify({rows:r.pack.rows.length,drivers:Object.keys(r.pack.drivers).length}));")
+        preflight = subprocess.run([self.node, "--input-type=module", "-e", code], text=True, encoding="utf-8",
+                                  capture_output=True, timeout=30, env=MODULE.safe_environment())
+        self.assertEqual(preflight.returncode, 0, preflight.stderr)
+        self.assertEqual(json.loads(preflight.stdout), {"rows": 12, "drivers": 5})
+
+    def test_invalid_selection_is_rejected_before_cpu_or_output_creation(self):
+        for index, kwargs in enumerate(({"task_ids": ["unknown"]}, {"groups": []},
+                                        {"groups": ["M_without_mapping"]}, {"task_ids": ["D0101", "D0101"]})):
+            output = self.root / ("rejected-" + str(index))
+            with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
+                MODULE.prepare(output, provider="test", model="test", reasoning_mode="off", host_version="test", **kwargs)
+            self.assertFalse(output.exists())
+
+    def test_ablation_receipt_requires_real_flag_and_behavior_evidence(self):
+        original = json.loads((self.output / "reports/cpu-smoke.json").read_text(encoding="utf-8"))
+        manifest = json.loads((self.output / "source/source-manifest.json").read_text(encoding="utf-8"))
+        for mutation in ("missing_case", "false_flag", "made_up_count", "mapping_still_enabled"):
+            report = copy.deepcopy(original)
+            if mutation == "missing_case":
+                report["cases"] = [c for c in report["cases"] if c["group"] != "M_without_evidence"]
+            elif mutation == "false_flag":
+                next(c for c in report["cases"] if c["group"] == "M_without_mapping")["identity"]["checking_layer"]["requirement_mapping"] = True
+            elif mutation == "made_up_count":
+                next(c for c in report["cases"] if c["group"] == "M_without_evidence")["candidate_checks"]["valid_candidate_count"] = 4
+            else:
+                next(c for c in report["cases"] if c["group"] == "M_without_mapping")["plan"]["requirement_mapping_count"] = 3
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                MODULE.verify_smoke(report, self.output / "source", manifest, report["fixture_manifest_sha256"], groups=("M", *ABLATIONS))
 
 
 if __name__ == "__main__":

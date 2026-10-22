@@ -10,7 +10,7 @@ MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V
 
 当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev5`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
 
-自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。当前 0.2.0.dev5 已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
+自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
 ## 0.1.1 历史已验证状态
 
@@ -143,3 +143,7 @@ Windows MCP 异步运行时需要本机回环通信；受限沙箱可能阻断�
 [AtomisticSkills](https://github.com/learningmatter-mit/AtomisticSkills) 是重要的同类工作与复用来源；第二模型接口已实现，真实验收及正式对照实验尚未完成。本仓库当前使用独立的 MatterGen 适配器和 pymatgen，仅按需桥接固定版本的 DiffCSP++ 包装器，没有把上游全部模型能力算作本项目成果。材策 MatPilot 是独立本科项目，与其他同名研究系统无隶属关系。
 
 规则校验目前检查模型提交的结构化参数，不能保证识别自然语言提取阶段的所有遗漏。完整性仍需结合原文、方案审阅和独立测试评价。
+
+## 开发消融补充（2026-10-22）
+
+新增显式选择题目与模块开关的研究导出工具，源码回归189项Python、27项JavaScript通过。四道公开开发题、三种真实配置各运行一次，共12条真实Harness记录；全部材料数据仍为CPU回放。完整插件本轮API核算较低、墙钟较高，尚不支持整体提速或任务正确率提高。[完整消融报告与证据](docs/study_ablation_results.md)保留全部结果、费用与归因限制。已发布的dev5安装包及桌面固定部署保持不变，研究工具补充从当前仓库源码使用。
