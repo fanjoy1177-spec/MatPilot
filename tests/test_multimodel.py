@@ -210,6 +210,18 @@ class MultiModelTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.service.get_results(job["job_id"])
 
+    def test_wrapper_identity_is_portable_but_rejects_source_changes(self):
+        from matpilot.bridges.diffcsp_runner import verify_wrapper_source
+        source = self.root / "wrapper.py"
+        canonical = b"# fixture\nvalue = 1\n"
+        identity = hashlib.sha256(canonical).hexdigest()
+        for content in (canonical, canonical.replace(b"\n", b"\r\n")):
+            source.write_bytes(content)
+            verify_wrapper_source(source, identity)
+        source.write_bytes(canonical.replace(b"1", b"2"))
+        with self.assertRaisesRegex(ValueError, "source differs"):
+            verify_wrapper_source(source, identity)
+
 
 if __name__ == "__main__":
     unittest.main()

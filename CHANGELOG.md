@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0.dev4 / Harness 0.2.0-dev.4
+
+- Make published U+ patch tests independent of Windows CRLF versus Linux LF, retaining raw and canonical source hashes.
+- Verify the DiffCSP wrapper against canonical UTF-8/LF source; source edits still fail. Canonical hash verified from pinned Git content.
+- Add one cross-platform identity regression (85 total); retain the first failed GitHub CI run.
+
 ## 0.2.0.dev3 / Harness 0.2.0-dev.3
 
 - Resolve unique exact source quotes deterministically; repeated quotes and incorrect supplied offsets remain blocked.

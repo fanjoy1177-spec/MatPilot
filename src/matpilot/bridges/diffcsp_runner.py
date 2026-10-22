@@ -15,6 +15,14 @@ import zipfile
 WRAPPER = "src/utils/generative_models/diffcsp/diffcsp_wrapper.py"
 
 
+def verify_wrapper_source(path, expected):
+    # Git may check out CRLF on Windows and LF on Linux. Only newline spelling
+    # is normalized; all source edits still change the identity.
+    normalized = Path(path).read_text(encoding="utf-8").encode("utf-8")
+    if hashlib.sha256(normalized).hexdigest() != expected:
+        raise ValueError("Wrapper source differs from the audited UTF-8/LF file.")
+
+
 def verify_checkout(root, expected):
     root = Path(root).resolve()
     actual = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
@@ -95,8 +103,7 @@ def run(payload):
     verify_checkout(upstream, payload["expected_wrapper_commit"])
     verify_checkout(model_root, conf["model_revision"])
     wrapper_path = upstream / WRAPPER
-    if hashlib.sha256(wrapper_path.read_bytes()).hexdigest() != payload["expected_wrapper_sha256"]:
-        raise ValueError("Wrapper source differs from the audited file.")
+    verify_wrapper_source(wrapper_path, payload["expected_wrapper_sha256"])
     checkpoint = payload["checkpoint"]
     if checkpoint not in {"mp_csp", "perov_csp", "mpts_csp"}:
         raise ValueError("Unsupported checkpoint.")

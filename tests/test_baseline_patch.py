@@ -47,7 +47,14 @@ class BaselinePatchTests(unittest.TestCase):
         for item in lock["files"]:
             if hashlib.sha256((cls.upstream / item["path"]).read_bytes()).hexdigest() != item["original_sha256"]:
                 raise ValueError("Baseline snapshot identity mismatch")
-        subprocess.run(["git", "-C", str(cls.upstream), "apply", str(BASELINE / "atomisticskills-uplus.patch")], check=True, capture_output=True)
+            source = cls.upstream / item["path"]
+            normalized = source.read_text(encoding="utf-8").encode("utf-8")
+            if hashlib.sha256(normalized).hexdigest() != item["original_utf8_lf_sha256"]:
+                raise ValueError("Baseline normalized source identity mismatch")
+            source.write_bytes(normalized)
+        applied = subprocess.run(["git", "-c", "core.autocrlf=false", "-C", str(cls.upstream), "apply", str(BASELINE / "atomisticskills-uplus.patch")], capture_output=True, text=True)
+        if applied.returncode:
+            raise ValueError("Published baseline patch failed: " + applied.stderr)
         for item in lock["files"]:
             if hashlib.sha256((cls.upstream / item["path"]).read_text(encoding="utf-8").encode("utf-8")).hexdigest() != item["patched_sha256"]:
                 raise ValueError("Applied baseline patch identity mismatch")

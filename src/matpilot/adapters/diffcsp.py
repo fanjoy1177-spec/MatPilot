@@ -8,7 +8,7 @@ from .mattergen import MatterGenAdapter, canonical_hash, wsl_path
 from ..templates import resolve_template
 
 UPSTREAM_COMMIT = "6afdd465a35088136e4875d7d2fbaefc633f4adf"
-WRAPPER_SHA256 = "e4f76fedefc17e983949a97103e75298007667d41b894f82f3f0ade5104269c9"
+WRAPPER_SHA256 = "cc7c84eb201fe3a5233863dcffc4e7086134c9d90663114ab09facc0fe9de1f0"
 VERSION = "diffcsp-template-contract-v1"
 CHECKPOINTS = ("mp_csp", "perov_csp", "mpts_csp")
 
@@ -25,6 +25,7 @@ class DiffCSPAdapter:
                 "source": "https://github.com/jiaor17/DiffCSP-PP",
                 "wrapper_source": "https://github.com/learningmatter-mit/AtomisticSkills",
                 "wrapper_commit": UPSTREAM_COMMIT, "wrapper_sha256": WRAPPER_SHA256,
+                "wrapper_hash_normalization": "UTF-8 with LF newlines",
                 "limitations": ["No symmetry guessed from a formula.", "Only registered ordered CIF templates; no arbitrary Wyckoff input from the LLM.",
                                 "No property conditioning, no unconditional generation in this adapter.", "Bridge implementation is not real-model acceptance."],
                 "license": "Upstream code MIT; verify separate checkpoint terms before deployment."}

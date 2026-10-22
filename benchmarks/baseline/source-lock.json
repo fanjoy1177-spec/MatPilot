@@ -6,24 +6,29 @@
     {
       "path": "src/mcp_server/mattergen_server.py",
       "original_sha256": "ddb7321f4cf6ce88b7c96001f94db988fb069d8b3687999c545bc34a97e4a8e6",
-      "patched_sha256": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb"
+      "patched_sha256": "a02fec39568a5ab396847f2549ffbb65579ecbcf89594f4fc800d5e77327c3cb",
+      "original_utf8_lf_sha256": "d6e67af69dc5facdbfc7755d08c9919e35e9723e832acc26181bf60792aa8d8c"
     },
     {
       "path": "src/utils/generative_models/mattergen/mattergen_wrapper.py",
       "original_sha256": "c1dffee225bc5b37126a86d77d11333aed2d0ce9d75f5fe8d68d86b6308fed3c",
-      "patched_sha256": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8"
+      "patched_sha256": "aebc4908aa083732c41093b1a1c456495c218691727bb0dc97a638537532b6f8",
+      "original_utf8_lf_sha256": "cb69af074a0daf2cec2bbe3344cf5eba8dbd62eec7192d6074b3ddbad21d4bbe"
     },
     {
       "path": "skills/mat-stability/scripts/compute_ehull.py",
       "original_sha256": "b44669e8f049ea797036426a890caec1ee54ddaddbf9f8112e48c51b3664f23f",
-      "patched_sha256": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648"
+      "patched_sha256": "97375c2707cd2b08ec6eaadef789b8301d27200d8af7f099a833db11bcd58648",
+      "original_utf8_lf_sha256": "688e7eca1f68e0cd8578dcabe10505a07afe69782f5d4eda7f372b434d6e0552"
     },
     {
       "path": "skills/mat-structure-novelty/scripts/match_structure.py",
       "original_sha256": "e4254ed68d6d8aee79d7816103ae72aea01ac568e8dd1c0ac143ca86363dec3a",
-      "patched_sha256": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5"
+      "patched_sha256": "df2b8c9f00dd09b9c38dce87920f1915279b0a48b7ec01a4461125d54d7418b5",
+      "original_utf8_lf_sha256": "eb1b24b2ff66fae80d5e4bb358f577fdb8bf34fdc2e3581e7a7c866ba9689fd6"
     }
   ],
   "validation": "Four isolated regression tests passed against applied published patch; no model loading or database calls; full Harness baseline not accepted",
-  "patched_content_normalization": "UTF-8 with LF newlines; original_sha256 uses original raw bytes"
+  "patched_content_normalization": "UTF-8 with LF newlines; original_sha256 uses original raw bytes",
+  "original_content_normalization": "original_sha256 is the archived raw-byte identity; original_utf8_lf_sha256 is the portable UTF-8/LF source identity."
 }

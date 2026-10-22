@@ -1,0 +1,6 @@
+* text=auto eol=lf
+benchmarks/baseline/upstream_snapshot/** -text
+*.png -text
+*.whl -text
+*.tgz -text
+*.tar.gz -text
