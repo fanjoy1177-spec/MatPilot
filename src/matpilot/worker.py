@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import subprocess
 import sys
@@ -14,6 +15,8 @@ from .config import Settings
 from .store import Store
 from .structures import collect_archive, demo_archive
 from .evidence import candidate_identity
+
+SUPERVISOR_STOP_TIMEOUT = 30
 
 
 def launch_worker(root: Path) -> int:
@@ -28,7 +31,7 @@ def launch_worker(root: Path) -> int:
 def verified_records(job: dict) -> list[dict]:
     result = []
     for batch in job["batches"]:
-        if batch["status"] != "completed":
+        if batch["status"] not in {"completed", "partial", "failed", "stopped"}:
             continue
         for index, record in enumerate(batch["records"]):
             file = Path(record["path"])
@@ -39,10 +42,85 @@ def verified_records(job: dict) -> list[dict]:
     return result
 
 
+def collect_batch_outputs(job_id: str, plan: dict, batch: dict, batch_dir: Path, started: float) -> list[dict]:
+    """Collect only a closed archive after execution ended, including failed runs.
+
+    Collection success does not change the execution outcome. Rejected archives
+    never contribute a fabricated candidate; individual invalid CIFs are recorded
+    while valid siblings retain their normal candidate/version identities.
+    """
+    batch["collection_attempted"] = True
+    batch["collection_errors"] = []
+    batch["records"] = []
+    archive = batch_dir / "generated_crystals_cif.zip"
+    elements = set(plan["conditions"]["chemical_system"].split("-")) if "chemical_system" in plan["conditions"] else None
+    try:
+        collected = collect_archive(archive, batch_dir / "candidates", batch["count"], elements,
+                                    allow_partial=True, errors=batch["collection_errors"])
+        batch["records"] = [candidate_identity(job_id, batch["index"], i, record) for i, record in enumerate(collected)]
+        batch["collection_status"] = "complete" if len(collected) == batch["count"] else "partial" if collected else "failed"
+    except Exception as exc:
+        batch["collection_status"] = "rejected"
+        batch["collection_errors"].append({"source_archive": archive.name, "error": str(exc)})
+    batch["elapsed_seconds"] = time.monotonic() - started
+    return batch["records"]
+
+
+def supervision_receipt(batch_dir: Path, returncode: int) -> dict:
+    """Require positive supervisor evidence before treating GPU work as ended."""
+    path = batch_dir / "linux_supervisor.json"
+    raw = path.read_bytes()
+    receipt = json.loads(raw)
+    if (not isinstance(receipt, dict) or receipt.get("format") != "matpilot-process-supervision/v1"
+            or type(receipt.get("command_started")) is not bool
+            or type(receipt.get("process_group_terminated")) is not bool
+            or receipt.get("reason") not in {"spawn_failed", "supervisor_error", "command_exited", "stop_requested", "timeout", "supervisor_signal"}
+            or receipt.get("supervisor_exit_code") != returncode
+            or (receipt["command_started"] and (type(receipt.get("owned_process_group_id")) is not int
+                                                or receipt["owned_process_group_id"] <= 0))
+            or (not receipt["command_started"] and receipt.get("owned_process_group_id") is not None)):
+        raise ValueError("Supervisor receipt has an invalid execution identity.")
+    return {**receipt, "artifact": {"path": str(path), "sha256": hashlib.sha256(raw).hexdigest()}}
+
+
+def confirm_supervision(batch: dict, batch_dir: Path, returncode: int) -> dict:
+    receipt = supervision_receipt(batch_dir, returncode)
+    batch["supervision"] = receipt
+    if not receipt["command_started"]:
+        batch["sampling_charge"] = 0
+    if not receipt["process_group_terminated"]:
+        raise ValueError("Supervisor could not confirm termination of the owned process group.")
+    batch["termination_confirmed"] = True
+    return receipt
+
+
+def stop_and_confirm(process, supervised: bool, batch: dict, batch_dir: Path) -> None:
+    """Bounded cleanup; never kill the WSL launcher/supervisor to fake success."""
+    if process.poll() is None:
+        if supervised:
+            (batch_dir / "stop.request").touch()
+            # Default supervisor TERM + KILL grace is 15 seconds, so a 10-second
+            # wait can expire while safe group cleanup is still taking place.
+            process.wait(timeout=SUPERVISOR_STOP_TIMEOUT)
+        else:
+            process.terminate()
+            try:
+                process.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=10)
+    if supervised:
+        confirm_supervision(batch, batch_dir, process.returncode)
+    batch["exit_code"] = process.returncode
+
+
 def execute_job(store: Store, job: dict):
     job_id = job["job_id"]
     started = time.monotonic()
     process = None
+    batch = None
+    supervised = False
+    termination_unconfirmed = False
     try:
         plan = store.plan(job["plan_id"])
         values = dict(job["settings"])
@@ -83,7 +161,7 @@ def execute_job(store: Store, job: dict):
                 output = wsl_path(batch_dir) if settings.backend == "wsl" else str(batch_dir)
                 settings.bridge_staging_dir = str(batch_dir)
                 command = ADAPTERS[plan["model_id"]].build_command(plan, output, count, batch["seed"], settings)
-                supervised = settings.backend == "wsl" or (plan["model_id"] == "diffcsp" and os.name != "nt")
+                supervised = settings.backend == "wsl" or os.name != "nt"
                 batch["command"] = command
                 store.event(job_id, "batch_started", {"index": index, "command": command, "seed_applied": batch["seed_applied"]})
                 with (batch_dir / "execution.log").open("wb") as log:
@@ -109,45 +187,102 @@ def execute_job(store: Store, job: dict):
                             except subprocess.TimeoutExpired:
                                 process.kill()
                                 process.wait(timeout=10)
-                            batch.update(status="stopped" if current["stop_requested"] else "failed", error="Stopped by user" if current["stop_requested"] else "Batch time limit reached")
+                            records.extend(collect_batch_outputs(job_id, plan, batch, batch_dir, start))
+                            batch.update(status="stopped" if current["stop_requested"] else "partial" if batch["records"] else "failed",
+                                         exit_code=process.returncode,
+                                         error="Stopped by user" if current["stop_requested"] else "Batch time limit reached")
                             store.update(job_id, status="stopped" if current["stop_requested"] else "partial" if records else "failed", batches=batches, completed_samples=len(records))
+                            store.event(job_id, "batch_interrupted", {"index": index, "status": batch["status"], "retained": len(batch["records"]), "error": batch["error"]})
                             return
                         store.update(job_id, heartbeat=time.time())
                         time.sleep(0.5)
-                    if process.returncode in {124, 130} and supervised:
-                        batch.update(status="stopped" if process.returncode == 130 else "failed", error="Stopped by user" if process.returncode == 130 else "Batch time limit reached")
-                        store.update(job_id, status="stopped" if process.returncode == 130 else "partial" if records else "failed", batches=batches, completed_samples=len(records))
+                    supervision = None
+                    if supervised:
+                        try:
+                            supervision = confirm_supervision(batch, batch_dir, process.returncode)
+                        except (OSError, ValueError, TypeError) as exc:
+                            termination_unconfirmed = True
+                            diagnostic = "Execution termination is unconfirmed; do not resume or collect live outputs. " + str(exc)
+                            batch.update(exit_code=process.returncode, termination_confirmed=False, error=diagnostic)
+                            store.update(job_id, status="running", batches=batches, diagnostic=diagnostic, error=diagnostic)
+                            store.event(job_id, "termination_unconfirmed", {"index": index, "message": diagnostic})
+                            return
+                    if supervised and (supervision["reason"] in {"stop_requested", "timeout"}
+                                       or supervision["reason"] == "supervisor_signal" and process.returncode == 130):
+                        stopped = supervision["reason"] != "timeout"
+                        records.extend(collect_batch_outputs(job_id, plan, batch, batch_dir, start))
+                        batch.update(status="stopped" if stopped else "partial" if batch["records"] else "failed",
+                                     exit_code=process.returncode,
+                                     error="Stopped by user" if stopped else "Batch time limit reached")
+                        store.update(job_id, status="stopped" if stopped else "partial" if records else "failed", batches=batches, completed_samples=len(records))
+                        store.event(job_id, "batch_interrupted", {"index": index, "status": batch["status"], "retained": len(batch["records"]), "error": batch["error"]})
                         return
+                    batch["exit_code"] = process.returncode
                     if process.returncode != 0:
                         raise RuntimeError(f"{plan['model_id']} exited with code {process.returncode}; see batch execution.log.")
                 process = None
-            expected_elements = set(plan["conditions"]["chemical_system"].split("-")) if "chemical_system" in plan["conditions"] else None
-            batch["collection_errors"] = []
-            batch_records = collect_archive(archive, batch_dir / "candidates", count, expected_elements, allow_partial=plan["model_id"] == "diffcsp", errors=batch["collection_errors"])
-            batch_records = [candidate_identity(job_id, index, i, r) for i, r in enumerate(batch_records)]
-            batch.update(status="completed", records=batch_records, elapsed_seconds=time.monotonic() - start)
+            batch_records = collect_batch_outputs(job_id, plan, batch, batch_dir, start)
+            batch["status"] = "completed" if len(batch_records) == count else "partial" if batch_records else "failed"
             records.extend(batch_records)
             store.update(job_id, batches=batches, completed_samples=len(records), heartbeat=time.time())
-            store.event(job_id, "batch_completed", {"index": index, "count": len(batch_records), "elapsed_seconds": batch["elapsed_seconds"]})
+            store.event(job_id, "batch_completed" if batch["status"] == "completed" else "batch_incomplete",
+                        {"index": index, "count": len(batch_records), "elapsed_seconds": batch["elapsed_seconds"]})
             if len(batch_records) < count:
-                store.update(job_id, status="partial" if records else "failed", error="Model returned fewer usable candidates than requested; attempted sampling remains charged.")
+                error = "Model returned fewer usable candidates than requested; attempted sampling remains charged."
+                if batch["collection_status"] == "rejected":
+                    error = "Batch output collection rejected: " + batch["collection_errors"][0]["error"]
+                batch["error"] = error
+                store.update(job_id, status="partial" if records else "failed", batches=batches, error=error)
                 store.event(job_id, "incomplete_batch", {"requested": count, "received": len(batch_records)})
                 return
         store.update(job_id, status="completed", completed_samples=len(records))
         store.event(job_id, "execution_completed", {"count": len(records), "provenance": job["provenance"]})
     except Exception as exc:
+        cleanup_error = None
+        if process is not None:
+            try:
+                stop_and_confirm(process, supervised, batch, batch_dir)
+            except (OSError, ValueError, TypeError, subprocess.TimeoutExpired) as cleanup_exc:
+                termination_unconfirmed = True
+                cleanup_error = str(cleanup_exc)
         current = store.job(job_id)
         batches = current["batches"]
+        if termination_unconfirmed:
+            if batch is not None and batches and batch["index"] == batches[-1]["index"]:
+                batch.update(status="running", termination_confirmed=False)
+                batches[-1] = batch
+            diagnostic = "Execution termination is unconfirmed; no collection or resume is allowed. " + (cleanup_error or str(exc))
+            store.update(job_id, status="running", batches=batches, diagnostic=diagnostic, error=str(exc))
+            store.event(job_id, "termination_unconfirmed", {"message": diagnostic, "execution_error": str(exc)})
+            return
         if batches and batches[-1]["status"] == "running":
-            batches[-1].update(status="failed", error=str(exc))
-        store.update(job_id, status="partial" if current["completed_samples"] else "failed", error=str(exc), batches=batches)
+            if batch is not None and batch["index"] == batches[-1]["index"]:
+                batches[-1] = batch
+            active = batches[-1]
+            # A completed archive is safe to inspect only once the process has
+            # actually exited. Missing executables never consume a sample.
+            if (active.get("sampling_charge", 0) > 0 and not active.get("collection_attempted")
+                    and (process is None or process.poll() is not None)):
+                collect_batch_outputs(job_id, plan, active, batch_dir, start)
+            active.update(status="partial" if active["records"] else "failed", error=str(exc))
+        completed = sum(len(b["records"]) for b in batches if b["status"] in {"completed", "partial", "failed", "stopped"})
+        store.update(job_id, status="partial" if completed else "failed", error=str(exc), batches=batches, completed_samples=completed)
         store.event(job_id, "execution_error", {"message": str(exc)})
     finally:
-        if process is not None and process.poll() is None:
-            process.terminate()
-            process.wait(timeout=10)
+        # Covers exceptional unwinding too, without retrying a timed-out cleanup
+        # or terminating wsl.exe while its owned Linux process group may be live.
+        if process is not None and process.poll() is None and not termination_unconfirmed:
+            try:
+                stop_and_confirm(process, supervised, batch, batch_dir)
+            except (OSError, ValueError, TypeError, subprocess.TimeoutExpired) as exc:
+                termination_unconfirmed = True
+                batch.update(status="running", termination_confirmed=False)
+                current = store.job(job_id)
+                current["batches"][-1] = batch
+                store.update(job_id, status="running", batches=current["batches"],
+                             diagnostic="Execution termination is unconfirmed; no resume is allowed. " + str(exc))
         current = store.job(job_id)
-        store.update(job_id, execution_pid=None, heartbeat=time.time(),
+        store.update(job_id, execution_pid=process.pid if termination_unconfirmed and process is not None else None, heartbeat=time.time(),
             execution_seconds=current.get("execution_seconds", 0) + time.monotonic() - started)
 
 

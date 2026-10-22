@@ -257,7 +257,7 @@ def _validate_outcome(row, outcome):
         raise ValueError("Completed runs must not have a terminal failure reason.")
 
 
-def record_run(root, row, outcome, trace, *, frozen=None, plan=None):
+def record_run(root, row, outcome, trace, *, frozen=None, plan=None, import_audit=None):
     """Append a run. Pass both frozen/plan for records usable in formal summaries."""
     _validate_row(row)
     _validate_outcome(row, outcome)
@@ -269,6 +269,9 @@ def record_run(root, row, outcome, trace, *, frozen=None, plan=None):
             raise ValueError("Run identity is not in the frozen study plan.")
     trace = Path(trace)
     trace_bytes = trace.read_bytes()
+    if import_audit is not None and (not isinstance(import_audit, dict)
+            or import_audit.get("source_hashes", {}).get("trace.json") != hashlib.sha256(trace_bytes).hexdigest()):
+        raise ValueError("Trace changed after its import audit.")
     if not isinstance(json.loads(trace_bytes), (dict, list)):
         raise ValueError("A trace must be a JSON object or list.")
     run_id = row["run_id"]
@@ -280,6 +283,9 @@ def record_run(root, row, outcome, trace, *, frozen=None, plan=None):
     record = {**row, "outcome": outcome, "trace_sha256": hashlib.sha256(trace_bytes).hexdigest(),
               "plan_sha256": plan["plan_sha256"] if plan else None,
               "correctness": "ungraded", "human_time_status": "measured" if outcome["human_active_seconds"] is not None else "not_measured"}
+    if import_audit is not None:
+        record["import_audit_sha256"] = digest(import_audit)
+        save_new(folder / "audit.json", import_audit)
     record["record_sha256"] = digest(record)
     save_new(folder / "run.json", record)
     return record
@@ -446,13 +452,23 @@ def main():
     p = sub.add_parser("audit"); p.add_argument("suite"); p.add_argument("--formal", action="store_true")
     p = sub.add_parser("freeze"); p.add_argument("suite"); p.add_argument("review"); p.add_argument("output")
     p = sub.add_parser("schedule"); p.add_argument("frozen"); p.add_argument("environment"); p.add_argument("output")
+    p = sub.add_parser("summarize", help="Audit archived files before summarizing operator-supplied grades.")
+    p.add_argument("frozen"); p.add_argument("plan"); p.add_argument("runs"); p.add_argument("grades"); p.add_argument("output")
+    p.add_argument("--bootstrap-samples", type=int, default=2000)
     args = parser.parse_args()
     if args.command == "audit":
         print(json.dumps(audit_suite(load(args.suite), args.formal), ensure_ascii=False, indent=2))
     elif args.command == "freeze":
         freeze_suite(load(args.suite), load(args.review), args.output)
-    else:
+    elif args.command == "schedule":
         save_new(args.output, schedule(load(args.frozen), load(args.environment)))
+    else:
+        from .study_workspace import summarize_archive
+        result = summarize_archive(load(args.frozen), load(args.plan), args.runs, load(args.grades),
+                                   bootstrap_samples=args.bootstrap_samples)
+        save_new(args.output, result)
+        print(json.dumps({"status": result["status"], "missing_runs": len(result["missing_runs"]),
+                          "ungraded_runs": len(result["ungraded_runs"])}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

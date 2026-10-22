@@ -97,7 +97,7 @@ class Store:
             job = json.loads(row[0])
             job.update(changes, updated_at=time.time())
             for batch in job["batches"] if "batches" in changes else []:
-                if batch["status"] == "completed":
+                if batch["status"] in {"completed", "partial", "failed", "stopped"}:
                     for record in batch["records"]:
                         if record.get("structure_version_id"):
                             self._put_structure(db, job_id, record)

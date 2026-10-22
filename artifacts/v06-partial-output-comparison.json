@@ -1,0 +1,339 @@
+{
+  "format": "matpilot-partial-output-cpu-comparison/v1",
+  "scope": "production_worker_cpu_fixture_regression_only",
+  "baseline": {
+    "path": "releases/0.2.0.dev5/matpilot_core-0.2.0.dev5-py3-none-any.whl",
+    "sha256": "942eed6b0d31ffdb9a42242fa9e9620340f4f596aeb34bf4bac337351759b265",
+    "release_unchanged": true
+  },
+  "versions": {
+    "frozen_dev5": {
+      "declared_version": "0.2.0.dev5",
+      "cases": [
+        {
+          "case": "short_return",
+          "fixture_sha256": "ed01f4d377bcedbecab1678d9fef8a0dcf909e7767837b7ce03e2ee1942d3799",
+          "requested_samples": 2,
+          "retained_candidates": 0,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "failed",
+          "batch_status": "failed",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [],
+          "error": "Expected 2 CIF files, received 1.",
+          "collection_errors": []
+        },
+        {
+          "case": "one_invalid_cif",
+          "fixture_sha256": "8de22d3154db3c9e0ba1b294f8c812c127cb49d7c2e6a4d9e7c0d2d8e851b861",
+          "requested_samples": 2,
+          "retained_candidates": 0,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "failed",
+          "batch_status": "failed",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [],
+          "error": "Invalid generated structure 1: Invalid CIF file with no structures!",
+          "collection_errors": []
+        },
+        {
+          "case": "nonzero_exit_complete_archive",
+          "fixture_sha256": "ace5e1743fb7e48241a29d91f1ca2afe58b6d97f8216bcfbfc2df470cbb70b84",
+          "requested_samples": 2,
+          "retained_candidates": 0,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "failed",
+          "batch_status": "failed",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [],
+          "error": "mattergen exited with code 7; see batch execution.log.",
+          "collection_errors": []
+        }
+      ],
+      "source_sha256": {
+        "__init__.py": "7be943d17f526a0f900777f302bfe88f3483b4bc2d527531334c380fe53b3f39",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "74d1f825001a108ecbed2665d75cd22142579694113951bf61d1a74e24691caa",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "c45b6fa33d2cc873ccfffec00a546f53370d9f1e060f8e6daa1680f86b9ed9d6",
+        "config.py": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "b8f0bd81a7799704da4fdbfc47eb63f9eb1c22b9c9e0a74e44bc8e8d7d78a03e",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "7766ce3fd2a8e00d30a7428bbe81cd128ca9b79c74d79ffb61de79320ef005e3",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "7f6e5c458156eb09df67aa9e68bb0ef3a5d7415fd85493cde34493df1c9f1f5c",
+        "service.py": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+        "store.py": "2265fb2c61532164956e7cf6058fb6ebc2a6d665aacad49c3a8a8aeb6a0b9f7e",
+        "structures.py": "0344733dea5a7eb27ea466bfa7fb4e2f4c6302e84a632b455adb4878e7791a69",
+        "study_replay.py": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+        "study_workspace.py": "3b51b3a9c31ef86674131c58bcce75324ef34c53243498fb5a2e2dfaee513592",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "fbf50fb7b94828b4fbe9621619d8651368d20b5ca1a820287336ecdde858c26f"
+      }
+    },
+    "candidate_source": {
+      "declared_version": "0.2.0.dev6",
+      "cases": [
+        {
+          "case": "short_return",
+          "fixture_sha256": "ed01f4d377bcedbecab1678d9fef8a0dcf909e7767837b7ce03e2ee1942d3799",
+          "requested_samples": 2,
+          "retained_candidates": 1,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "partial",
+          "batch_status": "partial",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [
+            "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+          ],
+          "error": "Model returned fewer usable candidates than requested; attempted sampling remains charged.",
+          "collection_errors": []
+        },
+        {
+          "case": "one_invalid_cif",
+          "fixture_sha256": "8de22d3154db3c9e0ba1b294f8c812c127cb49d7c2e6a4d9e7c0d2d8e851b861",
+          "requested_samples": 2,
+          "retained_candidates": 1,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "partial",
+          "batch_status": "partial",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [
+            "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+          ],
+          "error": "Model returned fewer usable candidates than requested; attempted sampling remains charged.",
+          "collection_errors": [
+            {
+              "source_member": "invalid.cif",
+              "error": "Invalid CIF file with no structures!"
+            }
+          ]
+        },
+        {
+          "case": "nonzero_exit_complete_archive",
+          "fixture_sha256": "ace5e1743fb7e48241a29d91f1ca2afe58b6d97f8216bcfbfc2df470cbb70b84",
+          "requested_samples": 2,
+          "retained_candidates": 2,
+          "sampling_attempts_charged": 2,
+          "sampling_budget_remaining": 0,
+          "job_status": "partial",
+          "batch_status": "partial",
+          "can_resume": {
+            "allowed": false,
+            "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+          },
+          "retained_artifact_sha256": [
+            "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+            "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+          ],
+          "error": "mattergen exited with code 7; see batch execution.log.",
+          "collection_errors": []
+        }
+      ],
+      "source_sha256": {
+        "__init__.py": "53d9e77c37a89b2a064da7ace4df7f00850e32d475685cad2e5a3420025d7356",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "a241222e012e6f7523be464eb2d6241e0ca579ccefb569558683b248bd0f4315",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+        "config.py": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "ed052ebff953096cb30ef10f8963065f180d391bfba21844a958c9354dacb0a5",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "df0fdaf66e9aaeebeb731afefe0a57662e1ba7a3449a8f5ee3e172192966f019",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "7f6e5c458156eb09df67aa9e68bb0ef3a5d7415fd85493cde34493df1c9f1f5c",
+        "service.py": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+        "store.py": "4d9703059147cb5274981464d2d618c1b376c1d6d69c826ee3c168c8bfdd7475",
+        "structures.py": "935c1c86edefa21216a445a927ee55d9d5ae7e1528bb85c2c6cf8dfe71d8c4be",
+        "study_replay.py": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+        "study_workspace.py": "a70cf7e31b7f529199de2e0c92121e3df1b32ec89558b3a09fddfe14c4a76e3a",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "4ab94e0ac1da21ccb9683773f2bd82f8fb84b8f30b91a549996feb41f1339b55"
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "case": "short_return",
+      "before": {
+        "case": "short_return",
+        "fixture_sha256": "ed01f4d377bcedbecab1678d9fef8a0dcf909e7767837b7ce03e2ee1942d3799",
+        "requested_samples": 2,
+        "retained_candidates": 0,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "failed",
+        "batch_status": "failed",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [],
+        "error": "Expected 2 CIF files, received 1.",
+        "collection_errors": []
+      },
+      "after": {
+        "case": "short_return",
+        "fixture_sha256": "ed01f4d377bcedbecab1678d9fef8a0dcf909e7767837b7ce03e2ee1942d3799",
+        "requested_samples": 2,
+        "retained_candidates": 1,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "partial",
+        "batch_status": "partial",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [
+          "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+        ],
+        "error": "Model returned fewer usable candidates than requested; attempted sampling remains charged.",
+        "collection_errors": []
+      },
+      "additional_retained_candidates": 1,
+      "sampling_charge_change": 0
+    },
+    {
+      "case": "one_invalid_cif",
+      "before": {
+        "case": "one_invalid_cif",
+        "fixture_sha256": "8de22d3154db3c9e0ba1b294f8c812c127cb49d7c2e6a4d9e7c0d2d8e851b861",
+        "requested_samples": 2,
+        "retained_candidates": 0,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "failed",
+        "batch_status": "failed",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [],
+        "error": "Invalid generated structure 1: Invalid CIF file with no structures!",
+        "collection_errors": []
+      },
+      "after": {
+        "case": "one_invalid_cif",
+        "fixture_sha256": "8de22d3154db3c9e0ba1b294f8c812c127cb49d7c2e6a4d9e7c0d2d8e851b861",
+        "requested_samples": 2,
+        "retained_candidates": 1,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "partial",
+        "batch_status": "partial",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [
+          "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+        ],
+        "error": "Model returned fewer usable candidates than requested; attempted sampling remains charged.",
+        "collection_errors": [
+          {
+            "source_member": "invalid.cif",
+            "error": "Invalid CIF file with no structures!"
+          }
+        ]
+      },
+      "additional_retained_candidates": 1,
+      "sampling_charge_change": 0
+    },
+    {
+      "case": "nonzero_exit_complete_archive",
+      "before": {
+        "case": "nonzero_exit_complete_archive",
+        "fixture_sha256": "ace5e1743fb7e48241a29d91f1ca2afe58b6d97f8216bcfbfc2df470cbb70b84",
+        "requested_samples": 2,
+        "retained_candidates": 0,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "failed",
+        "batch_status": "failed",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [],
+        "error": "mattergen exited with code 7; see batch execution.log.",
+        "collection_errors": []
+      },
+      "after": {
+        "case": "nonzero_exit_complete_archive",
+        "fixture_sha256": "ace5e1743fb7e48241a29d91f1ca2afe58b6d97f8216bcfbfc2df470cbb70b84",
+        "requested_samples": 2,
+        "retained_candidates": 2,
+        "sampling_attempts_charged": 2,
+        "sampling_budget_remaining": 0,
+        "job_status": "partial",
+        "batch_status": "partial",
+        "can_resume": {
+          "allowed": false,
+          "reason": "Sampling budget is exhausted, including failed attempts. Prepare and review a new plan to increase it."
+        },
+        "retained_artifact_sha256": [
+          "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+          "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5"
+        ],
+        "error": "mattergen exited with code 7; see batch execution.log.",
+        "collection_errors": []
+      },
+      "additional_retained_candidates": 2,
+      "sampling_charge_change": 0
+    }
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "platform": "win32",
+    "pymatgen": "2026.9.24"
+  },
+  "real_material_model_runs": 0,
+  "api_requests": 0,
+  "api_cny": 0,
+  "limitations": [
+    "All archives are synthetic fixed NaCl workflow data, not model outputs or material evidence.",
+    "Short/bad CIF cases use production worker with its demo archive producer replaced by identical bytes in both arms.",
+    "Nonzero-exit case substitutes the adapter command with the same standard-library CPU fixture in both arms; it tests worker retention, not model/adapter inference.",
+    "This is a deterministic regression comparison, not an LLM effect, correctness rate, user-time or generalization experiment.",
+    "Candidate source identity is the copied Python file hashes, even if a later package version label changes."
+  ],
+  "reproduction": {
+    "script_path": "benchmarks/compare_partial_outputs.py",
+    "script_sha256": "5c6d01fe6942491afc2536bc02cf5fa585ce04887b6161748b9864a4cdb4e84a",
+    "script_source": "\"\"\"Recompute a CPU-only dev5/candidate production-worker regression comparison.\n\nNo provider, model import, checkpoint, GPU or scientific inference is involved.\nThe frozen release wheel is only read. Both arms receive identical synthetic ZIP\nbytes; the external-failure case uses the same explicit standard-library stub.\n\"\"\"\nimport argparse\nimport hashlib\nimport importlib.metadata\nimport json\nimport os\nfrom pathlib import Path\nimport shutil\nimport subprocess\nimport sys\nfrom unittest.mock import Mock, patch\nimport zipfile\n\nROOT = Path(__file__).resolve().parents[1]\nCASES = (\"short_return\", \"one_invalid_cif\", \"nonzero_exit_complete_archive\")\n\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\ndef child(workspace, fixtures):\n    import matpilot\n    from matpilot.config import Settings\n    from matpilot.service import Service\n    from matpilot.worker import execute_job\n    workspace.mkdir(parents=True)\n    program = workspace / \"cpu_fixture.py\"\n    program.write_text(\"import pathlib,shutil,sys\\nshutil.copyfile(sys.argv[1],pathlib.Path(sys.argv[2])/'generated_crystals_cif.zip')\\nsys.exit(7)\\n\", encoding=\"utf-8\")\n    results = []\n    for case in CASES:\n        service = Service(Settings(data_dir=workspace / case))\n        plan = service.prepare_plan({\"model_id\": \"mattergen\", \"conditions\": {\"chemical_system\": \"Na-Cl\"},\n                                     \"num_samples\": 2, \"batch_size\": 2})\n        assert plan[\"state\"] == \"ready\", plan[\"issues\"]\n        settings = service.settings.snapshot()\n        fixture = fixtures / (case + \".zip\")\n        if case == \"nonzero_exit_complete_archive\":\n            settings.update(backend=\"native\", real_compute_enabled=True,\n                            command=[sys.executable, str(program), str(fixture)])\n            adapter = Mock(build_command=lambda p, output, count, seed, conf:\n                           [sys.executable, str(program), str(fixture), conf.bridge_staging_dir])\n            context = patch(\"matpilot.worker.ADAPTERS\", {\"mattergen\": adapter})\n        else:\n            context = patch(\"matpilot.worker.demo_archive\", side_effect=lambda path, count: shutil.copyfile(fixture, path))\n        job, _ = service.store.create_job(plan, \"comparison-\" + case, settings[\"backend\"], settings)\n        claimed = service.store.claim(os.getpid())\n        with context:\n            execute_job(service.store, claimed)\n        job = service.get_job(job[\"job_id\"])\n        records = service.get_results(job[\"job_id\"])[\"records\"]\n        try:\n            service.store.control(job[\"job_id\"], \"resume\")\n            resume = {\"allowed\": True, \"reason\": None}\n        except ValueError as exc:\n            resume = {\"allowed\": False, \"reason\": str(exc)}\n        results.append({\"case\": case, \"fixture_sha256\": sha(fixture), \"requested_samples\": 2,\n                        \"retained_candidates\": len(records), \"sampling_attempts_charged\": job[\"sampling_attempts_charged\"],\n                        \"sampling_budget_remaining\": job[\"sampling_budget_remaining\"], \"job_status\": job[\"status\"],\n                        \"batch_status\": job[\"batches\"][0][\"status\"], \"can_resume\": resume,\n                        \"retained_artifact_sha256\": [r[\"sha256\"] for r in records],\n                        \"error\": job.get(\"error\"), \"collection_errors\": job[\"batches\"][0].get(\"collection_errors\", [])})\n    package = Path(matpilot.__file__).resolve().parent\n    return {\"declared_version\": matpilot.__version__, \"cases\": results,\n            \"source_sha256\": {p.relative_to(package).as_posix(): sha(p) for p in sorted(package.rglob(\"*.py\"))}}\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--work-dir\", default=\".work/partial-output-comparison-v06\")\n    parser.add_argument(\"--output\", default=\"artifacts/v06-partial-output-comparison.json\")\n    parser.add_argument(\"--baseline-wheel\", help=\"Explicit frozen release wheel; this input is read only.\")\n    parser.add_argument(\"--child\", action=\"store_true\")\n    parser.add_argument(\"--fixtures\")\n    args = parser.parse_args()\n    if args.child:\n        print(json.dumps(child(Path(args.work_dir), Path(args.fixtures)), ensure_ascii=False))\n        return\n    if os.name != \"nt\":\n        raise ValueError(\"This declared external-process comparison uses Windows CPU-only adapter substitution; run on Windows.\")\n    if not args.baseline_wheel:\n        raise ValueError(\"Provide --baseline-wheel with the exact frozen release input.\")\n    work = (ROOT / args.work_dir).resolve()\n    work.relative_to(ROOT)\n    output = (ROOT / args.output).resolve()\n    output.relative_to(ROOT)\n    if output.exists():\n        raise FileExistsError(output)\n    work.mkdir(parents=True, exist_ok=False)\n    wheel = (ROOT / args.baseline_wheel).resolve()\n    wheel.relative_to(ROOT)\n    wheel_hash = sha(wheel)\n    frozen = work / \"frozen-dev5\"\n    with zipfile.ZipFile(wheel) as archive:\n        for name in archive.namelist():\n            if not name.startswith(\"matpilot/\") or not name.endswith(\".py\"):\n                continue\n            target = (frozen / name).resolve()\n            target.relative_to(frozen.resolve())\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_bytes(archive.read(name))\n    current = work / \"candidate-source\"\n    copied = []\n    for original in sorted((ROOT / \"src/matpilot\").rglob(\"*.py\")):\n        target = current / original.relative_to(ROOT / \"src\")\n        target.parent.mkdir(parents=True, exist_ok=True)\n        target.write_bytes(original.read_bytes())\n        copied.append((original, sha(target)))\n    if any(sha(path) != expected for path, expected in copied):\n        raise ValueError(\"Candidate source changed while copying.\")\n    sys.path.insert(0, str(current))\n    from matpilot.structures import demo_archive\n    fixtures = work / \"fixtures\"\n    fixtures.mkdir()\n    demo_archive(fixtures / \"short_return.zip\", 1)\n    demo_archive(fixtures / \"nonzero_exit_complete_archive.zip\", 2)\n    with zipfile.ZipFile(fixtures / \"short_return.zip\") as archive:\n        cif = archive.read(archive.namelist()[0])\n    with zipfile.ZipFile(fixtures / \"one_invalid_cif.zip\", \"w\", zipfile.ZIP_DEFLATED) as archive:\n        archive.writestr(\"valid.cif\", cif)\n        archive.writestr(\"invalid.cif\", \"SYNTHETIC INVALID CIF FOR SOFTWARE TEST\")\n    versions = {}\n    for name, source in ((\"frozen_dev5\", frozen), (\"candidate_source\", current)):\n        env = {k: v for k, v in os.environ.items() if k.upper() in {\"PATH\", \"PATHEXT\", \"SYSTEMROOT\", \"WINDIR\", \"TEMP\", \"TMP\", \"USERPROFILE\", \"HOME\"}}\n        env.update(PYTHONPATH=str(source), PYTHONDONTWRITEBYTECODE=\"1\", PYTHONIOENCODING=\"utf-8\")\n        result = subprocess.run([sys.executable, \"-B\", str(Path(__file__).resolve()), \"--child\", \"--work-dir\",\n                                 str(work / name), \"--fixtures\", str(fixtures)], capture_output=True, text=True,\n                                encoding=\"utf-8\", timeout=60, env=env, check=True)\n        versions[name] = json.loads(result.stdout)\n    assert sha(wheel) == wheel_hash\n    comparisons = []\n    for before, after in zip(versions[\"frozen_dev5\"][\"cases\"], versions[\"candidate_source\"][\"cases\"]):\n        assert before[\"case\"] == after[\"case\"] and before[\"fixture_sha256\"] == after[\"fixture_sha256\"]\n        comparisons.append({\"case\": before[\"case\"], \"before\": before, \"after\": after,\n                            \"additional_retained_candidates\": after[\"retained_candidates\"] - before[\"retained_candidates\"],\n                            \"sampling_charge_change\": after[\"sampling_attempts_charged\"] - before[\"sampling_attempts_charged\"]})\n    report = {\"format\": \"matpilot-partial-output-cpu-comparison/v1\", \"scope\": \"production_worker_cpu_fixture_regression_only\",\n              \"baseline\": {\"path\": wheel.relative_to(ROOT).as_posix(), \"sha256\": wheel_hash,\n                           \"release_unchanged\": True}, \"versions\": versions, \"comparisons\": comparisons,\n              \"environment\": {\"python\": sys.version.split()[0], \"platform\": sys.platform,\n                              \"pymatgen\": importlib.metadata.version(\"pymatgen\")},\n              \"real_material_model_runs\": 0, \"api_requests\": 0, \"api_cny\": 0,\n              \"limitations\": [\"All archives are synthetic fixed NaCl workflow data, not model outputs or material evidence.\",\n                              \"Short/bad CIF cases use production worker with its demo archive producer replaced by identical bytes in both arms.\",\n                              \"Nonzero-exit case substitutes the adapter command with the same standard-library CPU fixture in both arms; it tests worker retention, not model/adapter inference.\",\n                              \"This is a deterministic regression comparison, not an LLM effect, correctness rate, user-time or generalization experiment.\",\n                              \"Candidate source identity is the copied Python file hashes, even if a later package version label changes.\"],\n              \"reproduction\": {\"script_path\": \"benchmarks/compare_partial_outputs.py\", \"script_sha256\": sha(__file__),\n                               \"script_source\": Path(__file__).read_text(encoding=\"utf-8\"),\n                               \"command\": \"python benchmarks/compare_partial_outputs.py --baseline-wheel \" + wheel.relative_to(ROOT).as_posix() + \" --work-dir .work/partial-comparison-recompute --output artifacts/partial-comparison-recompute.json\"}}\n    output.parent.mkdir(parents=True, exist_ok=True)\n    with output.open(\"x\", encoding=\"utf-8\") as stream:\n        json.dump(report, stream, ensure_ascii=False, indent=2)\n        stream.write(\"\\n\")\n    print(json.dumps({\"output\": output.relative_to(ROOT).as_posix(), \"sha256\": sha(output), \"comparisons\": comparisons}, ensure_ascii=False, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "command": "python benchmarks/compare_partial_outputs.py --baseline-wheel releases/0.2.0.dev5/matpilot_core-0.2.0.dev5-py3-none-any.whl --work-dir .work/partial-comparison-recompute --output artifacts/partial-comparison-recompute.json"
+  }
+}

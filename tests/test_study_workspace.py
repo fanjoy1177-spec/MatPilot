@@ -1,13 +1,17 @@
 """All people, validation reports and scores here are synthetic test fixtures."""
 import copy
+from contextlib import redirect_stdout
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from matpilot.evaluation import ABLATIONS, GROUPS, RUBRIC, FLAGS, configuration_identity, digest, schedule
 from matpilot.study_workspace import (collect_grades, create_blind_review, export_runtime, export_development,
                                      development_selection, file_hash, import_run, prepare_review)
+from matpilot.study_workspace import import_runs, summarize_archive, validate_runtime
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,8 +26,11 @@ class WorkspaceTests(unittest.TestCase):
         self.review = {"suite_sha256": digest(self.suite), "approved": True, "independent_of_implementation": True,
                        "reviewer": "UNIT TEST ONLY", "materials_qualification": "synthetic", "reviewed_at": "test", "notes": "Not a real review"}
         self.frozen = {"schema_version": 1, "suite": self.suite, "suite_sha256": digest(self.suite), "review": self.review}
-        fixtures = {t["fixture_id"]: {} for t in self.suite["tasks"]}
-        self.write("fixtures.json", {"purpose": "formal_workflow_study", "fixtures": fixtures})
+        fixtures = {t["fixture_id"]: {"sampling_cap": 0, "provenance": {"kind": "synthetic", "description": "UNIT TEST ONLY"}}
+                    for t in self.suite["tasks"]}
+        self.write("fixtures.json", {"schema_version": 1, "author": "SYNTHETIC TEST AUTHOR",
+                   "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+                   "purpose": "formal_workflow_study", "fixtures": fixtures})
         self.write("fixture-review.json", {**self.review, "manifest_sha256": file_hash(self.root / "fixtures.json"), "fixture_ids": list(fixtures)})
         self.write("capability.json", {"scope": "UNIT TEST ONLY"})
         self.environment, drivers = {}, {}
@@ -67,16 +74,32 @@ class WorkspaceTests(unittest.TestCase):
         return export_runtime(self.frozen, self.plan, self.inventory, self.root / "pack.json", inventory_base=self.root)
 
     def imported(self):
+        self.export()
         row = self.plan["runs"][0]
         trace = {"format": "matpilot-study-trace/v1", "run_identity": {k: row[k] for k in ("run_id", "task_id", "group", "repeat", "configuration_hash")},
-                 "provenance": {"plan_sha256": self.plan["plan_sha256"], "suite_sha256": self.frozen["suite_sha256"], "module_sha256": self.environment[row["group"]]["driver_sha256"], "instruction_sha256": self.environment[row["group"]]["instruction_hash"], "source_manifest_sha256": self.environment[row["group"]]["source_manifest_sha256"]},
+                 "provenance": {"plan_sha256": self.plan["plan_sha256"], "suite_sha256": self.frozen["suite_sha256"], "runtime_pack_sha256": file_hash(self.root / "pack.json"), "module_sha256": self.environment[row["group"]]["driver_sha256"], "instruction_sha256": self.environment[row["group"]]["instruction_hash"], "source_manifest_sha256": self.environment[row["group"]]["source_manifest_sha256"]},
                  "events": [{"type": "assistant/message", "data": {"text": "Test-only response"}}, {"type": "turn/end", "data": {"reason": {"kind": "aborted"}}}],
+                 "tools": [], "clarifications": [], "usage_record_ids": ["synthetic-request-1"],
                  "terminal": {"status": "timeout", "failure": "Synthetic timeout", "turn_end_reason": {"kind": "aborted"}}}
         self.write("trace.json", trace)
         outcome = {"status": "timeout", "failure": "Synthetic timeout", "turn_end_reason": {"kind": "aborted"}, "wall_seconds": 2,
                    "human_active_seconds": None, "api_cny": .01, "science_cny": 0, "science_seconds": 0, "configuration_hash": row["configuration_hash"]}
-        record = import_run(self.frozen, self.plan, self.root / "runs", row, outcome, self.root / "trace.json")
+        self.write("ledger.json", {"records": [{"id": "synthetic-request-1", "session_id": "synthetic-session-1", "run_id": row["run_id"],
+                    "status": "usage_reported", "accounted_cny": .01, "usage": {"inputTokens": 5000, "outputTokens": 5000},
+                    "pricing": {"input_cny_per_million": 1, "output_cny_per_million": 1, "max_input_tokens": 10000, "max_output_tokens": 10000}}]})
+        self.sync_result(row, outcome, trace)
+        record = self.import_again(row, outcome)
         return row, outcome, trace, record
+
+    def sync_result(self, row, outcome, trace):
+        self.write("trace.json", trace)
+        self.write("events.jsonl", "\n".join(json.dumps(e) for e in trace["events"]) + "\n")
+        self.write("result.json", {"row": row, "outcome": outcome, "trace_sha256": file_hash(self.root / "trace.json"), "correctness": "ungraded"})
+
+    def import_again(self, row, outcome, output="runs"):
+        return import_run(self.frozen, self.plan, self.root / output, row, outcome, self.root / "trace.json",
+                          runtime_path=self.root / "pack.json", ledger_path=self.root / "ledger.json",
+                          result_path=self.root / "result.json", events_path=self.root / "events.jsonl")
 
     def test_review_packet_is_unsigned_and_content_bound(self):
         prepare_review(self.suite, self.root / "review", self.root / "fixtures.json")
@@ -234,16 +257,16 @@ class WorkspaceTests(unittest.TestCase):
         row, outcome, trace, _ = self.imported()
         outcome.update(status="completed", failure=None)
         trace["terminal"].update(status="completed", failure=None)
-        self.write("trace.json", trace)
+        self.sync_result(row, outcome, trace)
         with self.assertRaisesRegex(ValueError, "actual completed"):
-            import_run(self.frozen, self.plan, self.root / "other-runs", row, outcome, self.root / "trace.json")
+            self.import_again(row, outcome, "other-runs")
 
     def test_import_rejects_altered_driver_provenance(self):
         row, outcome, trace, _ = self.imported()
         trace["provenance"]["module_sha256"] = "a" * 64
         self.write("trace.json", trace)
-        with self.assertRaisesRegex(ValueError, "driver provenance"):
-            import_run(self.frozen, self.plan, self.root / "other-runs", row, outcome, self.root / "trace.json")
+        with self.assertRaisesRegex(ValueError, "provenance"):
+            self.import_again(row, outcome, "other-runs")
 
     def test_import_keeps_failed_cost_and_unknown_human_time_and_refuses_overwrite(self):
         row, outcome, trace, record = self.imported()
@@ -251,19 +274,19 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(record["outcome"]["api_cny"], .01)
         self.assertEqual(record["plan_sha256"], self.plan["plan_sha256"])
         with self.assertRaises(FileExistsError):
-            import_run(self.frozen, self.plan, self.root / "runs", row, outcome, self.root / "trace.json")
+            self.import_again(row, outcome)
 
     def test_import_rejects_wrong_identity_and_changed_terminal(self):
         row, outcome, trace, record = self.imported()
         trace["run_identity"]["group"] = "wrong"
         self.write("trace.json", trace)
-        with self.assertRaisesRegex(ValueError, "another run"):
-            import_run(self.frozen, self.plan, self.root / "other-runs", row, outcome, self.root / "trace.json")
+        with self.assertRaisesRegex(ValueError, "identity"):
+            self.import_again(row, outcome, "other-runs")
         trace["run_identity"]["group"] = row["group"]
         trace["terminal"]["status"] = "completed"
-        self.write("trace.json", trace)
+        self.sync_result(row, outcome, trace)
         with self.assertRaisesRegex(ValueError, "Terminal"):
-            import_run(self.frozen, self.plan, self.root / "other-runs", row, outcome, self.root / "trace.json")
+            self.import_again(row, outcome, "other-runs")
 
     def test_blind_review_binds_scores_to_unchanged_copy_and_original(self):
         row, outcome, trace, record = self.imported()
@@ -302,6 +325,192 @@ class WorkspaceTests(unittest.TestCase):
         self.assertIn("kept evidence", serialized)
         self.assertEqual(clean["tools"][0]["arguments"]["path"], clean["tools"][0]["result"]["path"])
         self.assertEqual(clean["tools"][0]["result"]["candidate_id"], "c_a")
+
+    def test_formal_import_cannot_use_legacy_unverified_measurements(self):
+        with self.assertRaisesRegex(ValueError, "requires runtime_path"):
+            import_run(self.frozen, self.plan, self.root / "runs", self.plan["runs"][0], {}, self.root / "absent.json")
+
+    def test_runtime_revalidation_rejects_development_changed_tasks_and_unsigned_review(self):
+        pack = self.export()
+        self.assertEqual(validate_runtime(self.frozen, self.plan, self.root / "pack.json"), pack)
+        for alteration in (lambda p: p.update(mode="development"),
+                           lambda p: p["tasks"][0].update(prompt="An altered public prompt"),
+                           lambda p: p["shared"].update(max_requests=999)):
+            changed = copy.deepcopy(pack)
+            alteration(changed)
+            self.write("changed-pack.json", changed)
+            with self.assertRaises(ValueError):
+                validate_runtime(self.frozen, self.plan, self.root / "changed-pack.json")
+        review = json.loads((self.root / "fixture-review.json").read_text())
+        review["approved"] = False
+        self.write("fixture-review.json", review)
+        with self.assertRaisesRegex(ValueError, "review file changed"):
+            validate_runtime(self.frozen, self.plan, self.root / "pack.json")
+
+    def test_import_rejects_mismatched_journal_result_hash_and_pack_hash(self):
+        row, outcome, trace, _ = self.imported()
+        self.write("events.jsonl", "")
+        with self.assertRaisesRegex(ValueError, "event journal"):
+            self.import_again(row, outcome, "rejected")
+        self.sync_result(row, outcome, trace)
+        result = json.loads((self.root / "result.json").read_text())
+        result["trace_sha256"] = "e" * 64
+        self.write("result.json", result)
+        with self.assertRaisesRegex(ValueError, "original trace hash"):
+            self.import_again(row, outcome, "rejected")
+        trace["provenance"]["runtime_pack_sha256"] = "f" * 64
+        self.sync_result(row, outcome, trace)
+        with self.assertRaisesRegex(ValueError, "provenance"):
+            self.import_again(row, outcome, "rejected")
+        self.assertFalse((self.root / "rejected").exists())
+
+    def test_import_rejects_reduced_cost_and_missing_session_requests(self):
+        row, outcome, trace, _ = self.imported()
+        altered = {**outcome, "api_cny": 0}
+        self.sync_result(row, altered, trace)
+        with self.assertRaisesRegex(ValueError, "API cost"):
+            self.import_again(row, altered, "rejected")
+        self.sync_result(row, outcome, trace)
+        ledger = json.loads((self.root / "ledger.json").read_text())
+        ledger["records"].append({**ledger["records"][0], "id": "synthetic-request-2"})
+        self.write("ledger.json", ledger)
+        with self.assertRaisesRegex(ValueError, "omits API records"):
+            self.import_again(row, outcome, "rejected")
+
+    def test_import_checks_usage_and_does_not_fabricate_human_time(self):
+        row, outcome, trace, _ = self.imported()
+        trace["events"][0]["data"]["usage"] = {"inputTokens": 4999, "outputTokens": 5000}
+        self.sync_result(row, outcome, trace)
+        with self.assertRaisesRegex(ValueError, "Assistant usage"):
+            self.import_again(row, outcome, "rejected")
+        trace["events"][0]["data"]["usage"]["inputTokens"] = 5000
+        outcome["human_active_seconds"] = 1
+        self.sync_result(row, outcome, trace)
+        with self.assertRaisesRegex(ValueError, "no human active time"):
+            self.import_again(row, outcome, "rejected")
+
+    def test_pending_api_cost_rejected_but_failed_retained_reservation_kept(self):
+        row, outcome, trace, _ = self.imported()
+        ledger = json.loads((self.root / "ledger.json").read_text())
+        ledger["records"][0].update(status="reserved", accounted_cny=.02)
+        self.write("ledger.json", ledger)
+        outcome["api_cny"] = .02
+        self.sync_result(row, outcome, trace)
+        with self.assertRaisesRegex(ValueError, "unsettled"):
+            self.import_again(row, outcome, "rejected")
+        ledger["records"][0]["status"] = "reservation_retained"
+        self.write("ledger.json", ledger)
+        record = self.import_again(row, outcome, "retained")
+        self.assertEqual(record["outcome"]["api_cny"], .02)
+        self.assertEqual(record["outcome"]["status"], "timeout")
+        self.assertIsNone(record["outcome"]["human_active_seconds"])
+
+    def test_batch_preserves_planned_denominator_failures_missing_partial_and_invalid(self):
+        row, outcome, trace, _ = self.imported()
+        source = self.root / "runner"
+        folder = source / "runs" / row["run_id"]
+        folder.mkdir(parents=True)
+        for name in ("result.json", "trace.json", "events.jsonl"):
+            (folder / name).write_bytes((self.root / name).read_bytes())
+        partial = source / "runs" / self.plan["runs"][1]["run_id"]
+        partial.mkdir()
+        (partial / "trace.json").write_text("{}")
+        invalid = source / "runs" / self.plan["runs"][2]["run_id"]
+        invalid.mkdir()
+        for name in ("result.json", "trace.json", "events.jsonl"):
+            (invalid / name).write_text("{}")
+        index = import_runs(self.frozen, self.plan, self.root / "pack.json", source, self.root / "ledger.json", self.root / "batch")
+        self.assertEqual(index["planned_runs"], 324)
+        self.assertEqual(index["imported_runs"], 1)
+        self.assertEqual([r["status"] for r in index["runs"][:4]], ["verified_record", "partial", "invalid", "missing"])
+        self.assertEqual(index["runs"][0]["execution_status"], "timeout")
+        report = summarize_archive(self.frozen, self.plan, self.root / "batch", {}, bootstrap_samples=10)
+        self.assertEqual(len(report["missing_runs"]), 323)
+        self.assertEqual(report["ungraded_runs"], [row["run_id"]])
+        self.assertEqual(report["groups"][row["group"]]["api_cny_observed_total"], .01)
+        self.assertIsNone(report["paired_correctness"])
+        with self.assertRaises(FileExistsError):
+            import_runs(self.frozen, self.plan, self.root / "pack.json", source, self.root / "ledger.json", self.root / "batch")
+
+    def test_archived_cost_and_evidence_rechecked_before_blinding_or_summary(self):
+        row, _, _, record = self.imported()
+        folder = self.root / "runs" / row["run_id"]
+        record["outcome"]["api_cny"] = 0
+        record["record_sha256"] = digest({k: v for k, v in record.items() if k != "record_sha256"})
+        (folder / "run.json").write_text(json.dumps(record))
+        with self.assertRaisesRegex(ValueError, "Archived outcome"):
+            summarize_archive(self.frozen, self.plan, self.root / "runs", {})
+        with self.assertRaisesRegex(ValueError, "Archived outcome"):
+            create_blind_review(self.frozen, self.plan, self.root / "runs", self.root / "blind")
+
+    def test_review_copy_removes_nested_hidden_stream_and_json_credentials(self):
+        from matpilot.study_workspace import _review_trace
+        row = self.plan["runs"][0]
+        trace = {"events": [{"type": "assistant/message", "data": {"stream": [{"text": "HIDDEN_STREAM_SENTINEL"}],
+                      "message": {"content": [{"type": "thinking", "text": "HIDDEN_REASONING_SENTINEL"},
+                                              {"type": "text", "text": "Visible evidence retained"}]}}}],
+                 "tools": [{"result": {"content": [{"type": "text", "text": json.dumps({"api_key": "SECRET_SENTINEL",
+                               "group": "GROUP_SENTINEL", "path": "C:/secret/candidate.cif", "candidate_id": "c_a"})}]}}]}
+        text = json.dumps(_review_trace(trace, row))
+        for hidden in ("HIDDEN_STREAM_SENTINEL", "HIDDEN_REASONING_SENTINEL", "SECRET_SENTINEL", "GROUP_SENTINEL", "C:/secret"):
+            self.assertNotIn(hidden, text)
+        self.assertIn("Visible evidence retained", text)
+        self.assertIn("c_a", text)
+
+    def test_batch_import_and_summary_cli_accept_original_harness_layout(self):
+        from matpilot.study_workspace import main as workspace_cli
+        from matpilot.evaluation import main as evaluation_cli
+        row, _, _, _ = self.imported()
+        source = self.root / "runner" / "runs" / row["run_id"]
+        source.mkdir(parents=True)
+        for name in ("result.json", "trace.json", "events.jsonl"):
+            (source / name).write_bytes((self.root / name).read_bytes())
+        self.write("frozen.json", self.frozen)
+        self.write("plan.json", self.plan)
+        self.write("grades.json", {})
+        paths = [self.root / n for n in ("frozen.json", "plan.json", "pack.json", "runner", "ledger.json", "cli-runs")]
+        with patch("sys.argv", ["study_workspace", "import-runs", *map(str, paths)]), redirect_stdout(io.StringIO()):
+            workspace_cli()
+        paths = [self.root / n for n in ("frozen.json", "plan.json", "cli-runs", "grades.json", "summary.json")]
+        argv = ["evaluation", "summarize", *map(str, paths), "--bootstrap-samples", "10"]
+        with patch("sys.argv", argv), redirect_stdout(io.StringIO()):
+            evaluation_cli()
+        report = json.loads((self.root / "summary.json").read_text())
+        self.assertEqual(report["status"], "incomplete_do_not_interpret_effectiveness")
+        self.assertEqual(report["archive_audit"]["verified_records"], 1)
+        self.assertEqual(len(report["missing_runs"]), 323)
+        with patch("sys.argv", argv), redirect_stdout(io.StringIO()), self.assertRaises(FileExistsError):
+            evaluation_cli()
+
+    def test_archived_event_journal_tampering_is_rejected_before_summary(self):
+        row, _, _, _ = self.imported()
+        (self.root / "runs" / row["run_id"] / "events.jsonl").write_text("{}\n")
+        with self.assertRaisesRegex(ValueError, "Archived evidence changed"):
+            summarize_archive(self.frozen, self.plan, self.root / "runs", {})
+
+    def test_failed_trace_cannot_hide_charged_requests_by_removing_all_usage_ids(self):
+        row, outcome, trace, _ = self.imported()
+        ledger = json.loads((self.root / "ledger.json").read_text())
+        ledger["records"][0].update(status="reservation_retained", accounted_cny=.02)
+        self.write("ledger.json", ledger)
+        trace["events"] = [event for event in trace["events"] if event["type"] != "assistant/message"]
+        trace["usage_record_ids"] = []
+        outcome["api_cny"] = 0
+        self.sync_result(row, outcome, trace)
+        with self.assertRaisesRegex(ValueError, "zero requests without independent"):
+            self.import_again(row, outcome, "rejected")
+        self.assertFalse((self.root / "rejected").exists())
+        source = self.root / "runner" / "runs" / row["run_id"]
+        source.mkdir(parents=True)
+        for name in ("result.json", "trace.json", "events.jsonl"):
+            (source / name).write_bytes((self.root / name).read_bytes())
+        index = import_runs(self.frozen, self.plan, self.root / "pack.json", self.root / "runner",
+                            self.root / "ledger.json", self.root / "batch")
+        self.assertEqual(index["planned_runs"], 324)
+        self.assertEqual(index["imported_runs"], 0)
+        self.assertEqual(index["runs"][0]["status"], "invalid")
+        self.assertIn("zero requests", index["runs"][0]["issues"][0])
+        self.assertEqual(json.loads((self.root / "ledger.json").read_text())["records"][0]["accounted_cny"], .02)
 
 
 if __name__ == "__main__":

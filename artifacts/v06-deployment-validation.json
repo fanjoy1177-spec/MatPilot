@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "version": "0.2.0.dev6",
+  "host": "DeepSeek Harness desktop",
+  "tool_count": 9,
+  "models": [
+    "mattergen",
+    "diffcsp"
+  ],
+  "backend": "demo",
+  "passed": true,
+  "real_scientific_computation": false,
+  "api_calls": 0,
+  "conflict_blocked": true,
+  "batch_upper_bound": {
+    "smaller_batch": "ready",
+    "oversized_batch": "blocked"
+  },
+  "reviewable_repair": {
+    "auto_apply": false,
+    "checkpoint": "dft_band_gap",
+    "requirement_changes": 1,
+    "sampling_cap": 4
+  },
+  "cases": [
+    {
+      "model": "mattergen",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture"
+    },
+    {
+      "model": "diffcsp",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture"
+    }
+  ],
+  "evidence_scope": "actual_desktop_pinned_plugin_cpu_fixture_acceptance",
+  "limitations": [
+    "This checks real desktop tools against fixed demonstration structures, not a new LLM evaluation or materials inference.",
+    "Distinct candidate files can represent duplicate structures."
+  ],
+  "raw_receipt_sha256": "afc23487ae493fc881caaed44c36caa84ed620c886bd099c4e293793ff7a9ecd",
+  "temporary_audit_module_removed": true
+}

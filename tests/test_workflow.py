@@ -166,9 +166,17 @@ class WorkflowTests(unittest.TestCase):
             self.service.store.control(job["job_id"], "resume")
 
     def test_missing_executable_is_failure(self):
-        job = self.execute(self.create(backend="native", command=["matpilot-nonexistent-generator"]))
+        # Exercise Popen's missing-program exception, not the compute policy gate.
+        # The only permitted test command is deliberately nonexistent.
+        with patch("matpilot.worker.ADAPTERS", {"mattergen": unittest.mock.Mock(
+                build_command=unittest.mock.Mock(return_value=["matpilot-nonexistent-generator"]))}):
+            job = self.execute(self.create(backend="native", real_compute_enabled=True,
+                                           command=["matpilot-nonexistent-generator"]))
         self.assertEqual(job["status"], "failed")
         self.assertEqual(job["completed_samples"], 0)
+        self.assertEqual(job["sampling_attempts_charged"], 0)
+        self.assertNotIn("disabled", job["error"])
+        self.assertEqual(job["batches"][0]["command"], ["matpilot-nonexistent-generator"])
 
     def test_mixed_demo_real_comparison_rejected(self):
         one = self.create()

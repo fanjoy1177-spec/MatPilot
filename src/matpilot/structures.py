@@ -40,9 +40,10 @@ def collect_archive(archive: Path, output: Path, expected: int, elements: set[st
             raise ValueError(f"Expected {expected} CIF files, received {len(members)}.")
         if sum(m.file_size for m in members) > 32 * 1024 * 1024:
             raise ValueError("CIF output exceeds the batch size limit.")
+        # Reject global limits before writing any candidate, even in partial mode.
+        if any(m.file_size > 4 * 1024 * 1024 for m in members):
+            raise ValueError("CIF file exceeds 4 MiB.")
         for index, member in enumerate(members):
-            if member.file_size > 4 * 1024 * 1024:
-                raise ValueError("CIF file exceeds 4 MiB.")
             content = bundle.read(member)
             try:
                 record = analyze_cif(content.decode("utf-8"), elements)

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0.dev6 — 2026-10-23
+
+- Retain individually valid candidates from short or mixed-validity batches and safely closed outputs after errors; preserve attempt budgets and terminal outcome.
+- Supervise Linux/WSL process groups even when the leader exits first; quarantine unconfirmed shutdown instead of collecting live outputs or allowing resume. Native Windows computation requires WSL.
+- Make finite repair options concrete: changed requirement IDs, retained numerical targets, explicit checkpoint/conditions, unchanged budget and a separately reviewed new plan.
+- Audit formal run imports against runtime, result, trace, events and the API ledger; batch import and summary keep missing/invalid/ungraded planned rows.
+- Publish same-fixture before/after production comparisons separately from real-LLM development comparisons. No real materials inference or new paid tests in this release.
+
 ## Research supplement — 2026-10-22 (after dev5)
 
 - Export explicit public-development task/group subsets with real mapping/evidence ablations, matched M control and identical instructions; keep formal review gates.

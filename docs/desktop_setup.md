@@ -4,7 +4,15 @@
 
 ## 安装 Python 服务
 
-在项目目录建立独立 Python 环境并安装本项目，先按 README 运行 CLI 演示。演示后端只产生固定 NaCl 示例，不加载生成模型或调用 DFT。
+下载源码时，可按 README 建立独立 Python 环境并安装。使用发行文件时，下载同版本的三个文件并按 SHA256SUMS.txt 核对：
+
+- matpilot_core-0.2.0.dev6-py3-none-any.whl：Python 服务。
+- matpilot_core-0.2.0.dev6.tar.gz：解压后提供 examples 配置、登记 CIF 模板、文档和研究工具；wheel 不含这些文件。
+- dsh-matpilot-0.2.0-dev.6.tgz：Harness 命令行/Web 插件包；桌面版按下方内置 MCP 方法配置。
+
+将源码包解压到固定目录，例如 D:/MatPilot，然后在其中建立虚拟环境，并用该环境的 Python 安装下载的 wheel。保留 examples 下的目录结构，不单独移动配置文件。将下方 Python 与 MATPILOT_CONFIG 改为实际绝对路径，并核对配置中的数据和模板路径。
+
+先运行 CLI 演示，确认 backend=demo、real_compute_enabled=false。演示只用固定 NaCl 示例，不加载生成模型、权重或 DFT，也不需要 API 密钥。
 
 ## 配置内置 MCP 客户端
 
@@ -46,4 +54,4 @@
 
 ## 当前开发版注意事项
 
-当前为 0.2.0.dev4，九工具与两条固定样本路径已验证，真实生成仍禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；应等待插件就绪后重试能力查询，确认版本，再提交任务。开发版真实 API 的失败和重试见 release_acceptance_v02.md，不据此宣称提速。
+当前发行目标为 0.2.0.dev6；具体安装、九工具和固定样本验收以 [dev6验收记录](release_acceptance_v06.md) 为准，真实生成保持禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；等待插件就绪后重试能力查询并确认版本，再提交任务。真实 API 开发对照见 [插件效果记录](study_plugin_effects.md) 和 [消融记录](study_ablation_results.md)，不把固定样本演示等同提速。

@@ -99,6 +99,8 @@ benchmarks/harness_study.mjs 为显式启动的研究插件；每组装载自己
 
 ## 导入与独立评分
 
+正式包迁移、324 行批量归档、完整命令参数及四项评分/五个观察标志，见[正式评估归档与审核附录](formal_study_workflow.md)。旧 `import-run` 需补齐运行包、原始结果、事件和账本证明；正式汇总入口会重新核对归档工件。
+
 每次运行生成 result.json、trace.json、events.jsonl；中断时另保留部分轨迹与日志。import-run 核对计划行、代码身份、末尾真实 turn/end、费用与状态后存入不可覆盖的正式记录。仅 whenIdle 或一个“完成”标签不能通过成功检查。
 
 blind 命令生成 reviewer 子目录和独立 PRIVATE.mapping.json。只把 reviewer 目录交给评分者；控制器身份、系统提示、请求头与驱动内部日志不进入评分副本，文件路径替换为稳定别名。工具行为和自由文本仍可能暴露组别，因此明确为部分盲法。完整原始轨迹保留用于审计。

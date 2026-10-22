@@ -9,9 +9,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import random
-import re
 
 from .evaluation import (ABLATIONS, FLAGS, GROUPS, RUBRIC, SHARED, _validate_configuration, _validate_environment,
                          audit_suite, blind_packet, digest, load, record_run,
@@ -138,7 +138,7 @@ def _runtime_tasks(suite):
             for t in suite["tasks"]]
 
 
-def export_runtime(frozen, plan, inventory, output, *, inventory_base="."):
+def _formal_runtime(frozen, plan, inventory, *, inventory_base="."):
     """Export a formal controller pack after checking the plan and actual files.
 
 The runner must still verify files immediately before executing. Paths are local
@@ -158,6 +158,8 @@ absolute paths to preserve module dependencies; this pack is not a public releas
     if file_hash(fixture_review) != inventory["fixture_review_sha256"]:
         raise ValueError("Fixture review file changed.")
     manifest, review = load(fixture_path), load(fixture_review)
+    from .study_replay import _validate_manifest
+    _validate_manifest(manifest)
     fixtures = manifest.get("fixtures", [])
     available = set(fixtures) if isinstance(fixtures, dict) else {f["id"] for f in fixtures}
     needed = {t["fixture_id"] for t in frozen["suite"]["tasks"]}
@@ -165,7 +167,8 @@ absolute paths to preserve module dependencies; this pack is not a public releas
         raise ValueError("Formal runtime requires reviewed fixtures covering every task.")
     if review.get("manifest_sha256") != c["replay_fixture_hash"] or review.get("approved") is not True or review.get("independent_of_implementation") is not True:
         raise ValueError("Formal fixture review must bind the exact manifest.")
-    if not all(isinstance(review.get(k), str) and review[k].strip() for k in ("reviewer", "materials_qualification", "reviewed_at", "notes")) or not available <= set(review.get("fixture_ids", [])):
+    if (not all(isinstance(review.get(k), str) and review[k].strip() for k in ("reviewer", "materials_qualification", "reviewed_at", "notes"))
+            or available != set(review.get("fixture_ids", [])) or review["reviewer"] == manifest["author"]):
         raise ValueError("Fixture review lacks identity, notes or complete coverage.")
     shared = {"provider": c["llm_provider"], "model": c["llm_version"],
               "reasoning_effort": c["reasoning_mode"], "host_version": c["host_version"]}
@@ -179,7 +182,30 @@ absolute paths to preserve module dependencies; this pack is not a public releas
                        "review_path": str(fixture_review), "review_sha256": inventory["fixture_review_sha256"]},
             "limitations": ["Controller replies are released only through clarification tools.",
                             "File identity and review declarations do not independently certify scientific validity."]}
+    # Preserve the original, pre-resolution options so their scheduled hash can
+    # be checked again during import. This is a private local controller pack.
+    pack["source_inventory"] = {"base_path": str(Path(inventory_base).resolve()), "inventory": inventory}
+    return pack
+
+
+def export_runtime(frozen, plan, inventory, output, *, inventory_base="."):
+    """Create a reviewed replay pack; never run a provider or scientific model."""
+    pack = _formal_runtime(frozen, plan, inventory, inventory_base=inventory_base)
     save_new(output, pack)
+    return pack
+
+
+def validate_runtime(frozen, plan, runtime_path):
+    """Recheck exact formal plan, review, dependencies, options and public tasks."""
+    pack = load(runtime_path)
+    if pack.get("mode") != "reviewed_replay" or pack.get("real_compute_allowed") is not False:
+        raise ValueError("Formal import requires a reviewed replay runtime; development is not a formal result.")
+    inventory = pack.get("source_inventory", {})
+    if set(inventory) != {"base_path", "inventory"}:
+        raise ValueError("Runtime lacks the original bound source inventory; re-export it before running.")
+    expected = _formal_runtime(frozen, plan, inventory["inventory"], inventory_base=inventory["base_path"])
+    if pack != expected:
+        raise ValueError("Runtime differs from the frozen plan, reviewed fixtures or validated driver inventory.")
     return pack
 
 
@@ -275,39 +301,171 @@ def export_development(suite, environment, inventory, output, *, inventory_base=
     return pack
 
 
-def import_run(frozen, plan, output_root, runner_row, outcome, trace_path):
-    """Import one complete runner result, preserving failures and measured costs."""
-    validate_plan(frozen, plan)
-    if runner_row not in plan["runs"]:
-        raise ValueError("Unexpected or altered runner row.")
-    trace = load(trace_path)
-    if trace.get("format") != "matpilot-study-trace/v1":
-        raise ValueError("Unknown runner trace format.")
-    identity = {k: runner_row[k] for k in ("run_id", "task_id", "group", "repeat", "configuration_hash")}
-    if trace.get("run_identity") != identity:
-        raise ValueError("Trace belongs to another run or configuration.")
-    if trace.get("provenance", {}).get("plan_sha256") != plan["plan_sha256"] or trace.get("provenance", {}).get("suite_sha256") != frozen["suite_sha256"]:
-        raise ValueError("Trace does not bind the frozen plan and suite.")
-    config = {**plan["environment"], **plan["ablation_environment"]}[runner_row["group"]]
-    for key, expected in (("module_sha256", config["driver_sha256"]), ("instruction_sha256", config["instruction_hash"]),
-                          ("source_manifest_sha256", config.get("source_manifest_sha256"))):
-        if not expected or trace["provenance"].get(key) != expected:
-            raise ValueError("Trace driver provenance does not match scheduled " + key)
-    if trace.get("terminal", {}).get("status") != outcome["status"] or trace.get("terminal", {}).get("failure") != outcome["failure"]:
+def _audit_import(row, pack, runtime_path, ledger_path, result_path, trace_path, events_path):
+    """Audit original artifacts before any registry mutation. No grades inferred."""
+    from .development_report import _cost, _ledger, _load, _number, _trace_identity
+    paths = {"runtime.json": Path(runtime_path), "result.json": Path(result_path),
+             "trace.json": Path(trace_path), "events.jsonl": Path(events_path)}
+    payloads = {name: path.read_bytes() for name, path in paths.items()}
+    hashes = {name: hashlib.sha256(value).hexdigest() for name, value in payloads.items()}
+    if _load(runtime_path) != pack:
+        raise ValueError("Runtime changed during import.")
+    trace, result = _load(trace_path), _load(result_path)
+    if not isinstance(trace, dict) or not isinstance(result, dict):
+        raise ValueError("Original trace and result must be JSON objects.")
+    _trace_identity(trace, row, pack, hashes["runtime.json"])
+    events = [json.loads(line) for line in payloads["events.jsonl"].decode("utf-8").splitlines() if line.strip()]
+    if events != trace["events"]:
+        raise ValueError("Final trace events differ from the preserved event journal.")
+    if result.get("row") != row or result.get("trace_sha256") != hashes["trace.json"] or result.get("correctness") != "ungraded":
+        raise ValueError("Result row, original trace hash or ungraded status differs.")
+    outcome = result.get("outcome", {})
+    fields = {"status", "failure", "turn_end_reason", "wall_seconds", "human_active_seconds", "api_cny", "science_cny", "science_seconds", "configuration_hash"}
+    if not isinstance(outcome, dict) or set(outcome) != fields or outcome.get("configuration_hash") != row["configuration_hash"]:
+        raise ValueError("Runner outcome contains missing or unrecognized measurements/configuration.")
+    from .evaluation import _validate_outcome
+    _validate_outcome(row, {k: v for k, v in outcome.items() if k != "turn_end_reason"})
+    terminal = trace.get("terminal", {})
+    if not isinstance(terminal, dict) or any(terminal.get(key) != outcome[key] for key in ("status", "failure", "turn_end_reason")):
         raise ValueError("Terminal trace and recorded outcome differ.")
-    if outcome.get("science_cny") != 0 or outcome.get("science_seconds") != 0:
-        raise ValueError("This replay-only study cannot import scientific compute measurements.")
-    if "turn_end_reason" in outcome and outcome["turn_end_reason"] != trace.get("terminal", {}).get("turn_end_reason"):
-        raise ValueError("Terminal turn reason changed.")
-    last_end = next((e.get("data", {}).get("reason") for e in reversed(trace.get("events", [])) if e.get("type") == "turn/end"), None)
-    if trace.get("terminal", {}).get("turn_end_reason") != last_end:
+    last_end = next((e.get("data", {}).get("reason") for e in reversed(events) if e.get("type") == "turn/end"), None)
+    if terminal.get("turn_end_reason") != last_end:
         raise ValueError("Terminal reason differs from the full event trace.")
     if outcome["status"] == "completed" and (not isinstance(last_end, dict) or last_end.get("kind") != "completed"):
         raise ValueError("Completed outcome requires an actual completed turn/end event.")
-    fields = {"status", "failure", "wall_seconds", "human_active_seconds", "api_cny", "science_cny", "science_seconds", "configuration_hash"}
-    if not fields <= set(outcome) or set(outcome) - fields - {"turn_end_reason"}:
-        raise ValueError("Runner outcome contains missing or unrecognized measurements.")
-    return record_run(output_root, runner_row, {k: outcome[k] for k in fields}, trace_path, frozen=frozen, plan=plan)
+    if outcome["human_active_seconds"] is not None or outcome["science_cny"] != 0 or outcome["science_seconds"] != 0:
+        raise ValueError("This replay runner measures no human active time and performs no scientific computation.")
+    _number(outcome["wall_seconds"], "wall_seconds")
+    _number(outcome["api_cny"], "api_cny")
+    ledger_sha = file_hash(ledger_path)
+    _, lookup, _ = _ledger(ledger_path)
+    cost = _cost(trace, row, lookup)
+    # The current runner trace has no independent allocation/session receipt.
+    # With no IDs, a pre-response failure cannot be distinguished from omitted
+    # charged requests in a previous session with the same scheduled run ID.
+    # Fail closed instead of accepting an invented zero-cost result.
+    if not cost["usage_record_ids"]:
+        raise ValueError("Formal import cannot certify zero requests without independent session/allocation evidence; empty usage_record_ids are retained as invalid.")
+    if cost["pending_reserved_requests"]:
+        raise ValueError("Final execution still has unsettled API reservations.")
+    if not math.isclose(outcome["api_cny"], cost["api_accounted_cny"], rel_tol=1e-9, abs_tol=1e-9):
+        raise ValueError("Outcome API cost differs from this session's complete ledger records.")
+    records = [lookup[key] for key in trace["usage_record_ids"]]
+    if records and [key for key, item in lookup.items() if item.get("session_id") == cost["session_identity"]] != trace["usage_record_ids"]:
+        raise ValueError("API ledger order differs from the trace request sequence.")
+    # Reported assistant usage must appear in order in the ledger. Failed
+    # requests may incur a retained reservation or usage without a final message.
+    cursor = 0
+    token_keys = ("inputTokens", "outputTokens", "cacheReadTokens", "cacheWriteTokens")
+    reported = [item["usage"] for item in records if item["status"] == "usage_reported"]
+    for event in events:
+        if event.get("type") not in {"assistant/message", "message/assistant"}:
+            continue
+        if not records:
+            raise ValueError("Assistant messages cannot have an empty API request ledger.")
+        usage = event.get("data", {}).get("usage")
+        if usage is None:
+            continue
+        if not isinstance(usage, dict) or any(type(usage.get(key, 0)) is not int or usage.get(key, 0) < 0 for key in token_keys):
+            raise ValueError("Assistant usage must contain nonnegative integer token counts.")
+        while cursor < len(reported) and any(usage.get(key, 0) != reported[cursor].get(key, 0) for key in token_keys):
+            cursor += 1
+        if cursor == len(reported):
+            raise ValueError("Assistant usage is absent from the ordered API ledger.")
+        cursor += 1
+    if file_hash(ledger_path) != ledger_sha or any(file_hash(path) != hashes[name] for name, path in paths.items()):
+        raise ValueError("Source artifacts changed during import; retry after the writer stops.")
+    payloads["ledger-records.json"] = (json.dumps({"records": records}, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
+    hashes["ledger-records.json"] = hashlib.sha256(payloads["ledger-records.json"]).hexdigest()
+    audit = {"format": "matpilot-formal-import-audit/v1", "plan_sha256": pack["provenance"]["plan_sha256"],
+             "suite_sha256": pack["provenance"]["suite_sha256"], "run_id": row["run_id"],
+             "source_hashes": hashes, "source_ledger_sha256": ledger_sha, "cost": cost,
+             "review_status": "ungraded", "scope": "artifact_identity_and_accounting_not_scientific_validity"}
+    return outcome, audit, payloads
+
+
+def _archive_import(frozen, plan, output_root, row, outcome, audit, payloads, trace_path):
+    record = record_run(output_root, row, {k: v for k, v in outcome.items() if k != "turn_end_reason"},
+                        trace_path, frozen=frozen, plan=plan, import_audit=audit)
+    folder = Path(output_root) / row["run_id"]
+    for name, data in payloads.items():
+        if name != "trace.json":
+            with (folder / name).open("xb") as stream:
+                stream.write(data)
+    return record
+
+
+def import_run(frozen, plan, output_root, runner_row, outcome, trace_path, *, runtime_path=None,
+               ledger_path=None, result_path=None, events_path=None):
+    """Import one audited result. Original pack/result/journal/ledger are required.
+
+    The old row/outcome arguments remain as cross-checks, not trusted measurements.
+    Calls omitting provenance files now fail closed; use import-runs for a batch.
+    """
+    if any(p is None for p in (runtime_path, ledger_path, result_path, events_path)):
+        raise ValueError("Formal import requires runtime_path, ledger_path, result_path and events_path.")
+    pack = validate_runtime(frozen, plan, runtime_path)
+    if runner_row not in plan["runs"]:
+        raise ValueError("Unexpected or altered runner row.")
+    audited, audit, payloads = _audit_import(runner_row, pack, runtime_path, ledger_path, result_path, trace_path, events_path)
+    if audited != outcome:
+        raise ValueError("Supplied outcome differs from the original audited result.")
+    return _archive_import(frozen, plan, output_root, runner_row, audited, audit, payloads, trace_path)
+
+
+def import_runs(frozen, plan, runtime_path, runner_directory, ledger_path, output_root):
+    """Create a complete planned-run audit index; retain failures and missing rows.
+
+    Invalid/partial rows remain explicit in import-index.json and in their source
+    directory. They are never converted to zero-cost successful registry records.
+    """
+    pack = validate_runtime(frozen, plan, runtime_path)
+    source = Path(runner_directory).resolve(strict=True)
+    root = Path(output_root)
+    if root.exists():
+        raise FileExistsError(root)
+    staged, entries, sessions = [], [], set()
+    for row in plan["runs"]:
+        folder = (source / "runs" / row["run_id"]).resolve()
+        if not folder.is_relative_to(source):
+            raise ValueError("Run directory escapes the runner root.")
+        names = ("result.json", "trace.json", "events.jsonl")
+        entry = {"run_id": row["run_id"], "status": "missing", "issues": [], "source_hashes": {}}
+        try:
+            for name in names:
+                path = folder / name
+                if path.exists():
+                    if not path.resolve().is_relative_to(folder):
+                        raise ValueError("Run artifact escapes its directory.")
+                    entry["source_hashes"][name] = file_hash(path)
+            if len(entry["source_hashes"]) == len(names):
+                outcome, audit, payloads = _audit_import(row, pack, runtime_path, ledger_path,
+                                                       folder / names[0], folder / names[1], folder / names[2])
+                session = audit["cost"]["session_identity"]
+                if session and session in sessions:
+                    raise ValueError("One API session is attributed to multiple runs.")
+                if session:
+                    sessions.add(session)
+                staged.append((row, outcome, audit, payloads, folder / "trace.json"))
+                entry.update(status="verified_record", execution_status=outcome["status"], api_cny=outcome["api_cny"])
+            elif folder.exists():
+                entry.update(status="partial", issues=["Final result, trace or event journal is missing; no outcome invented."])
+        except (ValueError, TypeError, KeyError, AttributeError, OSError) as exc:
+            entry.update(status="invalid", issues=[str(exc)])
+        entries.append(entry)
+    present = {p.name for p in (source / "runs").iterdir() if p.is_dir()} if (source / "runs").exists() else set()
+    unexpected = sorted(present - {row["run_id"] for row in plan["runs"]})
+    # No results are written until every supplied row has been inspected.
+    root.mkdir(parents=True, exist_ok=False)
+    for args in staged:
+        _archive_import(frozen, plan, root, *args)
+    index = {"format": "matpilot-formal-import-index/v1", "plan_sha256": plan["plan_sha256"],
+             "runtime_pack_sha256": file_hash(runtime_path), "planned_runs": len(plan["runs"]),
+             "imported_runs": len(staged), "runs": entries, "unexpected_source_directories": unexpected,
+             "status": "imported_ungraded" if len(staged) == len(plan["runs"]) and not unexpected else "incomplete_do_not_interpret_effectiveness"}
+    index["index_sha256"] = digest(index)
+    save_new(root / "import-index.json", index)
+    return index
 
 
 def _review_trace(trace, row):
@@ -315,8 +473,9 @@ def _review_trace(trace, row):
     omitted = {"group", "run_id", "session_id", "sessionId", "configuration_hash", "configuration_sha256",
                "plan_sha256", "source_revision", "environment", "provenance", "driver_identity",
                "usage_record_ids", "header", "driver_events", "system_prompt", "instructions"}
+    from .development_report import Sanitizer
+    sanitizer = Sanitizer()
     replacements = {row["run_id"]: "[RUN]", row["configuration_hash"]: "[CONFIGURATION]"}
-    artifacts = {}
     def clean(value):
         if isinstance(value, list):
             return [clean(v) for v in value]
@@ -325,39 +484,110 @@ def _review_trace(trace, row):
         if isinstance(value, str):
             for old, new in replacements.items():
                 value = value.replace(old, new)
-            # Preserve artifact equality, while removing machine/run path identity.
-            def alias(match):
-                raw = match.group(0)
-                if raw not in artifacts:
-                    artifacts[raw] = "[ARTIFACT_" + str(len(artifacts) + 1) + "]"
-                return artifacts[raw]
-            return re.sub(r"(?i)[a-z]:[\\/][^\s\"'<>]*|(?<![\w:/])/[^\s\"'<>]+", alias, value)
+            # Encoded tool JSON must undergo identity removal as well as secret
+            # redaction. Retain the text representation expected by reviewers.
+            if value.lstrip().startswith(("{", "[")):
+                try:
+                    decoded = json.loads(value)
+                    if isinstance(decoded, (dict, list)):
+                        return json.dumps(clean(decoded), ensure_ascii=False)
+                except (ValueError, TypeError):
+                    pass
+            return value
         return value
     if not isinstance(trace, dict):
-        return clean(trace)
+        return clean(sanitizer.clean(trace))
     # Explicitly omit prompts, headers, driver internals and provider request dumps.
-    visible = {"user/message", "assistant/message", "message/user", "message/assistant", "tool/result", "turn/end"}
+    visible = {"user/message", "assistant/message", "message/user", "message/assistant", "tool/call", "tool/result", "turn/end"}
     events = []
     for event in trace.get("events", []):
         if event.get("type") in visible:
-            events.append({"type": event["type"], "data": clean(event.get("data"))})
-    return {"events": events, "tools": clean(trace.get("tools", [])),
-            "clarifications": clean(trace.get("clarifications", [])), "terminal": clean(trace.get("terminal")),
+            events.append({"type": event["type"], "data": clean(sanitizer.clean(event.get("data")))})
+    return {"events": events, "tools": clean(sanitizer.clean(trace.get("tools", []))),
+            "clarifications": clean(sanitizer.clean(trace.get("clarifications", []))), "terminal": clean(sanitizer.clean(trace.get("terminal"))),
             "review_scope": "Visible conversation and tool evidence only. System prompts, runtime headers and driver internals omitted. Tool behavior and free text may still reveal the group."}
+
+
+def _validated_archive_records(frozen, plan, run_root):
+    """Read-only verification of copied evidence, never trust run.json alone."""
+    from .evaluation import _validate_record_integrity
+    validate_plan(frozen, plan)
+    root = Path(run_root).resolve(strict=True)
+    rows = {r["run_id"]: r for r in plan["runs"]}
+    folders = {p.name: p for p in root.iterdir() if p.is_dir()}
+    if set(folders) - set(rows):
+        raise ValueError("Unexpected run directory in the formal registry.")
+    records, packs, sessions = [], {}, set()
+    for rid, folder in folders.items():
+        row = rows[rid]
+        record = load(folder / "run.json")
+        _validate_record_integrity(record)
+        if any(record.get(k) != v for k, v in row.items()) or record.get("plan_sha256") != plan["plan_sha256"]:
+            raise ValueError("Archived run differs from the planned identity.")
+        audit = load(folder / "audit.json")
+        if (audit.get("format") != "matpilot-formal-import-audit/v1" or record.get("import_audit_sha256") != digest(audit)
+                or audit.get("run_id") != rid or audit.get("plan_sha256") != plan["plan_sha256"]
+                or audit.get("suite_sha256") != frozen["suite_sha256"]):
+            raise ValueError("Formal import audit is missing, changed or mismatched.")
+        names = {"runtime.json", "result.json", "trace.json", "events.jsonl", "ledger-records.json"}
+        if set(audit.get("source_hashes", {})) != names:
+            raise ValueError("Formal import audit has incomplete source evidence.")
+        for name, expected in audit["source_hashes"].items():
+            path = folder / name
+            if not path.resolve(strict=True).is_relative_to(root) or file_hash(path) != expected:
+                raise ValueError("Archived evidence changed: " + name)
+        pack_sha = audit["source_hashes"]["runtime.json"]
+        if pack_sha not in packs:
+            packs[pack_sha] = validate_runtime(frozen, plan, folder / "runtime.json")
+        outcome, verified, _ = _audit_import(row, packs[pack_sha], folder / "runtime.json", folder / "ledger-records.json",
+                                             folder / "result.json", folder / "trace.json", folder / "events.jsonl")
+        if (record["trace_sha256"] != audit["source_hashes"]["trace.json"]
+                or record["outcome"] != {k: v for k, v in outcome.items() if k != "turn_end_reason"}
+                or verified["cost"] != audit["cost"]):
+            raise ValueError("Archived outcome, trace or ledger cost differs from its audit.")
+        session = audit["cost"]["session_identity"]
+        if session and session in sessions:
+            raise ValueError("The same API session is archived more than once.")
+        if session:
+            sessions.add(session)
+        records.append(record)
+    index_path = root / "import-index.json"
+    if index_path.exists():
+        index = load(index_path)
+        entries = index.get("runs", [])
+        if (index.get("index_sha256") != digest({k: v for k, v in index.items() if k != "index_sha256"})
+                or index.get("plan_sha256") != plan["plan_sha256"] or index.get("planned_runs") != len(rows)
+                or len(entries) != len(rows) or {r.get("run_id") for r in entries} != set(rows)
+                or {r["run_id"] for r in entries if r.get("status") == "verified_record"} != set(folders)
+                or index.get("imported_runs") != len(records)):
+            raise ValueError("Batch import index changed or no longer matches archived records.")
+        if index.get("unexpected_source_directories"):
+            raise ValueError("Unexpected source runs require an explicit provenance review before formal analysis.")
+    return records
+
+
+def summarize_archive(frozen, plan, run_root, grades, *, bootstrap_samples=2000):
+    """File-backed analysis; missing and ungraded runs retain the plan denominator."""
+    from .evaluation import summarize
+    records = _validated_archive_records(frozen, plan, run_root)
+    result = summarize(frozen, plan, records, grades, bootstrap_samples=bootstrap_samples)
+    result["archive_audit"] = {"verified_records": len(records), "original_artifacts_rechecked": True,
+                               "grades": "operator_supplied_not_generated_by_this_command"}
+    return result
 
 
 def create_blind_review(frozen, plan, run_root, output, *, seed=20261022):
     """Keep the private identity mapping separate from the reviewer's directory."""
     validate_plan(frozen, plan)
+    checked = {r["run_id"]: r for r in _validated_archive_records(frozen, plan, run_root)}
     rows = list(plan["runs"])
     random.Random(seed).shuffle(rows)
     packets, mapping = [], {}
     tasks = {t["id"]: t for t in frozen["suite"]["tasks"]}
     for row in rows:
-        run_file = Path(run_root) / row["run_id"] / "run.json"
-        if not run_file.exists():
+        if row["run_id"] not in checked:
             continue
-        record = load(run_file)
+        record = checked[row["run_id"]]
         if any(record.get(k) != v for k, v in row.items()) or record.get("plan_sha256") != plan["plan_sha256"]:
             raise ValueError("Recorded run differs from the review plan.")
         bid = "B" + str(len(packets) + 1).zfill(5)
@@ -422,6 +652,11 @@ def main():
     p = commands.add_parser("import-run")
     for name in ("frozen", "plan", "output", "row", "outcome", "trace"):
         p.add_argument(name)
+    for name in ("runtime", "ledger", "result", "events"):
+        p.add_argument("--" + name, required=True)
+    p = commands.add_parser("import-runs", help="Audit every planned Harness result and retain missing/invalid entries.")
+    for name in ("frozen", "plan", "runtime", "runner_directory", "ledger", "output"):
+        p.add_argument(name)
     p = commands.add_parser("blind")
     for name in ("frozen", "plan", "runs", "output"):
         p.add_argument(name)
@@ -440,7 +675,11 @@ def main():
                                   task_ids=args.task_ids, groups=args.groups)
         result = {"status": "development_exported_not_executed", "rows": len(pack["rows"])}
     elif args.command == "import-run":
-        result = import_run(load(args.frozen), load(args.plan), args.output, load(args.row), load(args.outcome), args.trace)
+        result = import_run(load(args.frozen), load(args.plan), args.output, load(args.row), load(args.outcome), args.trace,
+                            runtime_path=args.runtime, ledger_path=args.ledger, result_path=args.result, events_path=args.events)
+    elif args.command == "import-runs":
+        index = import_runs(load(args.frozen), load(args.plan), args.runtime, args.runner_directory, args.ledger, args.output)
+        result = {k: index[k] for k in ("status", "planned_runs", "imported_runs", "unexpected_source_directories")}
     elif args.command == "blind":
         result = create_blind_review(load(args.frozen), load(args.plan), args.runs, args.output)
     else:

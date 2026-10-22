@@ -20,3 +20,6 @@ include artifacts/figures/study_r3_workflow.png
 
 include artifacts/study-ablation-launch.json artifacts/study-ablation-observations.json
 include artifacts/study-ablation-validation.json
+
+include artifacts/v06-unit-validation.json artifacts/v06-js-validation.json artifacts/v06-process-validation.json artifacts/v06-partial-output-comparison.json
+include artifacts/v06-deployment-validation.json

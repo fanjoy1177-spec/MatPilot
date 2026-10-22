@@ -8,7 +8,7 @@ MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V
 
 ## 当前开发范围
 
-当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev5`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
+当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev6`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
 
 自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
@@ -42,7 +42,7 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [发行文件目录](releases/0.2.0.dev5/) 下载 Python wheel 和 Harness 插件包，按其中 SHA256SUMS.txt 核对。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [发行文件目录](releases/0.2.0.dev6/) 下载同版本 Python wheel、源码包和 Harness 插件包，按其中 SHA256SUMS.txt 核对。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
@@ -54,7 +54,7 @@ dsh --profile matpilot --from-default-profile web --dump-config
 dsh plugin --profile matpilot add ./packages/dsh-matpilot
 ```
 
-发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.5.tgz`。这是本地发行名称，不代表已发布到 npm。
+发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.6.tgz`。这是本地发行名称，不代表已发布到 npm。
 
 以上命令用于 Harness 命令行/Web 配置。**桌面版的 `desktop` 配置由 Electron 应用管理，不能使用 `dsh plugin --profile desktop add` 安装。** 已验证的桌面接入方法见 [桌面配置说明](docs/desktop_setup.md)。
 
@@ -86,7 +86,7 @@ dsh --profile matpilot
 
 可用 `checkpoint_paths` 将检查点名称映射到已下载的模型目录，避免运行时下载。较旧 MatterGen 不支持 `--seed` 时设置 `seed_supported: false`；记录会明确标注种子未应用，不能保证逐结构复现。
 
-Windows 可用 `backend: "wsl"`，设置 `wsl_distribution`、`wsl_user` 和 Linux `command`。输出目录须位于可映射到 `/mnt/盘符/` 的本地磁盘。Linux 监督进程负责中断和超时后的进程组清理。
+Windows 原生材料计算入口不受支持；使用 `backend: "wsl"`，设置 `wsl_distribution`、`wsl_user` 和 Linux `command`。输出目录须位于可映射到 `/mnt/盘符/` 的本地磁盘。Linux 监督进程负责中断和超时后的进程组清理。
 
 服务器可运行独立的 MatPilot Python 环境，并由 Harness MCP 客户端通过 SSH 启动 `python -m matpilot serve`。远程部署尚待服务器联调，未宣称验收。
 
@@ -147,3 +147,7 @@ Windows MCP 异步运行时需要本机回环通信；受限沙箱可能阻断�
 ## 开发消融补充（2026-10-22）
 
 新增显式选择题目与模块开关的研究导出工具，源码回归189项Python、27项JavaScript通过。四道公开开发题、三种真实配置各运行一次，共12条真实Harness记录；全部材料数据仍为CPU回放。完整插件本轮API核算较低、墙钟较高，尚不支持整体提速或任务正确率提高。[完整消融报告与证据](docs/study_ablation_results.md)保留全部结果、费用与归因限制。已发布的dev5安装包及桌面固定部署保持不变，研究工具补充从当前仓库源码使用。
+
+## dev6 生产流程修复
+
+新增短返回/混合损坏文件/异常退出后完整产物的独立保留，明确失败尝试与可恢复预算；Linux/WSL进程监督覆盖父进程先退出及子孙忽略终止信号，清理未确认时禁止恢复。有限修改建议列出具体需求和参数差异。正式研究导入要求运行包、结果、轨迹、事件和费用账本一致，分析保留缺失与未评分。版本修复采用相同CPU夹具比较，不作为LLM增益或真实材料效果；验证与部署见[dev6验收](docs/release_acceptance_v06.md)。

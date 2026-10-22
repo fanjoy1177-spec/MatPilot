@@ -1,0 +1,78 @@
+{
+  "format": "matpilot-process-supervision-cpu-validation/v1",
+  "scope": "linux_owned_process_group_cpu_regression_only",
+  "report_created_at_utc": "2026-10-22T15:58:19Z",
+  "evidence": {
+    "origin": "Previously completed command output in this development session; no repeat run was performed to create this report.",
+    "execution_date_local": "2026-10-22",
+    "execution_timezone": "Asia/Shanghai",
+    "exact_execution_timestamp": null,
+    "timestamp_note": "The exact start time was not retained in this public summary; report creation time is not test execution time.",
+    "source_binding": "SHA256 of the supervised-process source, adapter and test file, unchanged since the reported run. This is not a signature or independent certification."
+  },
+  "primary_execution": {
+    "platform": "Linux through WSL, Ubuntu distribution on Windows",
+    "interpreter": "/usr/bin/python3",
+    "command_redacted": "wsl.exe -d Ubuntu --exec /usr/bin/python3 -B <WSL_PROJECT_ROOT>/tests/test_compute_process.py -v",
+    "command_from_linux_project_root": "/usr/bin/python3 -B tests/test_compute_process.py -v",
+    "command_note": "WSL_PROJECT_ROOT replaces the original local checkout path to avoid publishing a Windows account identity.",
+    "exit_code": 0,
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "unittest_duration_seconds": 4.149,
+    "recorded_summary": "Ran 11 tests in 4.149s; OK"
+  },
+  "supplementary_windows_execution": {
+    "platform": "Windows native Python",
+    "command_from_project_root": ".venv/Scripts/python.exe -B -m unittest discover -s tests -p test_compute_process.py -v",
+    "exit_code": 0,
+    "tests": 11,
+    "passed": 2,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 9,
+    "skip_reason": "The nine real process-group cases require Linux or WSL.",
+    "counting_note": "This is a separate platform execution of the same suite, not nine additional passes."
+  },
+  "cases": [
+    {"name": "test_native_mattergen_uses_owned_supervisor_and_preserves_model_arguments", "kind": "command_contract", "result": "passed"},
+    {"name": "test_windows_native_is_rejected_before_starting_any_process", "kind": "command_contract", "result": "passed"},
+    {"name": "test_stop_reaps_descendants_ignoring_term_after_leader_exits", "kind": "real_cpu_processes", "result": "passed"},
+    {"name": "test_timeout_reaps_entire_owned_group", "kind": "real_cpu_processes", "result": "passed"},
+    {"name": "test_natural_leader_exit_cleans_remaining_children_and_preserves_exit_code", "kind": "real_cpu_processes", "result": "passed"},
+    {"name": "test_failed_leader_exit_also_cleans_remaining_children", "kind": "real_cpu_processes", "result": "passed"},
+    {"name": "test_supervisor_sigterm_cleans_child_group", "kind": "real_cpu_processes", "result": "passed"},
+    {"name": "test_recording_exception_after_start_still_cleans_children", "kind": "real_cpu_processes_with_recording_fault", "result": "passed"},
+    {"name": "test_unconfirmed_cleanup_returns_125_without_a_success_marker", "kind": "real_cpu_processes_with_confirmation_fault", "result": "passed"},
+    {"name": "test_missing_command_is_explicitly_not_a_started_scientific_attempt", "kind": "real_supervisor_missing_command", "result": "passed"},
+    {"name": "test_subreaper_unavailable_fails_before_launch", "kind": "real_supervisor_with_subreaper_fault", "result": "passed"}
+  ],
+  "verified_behaviors": [
+    "The supervised command starts in its own session and process group; cleanup targets only that task group.",
+    "Stop, timeout and leader exit clean and reap CPU fixture descendants that ignore SIGTERM, escalating to SIGKILL within the owned group when necessary.",
+    "A separate sentinel process group remains alive during supervised-group cleanup.",
+    "A catchable supervisor signal or an exception after child launch still invokes owned-group cleanup.",
+    "Unconfirmed cleanup reports exit code 125 and process_group_terminated=false without a success exit marker.",
+    "An unavailable Linux subreaper fails before launch; a missing command is explicitly recorded as command_started=false.",
+    "Native Linux MatterGen command construction uses the supervisor; unsupported Windows native construction directs the user to WSL."
+  ],
+  "source_sha256": {
+    "src/matpilot/compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+    "src/matpilot/adapters/mattergen.py": "a241222e012e6f7523be464eb2d6241e0ca579ccefb569558683b248bd0f4315",
+    "tests/test_compute_process.py": "61077fefb5d64052a2937d0d70367c6a1ea6c85416b4704b45ddd3b84faa6023"
+  },
+  "api_calls": 0,
+  "api_cost_cny": 0,
+  "real_material_computation_performed": false,
+  "model_weights_loaded": false,
+  "limitations": [
+    "An uncatchable SIGKILL delivered to the supervisor, host shutdown or host failure is outside the cleanup guarantee.",
+    "A descendant that deliberately creates a new session or leaves the owned process group is outside the cleanup guarantee. This supervisor is not a security sandbox.",
+    "CPU substitute programs validate process lifecycle behavior; they do not establish GPU execution, model output correctness, remote deployment or material properties.",
+    "The cleanup-confirmation failure case uses fault injection after real CPU cleanup; it validates the uncertainty report rather than simulating an unkillable operating-system process.",
+    "Windows native material execution is unsupported; the Windows run covers command construction and rejection only."
+  ]
+}

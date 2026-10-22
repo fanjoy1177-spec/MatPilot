@@ -8,6 +8,8 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
+import sys
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -170,7 +172,11 @@ class MatterGenAdapter:
             supervisor = wsl_path(Path(__file__).resolve().parents[1] / "compute_process.py")
             return prefix + ["--exec", "/usr/bin/python3", supervisor,
                              "--control-dir", output, "--timeout", str(settings.batch_timeout_seconds), "--"] + args
-        return args
+        if os.name == "nt":
+            raise ValueError("MatterGen native execution requires Linux; configure WSL on Windows.")
+        supervisor = str(Path(__file__).resolve().parents[1] / "compute_process.py")
+        return [sys.executable, supervisor, "--control-dir", output,
+                "--timeout", str(settings.batch_timeout_seconds), "--"] + args
 
 
 def wsl_path(value: Path) -> str:

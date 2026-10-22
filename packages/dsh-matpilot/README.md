@@ -2,7 +2,7 @@
 
 本包向 DeepSeek Harness 注册 MatPilot 的九个材料研究工具，使用 Harness 自带界面。
 
-先安装随版本发行的 `matpilot-core` Python 包。将 `MATPILOT_PYTHON` 设置为该环境的 Python 绝对路径，将 `MATPILOT_CONFIG` 设置为后端配置文件绝对路径，再将本包安装到 Harness profile。
+先安装随版本发行的 `matpilot-core` Python 包，并解压同版本源码包取得 examples 配置与 CIF 模板；wheel 与本 tgz 均不包含这些配置材料。将 `MATPILOT_PYTHON` 设置为该环境的 Python 绝对路径，将 `MATPILOT_CONFIG` 设置为后端配置文件绝对路径，再将本包安装到 Harness profile。
 
 默认是固定样本示例模式，实际材料生成须连接 MatterGen 环境。DeepSeek API 密钥在 Harness 中配置，不写入本插件包。
 
