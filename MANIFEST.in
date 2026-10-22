@@ -1,0 +1,10 @@
+include LICENSE THIRD_PARTY_NOTICES.md CHANGELOG.md
+recursive-include examples *.json *.cif
+recursive-include docs *.md
+recursive-include benchmarks *.csv *.json *.mjs *.py *.patch *.md LICENSE.AtomisticSkills
+recursive-include packages/dsh-matpilot *.json *.yml *.md LICENSE
+include artifacts/desktop-acceptance.json artifacts/validation-summary.json artifacts/v11-unit-validation.json
+include artifacts/real-example/candidate.cif
+
+recursive-include docs/atomisticskills_review *.json *.py
+include artifacts/v02-deployment-validation.json artifacts/v03-deployment-validation.json artifacts/v03-live-acceptance.json

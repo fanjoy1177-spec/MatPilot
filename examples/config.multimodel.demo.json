@@ -1,0 +1,23 @@
+{
+  "backend": "demo",
+  "real_compute_enabled": false,
+  "command": [
+    "__MATPILOT_NO_REAL_COMPUTE__"
+  ],
+  "data_dir": "../matpilot-data/multimodel-demo",
+  "max_samples": 4,
+  "batch_timeout_seconds": 30,
+  "templates": {
+    "cubic_nacl": {
+      "path": "templates/cubic_nacl.cif",
+      "sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+      "source": "MatPilot deterministic software fixture, CsCl-type arrangement, not experimental NaCl",
+      "demo_only": true,
+      "review": {
+        "by": "MatPilot automated fixture construction",
+        "date": "2026-10-22",
+        "scope": "Software fixture only; not independent scientific review"
+      }
+    }
+  }
+}

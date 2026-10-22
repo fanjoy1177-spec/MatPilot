@@ -1,0 +1,50 @@
+{
+  "U": {
+    "host_version": null,
+    "llm_provider": null,
+    "llm_version": null,
+    "reasoning_mode": null,
+    "scientific_capability_hash": null,
+    "replay_fixture_hash": null,
+    "clarification_policy_hash": null,
+    "max_turns": 12,
+    "max_output_tokens": 2048,
+    "sampling_cap": 32,
+    "driver_validated": false,
+    "source_revision": null,
+    "instruction_hash": null,
+    "baseline_patch_hash": null
+  },
+  "U+": {
+    "host_version": null,
+    "llm_provider": null,
+    "llm_version": null,
+    "reasoning_mode": null,
+    "scientific_capability_hash": null,
+    "replay_fixture_hash": null,
+    "clarification_policy_hash": null,
+    "max_turns": 12,
+    "max_output_tokens": 2048,
+    "sampling_cap": 32,
+    "driver_validated": false,
+    "source_revision": null,
+    "instruction_hash": null,
+    "baseline_patch_hash": null
+  },
+  "M": {
+    "host_version": null,
+    "llm_provider": null,
+    "llm_version": null,
+    "reasoning_mode": null,
+    "scientific_capability_hash": null,
+    "replay_fixture_hash": null,
+    "clarification_policy_hash": null,
+    "max_turns": 12,
+    "max_output_tokens": 2048,
+    "sampling_cap": 32,
+    "driver_validated": false,
+    "source_revision": null,
+    "instruction_hash": null,
+    "baseline_patch_hash": null
+  }
+}

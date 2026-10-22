@@ -1,0 +1,8 @@
+{
+  "backend": "native",
+  "data_dir": "../matpilot-data/real",
+  "command": ["/opt/mattergen/.venv/bin/mattergen-generate"],
+  "seed_supported": true,
+  "batch_timeout_seconds": 1800,
+  "max_samples": 32
+}

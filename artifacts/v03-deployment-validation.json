@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0.dev3",
+  "host": "DeepSeek Harness desktop",
+  "tool_count": 9,
+  "models": [
+    "mattergen",
+    "diffcsp"
+  ],
+  "backend": "demo",
+  "real_scientific_computation": false,
+  "api_calls": 0,
+  "cases": [
+    {
+      "model": "mattergen",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture"
+      }
+    },
+    {
+      "model": "diffcsp",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture"
+      }
+    }
+  ],
+  "conflict_blocked": true,
+  "passed": true,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "error": "MCP hot-reload request timed out"
+    },
+    {
+      "attempt": 2,
+      "passed": true
+    }
+  ],
+  "scope": "Actual desktop tools with fixed NaCl fixtures; no real model inference, no LLM"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "v02_template_flow",
+    "prompt": "只做固定样本的软件演示，不运行真实模型。请用已登记模板 cubic_nacl，保持 NaCl 化学计量与空间群221，最多采样2次。先完整保留这些要求，展示计划，等我确认再执行。",
+    "expected": {
+      "model": "diffcsp",
+      "state": "ready",
+      "real_compute": false
+    },
+    "followup": true
+  },
+  {
+    "id": "v02_joint_conflict",
+    "prompt": "请同时把 Fe-Ni-O 和带隙目标2 eV 作为生成条件，最多采样2次；不能删除任何条件。先核对两个模型能否完整支持，不开始任务。",
+    "expected": {
+      "state": "blocked",
+      "no_submission": true
+    }
+  },
+  {
+    "id": "v02_unit_target",
+    "prompt": "只准备计划：带隙引导目标1200 meV，最多采样2次。这是引导目标，不是保证带隙达标；不要编造测得的性能。",
+    "expected": {
+      "state": "ready",
+      "dft_band_gap": 1.2,
+      "no_submission": true
+    }
+  }
+]

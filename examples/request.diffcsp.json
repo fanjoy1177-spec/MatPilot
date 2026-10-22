@@ -1,0 +1,65 @@
+{
+  "raw_request": "使用模板 cubic_nacl，NaCl 配比，空间群221，最多2次采样。",
+  "requirements": [
+    {
+      "requirement_id": "r1",
+      "source": {
+        "start": 5,
+        "end": 15,
+        "quote": "cubic_nacl"
+      },
+      "kind": "template",
+      "property": "template_id",
+      "value": "cubic_nacl",
+      "strength": "hard",
+      "relation": "equal"
+    },
+    {
+      "requirement_id": "r2",
+      "source": {
+        "start": 16,
+        "end": 23,
+        "quote": "NaCl 配比"
+      },
+      "kind": "stoichiometry",
+      "property": "chemical_formula",
+      "value": "NaCl",
+      "strength": "hard",
+      "relation": "equal"
+    },
+    {
+      "requirement_id": "r3",
+      "source": {
+        "start": 24,
+        "end": 30,
+        "quote": "空间群221"
+      },
+      "kind": "symmetry",
+      "property": "space_group",
+      "value": 221,
+      "strength": "hard",
+      "relation": "equal"
+    },
+    {
+      "requirement_id": "r4",
+      "source": {
+        "start": 31,
+        "end": 37,
+        "quote": "最多2次采样"
+      },
+      "kind": "sample_budget",
+      "property": "max_samples",
+      "value": 2,
+      "strength": "hard",
+      "relation": "at_most"
+    }
+  ],
+  "model_id": "diffcsp",
+  "template_id": "cubic_nacl",
+  "conditions": {
+    "chemical_formula": "NaCl",
+    "space_group": 221
+  },
+  "num_samples": 2,
+  "batch_size": 2
+}

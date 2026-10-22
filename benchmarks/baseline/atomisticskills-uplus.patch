@@ -1,0 +1,231 @@
+--- a/src/mcp_server/mattergen_server.py
++++ b/src/mcp_server/mattergen_server.py
+@@ -50,14 +50,14 @@
+         num_structures: Total number of structures to generate (default: 10).
+         model_name: Pretrained model to use (default: "mattergen_base").
+                    Options: "mattergen_base", "mp_20_base", "dft_mag_density", "chemical_system"
+-                   NOTE: If chemical_system is provided, this will be automatically set to "chemical_system"
++                   U+: Base model may resolve to one exact supported condition combination; explicit incompatible models are rejected.
+         chemical_system: Chemical system to condition on (e.g., "Li-Zr-Cl").
+-                        Automatically uses the "chemical_system" model.
++                        U+: Retained alongside all explicitly supplied properties.
+                         NOTE: Controls which elements appear, but NOT exact stoichiometry.
+         properties: Optional properties to condition on.
+                    Examples:
+                    - {"dft_mag_density": 0.15}
+-                   NOTE: chemical_system parameter overrides this
++                   U+: Conflicting or unsupported combinations are rejected without silent override.
+         batch_size: Batch size for generation (default: 10).
+         guidance_scale: Diffusion guidance factor (gamma).
+                        0.0 for unconditional, >0 for stronger conditioning.
+@@ -80,12 +80,28 @@
+             MatterGenWrapper,
+         )
+ 
+-        # Auto-select chemical_system model if chemical system is provided
++        # U+: preserve every supplied condition and reject incompatible combinations.
++        properties = dict(properties or {})
+         if chemical_system:
+-            model_name = "chemical_system"
+-            properties = {"chemical_system": chemical_system}
+-            if guidance_scale == 0.0:
+-                guidance_scale = 1.0  # Use guidance for chemical system conditioning
++            if "chemical_system" in properties and properties["chemical_system"] != chemical_system:
++                raise ValueError("Conflicting chemical_system values")
++            properties["chemical_system"] = chemical_system
++        fields = {
++            "mattergen_base": set(), "mp_20_base": set(),
++            "chemical_system": {"chemical_system"}, "space_group": {"space_group"},
++            "dft_band_gap": {"dft_band_gap"}, "ml_bulk_modulus": {"ml_bulk_modulus"},
++            "dft_mag_density": {"dft_mag_density"},
++            "dft_mag_density_hhi_score": {"dft_mag_density", "hhi_score"},
++            "chemical_system_energy_above_hull": {"chemical_system", "energy_above_hull"},
++        }
++        if model_name == "mattergen_base" and properties:
++            matches = [name for name, keys in fields.items() if keys == set(properties)]
++            if len(matches) == 1:
++                model_name = matches[0]
++        if model_name not in fields or not set(properties) <= fields[model_name]:
++            raise ValueError("Selected checkpoint cannot accept all supplied conditions; none were discarded")
++        if properties and guidance_scale == 0.0:
++            guidance_scale = 1.0
+ 
+         # Create wrapper with model
+         wrapper = MatterGenWrapper(
+--- a/src/utils/generative_models/mattergen/mattergen_wrapper.py
++++ b/src/utils/generative_models/mattergen/mattergen_wrapper.py
+@@ -149,17 +149,23 @@
+         output_path.mkdir(parents=True, exist_ok=True)
+ 
+         try:
+-            # Calculate number of batches
+-            num_batches = (num_structures + batch_size - 1) // batch_size
+-
+-            # Run generation
+-            logger.info(f"Generating {num_structures} structures...")
+-
+-            generated_structures = self.generator.generate(
+-                batch_size=batch_size,
+-                num_batches=num_batches,
+-                output_dir=str(output_path),
+-            )
++            if type(num_structures) is not int or type(batch_size) is not int or min(num_structures, batch_size) < 1:
++                raise ValueError("Positive integer sampling count and batch size required")
++            generated_structures = []
++            sampling_attempts = 0
++            batch_counts = []
++            while sampling_attempts < num_structures:
++                count = min(batch_size, num_structures - sampling_attempts)
++                batch_output = output_path / f"batch_{len(batch_counts):04d}"
++                batch_output.mkdir(parents=True, exist_ok=True)
++                sampling_attempts += count
++                batch_counts.append(count)
++                batch = list(self.generator.generate(batch_size=count, num_batches=1, output_dir=str(batch_output)))
++                if len(batch) > count:
++                    raise ValueError("Generator returned more than the explicit batch budget")
++                generated_structures.extend(batch)
++                if len(batch) < count:
++                    break  # Partial return is not silently replaced with more sampling.
+ 
+             # Save structures to CIF files
+             structure_paths = []
+@@ -174,6 +180,10 @@
+ 
+             # Save generation metadata
+             metadata = {
++                "num_requested": num_structures,
++                "sampling_attempts": sampling_attempts,
++                "batch_counts": batch_counts,
++                "status": "completed" if len(generated_structures) == num_structures else "partial",
+                 "num_generated": len(generated_structures),
+                 "model_name": self.model_name,
+                 "batch_size": batch_size,
+@@ -186,6 +196,8 @@
+                 json.dump(metadata, f, indent=2)
+ 
+             return {
++                "num_requested": num_structures, "sampling_attempts": sampling_attempts,
++                "status": "completed" if len(generated_structures) == num_structures else "partial",
+                 "num_generated": len(generated_structures),
+                 "output_dir": str(output_path),
+                 "structures": structure_paths,
+--- a/skills/mat-stability/scripts/compute_ehull.py
++++ b/skills/mat-stability/scripts/compute_ehull.py
+@@ -144,6 +144,7 @@
+     target_formula: str,
+     calculate_ecw: bool = False,
+     mobile_ion: str = "Li",
++    target_id: str = None,
+ ) -> Dict:
+     """
+     Construct phase diagram and compute E_hull for target material.
+@@ -167,15 +168,13 @@
+ 
+     # Find target entry
+     target_comp = Composition(target_formula)
+-    target_entry = None
+-
+-    for entry in entries:
+-        if entry.composition.reduced_formula == target_comp.reduced_formula:
+-            target_entry = entry
+-            break
+-
+-    if not target_entry:
+-        raise ValueError(f"Target material {target_formula} not found in entries")
++    candidates = [entry for entry in entries if (entry.entry_id == target_id if target_id is not None
++                  else entry.composition.reduced_formula == target_comp.reduced_formula)]
++    if len(candidates) != 1:
++        raise ValueError("Target must select exactly one candidate by target_id; formula-only selection is ambiguous or missing")
++    target_entry = candidates[0]
++    if target_entry.composition.reduced_formula != target_comp.reduced_formula:
++        raise ValueError("Target ID composition differs from target_formula")
+ 
+     # Calculate E_hull
+     e_hull = pd.get_e_above_hull(target_entry) * 1000  # Convert to meV/atom
+@@ -198,6 +197,7 @@
+         decomp_products.append({"phase": phase.reduced_formula, "fraction": amount})
+ 
+     results = {
++        "target_id": target_entry.entry_id,
+         "target_formula": target_formula,
+         "energy_above_hull_meV": e_hull,
+         "stability": stability,
+@@ -270,6 +270,7 @@
+         help="Mobile ion for ECW calculation (default: Li)",
+     )
+ 
++    parser.add_argument("--target-id", default=None, help="Unique candidate/entry ID; required when formula is ambiguous")
+     args = parser.parse_args()
+ 
+     # Load hull manifest
+@@ -298,6 +299,7 @@
+             args.target_material,
+             calculate_ecw=args.calculate_ecw,
+             mobile_ion=args.mobile_ion,
++            target_id=args.target_id,
+         )
+     except Exception as e:
+         print(f"\n⚠️  ERROR: {e}")
+--- a/skills/mat-structure-novelty/scripts/match_structure.py
++++ b/skills/mat-structure-novelty/scripts/match_structure.py
+@@ -98,6 +98,7 @@
+ 
+     # 2. Load candidates
+     candidate_dict = {}  # formula -> list of structures
++    query_errors = {}
+     num_candidates = 0
+ 
+     if args.candidates.upper() == "MP":
+@@ -127,6 +128,7 @@
+                 except Exception as e:
+                     print(f"  -> Error querying {formula}: {e}")
+                     candidate_dict[formula] = []
++                    query_errors[formula] = str(e)
+     else:
+         print(f"Loading candidate structure(s) from {args.candidates}...")
+         cand_path = Path(args.candidates)
+@@ -209,6 +211,12 @@
+             sg_symbol, crystal_system = "", ""
+             result["target_spacegroup"], result["target_crystal_system"] = None, None
+ 
++        if formula in query_errors:
++            result.update(query_status="failed", query_error=query_errors[formula], match_found=None, status="UNKNOWN")
++            all_results.append(result)
++            print(f"[UNKNOWN] {target_id}: database query failed")
++            continue
++        result["query_status"] = "completed"
+         candidates = candidate_dict.get(formula, [])
+         for cand in candidates:
+             if matcher.fit(target, cand):
+@@ -221,7 +229,8 @@
+                 )
+                 result["match_found"] = True
+ 
+-        status = "MATCHED" if result["match_found"] else "NOVEL"
++        status = "MATCHED" if result["match_found"] else "NOT_MATCHED_WITHIN_QUERY"
++        result["status"] = status
+         print(f"[{status}] {target_id} ({formula})")
+         if result["match_found"]:
+             for m in result["matches"]:
+@@ -252,16 +261,17 @@
+                             {"title": title, "doi": doi}
+                         )
+                 else:
+-                    print("  -> No literature found. Truly novel.")
++                    print("  -> No literature matches returned; novelty remains unverified.")
+             except Exception as e:
+                 print(f"  -> Literature check failed: {e}")
+ 
+         all_results.append(result)
+ 
+-    novel_count = sum(1 for r in all_results if not r["match_found"])
++    novel_count = sum(1 for r in all_results if r.get("status") == "NOT_MATCHED_WITHIN_QUERY")
++    unknown_count = sum(1 for r in all_results if r.get("status") == "UNKNOWN")
+     print(f"\nTotal targets checked: {len(target_structs)}")
+-    print(f"Novel structures: {novel_count}")
+-    print(f"Matched structures: {len(target_structs) - novel_count}")
++    print(f"Not matched within successful queries: {novel_count}; unknown: {unknown_count}")
++    print(f"Matched structures: {len(target_structs) - novel_count - unknown_count}")
+ 
+     with open(args.output, "w") as f:
+         json.dump(all_results, f, indent=2)

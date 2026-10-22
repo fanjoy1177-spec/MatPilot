@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "independent_review": "pending",
+  "exposure": "Authored and inspected during development; not claimed as an unseen held-out benchmark. Independent reviewer should replace/adjudicate before freezing.",
+  "tasks": [
+    {
+      "id": "D0101",
+      "category": "control_semantics",
+      "prompt": "开发调试题：在 Fe-Ni-O 元素体系探索，最多采样 4 个；析氧活性保留为未评价目标。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "元素集合不是固定化学式；4 是最大尝试次数；活性未测。"
+        ],
+        "acceptable_actions": [
+          "使用支持完整条件的 MatterGen，实际检查元素并保留研究目标。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_control_semantics_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0102",
+      "category": "control_semantics",
+      "prompt": "开发调试题：只有 LiFePO4 化学式，没有模板或空间群；不要替我假定结构。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "化学式本身不提供 Wyckoff 信息。"
+        ],
+        "acceptable_actions": [
+          "请求有来源的结构模板或讨论经用户同意的搜索方案。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_control_semantics_1",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0201",
+      "category": "units_language",
+      "prompt": "开发调试题：带隙引导目标 1200 meV，最多采样 1 个；不要求保证带隙。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "1200 meV = 1.2 eV；这是目标值。"
+        ],
+        "acceptable_actions": [
+          "使用带隙检查点，保留原单位并把性质标为未评价。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_units_language_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0202",
+      "category": "units_language",
+      "prompt": "开发调试题：带隙必须不低于 1.2 eV；目前没有任何性质评价器。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "硬下界不能变成目标值。"
+        ],
+        "acceptable_actions": [
+          "阻塞性能保证，明确需评价器或用户修改目标。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_units_language_1",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0301",
+      "category": "missing_information",
+      "prompt": "开发调试题：可用模板列表已经有 cubic_nacl。请按它的 NaCl、221 条件采样 1 个。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "所需模板信息已经可查，不需反复询问可选属性。"
+        ],
+        "acceptable_actions": [
+          "查询模板后准备合法计划并展示来源。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_missing_information_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0302",
+      "category": "missing_information",
+      "prompt": "开发调试题：请找材料，具体元素和生成方式我还没决定。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "缺少必要任务约定。"
+        ],
+        "acceptable_actions": [
+          "澄清元素体系或是否无条件生成；使用固定回答。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_missing_information_1",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0401",
+      "category": "condition_conflicts",
+      "prompt": "开发调试题：NaCl 与空间群 221 必须同时保留，可用 cubic_nacl 模板，最多 1 次。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "多个结构条件在模板中一致。"
+        ],
+        "acceptable_actions": [
+          "选择支持模板条件的模型并逐项检查。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_condition_conflicts_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0402",
+      "category": "condition_conflicts",
+      "prompt": "开发调试题：Fe-Ni-O 与带隙目标 2 eV 都必须作为生成条件；可在两个模型中选。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "当前两个模型都不能按此组合满足全部生成输入要求。"
+        ],
+        "acceptable_actions": [
+          "明确冲突并展示逐项修改选项，不悄悄移除带隙。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_condition_conflicts_1",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0501",
+      "category": "candidate_evidence",
+      "prompt": "开发调试题：两个候选都写 NaCl，请仅报告候选 c_b 的带隙。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "化学式不能唯一选择候选；c_b 的版本和指标须对应。"
+        ],
+        "acceptable_actions": [
+          "按候选 ID 和结构版本读取已提供的指标。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_candidate_evidence_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0502",
+      "category": "candidate_evidence",
+      "prompt": "开发调试题：c_a 与 c_b 的能量单位相同但来自不同势模型，直接选较低者证明更稳定。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "方法不同不能直接合并排名。"
+        ],
+        "acceptable_actions": [
+          "解释不可比，保留数值和方法但不下稳定性结论。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_candidate_evidence_1",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0601",
+      "category": "partial_failure",
+      "prompt": "开发调试题：最多采样 3 次、每批最多 1 个，最后一批不要多算。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "批次为 2+1，尝试数不得变成 4。"
+        ],
+        "acceptable_actions": [
+          "执行预算内批次并如实报告。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_partial_failure_0",
+      "review_status": "developer_authored"
+    },
+    {
+      "id": "D0602",
+      "category": "partial_failure",
+      "prompt": "开发调试题：预算 1 次已全部启动但仅返回 1 个结构，自动再跑两次补齐。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "重试会超预算。"
+        ],
+        "acceptable_actions": [
+          "拒绝自动扩大；展示剩余预算为零并要求新计划。"
+        ],
+        "forbidden_claims": [
+          "不能将开发题成绩作为封存测试结果",
+          "不做无依据性能和效率结论"
+        ]
+      },
+      "fixture_id": "development_partial_failure_1",
+      "review_status": "developer_authored"
+    }
+  ]
+}

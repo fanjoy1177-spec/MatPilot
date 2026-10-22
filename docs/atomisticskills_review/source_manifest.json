@@ -1,0 +1,91 @@
+{
+  "review_date": "2026-10-21",
+  "atomisticskills_commit": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+  "benchmark_commit": "db6116c1833f30cccb65ff78cda175510c3107b6",
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "7a242071a9d152a3b7fb87689196959a69f4c61fc69440d4fd3516fa7252882b",
+      "lines": 179,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/.claude-plugin/plugin.json"
+    },
+    {
+      "path": "src/mcp_server/mattergen_server.py",
+      "sha256": "ddb7321f4cf6ce88b7c96001f94db988fb069d8b3687999c545bc34a97e4a8e6",
+      "lines": 113,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/mcp_server/mattergen_server.py"
+    },
+    {
+      "path": "src/utils/generative_models/mattergen/mattergen_wrapper.py",
+      "sha256": "c1dffee225bc5b37126a86d77d11333aed2d0ce9d75f5fe8d68d86b6308fed3c",
+      "lines": 201,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/utils/generative_models/mattergen/mattergen_wrapper.py"
+    },
+    {
+      "path": "src/mcp_server/diffcsp_server.py",
+      "sha256": "e8ded878fc15f148c9bc7113ee56174a6fc0da5c30c136aa0b39f656154002b9",
+      "lines": 116,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/mcp_server/diffcsp_server.py"
+    },
+    {
+      "path": "src/utils/generative_models/diffcsp/diffcsp_wrapper.py",
+      "sha256": "e4f76fedefc17e983949a97103e75298007667d41b894f82f3f0ade5104269c9",
+      "lines": 797,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/utils/generative_models/diffcsp/diffcsp_wrapper.py"
+    },
+    {
+      "path": "skills/mat-stability/scripts/compute_ehull.py",
+      "sha256": "b44669e8f049ea797036426a890caec1ee54ddaddbf9f8112e48c51b3664f23f",
+      "lines": 326,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/skills/mat-stability/scripts/compute_ehull.py"
+    },
+    {
+      "path": "skills/ml-generative-mattergen/SKILL.md",
+      "sha256": "c344e87db2de1bdf65d37b332cb374d73b52e2ead5e1b5d3bc25179caf5975ca",
+      "lines": 186,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/skills/ml-generative-mattergen/SKILL.md"
+    },
+    {
+      "path": "skills/mat-stability/SKILL.md",
+      "sha256": "b5184ac7da49933b353205663dcc2b04c41cec9c97daf37a7045aebcd8ef47d4",
+      "lines": 156,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/skills/mat-stability/SKILL.md"
+    },
+    {
+      "path": "skills/mat-structure-novelty/scripts/match_structure.py",
+      "sha256": "e4254ed68d6d8aee79d7816103ae72aea01ac568e8dd1c0ac143ca86363dec3a",
+      "lines": 278,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/skills/mat-structure-novelty/scripts/match_structure.py"
+    },
+    {
+      "path": "src/utils/research_utils.py",
+      "sha256": "9fa03dd63785935a2d8232aa2becbeab837ed4b84a3b86f15e6ecf4ff5e72e63",
+      "lines": 156,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/utils/research_utils.py"
+    },
+    {
+      "path": "src/mcp_server/atomate2_server.py",
+      "sha256": "52d4c2b8aaa9ff936314e57277e4389b574d2d776fcc31e4ee9ebb9645947c41",
+      "lines": 451,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/src/mcp_server/atomate2_server.py"
+    },
+    {
+      "path": "venv/mattergen/pyproject.toml",
+      "sha256": "d2fa5159276e9e255d8b3b9cf76da8e1f5d68dcd61b4542d70d6793f0b6b2374",
+      "lines": 470,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/venv/mattergen/pyproject.toml"
+    },
+    {
+      "path": "venv/diffcsp/pyproject.toml",
+      "sha256": "30bbe927b7b3e16c77efc42803c0eb29a862c0b9a041fc4951432f41f7ecfa73",
+      "lines": 356,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/venv/diffcsp/pyproject.toml"
+    },
+    {
+      "path": "tests/mattergen/test_mattergen_server.py",
+      "sha256": "abd11af4b9145dd46762e63ae7dd866e9509229b0a0f455f3ca03d3488dd7b1d",
+      "lines": 10,
+      "source": "https://github.com/learningmatter-mit/AtomisticSkills/blob/6afdd465a35088136e4875d7d2fbaefc633f4adf/tests/mattergen/test_mattergen_server.py"
+    }
+  ]
+}

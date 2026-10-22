@@ -1,0 +1,16 @@
+{
+  "backend": "native",
+  "real_compute_enabled": false,
+  "data_dir": "../matpilot-data/real-disabled",
+  "max_samples": 32,
+  "batch_timeout_seconds": 1800,
+  "templates": {},
+  "diffcsp": {
+    "python": "/opt/envs/diffcsp/bin/python",
+    "upstream_root": "/opt/AtomisticSkills",
+    "model_root": "/opt/DiffCSP-PP",
+    "model_revision": "REPLACE_WITH_VERIFIED_GIT_COMMIT",
+    "weight_manifest": {},
+    "device": "auto"
+  }
+}

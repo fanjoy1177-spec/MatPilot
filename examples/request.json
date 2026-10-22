@@ -1,0 +1,74 @@
+{
+  "raw_request": "生成 Fe-Ni-O 体系候选晶体，以 0.05 eV/atom 为能量凸包上方能量的条件目标。后续研究析氧活性和耐氯腐蚀性。",
+  "model_id": "mattergen",
+  "conditions": {
+    "chemical_system": "Fe-Ni-O",
+    "energy_above_hull": {
+      "value": 0.05,
+      "unit": "eV/atom",
+      "relation": "target"
+    }
+  },
+  "review_targets": [
+    "析氧催化活性需后续评估",
+    "耐氯腐蚀性需后续评估"
+  ],
+  "num_samples": 4,
+  "batch_size": 2,
+  "seed": 42,
+  "requirements": [
+    {
+      "requirement_id": "r1",
+      "source": {
+        "start": 3,
+        "end": 10,
+        "quote": "Fe-Ni-O"
+      },
+      "kind": "element_set",
+      "property": "chemical_system",
+      "value": "Fe-Ni-O",
+      "strength": "hard",
+      "relation": "equal"
+    },
+    {
+      "requirement_id": "r2",
+      "source": {
+        "start": 20,
+        "end": 32,
+        "quote": "0.05 eV/atom"
+      },
+      "kind": "numeric_target",
+      "property": "energy_above_hull",
+      "value": 0.05,
+      "unit": "eV/atom",
+      "strength": "goal",
+      "relation": "target"
+    },
+    {
+      "requirement_id": "r3",
+      "source": {
+        "start": 52,
+        "end": 56,
+        "quote": "析氧活性"
+      },
+      "kind": "research_goal",
+      "property": "oer_activity",
+      "value": "析氧催化活性需后续评估",
+      "strength": "goal",
+      "relation": "goal"
+    },
+    {
+      "requirement_id": "r4",
+      "source": {
+        "start": 57,
+        "end": 62,
+        "quote": "耐氯腐蚀性"
+      },
+      "kind": "research_goal",
+      "property": "corrosion",
+      "value": "耐氯腐蚀性需后续评估",
+      "strength": "goal",
+      "relation": "goal"
+    }
+  ]
+}

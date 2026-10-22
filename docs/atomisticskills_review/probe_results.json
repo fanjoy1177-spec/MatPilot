@@ -1,0 +1,52 @@
+{
+  "upstream_commit": "6afdd465a35088136e4875d7d2fbaefc633f4adf",
+  "scope": "CPU-only isolated source probes; no agent benchmark or GPU inference",
+  "observations": [
+    {
+      "id": "P1",
+      "kind": "isolated_function_with_stub",
+      "observation": "chemical_system replaces the supplied checkpoint and properties",
+      "captured_wrapper_arguments": {
+        "model_name": "chemical_system",
+        "device": "auto",
+        "properties_to_condition_on": {
+          "chemical_system": "Fe-Ni-O"
+        },
+        "guidance_scale": 1
+      },
+      "limit": "The tool documents this precedence. This does not measure how often an agent misuses it."
+    },
+    {
+      "id": "P2",
+      "kind": "isolated_wrapper_with_stub_generator",
+      "requested": 3,
+      "batch_size": 2,
+      "batches_passed_to_generator": 2,
+      "stub_structures_returned": 4,
+      "limit": "Confirms ceil batching and no truncation in this wrapper; actual model behavior and cost were not measured."
+    },
+    {
+      "id": "P3",
+      "kind": "isolated_function_real_pymatgen_synthetic_energies",
+      "reference_first_meV_per_atom": 0,
+      "candidate_first_meV_per_atom": 250,
+      "observation": "Formula-only target selection picks the first matching entry, so candidate identity can be ambiguous.",
+      "limit": "Two synthetic same-composition entries; no physical energy calculation was performed."
+    },
+    {
+      "id": "P4",
+      "kind": "current_MatPilot_validator_no_model",
+      "complete_conflicting_conditions": "blocked",
+      "condition_omitted_before_validation": "ready",
+      "observation": "Current validation handles supplied structured constraints but cannot guarantee coverage of raw language.",
+      "limit": "Does not imply a real LLM omitted this condition; it exposes the validator boundary."
+    }
+  ],
+  "source_sha256": {
+    "AtomisticSkills/src/mcp_server/mattergen_server.py": "ddb7321f4cf6ce88b7c96001f94db988fb069d8b3687999c545bc34a97e4a8e6",
+    "AtomisticSkills/src/utils/generative_models/mattergen/mattergen_wrapper.py": "c1dffee225bc5b37126a86d77d11333aed2d0ce9d75f5fe8d68d86b6308fed3c",
+    "AtomisticSkills/skills/mat-stability/scripts/compute_ehull.py": "b44669e8f049ea797036426a890caec1ee54ddaddbf9f8112e48c51b3664f23f",
+    "MatPilot/src/matpilot/adapters/mattergen.py": "759e0cc7bad2a829d7b0b63ba70ab67930eb78fc26764e93362ca50f3e6b2401"
+  },
+  "note": "Historical probe output from the recorded source hashes; local paths redacted. Not current-version or live-model acceptance."
+}

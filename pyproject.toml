@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matpilot-core"
+version = "0.2.0.dev3"
+description = "Capability-aware materials research tools for DeepSeek Harness"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["mcp>=1.20,<2", "pymatgen>=2024.5.1"]
+license = "MIT"
+
+[project.scripts]
+matpilot = "matpilot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

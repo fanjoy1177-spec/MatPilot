@@ -1,0 +1,1 @@
+participant_id,task_id,method,repeat,model_version,backend_version,hardware,plan_correct,wrong_launch,active_planning_seconds,active_reporting_seconds,queue_seconds,generation_seconds,interventions,api_calls,input_tokens,output_tokens,cost_currency,cost_amount,status,evidence_path

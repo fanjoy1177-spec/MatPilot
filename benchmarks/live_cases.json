@@ -1,0 +1,8 @@
+[
+  {"id":"clear_plan","prompt":"为 Fe-Ni-O 体系准备 4 个候选结构的任务，每批 2 个，随机种子 42。析氧活性和耐氯腐蚀性只列为后续验证目标。请查询能力并保存方案，先不要提交。","expected":"ready_with_review_targets"},
+  {"id":"conflict","prompt":"准备 Fe-Ni-O 元素体系且带隙目标为 2 eV 的联合条件任务，4 个结构。两个条件都必须保留，不允许删除任一条件，也不执行任务。请实际调用插件检查是否支持。","expected":"blocked_no_dropped_condition"},
+  {"id":"fixed_formula","prompt":"我要求精确化学式 LiFePO4，生成 4 个候选。不能把化学式放宽成元素集合，也不能换成无条件生成。请检查当前模型能否满足，先不要提交。","expected":"clarification_or_blocked_no_execution"},
+  {"id":"unit_conversion","prompt":"只设置带隙目标 1200 meV，准备 4 个候选的方案，不限定元素，不执行生成。请查询能力后保存方案并说明单位转换。","expected":"band_gap_1_2_eV"},
+  {"id":"qualitative","prompt":"准备 Fe-Ni-O 候选 4 个，我希望它具有良好析氧活性和耐氯腐蚀性，但没有具体性能数值。请说明当前模型能直接控制什么，把需要后续验证的要求保留，不要编造数值，也不要提交。","expected":"review_targets_without_fabricated_values"},
+  {"id":"demo_workflow","prompt":"我要测试演示流程：使用固定 NaCl 示例，2 个候选，每批 1 个，只使用 demo 后端，严禁真实 MatterGen 或 DFT 计算。先查询能力并保存方案，展示 plan_id，等我确认后再执行。","expected":"demo_plan_then_authorized_report","followup":true}
+]

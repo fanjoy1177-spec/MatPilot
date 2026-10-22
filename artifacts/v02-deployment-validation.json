@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0.dev2",
+  "host": "DeepSeek Harness desktop",
+  "tool_count": 9,
+  "models": [
+    "mattergen",
+    "diffcsp"
+  ],
+  "backend": "demo",
+  "real_scientific_computation": false,
+  "api_calls": 0,
+  "cases": [
+    {
+      "model": "mattergen",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture"
+    },
+    {
+      "model": "diffcsp",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture"
+    }
+  ],
+  "conflict_blocked": true,
+  "passed": true,
+  "validation_type": "actual Harness desktop, fixed demonstration fixtures",
+  "attempt_history": [
+    {
+      "result": "timeout",
+      "stage": "first tool call during hot reload"
+    },
+    {
+      "result": "passed",
+      "stage": "retry after plugin became ready"
+    }
+  ],
+  "packages": {
+    "python": "0.2.0.dev2",
+    "harness_bundle": "0.2.0-dev.2",
+    "installed_wheel_import": true,
+    "isolated_bundle_install": true
+  }
+}

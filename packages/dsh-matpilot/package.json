@@ -1,0 +1,23 @@
+{
+  "name": "dsh-matpilot",
+  "version": "0.2.0-dev.3",
+  "description": "MatPilot materials workflow tools for DeepSeek Harness",
+  "type": "module",
+  "files": [
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.1-rc.2 <0.3.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-mcp-client": ">=0.2.1-rc.2 <0.3.0"
+  },
+  "license": "MIT"
+}

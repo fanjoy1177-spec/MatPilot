@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "tests": {
+    "returncode": 0,
+    "elapsed_seconds": 4.44219446182251,
+    "test_count": 22,
+    "scope": "21 workflow unit and regression tests plus 1 MCP official-client integration test; no live LLM evaluation"
+  },
+  "harness": {
+    "version": "0.2.1-rc.2",
+    "registered_tools": [
+      "mcp__matpilot__get_capabilities",
+      "mcp__matpilot__prepare_plan",
+      "mcp__matpilot__submit_job",
+      "mcp__matpilot__get_job",
+      "mcp__matpilot__control_job",
+      "mcp__matpilot__get_results",
+      "mcp__matpilot__screen_candidates",
+      "mcp__matpilot__compare_runs",
+      "mcp__matpilot__build_report"
+    ],
+    "capability_call_succeeded": true
+  },
+  "mattergen": {
+    "job_id": "288e0a641d2a4f3ca219e6207e8980c0",
+    "checkpoint": "chemical_system",
+    "conditions": {
+      "chemical_system": "Fe-Ni-O"
+    },
+    "sample_count": 1,
+    "execution_seconds": 248.31299999996554,
+    "seed_applied": false,
+    "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "evidence_level": "structural_sanity_only",
+    "candidate": {
+      "parse_valid": true,
+      "formula": "Fe2 Ni4 O8",
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "site_count": 14,
+      "volume_angstrom3": 155.10435994456117,
+      "minimum_pair_distance_angstrom": 1.9076628700015916,
+      "composition_match": true,
+      "basic_geometry_pass": true,
+      "warnings": [],
+      "evidence_level": "structural_sanity_only",
+      "sha256": "61d8bcf59f51b11b21f93ecf52163253bb566535d6d288549e046733f7f9f98d"
+    },
+    "candidate_file": "real-example/candidate.cif"
+  },
+  "live_llm_evaluation": "not_run_api_deferred_until_server_ready",
+  "user_speedup_evaluation": "not_run",
+  "public_release": "not_published",
+  "historical_evidence": true,
+  "description": "Historical v0.1.0 acceptance, predating the current no-compute desktop/API validation. See desktop-acceptance.json for current evidence."
+}
