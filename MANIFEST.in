@@ -31,3 +31,6 @@ include artifacts/candidate-fixture-coverage-20261023.json artifacts/candidate-f
 
 include artifacts/version-metric-tools-cpu-comparison.json
 include artifacts/v07-context-tool-runtime-validation.json
+
+include artifacts/v08-unit-validation.json artifacts/v08-deployment-validation.json artifacts/metric-screening-cpu-comparison.json
+include artifacts/v08-unit-validation-r1-source-drift.json

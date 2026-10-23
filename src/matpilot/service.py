@@ -128,17 +128,77 @@ class Service:
                 "scientific_status": "unvalidated_candidates; stored metric evidence is version-specific, not proof of material performance"
                     if any(metrics.values()) else "structural_sanity_only; properties not measured"}
 
-    def screen_candidates(self, job_id: str) -> dict:
+    @staticmethod
+    def _validate_metric_selections(selections: list[dict], minimum: int, maximum: int) -> None:
+        fields = {"job_id", "candidate_id", "structure_version_id", "metric_id"}
+        if (not isinstance(selections, list) or not minimum <= len(selections) <= maximum
+                or any(not isinstance(x, dict) or set(x) != fields
+                       or any(not isinstance(v, str) or not v for v in x.values()) for x in selections)):
+            raise ValueError(f"Provide {minimum} to {maximum} explicit metric selections, each with job_id, candidate_id, structure_version_id and metric_id.")
+        if len({tuple(x[k] for k in sorted(fields)) for x in selections}) != len(selections):
+            raise ValueError("Metric selections must not contain duplicates.")
+
+    @staticmethod
+    def _resolve_metric_selections(selections: list[dict], results_by_job: dict) -> list[dict]:
+        """Shared job/candidate/version/metric binding for comparison and checks."""
+        selected = []
+        for selection in selections:
+            job_id, candidate_id, version_id, metric_id = (selection[k] for k in
+                ("job_id", "candidate_id", "structure_version_id", "metric_id"))
+            result = results_by_job.get(job_id, {})
+            versions = result.get("structure_versions", {}).get(candidate_id, [])
+            version = next((v for v in versions if v["structure_version_id"] == version_id), None)
+            if version is None or version["candidate_id"] != candidate_id or version["job_id"] != job_id:
+                raise ValueError("Selected job, candidate and structure version do not match available archived evidence.")
+            matches = [m for m in result["metrics_by_structure_version"][version_id] if m["metric_id"] == metric_id
+                       and m["candidate_id"] == candidate_id and m["structure_version_id"] == version_id]
+            if len(matches) != 1:
+                raise ValueError("Selected metric does not belong to the explicit candidate and structure version.")
+            selected.append(matches[0])
+        return selected
+
+    def screen_candidates(self, job_id: str, metric_selections: list[dict] | None = None) -> dict:
         result = self.get_results(job_id)
         plan = self.store.plan(self.store.job(job_id)["plan_id"])
-        metrics = {r["structure_version_id"]: self.store.metrics(r["structure_version_id"]) for r in result["records"]}
+        metrics = {r["structure_version_id"]: result["metrics_by_structure_version"][r["structure_version_id"]] for r in result["records"]}
+        audit = None
+        if metric_selections is not None:
+            self._validate_metric_selections(metric_selections, 1, 80)
+            selected = self._resolve_metric_selections(metric_selections, {job_id: result})
+            choices = {}
+            for metric in selected:
+                version_id, prop = metric["structure_version_id"], metric["property"]
+                if version_id not in metrics:
+                    raise ValueError("Screening selections support original generated structure versions only.")
+                if not any(r["kind"] in {"numeric_target", "numeric_bound"} and r["property"] == prop
+                           and r["normalized_unit"] == metric["unit"] for r in plan["requirements"]):
+                    raise ValueError("Selected metric must match a numerical requirement's property and unit.")
+                key = (version_id, prop)
+                if key in choices:
+                    raise ValueError("Choose only one metric per candidate structure version and property.")
+                choices[key] = metric
+            for version_id, available in metrics.items():
+                metrics[version_id] = [m for m in available if (version_id, m["property"]) not in choices]
+                metrics[version_id].extend(m for (version, _), m in choices.items() if version == version_id)
+            normalized = sorted((dict(x) for x in metric_selections), key=lambda x: tuple(x[k] for k in
+                ("job_id", "candidate_id", "structure_version_id", "metric_id")))
+            chosen_ids = {m["metric_id"] for m in selected}
+            audit = {"scope": "original_generated_versions_only", "selections": normalized,
+                     "selection_sha256": canonical_hash(normalized), "selected_metric_ids": sorted(chosen_ids),
+                     "unselected_metric_ids": sorted(m["metric_id"] for values in result["metrics_by_structure_version"].values()
+                         for m in values if m["metric_id"] not in chosen_ids),
+                     "interpretation": "Checks use the explicitly selected evidence for its property. Unselected properties retain default checks. A pass is limited to the chosen method/metric; incomplete evidence remains unknown and no universal material property is established."}
         screened = screen_records(plan, result["records"], metrics)
         target = plan.get("valid_candidates_target")
-        return {**result, **screened, "metrics_by_structure_version": metrics,
+        response = {**result, **screened, "metrics_by_structure_version": metrics,
                 "screening_version_scope": "original_generated_versions_only",
                 "valid_candidates_target": target,
                 "valid_target_met": screened["unique_valid_candidate_count"] >= target if target is not None else None,
                 "method": "CIF parsing, per-requirement three-valued checks, SHA256 identity and tolerance-defined pymatgen structure matching"}
+        if audit is not None:
+            response.update(metric_selection_audit=audit,
+                            all_metrics_by_structure_version=result["metrics_by_structure_version"])
+        return response
 
     def compare_runs(self, job_ids: list[str], metric_selections: list[dict] | None = None) -> dict:
         minimum = 1 if metric_selections is not None else 2
@@ -146,13 +206,7 @@ class Service:
                 or any(not isinstance(x, str) or not x for x in job_ids) or len(set(job_ids)) != len(job_ids)):
             raise ValueError(f"Provide {minimum} to 10 distinct job ids.")
         if metric_selections is not None:
-            fields = {"job_id", "candidate_id", "structure_version_id", "metric_id"}
-            if (not isinstance(metric_selections, list) or not 2 <= len(metric_selections) <= 20
-                    or any(not isinstance(x, dict) or set(x) != fields
-                           or any(not isinstance(v, str) or not v for v in x.values()) for x in metric_selections)):
-                raise ValueError("Provide 2 to 20 explicit metric selections, each with job_id, candidate_id, structure_version_id and metric_id.")
-            if len({tuple(x[k] for k in sorted(fields)) for x in metric_selections}) != len(metric_selections):
-                raise ValueError("Metric selections must not contain duplicates.")
+            self._validate_metric_selections(metric_selections, 2, 20)
         jobs = [self.store.job(x) for x in job_ids]
         plans = [self.store.plan(x["plan_id"]) for x in jobs]
         provenances = {x["provenance"] for x in jobs}
@@ -164,7 +218,7 @@ class Service:
             raise ValueError("Explicit metric comparison cannot mix demo and real generation or use unknown provenance.")
         comparable = all((p["model_id"], p["conditions"], p["num_samples"], p["checkpoint"], p.get("template"), p.get("requirements")) ==
                          (plans[0]["model_id"], plans[0]["conditions"], plans[0]["num_samples"], plans[0]["checkpoint"], plans[0].get("template"), plans[0].get("requirements")) for p in plans)
-        rows, available_versions, available_metrics = [], {}, {}
+        rows, available_results = [], {}
         for job in jobs:
             results = self.screen_candidates(job["job_id"])
             rows.append({"job_id": job["job_id"], "status": job["status"], "count": results["count"],
@@ -174,33 +228,22 @@ class Service:
                 # Fetch every version's bound evidence, without changing the
                 # generated-candidate counts or the default screening selection.
                 full_results = self.get_results(job["job_id"])
-                available_versions[job["job_id"]] = {v["structure_version_id"]: v
-                    for versions in full_results["structure_versions"].values() for v in versions}
-                available_metrics[job["job_id"]] = full_results["metrics_by_structure_version"]
+                available_results[job["job_id"]] = full_results
         result = {"same_task": comparable, "rows": rows,
                 "interpretation": "Descriptive workflow comparison only. Different hardware, versions, seeds and checkpoints confound speed and quality comparisons; this is not evidence of AI benefit."}
         if metric_selections is not None:
-            selected = []
-            for selection in metric_selections:
-                job_id, candidate_id, version_id, metric_id = (selection[k] for k in
-                    ("job_id", "candidate_id", "structure_version_id", "metric_id"))
-                version = available_versions.get(job_id, {}).get(version_id)
-                if version is None or version["candidate_id"] != candidate_id or version["job_id"] != job_id:
-                    raise ValueError("Selected job, candidate and structure version do not match available archived evidence.")
-                matches = [m for m in available_metrics[job_id][version_id] if m["metric_id"] == metric_id
-                           and m["candidate_id"] == candidate_id and m["structure_version_id"] == version_id]
-                if len(matches) != 1:
-                    raise ValueError("Selected metric does not belong to the explicit candidate and structure version.")
-                selected.append(matches[0])
+            selected = self._resolve_metric_selections(metric_selections, available_results)
             result.update(metric_selections=metric_selections, selected_metrics=selected,
                           metric_comparison=compare_metrics(selected))
         return result
 
-    def build_report(self, job_id: str) -> dict:
+    def build_report(self, job_id: str, metric_selections: list[dict] | None = None) -> dict:
         job = self.store.job(job_id)
         plan = self.store.plan(job["plan_id"])
-        result = self.screen_candidates(job_id)
+        result = self.screen_candidates(job_id, metric_selections)
         folder = self.store.root / "reports" / job_id
+        if metric_selections is not None:
+            folder = folder / "metric-selections" / result["metric_selection_audit"]["selection_sha256"]
         folder.mkdir(parents=True, exist_ok=True)
         packages = {}
         for name in ["matpilot-core", "mcp", "pymatgen"]:
@@ -236,6 +279,13 @@ class Service:
         for r in result["records"]:
             for check in r["requirement_checks"]:
                 lines.append("| " + " | ".join(cell(check[k]) for k in ("candidate_id", "requirement_id", "status", "observed")) + " | " + cell(check["method"] or check["reason"]) + " |")
+        if metric_selections is not None:
+            audit = result["metric_selection_audit"]
+            lines += ["", "## 显式指标选择", "", "本次判定仅适用于所选方法和指标；未选指标仍完整保留在 JSON 证据中。未知元数据不会因被选中而变成已验证，示例数据不构成真实材料性质结论。",
+                      f"选择记录校验值：{audit['selection_sha256']}", "",
+                      "| 候选 ID | 结构版本 | 所选指标 ID |", "|---|---|---|"]
+            lines += ["| " + " | ".join(cell(selection[k]) for k in ("candidate_id", "structure_version_id", "metric_id")) + " |" for selection in audit["selections"]]
+            lines += ["", "未选指标 ID：" + (", ".join(audit["unselected_metric_ids"]) or "无")]
         md_path = folder / "report.md"
         md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return {"job_id": job_id, "report_path": str(md_path), "evidence_path": str(json_path),

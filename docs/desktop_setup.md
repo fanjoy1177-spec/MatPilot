@@ -6,9 +6,9 @@
 
 下载源码时，可按 README 建立独立 Python 环境并安装。使用发行文件时，下载同版本的三个文件并按 SHA256SUMS.txt 核对：
 
-- matpilot_core-0.2.0.dev7-py3-none-any.whl：Python 服务。
-- matpilot_core-0.2.0.dev7.tar.gz：解压后提供 examples 配置、登记 CIF 模板、文档和研究工具；wheel 不含这些文件。
-- dsh-matpilot-0.2.0-dev.7.tgz：Harness 命令行/Web 插件包；桌面版按下方内置 MCP 方法配置。
+- matpilot_core-0.2.0.dev8-py3-none-any.whl：Python 服务。
+- matpilot_core-0.2.0.dev8.tar.gz：解压后提供 examples 配置、登记 CIF 模板、文档和研究工具；wheel 不含这些文件。
+- dsh-matpilot-0.2.0-dev.8.tgz：Harness 命令行/Web 插件包；桌面版按下方内置 MCP 方法配置。
 
 将源码包解压到固定目录，例如 D:/MatPilot，然后在其中建立虚拟环境，并用该环境的 Python 安装下载的 wheel。保留 examples 下的目录结构，不单独移动配置文件。将下方 Python 与 MATPILOT_CONFIG 改为实际绝对路径，并核对配置中的数据和模板路径。
 
@@ -54,4 +54,4 @@
 
 ## 当前开发版注意事项
 
-当前发行目标为 0.2.0.dev7；具体安装、九工具和固定样本验收以 [dev7验收记录](release_acceptance_v07.md) 为准，真实生成保持禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；等待插件就绪后重试能力查询并确认版本，再提交任务。真实 API 开发对照见 [插件效果记录](study_plugin_effects.md) 和 [消融记录](study_ablation_results.md)，不把固定样本演示等同提速。
+当前发行目标为 0.2.0.dev8；具体安装、九工具和固定样本验收以 [dev8验收记录](release_acceptance_v08.md) 为准，真实生成保持禁用。使用 examples/config.multimodel.demo.json 可加载演示模板。热加载首次连接可能超时；等待插件就绪后重试能力查询并确认版本，再提交任务。真实 API 开发对照见 [插件效果记录](study_plugin_effects.md) 和 [消融记录](study_ablation_results.md)，不把固定样本演示等同提速。

@@ -27,6 +27,7 @@ conditions 使用能力表中的字段，数字默认采用其标准单位，也
 prepare_plan 返回 blocked 或 needs_clarification 时不得提交。展示 ready 方案的条件、后验目标、数量和当前 demo/native/wsl 后端，取得用户对该方案的执行授权后，将相同 plan_id 作为 approved_plan_id 提交。重试同次提交必须复用 idempotency_key。程序记录计划匹配，不会证明自然语言授权真实发生，宿主仍需执行工具权限策略。
 submit_job 立即返回任务号；长任务使用 get_job 查询。只能查询提交实际返回的 job_id，plan_id 不是 job_id，提交失败时不得编造任务号。失败先读错误，禁止自动扩大预算或放宽材料条件。只在明确终止状态下 resume。
 get_results 返回 structure_versions 与 metrics_by_structure_version；指标只属于其明确的 candidate_id 和 structure_version_id，不得沿用父版本指标。需要比较性质证据时，compare_runs 可提供 metric_selections，每项包含 job_id、candidate_id、structure_version_id、metric_id，允许同一任务内显式选择多个版本。不得按化学式替代身份、自动选择最有利指标或对方法不可比的数值作材料优劣排名。
+screen_candidates 和 build_report 可提供相同身份格式的 metric_selections，用明确选定的指标核验原始生成版本；未明确选择时，多份同性质有效指标保持 unknown。每个版本每项性质至多选一个指标，不能自动选择有利数值；所有未选指标保留在报告证据中。选择记录不改变采样预算或生成候选数，结论仅适用于所选方法和指标。
 示例模式是固定 NaCl 样本，不能说成 MatterGen 或 AI 生成。执行完成不是材料性能验证。报告只使用工具返回证据；不得宣称已有催化性能、耐腐蚀性、实验验证、AI 准确率提升或流程提速百分比。"""
 
 
@@ -67,9 +68,10 @@ def make_server(settings: Settings) -> FastMCP:
         return service.get_results(job_id)
 
     @app.tool(annotations=read)
-    def screen_candidates(job_id: str) -> dict:
-        """仅对原始生成版本执行 CIF 解析、逐项要求、几何及去重检查；变换版本指标通过 get_results 读取，不计为新增生成候选，不计算材料性能。"""
-        return service.screen_candidates(job_id)
+    def screen_candidates(job_id: str, metric_selections: list[MetricSelection] | None = None) -> dict:
+        """仅筛选原始生成版本，不计算性质。可显式选择1到80个指标身份进入逐项核验；每版每项性质最多一个，未选性质仍按默认规则检查，多值默认unknown。返回全部与实际采用的指标，不将变换版本计为新增候选。"""
+        return service.screen_candidates(job_id, [selection.model_dump() for selection in metric_selections]
+                                         if metric_selections is not None else None)
 
     @app.tool(annotations=read)
     def compare_runs(job_ids: list[str], metric_selections: list[MetricSelection] | None = None) -> dict:
@@ -78,8 +80,9 @@ def make_server(settings: Settings) -> FastMCP:
                                     if metric_selections is not None else None)
 
     @app.tool(annotations=write)
-    def build_report(job_id: str) -> dict:
-        """生成含参数、版本、来源、完整事件和科学结论边界的 Markdown 报告与 JSON 证据。"""
-        return service.build_report(job_id)
+    def build_report(job_id: str, metric_selections: list[MetricSelection] | None = None) -> dict:
+        """生成 Markdown 与 JSON。可传与筛选相同的明确指标选择；保存全部/采用指标与选择审计，按选择哈希分别保存报告，不覆盖另一选择或默认报告。"""
+        return service.build_report(job_id, [selection.model_dump() for selection in metric_selections]
+                                    if metric_selections is not None else None)
 
     return app

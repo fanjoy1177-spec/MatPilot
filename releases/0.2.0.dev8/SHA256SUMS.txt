@@ -1,0 +1,3 @@
+833dd7b16e0b38d764a1bdddca8bae474c31d0bd8dadc5327db6400309099623  dsh-matpilot-0.2.0-dev.8.tgz
+34b56e52267874cbeef77399c1281fb0e7bbd06936bff195949878c3a205d1ad  matpilot_core-0.2.0.dev8-py3-none-any.whl
+8dea86504b1ad3a0e0f06560b87aef0c4bb5c8f5f6771ee0ba82951ec52a7820  matpilot_core-0.2.0.dev8.tar.gz

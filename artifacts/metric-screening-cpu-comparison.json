@@ -1,0 +1,438 @@
+{
+  "format": "matpilot-metric-screening-cpu-comparison/v1",
+  "scope": "production_service_and_registered_mcp_function_capabilities_only",
+  "baseline": {
+    "path": "releases/0.2.0.dev7/matpilot_core-0.2.0.dev7-py3-none-any.whl",
+    "sha256": "7dae8ff54b99d686f864e20372dbcbd2614cf6d75c1a9d299135d1e7ac273f31",
+    "release_unchanged": true
+  },
+  "versions": {
+    "frozen_release": {
+      "declared_version": "0.2.0.dev7",
+      "source_sha256": {
+        "__init__.py": "7a80a56d7b4f714b43cd5feded3fa4726946df28881b465475bab19ad6b752f7",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "a241222e012e6f7523be464eb2d6241e0ca579ccefb569558683b248bd0f4315",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+        "config.py": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "ed052ebff953096cb30ef10f8963065f180d391bfba21844a958c9354dacb0a5",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "df0fdaf66e9aaeebeb731afefe0a57662e1ba7a3449a8f5ee3e172192966f019",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "ee0e41cab3eb9b5f074c7faae4302e525431ea5255cf89963d217bf445265da2",
+        "service.py": "96fe2a43d459f1ef52b6474d812ce46d7d53181405ee350f631f5fa838842f4c",
+        "store.py": "4d9703059147cb5274981464d2d618c1b376c1d6d69c826ee3c168c8bfdd7475",
+        "structures.py": "935c1c86edefa21216a445a927ee55d9d5ae7e1528bb85c2c6cf8dfe71d8c4be",
+        "study_replay.py": "8c25c5f0db3ec7b6b5a710d7db9113e835f67793c014042e516e6f9dc606fe6a",
+        "study_workspace.py": "a70cf7e31b7f529199de2e0c92121e3df1b32ec89558b3a09fddfe14c4a76e3a",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "4ab94e0ac1da21ccb9683773f2bd82f8fb84b8f30b91a549996feb41f1339b55"
+      },
+      "tool_count": 9,
+      "input_schemas": {
+        "screen_candidates": {
+          "properties": {
+            "job_id": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "job_id"
+          ],
+          "title": "screen_candidatesArguments",
+          "type": "object"
+        },
+        "build_report": {
+          "properties": {
+            "job_id": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "job_id"
+          ],
+          "title": "build_reportArguments",
+          "type": "object"
+        }
+      },
+      "cases": {
+        "default_multiple_metrics": {
+          "service": {
+            "status": "unknown",
+            "observed": null,
+            "metric_id": null,
+            "reason": "Multiple eligible measurements exist; choose an explicit method/metric rather than selecting a favorable value."
+          },
+          "registered_mcp": {
+            "status": "unknown",
+            "observed": null,
+            "metric_id": null,
+            "reason": "Multiple eligible measurements exist; choose an explicit method/metric rather than selecting a favorable value."
+          }
+        },
+        "select_1_1": {
+          "supported": false,
+          "error_type": "TypeError",
+          "error": "Service.screen_candidates() got an unexpected keyword argument 'metric_selections'"
+        },
+        "select_1_6": {
+          "supported": false,
+          "error_type": "TypeError",
+          "error": "Service.screen_candidates() got an unexpected keyword argument 'metric_selections'"
+        },
+        "wrong_binding": {
+          "supported": false,
+          "rejected": false,
+          "error_type": "TypeError",
+          "error": "Service.screen_candidates() got an unexpected keyword argument 'metric_selections'"
+        },
+        "reports_coexist": {
+          "evidence_count": 1,
+          "all_still_exist": true,
+          "persisted_statuses": [
+            "unknown"
+          ],
+          "evidence_files": [
+            {
+              "path": "data/reports/952fe101f8e8483a9719ba5bb4bf5bb9/evidence.json",
+              "sha256": "fdbe4e7451249f5c297f2feacb3aded7ed7ffaffb68fd4afa174a65133defaf9"
+            }
+          ]
+        }
+      },
+      "fixture_sha256": "890bdd481f241574f194d162911b8ff877c9b204134a7613c156fede88c833e1",
+      "original_cif_sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+      "synthetic_metric_raw_sha256": [
+        "38e5e5151e87264e0e9c8d7c2848a13f2fadb3ab73afbe6e225f85b47f77e501",
+        "e334e592ccb268bcfc2df7f628582621b80ee8ed1859d8006ca39523e36318fe"
+      ],
+      "accounting_before": {
+        "candidate_count": 1,
+        "sampling_attempts_charged": 1,
+        "sampling_budget_remaining": 0
+      },
+      "accounting_after": {
+        "candidate_count": 1,
+        "sampling_attempts_charged": 1,
+        "sampling_budget_remaining": 0
+      }
+    },
+    "candidate_source": {
+      "declared_version": "0.2.0.dev8",
+      "source_sha256": {
+        "__init__.py": "136484320552ba8e6ca3c1dd526a4ceb5616eca5f7784f48be8199c05eb6ba14",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "1f36844c5b8a4e4f48bb64d372f4e00651c341864506e13223f0427d66a0896f",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+        "config.py": "b6309072bbb739e7a2521825382aaae3c6ad02dd6147a3f9c065ef6e2294a5fe",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "ed052ebff953096cb30ef10f8963065f180d391bfba21844a958c9354dacb0a5",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "df0fdaf66e9aaeebeb731afefe0a57662e1ba7a3449a8f5ee3e172192966f019",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "ed0605624fa22591166cb7fa7a3465176d8e74db7392a480f85d3892f06c2e88",
+        "service.py": "9811470952ccf698a22dd35992f4a4b852536a3b4e24efaed818c39e542a66ba",
+        "store.py": "4d9703059147cb5274981464d2d618c1b376c1d6d69c826ee3c168c8bfdd7475",
+        "structures.py": "935c1c86edefa21216a445a927ee55d9d5ae7e1528bb85c2c6cf8dfe71d8c4be",
+        "study_replay.py": "8c25c5f0db3ec7b6b5a710d7db9113e835f67793c014042e516e6f9dc606fe6a",
+        "study_workspace.py": "a70cf7e31b7f529199de2e0c92121e3df1b32ec89558b3a09fddfe14c4a76e3a",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "4ab94e0ac1da21ccb9683773f2bd82f8fb84b8f30b91a549996feb41f1339b55"
+      },
+      "tool_count": 9,
+      "input_schemas": {
+        "screen_candidates": {
+          "$defs": {
+            "MetricSelection": {
+              "additionalProperties": false,
+              "description": "Explicit evidence identity; selection never happens by formula or value.",
+              "properties": {
+                "job_id": {
+                  "minLength": 1,
+                  "title": "Job Id",
+                  "type": "string"
+                },
+                "candidate_id": {
+                  "minLength": 1,
+                  "title": "Candidate Id",
+                  "type": "string"
+                },
+                "structure_version_id": {
+                  "minLength": 1,
+                  "title": "Structure Version Id",
+                  "type": "string"
+                },
+                "metric_id": {
+                  "minLength": 1,
+                  "title": "Metric Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "job_id",
+                "candidate_id",
+                "structure_version_id",
+                "metric_id"
+              ],
+              "title": "MetricSelection",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "job_id": {
+              "title": "Job Id",
+              "type": "string"
+            },
+            "metric_selections": {
+              "anyOf": [
+                {
+                  "items": {
+                    "$ref": "#/$defs/MetricSelection"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Metric Selections"
+            }
+          },
+          "required": [
+            "job_id"
+          ],
+          "title": "screen_candidatesArguments",
+          "type": "object"
+        },
+        "build_report": {
+          "$defs": {
+            "MetricSelection": {
+              "additionalProperties": false,
+              "description": "Explicit evidence identity; selection never happens by formula or value.",
+              "properties": {
+                "job_id": {
+                  "minLength": 1,
+                  "title": "Job Id",
+                  "type": "string"
+                },
+                "candidate_id": {
+                  "minLength": 1,
+                  "title": "Candidate Id",
+                  "type": "string"
+                },
+                "structure_version_id": {
+                  "minLength": 1,
+                  "title": "Structure Version Id",
+                  "type": "string"
+                },
+                "metric_id": {
+                  "minLength": 1,
+                  "title": "Metric Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "job_id",
+                "candidate_id",
+                "structure_version_id",
+                "metric_id"
+              ],
+              "title": "MetricSelection",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "job_id": {
+              "title": "Job Id",
+              "type": "string"
+            },
+            "metric_selections": {
+              "anyOf": [
+                {
+                  "items": {
+                    "$ref": "#/$defs/MetricSelection"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Metric Selections"
+            }
+          },
+          "required": [
+            "job_id"
+          ],
+          "title": "build_reportArguments",
+          "type": "object"
+        }
+      },
+      "cases": {
+        "default_multiple_metrics": {
+          "service": {
+            "status": "unknown",
+            "observed": null,
+            "metric_id": null,
+            "reason": "Multiple eligible measurements exist; choose an explicit method/metric rather than selecting a favorable value."
+          },
+          "registered_mcp": {
+            "status": "unknown",
+            "observed": null,
+            "metric_id": null,
+            "reason": "Multiple eligible measurements exist; choose an explicit method/metric rather than selecting a favorable value."
+          }
+        },
+        "select_1_1": {
+          "supported": true,
+          "service": {
+            "status": "pass",
+            "observed": 1.1,
+            "metric_id": "m_7f5d07cc3fac806758abfa874e5bc80f169d9a75a8003d48110bd937fc841ddc",
+            "reason": null
+          },
+          "registered_mcp": {
+            "status": "pass",
+            "observed": 1.1,
+            "metric_id": "m_7f5d07cc3fac806758abfa874e5bc80f169d9a75a8003d48110bd937fc841ddc",
+            "reason": null
+          },
+          "persisted_report": {
+            "status": "pass",
+            "observed": 1.1,
+            "metric_id": "m_7f5d07cc3fac806758abfa874e5bc80f169d9a75a8003d48110bd937fc841ddc",
+            "reason": null
+          },
+          "all_metric_values": [
+            1.1,
+            1.6
+          ],
+          "selected_metric_ids": [
+            "m_7f5d07cc3fac806758abfa874e5bc80f169d9a75a8003d48110bd937fc841ddc"
+          ],
+          "unselected_metric_ids": [
+            "m_1a59af494c9f4ad3e3a5e1627777cfdc70ab61120416bea1e34f166aa15a416c"
+          ],
+          "selection_sha256": "78ed9e7e8d21a21a577a016c681052494e23eb44631fd23994451ced50121f60"
+        },
+        "select_1_6": {
+          "supported": true,
+          "service": {
+            "status": "fail",
+            "observed": 1.6,
+            "metric_id": "m_1a59af494c9f4ad3e3a5e1627777cfdc70ab61120416bea1e34f166aa15a416c",
+            "reason": null
+          },
+          "registered_mcp": {
+            "status": "fail",
+            "observed": 1.6,
+            "metric_id": "m_1a59af494c9f4ad3e3a5e1627777cfdc70ab61120416bea1e34f166aa15a416c",
+            "reason": null
+          },
+          "persisted_report": {
+            "status": "fail",
+            "observed": 1.6,
+            "metric_id": "m_1a59af494c9f4ad3e3a5e1627777cfdc70ab61120416bea1e34f166aa15a416c",
+            "reason": null
+          },
+          "all_metric_values": [
+            1.1,
+            1.6
+          ],
+          "selected_metric_ids": [
+            "m_1a59af494c9f4ad3e3a5e1627777cfdc70ab61120416bea1e34f166aa15a416c"
+          ],
+          "unselected_metric_ids": [
+            "m_7f5d07cc3fac806758abfa874e5bc80f169d9a75a8003d48110bd937fc841ddc"
+          ],
+          "selection_sha256": "d5b3d2d57b35b6c7474ed1ce495407f9233e4a5d4c23c7186c9ea8453f2398fe"
+        },
+        "wrong_binding": {
+          "supported": true,
+          "rejected": true,
+          "error_type": "ValueError",
+          "error": "Selected job, candidate and structure version do not match available archived evidence."
+        },
+        "reports_coexist": {
+          "evidence_count": 3,
+          "all_still_exist": true,
+          "persisted_statuses": [
+            "unknown",
+            "pass",
+            "fail"
+          ],
+          "evidence_files": [
+            {
+              "path": "data/reports/2954ec5c46e946738961e00c45592552/evidence.json",
+              "sha256": "217da330b6453cc5da8ef8039b0150ae653a287ce59634f8416af15fc3b8895e"
+            },
+            {
+              "path": "data/reports/2954ec5c46e946738961e00c45592552/metric-selections/78ed9e7e8d21a21a577a016c681052494e23eb44631fd23994451ced50121f60/evidence.json",
+              "sha256": "5a86a52c85175b7fa63b922252860e51fb744c070a08eb1f40c50f9a299d348b"
+            },
+            {
+              "path": "data/reports/2954ec5c46e946738961e00c45592552/metric-selections/d5b3d2d57b35b6c7474ed1ce495407f9233e4a5d4c23c7186c9ea8453f2398fe/evidence.json",
+              "sha256": "a90e89507cbada632ecab64dd031458f1a815cd84ee635a8a36958f3ab7dd93a"
+            }
+          ]
+        }
+      },
+      "fixture_sha256": "890bdd481f241574f194d162911b8ff877c9b204134a7613c156fede88c833e1",
+      "original_cif_sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+      "synthetic_metric_raw_sha256": [
+        "38e5e5151e87264e0e9c8d7c2848a13f2fadb3ab73afbe6e225f85b47f77e501",
+        "e334e592ccb268bcfc2df7f628582621b80ee8ed1859d8006ca39523e36318fe"
+      ],
+      "accounting_before": {
+        "candidate_count": 1,
+        "sampling_attempts_charged": 1,
+        "sampling_budget_remaining": 0
+      },
+      "accounting_after": {
+        "candidate_count": 1,
+        "sampling_attempts_charged": 1,
+        "sampling_budget_remaining": 0
+      }
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "win32",
+    "pymatgen": "2026.9.24",
+    "mcp": "1.30.0"
+  },
+  "real_material_model_runs": 0,
+  "property_calculations": 0,
+  "api_requests": 0,
+  "api_cny": 0,
+  "limitations": [
+    "All structure and metric values are synthetic CPU fixtures, not scientific evidence.",
+    "Both isolated stores receive identical ZIP/CIF/raw metric byte hashes. Random identifiers and timestamps are not compared across runs.",
+    "Explicit pass/fail applies only to the selected method/metric; adverse measurements stay in the evidence, and default multiple-value checks remain unknown.",
+    "This measures deterministic tool functionality, not AI accuracy, causal AI benefit, general benchmark scores or user-time savings.",
+    "Actual Service and registered MCP functions are called. This is not external Harness, MCP transport, or scientific model acceptance.",
+    "Candidate counts and sampling charges must remain unchanged by screening/report operations."
+  ],
+  "reproduction": {
+    "script_path": "benchmarks/compare_metric_screening.py",
+    "script_sha256": "0c8a932b5e4bc18b3dd77c02ccd46e79d8e4a43dda3b21623bef551a0671d4fb",
+    "command": "python benchmarks/compare_metric_screening.py --baseline-wheel releases/0.2.0.dev7/matpilot_core-0.2.0.dev7-py3-none-any.whl --work-dir .work/metric-screening-recompute --output artifacts/metric-screening-recompute.json"
+  }
+}

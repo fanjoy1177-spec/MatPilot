@@ -125,7 +125,7 @@ class MatterGenAdapter:
         if unconditional is True and incoming:
             issues.append({"code": "conflicting_mode", "message": "Unconditional generation cannot also have conditions."})
         values = {}
-        for name, default, low, high in [("num_samples", 16, 1, max_samples), ("batch_size", 2, 1, max_samples), ("seed", 42, 0, 2**31-1)]:
+        for name, default, low, high in [("num_samples", min(16, max_samples), 1, max_samples), ("batch_size", min(2, max_samples), 1, max_samples), ("seed", 42, 0, 2**31-1)]:
             value = request.get(name, default)
             if isinstance(value, bool) or not isinstance(value, int) or not low <= value <= high:
                 issues.append({"code": "invalid_budget", "field": name, "message": f"Expected integer in [{low}, {high}]."})

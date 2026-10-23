@@ -25,6 +25,11 @@ class Settings:
     diffcsp: dict = field(default_factory=dict)
     model_identities: dict = field(default_factory=dict)
 
+    def __post_init__(self) -> None:
+        # The v1.1 first-release cap also applies to restored worker snapshots.
+        if type(self.max_samples) is not int or not 1 <= self.max_samples <= 32:
+            raise ValueError("max_samples must be an integer from 1 to 32")
+
     @classmethod
     def load(cls, filename: str | None = None) -> "Settings":
         filename = filename or os.environ.get("MATPILOT_CONFIG")
@@ -47,7 +52,7 @@ class Settings:
             raise ValueError("backend must be demo, native or wsl")
         if not settings.command or not all(isinstance(x, str) and x for x in settings.command):
             raise ValueError("command must be a nonempty argument array")
-        if not 1 <= settings.max_samples <= 1024 or settings.batch_timeout_seconds < 1:
+        if settings.batch_timeout_seconds < 1:
             raise ValueError("invalid execution limits")
         settings.data_dir.mkdir(parents=True, exist_ok=True)
         return settings

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0.dev8 — 2026-10-23
+
+- Carry explicit candidate/version/metric selections from the existing screening tool into reports; retain all available evidence and keep different selection reports separate. Ambiguous or incomplete evidence remains unknown by default.
+- Enforce the v1.1 maximum of 32 samples for loaded configuration and worker snapshots. Defaults follow smaller operator limits; explicit over-budget requests still fail.
+- Deliver the current 36-case candidate v2 review packet with all approvals and grades unfilled, preserving its original draft sources.
+- Compare dev7 and dev8 on the same synthetic metric records. No new paid model requests or real materials computation.
+
 ## 0.2.0.dev7 — 2026-10-23
 
 - Expose validated metrics for each structure version through the existing nine-tool plugin; support explicit candidate/version/metric comparability selections without a material-quality ranking.

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "version": "0.2.0.dev8",
+  "host": "DeepSeek Harness desktop",
+  "tool_count": 9,
+  "models": [
+    "mattergen",
+    "diffcsp"
+  ],
+  "backend": "demo",
+  "real_scientific_computation": false,
+  "api_calls": 0,
+  "initial_connection_errors": [
+    "SdkError: TimeoutError: The operation was aborted due to timeout"
+  ],
+  "cases": [
+    {
+      "model": "mattergen",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture",
+        "report_and_evidence_generated": true
+      }
+    },
+    {
+      "model": "diffcsp",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture",
+        "report_and_evidence_generated": true
+      }
+    }
+  ],
+  "version_metrics_readable": true,
+  "workflow_comparison_returned": true,
+  "conflict_blocked": true,
+  "batch_upper_bound": {
+    "smaller_batch": "ready",
+    "oversized_batch": "blocked"
+  },
+  "reviewable_repair": {
+    "auto_apply": false,
+    "checkpoint": "dft_band_gap",
+    "requirement_changes": 1,
+    "sampling_cap": 4
+  },
+  "metric_selection_workflow": {
+    "source": "explicit_synthetic_metrics_no_property_calculation",
+    "default_status": "unknown",
+    "selected_1_1_status": "pass",
+    "selected_1_6_status": "fail",
+    "candidate_counts": [
+      1,
+      1,
+      1
+    ],
+    "reports_preserved": true,
+    "report_states": [
+      "unknown",
+      "pass",
+      "fail"
+    ]
+  },
+  "default_count_matches_capability": true,
+  "passed": true,
+  "isolated_bundle_install": {
+    "passed": true,
+    "initial_sandbox_failure": "pnpm symlink EPERM",
+    "retry_with_required_filesystem_permission": true
+  },
+  "limitations": [
+    "Actual desktop registered nine production MCP tools; every model path used fixed demonstration data.",
+    "The explicit metric workflow used injected synthetic values 1.1 and 1.6; no property evaluator was run.",
+    "Initial MCP connection timeout was retained; the subsequent ready-plugin workflow passed.",
+    "No LLM output, AI effectiveness, user-time improvement or real material property was measured."
+  ]
+}
