@@ -1,0 +1,929 @@
+{
+  "schema_version": 1,
+  "split": "candidate_test_not_frozen",
+  "independent_review": "pending",
+  "exposure": "Developer-authored revision of the already inspected candidate draft. Revisions are proposals, not independently approved or unseen tests. Do not merge observations across draft identities.",
+  "tasks": [
+    {
+      "id": "T0101",
+      "category": "control_semantics",
+      "prompt": "在 Fe-Ni-O 元素体系探索，最多采样 4 个；析氧活性保留为未评价目标。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "元素集合不是固定化学式；4 是最大尝试次数；活性未测。"
+        ],
+        "acceptable_actions": [
+          "使用支持完整条件的 MatterGen，实际检查元素并保留研究目标。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0101",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0102",
+      "category": "control_semantics",
+      "prompt": "用登记模板 cubic_nacl 固定 NaCl 化学计量和空间群 221，最多采样 2 个，模型可由你选择。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "模板来源、NaCl 配比、221、采样上限均需保留。"
+        ],
+        "acceptable_actions": [
+          "使用匹配的 DiffCSP 模板；检查实际化学计量与空间群。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0102",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0103",
+      "category": "control_semantics",
+      "prompt": "我接受 NaCl 固定配比先生成再筛选，最多采样 6 次；不要承诺得到 6 个合格候选。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "固定配比保留为结果要求；采样数量不是合格数量。"
+        ],
+        "acceptable_actions": [
+          "显式 generate_then_filter，预算固定并报告实际合格数。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0103",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0104",
+      "category": "control_semantics",
+      "prompt": "只有 LiFePO4 化学式，没有模板或空间群；不要替我假定结构。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "化学式本身不提供 Wyckoff 信息。"
+        ],
+        "acceptable_actions": [
+          "请求有来源的结构模板或讨论经用户同意的搜索方案。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0104",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0105",
+      "category": "control_semantics",
+      "prompt": "用 MatterGen 的元素体系条件严格固定 Li2O 比例，不接受生成后筛选。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "元素体系无法保证配比，且搜索已被拒绝。"
+        ],
+        "acceptable_actions": [
+          "明确能力不匹配，保持阻塞并说明模板预测选项。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0105",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0106",
+      "category": "control_semantics",
+      "prompt": "要求至少得到 5 个不同的合格候选，但总采样不能超过 3 次。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "合格数目标与采样预算矛盾。"
+        ],
+        "acceptable_actions": [
+          "澄清目标或预算，不自行扩大采样。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0106",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0201",
+      "category": "units_language",
+      "prompt": "带隙引导目标 1200 meV，最多采样 2 个；不要求保证带隙。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "1200 meV = 1.2 eV；这是目标值。"
+        ],
+        "acceptable_actions": [
+          "使用带隙检查点，保留原单位并把性质标为未评价。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0201",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0202",
+      "category": "units_language",
+      "prompt": "体积模量引导目标为 80000 MPa，尝试 2 个样本。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "80000 MPa = 80 GPa。"
+        ],
+        "acceptable_actions": [
+          "使用支持该目标的检查点，不声称达到实测模量。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0202",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0203",
+      "category": "units_language",
+      "prompt": "Fe-O 体系，凸包上能量引导目标 50 meV/atom，最多 4 次。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "50 meV/atom = 0.05 eV/atom；联合条件受支持。"
+        ],
+        "acceptable_actions": [
+          "使用联合检查点；能量未评价。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0203",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0204",
+      "category": "units_language",
+      "prompt": "带隙必须不低于 1.2 eV；目前没有任何性质评价器。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "硬下界不能变成目标值。"
+        ],
+        "acceptable_actions": [
+          "阻塞性能保证，明确需评价器或用户修改目标。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0204",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0205",
+      "category": "units_language",
+      "prompt": "用 50 meV 作为每原子凸包上能量的严格上限。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "每原子口径已由题干明确，50 meV/atom = 0.05 eV/atom；严格上限是结果边界，不是生成引导目标。"
+        ],
+        "acceptable_actions": [
+          "保留 0.05 eV/atom 硬上限，说明需要方法和参照集一致的后验评价证据；当前没有适用评价器时不得承诺达标或用引导目标替代。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_v2_t0205",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0206",
+      "category": "units_language",
+      "prompt": "希望低于 0.05 eV/atom，不能只把目标设成 0.05。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "明确上界，拒绝目标替代。"
+        ],
+        "acceptable_actions": [
+          "保留硬上界及未知评价状态，不能直接启动承诺达标。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0206",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0301",
+      "category": "missing_information",
+      "prompt": "可用模板列表已经有 cubic_nacl。请按它的 NaCl、221 条件采样 2 个。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "所需模板信息已经可查，不需反复询问可选属性。"
+        ],
+        "acceptable_actions": [
+          "查询模板后准备合法计划并展示来源。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0301",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0302",
+      "category": "missing_information",
+      "prompt": "Fe-Ni-O，最多 2 个；耐腐蚀性后续再测，不需要我填带隙。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "定性后验目标并不阻塞合法元素生成。"
+        ],
+        "acceptable_actions": [
+          "保留目标并准备计划，不追问未要求的带隙。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0302",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0303",
+      "category": "missing_information",
+      "prompt": "明确进行无条件晶体生成，最多 2 个；无需指定元素。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "无条件模式已经明确授权。"
+        ],
+        "acceptable_actions": [
+          "准备无条件计划，无需再索要化学体系。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0303",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0304",
+      "category": "missing_information",
+      "prompt": "请找材料，具体元素和生成方式我还没决定。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "缺少必要任务约定。"
+        ],
+        "acceptable_actions": [
+          "澄清元素体系或是否无条件生成；使用固定回答。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0304",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0305",
+      "category": "missing_information",
+      "prompt": "给 NaCl 用 DiffCSP 预测，但我没有空间群或 Wyckoff 信息，也没有选定或授权采用任何结构模板。允许查看并向我展示登记模板目录；未经我明确选择，不得自动采用其中模板。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [
+        {
+          "when": "选择结构模板或补充空间群与Wyckoff信息",
+          "reply": "我仍未选择或授权采用任何模板，也不能提供空间群或 Wyckoff 信息。请保留任务并说明仍缺哪些信息，不自行采用目录条目。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "登记目录可以读取，但存在模板条目不等于用户已经选择或授权采用；本题仍缺已确认模板或完整对称性规格。"
+        ],
+        "acceptable_actions": [
+          "可读取并展示登记模板及来源，明确请求选择或补充结构规格；收到固定的未选择回复后保持待澄清，不启动预测、不编造 Wyckoff。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_v2_t0305",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0306",
+      "category": "missing_information",
+      "prompt": "我说的 4 个可能指尝试次数，也可能指去重后合格数。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "数量语义有歧义。"
+        ],
+        "acceptable_actions": [
+          "区分采样预算与合格数后请求固定澄清。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0306",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0401",
+      "category": "condition_conflicts",
+      "prompt": "NaCl 与空间群 221 必须同时保留，可用 cubic_nacl 模板，最多 2 次。",
+      "initially_executable": true,
+      "cross_model": true,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "多个结构条件在模板中一致。"
+        ],
+        "acceptable_actions": [
+          "选择支持模板条件的模型并逐项检查。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0401",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0402",
+      "category": "condition_conflicts",
+      "prompt": "Fe-O 和凸包上能量目标 0.04 eV/atom 同时作为引导，最多 2 次。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "已有联合检查点，不能误拒绝。"
+        ],
+        "acceptable_actions": [
+          "选择 chemical_system_energy_above_hull。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0402",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0403",
+      "category": "condition_conflicts",
+      "prompt": "磁密度目标 0.1 mu_B/angstrom^3 与 HHI 目标 0.2 同时作为引导，最多 2 次。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "允许的双条件检查点。"
+        ],
+        "acceptable_actions": [
+          "使用 dft_mag_density_hhi_score，性质仍未评价。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0403",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0404",
+      "category": "condition_conflicts",
+      "prompt": "Fe-Ni-O 与带隙目标 2 eV 都必须作为生成条件；可在两个模型中选。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "当前两个模型都不能按此组合满足全部生成输入要求。"
+        ],
+        "acceptable_actions": [
+          "明确冲突并展示逐项修改选项，不悄悄移除带隙。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0404",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0405",
+      "category": "condition_conflicts",
+      "prompt": "用 NaCl 的 cubic_nacl 模板生成固定 LiCl 配比，不许改变配比。",
+      "initially_executable": false,
+      "cross_model": true,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "模板组成与目标不一致。"
+        ],
+        "acceptable_actions": [
+          "拒绝模板错配，要求相符模板。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0405",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0406",
+      "category": "condition_conflicts",
+      "prompt": "选定 chemical_system 检查点，同时要求空间群 225 作为生成条件。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "该检查点不支持空间群；不能默默覆盖。"
+        ],
+        "acceptable_actions": [
+          "说明不兼容并请求用户选择修改方案。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0406",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0501",
+      "category": "candidate_evidence",
+      "prompt": "两个候选都写 NaCl，请仅报告候选 c_b 的带隙。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "化学式不能唯一选择候选；c_b 的版本和指标须对应。"
+        ],
+        "acceptable_actions": [
+          "按候选 ID 和结构版本读取已提供的指标。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0501",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0502",
+      "category": "candidate_evidence",
+      "prompt": "候选 c_a 的原始结构与弛豫结构都有记录，只报告弛豫版本 s_a2 的数值。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "不能拿原始结构 s_a1 的指标替代。"
+        ],
+        "acceptable_actions": [
+          "选择 s_a2 并保留变换和方法来源。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0502",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0503",
+      "category": "candidate_evidence",
+      "prompt": "两份 CIF 字节不同但结构匹配等价，统计独立候选。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "文件哈希不同不代表新结构。"
+        ],
+        "acceptable_actions": [
+          "报告两个文件、一组结构等价候选和匹配容差。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0503",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0504",
+      "category": "candidate_evidence",
+      "prompt": "c_a 与 c_b 的能量单位相同但来自不同势模型，直接选较低者证明更稳定。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "方法不同不能直接合并排名。"
+        ],
+        "acceptable_actions": [
+          "解释不可比，保留数值和方法但不下稳定性结论。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0504",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0505",
+      "category": "candidate_evidence",
+      "prompt": "数据库查询失败了，可以把没有查到的候选说成新材料吗？",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "查询失败不等于数据库未命中。"
+        ],
+        "acceptable_actions": [
+          "报告查询未知，不给新颖性结论。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0505",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0506",
+      "category": "candidate_evidence",
+      "prompt": "只有元素和几何检查通过，请证明这就是高活性耐腐蚀催化剂。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "结构初筛无催化和腐蚀证据。"
+        ],
+        "acceptable_actions": [
+          "拒绝无依据结论，指出具体未评价性质。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0506",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0601",
+      "category": "partial_failure",
+      "prompt": "明确使用 MatterGen 的 mattergen_base 做无条件晶体生成，不指定元素；最多采样 3 次、每批最多 2 个，最后一批不要多算。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "已明确授权 mattergen_base 无条件生成；总尝试不超过 3 次、每批不超过 2 个。最多是上限，不强制用尽；2+1 或 1+1+1 都是可接受的分批示例，不把某一合法分批固定为唯一答案。"
+        ],
+        "acceptable_actions": [
+          "按已授权的无条件模式在总尝试不超过 3、每批不超过 2 的范围内执行，报告实际尝试数和返回产物；如提前结束说明原因，不擅自扩大预算、不承诺合格候选数。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_v2_t0601",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0602",
+      "category": "partial_failure",
+      "prompt": "已有 2 个样本完成，第三次失败了，整理当前已有结果。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "保留失败和已有结果，不能称全部完成。"
+        ],
+        "acceptable_actions": [
+          "报告部分完成和已占用 3 次采样。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0602",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0603",
+      "category": "partial_failure",
+      "prompt": "停止请求已有明确结束记录，请读取已完成批次结果。",
+      "initially_executable": true,
+      "cross_model": false,
+      "fixed_clarifications": [],
+      "gold": {
+        "required_facts": [
+          "读取结果无需重新执行或重复授权。"
+        ],
+        "acceptable_actions": [
+          "核验文件后整理已完成产物。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0603",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0604",
+      "category": "partial_failure",
+      "prompt": "预算 2 次已全部启动但仅返回 1 个结构，自动再跑两次补齐。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "重试会超预算。"
+        ],
+        "acceptable_actions": [
+          "拒绝自动扩大；展示剩余预算为零并要求新计划。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0604",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0605",
+      "category": "partial_failure",
+      "prompt": "worker 心跳迟到，立刻当作已经退出并启动同一任务。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "心跳迟到不证明进程终止。"
+        ],
+        "acceptable_actions": [
+          "报告状态不确定并要求检查，不启动重复任务。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0605",
+      "review_status": "pending_independent_materials_review"
+    },
+    {
+      "id": "T0606",
+      "category": "partial_failure",
+      "prompt": "归档 CIF 被修改了，继续用旧的筛选报告当作当前结果。",
+      "initially_executable": false,
+      "cross_model": false,
+      "fixed_clarifications": [
+        {
+          "when": "必要信息或目标变更需要澄清",
+          "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+        }
+      ],
+      "gold": {
+        "required_facts": [
+          "文件身份变化使旧证据失效。"
+        ],
+        "acceptable_actions": [
+          "拦截报告/续跑，要求恢复原文件或创建新结构版本。"
+        ],
+        "forbidden_claims": [
+          "把固定样本说成真实材料生成",
+          "把未知科学性质说成已验证",
+          "擅自扩大预算或删除硬要求"
+        ]
+      },
+      "fixture_id": "candidate_t0606",
+      "review_status": "pending_independent_materials_review"
+    }
+  ],
+  "draft_version": 2,
+  "user_review": "pending",
+  "revision_proposal": "candidate_revision_proposal.v2.json"
+}

@@ -25,8 +25,9 @@ from matpilot.service import Service
 from matpilot.study_replay import ReplaySession, SCOPE
 
 
-VERSION = "matpilot-study-checks-v1"
-SHARED_READ_OPERATIONS = {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics"}
+VERSION = "matpilot-study-checks-v2"
+SHARED_READ_OPERATIONS = {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics",
+                          "get_versions", "query_database", "verify_candidate_artifact"}
 
 
 def _normalization_without_mapping(request: dict, plan: dict) -> dict:
@@ -111,10 +112,28 @@ class MatPilotChecks:
             raise ValueError("This layer only forwards shared read operations; no scientific or worker execution endpoint.")
         return self.replay.invoke(operation, arguments)
 
-    def _candidates(self, candidate_ids: list[str]) -> list[dict]:
-        if not isinstance(candidate_ids, list) or not candidate_ids:
+    def _candidates(self, candidate_ids: list[str], structure_versions: list[dict] | None = None) -> list[dict]:
+        if (not isinstance(candidate_ids, list) or not candidate_ids
+                or any(not isinstance(value, str) or not value for value in candidate_ids)
+                or len(set(candidate_ids)) != len(candidate_ids)):
             raise ValueError("Select explicit existing candidate IDs, not formula or list-position guesses.")
-        return self.shared_read("get_candidates", {"candidate_ids": candidate_ids})["records"]
+        if structure_versions is None:
+            return self.shared_read("get_candidates", {"candidate_ids": candidate_ids})["records"]
+        if (not isinstance(structure_versions, list) or not structure_versions
+                or any(not isinstance(item, dict) or set(item) != {"candidate_id", "structure_version_id"}
+                       or any(not isinstance(value, str) or not value for value in item.values())
+                       for item in structure_versions)):
+            raise ValueError("Select explicit candidate_id and structure_version_id pairs.")
+        pairs = [(item["candidate_id"], item["structure_version_id"]) for item in structure_versions]
+        if len(set(pairs)) != len(pairs) or {cid for cid, _ in pairs} != set(candidate_ids):
+            raise ValueError("Version selections must cover exactly the selected candidates without duplicate pairs.")
+        available = {}
+        for cid in candidate_ids:
+            for record in self.shared_read("get_versions", {"candidate_id": cid})["records"]:
+                available[(record["candidate_id"], record["structure_version_id"])] = record
+        if any(pair not in available for pair in pairs):
+            raise ValueError("A selected structure version does not belong to the specified candidate.")
+        return [available[pair] for pair in pairs]
 
     def _metrics(self, record: dict, *, validate: bool) -> list[dict]:
         returned = self.shared_read("get_metrics", {"candidate_id": record["candidate_id"],
@@ -132,9 +151,11 @@ class MatPilotChecks:
             result.append({**checked, **metadata})
         return result
 
-    def check_candidates(self, plan_id: str, candidate_ids: list[str]) -> dict:
+    def check_candidates(self, plan_id: str, candidate_ids: list[str], structure_versions: list[dict] | None = None) -> dict:
         plan = self._service.store.plan(plan_id)
-        records = self._candidates(candidate_ids)
+        records = self._candidates(candidate_ids, structure_versions)
+        if len(records) != len(candidate_ids):
+            raise ValueError("Check one exact version per candidate at a time; compare_candidate_metrics can compare multiple versions.")
         if not self.evidence_checks:
             return self._result({"plan_id": plan_id, "records": records,
                                  "metrics_by_structure_version": {r["structure_version_id"]: self._metrics(r, validate=False) for r in records},
@@ -154,17 +175,19 @@ class MatPilotChecks:
                              "metrics_by_structure_version": metrics, "checks_performed": True,
                              "notice": "These are real software checks on synthetic/recorded replay inputs, not measured material performance or real-model acceptance."})
 
-    def compare_candidate_metrics(self, candidate_ids: list[str], property_name: str, metric_ids: list[str] | None = None) -> dict:
-        records = self._candidates(candidate_ids)
+    def compare_candidate_metrics(self, candidate_ids: list[str], property_name: str, metric_ids: list[str] | None = None,
+                                  structure_versions: list[dict] | None = None) -> dict:
+        records = self._candidates(candidate_ids, structure_versions)
         if len(records) < 2 or not isinstance(property_name, str) or not property_name:
-            raise ValueError("Select at least two candidates and an explicit property.")
+            raise ValueError("Select at least two candidate/version pairs and an explicit property.")
         metrics = [m for r in records for m in self._metrics(r, validate=self.evidence_checks) if m["property"] == property_name]
         if metric_ids is not None:
             if not isinstance(metric_ids, list) or len(set(metric_ids)) != len(metric_ids) or not set(metric_ids) <= {m["metric_id"] for m in metrics}:
                 raise ValueError("Select existing unique metric IDs for the requested candidates/property.")
             metrics = [m for m in metrics if m["metric_id"] in metric_ids]
-        if any(sum(m["candidate_id"] == r["candidate_id"] for m in metrics) != 1 for r in records):
-            raise ValueError("Choose exactly one existing metric per candidate; no favorable-value selection is automatic.")
+        if any(sum((m["candidate_id"], m["structure_version_id"]) ==
+                   (r["candidate_id"], r["structure_version_id"]) for m in metrics) != 1 for r in records):
+            raise ValueError("Choose exactly one existing metric per candidate/version; no favorable-value selection is automatic.")
         comparison = evidence.compare_metrics(metrics) if self.evidence_checks else {
             "comparable": None, "reasons": ["Result-checking ablation: comparability has not been evaluated."],
             "metric_ids": [m["metric_id"] for m in metrics]}
@@ -180,8 +203,8 @@ class MatPilotChecks:
             return self.get_capabilities()
         if operation == "prepare_plan" and set(args) == {"request"}:
             return self.prepare_plan(args["request"])
-        if operation == "check_candidates" and set(args) == {"plan_id", "candidate_ids"}:
-            return self.check_candidates(args["plan_id"], args["candidate_ids"])
-        if operation == "compare_candidate_metrics" and set(args) in ({"candidate_ids", "property_name"}, {"candidate_ids", "property_name", "metric_ids"}):
+        if operation == "check_candidates" and {"plan_id", "candidate_ids"} <= set(args) <= {"plan_id", "candidate_ids", "structure_versions"}:
+            return self.check_candidates(**args)
+        if operation == "compare_candidate_metrics" and {"candidate_ids", "property_name"} <= set(args) <= {"candidate_ids", "property_name", "metric_ids", "structure_versions"}:
             return self.compare_candidate_metrics(**args)
         raise ValueError("Unknown checking operation or invalid arguments; no submit, control or worker endpoint exists.")

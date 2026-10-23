@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "version": "0.2.0.dev7",
+  "host": "DeepSeek Harness desktop",
+  "tool_count": 9,
+  "models": [
+    "mattergen",
+    "diffcsp"
+  ],
+  "backend": "demo",
+  "real_scientific_computation": false,
+  "api_calls": 0,
+  "initial_connection_errors": [
+    "SdkError: TimeoutError: The operation was aborted due to timeout"
+  ],
+  "cases": [
+    {
+      "model": "mattergen",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture",
+        "report_and_evidence_generated": true
+      }
+    },
+    {
+      "model": "diffcsp",
+      "status": "completed",
+      "candidate_count": 2,
+      "valid_files": 2,
+      "unique_valid": 1,
+      "provenance": "demonstration_fixture",
+      "report": {
+        "execution_status": "completed",
+        "scientific_status": "unvalidated_candidates",
+        "provenance": "demonstration_fixture",
+        "report_and_evidence_generated": true
+      }
+    }
+  ],
+  "version_metrics_readable": true,
+  "workflow_comparison_returned": true,
+  "conflict_blocked": true,
+  "batch_upper_bound": {
+    "smaller_batch": "ready",
+    "oversized_batch": "blocked"
+  },
+  "reviewable_repair": {
+    "auto_apply": false,
+    "checkpoint": "dft_band_gap",
+    "requirement_changes": 1,
+    "sampling_cap": 4
+  },
+  "passed": true,
+  "limitations": [
+    "The actual desktop registered nine production MCP tools; all model paths used fixed demonstration data.",
+    "Metrics-by-version was checked for generated demo versions with empty metric lists; synthetic populated metric selection is separately tested in version-metric-tools-cpu-comparison.json.",
+    "An initial MCP connection timeout is retained; the subsequent ready-plugin workflow passed.",
+    "No LLM output, API effectiveness, user-time improvement or real material property was measured."
+  ]
+}

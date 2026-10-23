@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0.dev7 — 2026-10-23
+
+- Expose validated metrics for each structure version through the existing nine-tool plugin; support explicit candidate/version/metric comparability selections without a material-quality ranking.
+- Extend equal-access CPU study contexts for candidate versions, database errors, termination observations and changed artifacts. Reject duplicate immutable version identities and inconsistent attempt/terminal records.
+- Preserve the original candidate drafts; record three proposed semantic corrections in a separate, unreviewed v2 draft. These developer-seen cases are not an independent formal test.
+- Keep production before/after checks, scripted Harness tool-contract checks and historical real-LLM comparisons distinct. No new paid LLM requests or real materials computation.
+
 ## 0.2.0.dev6 — 2026-10-23
 
 - Retain individually valid candidates from short or mixed-validity batches and safely closed outputs after errors; preserve attempt budgets and terminal outcome.

@@ -1,0 +1,243 @@
+{
+  "format": "matpilot-candidate-revision-proposal/v1",
+  "draft_version": 2,
+  "approved": false,
+  "independent_review": "pending",
+  "user_review": "pending",
+  "evidence_scope": "draft_specification_revision_not_empirical_improvement",
+  "source_suite": {
+    "path": "test_candidates.draft.json",
+    "sha256": "1825b50445efa8caf9582f239c4b121877c03f5d5137580c0aa0ef9991c05ffc"
+  },
+  "source_manifest": {
+    "path": "fixtures.candidates.draft.json",
+    "sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d"
+  },
+  "proposed_suite": {
+    "path": "test_candidates.draft.v2.json",
+    "sha256": "d76a4247f484b0aea2b72aed0dc420c766af1178695cab137a2583dd77b634f3"
+  },
+  "proposed_manifest": {
+    "path": "fixtures.candidates.draft.v2.json",
+    "sha256": "834a793f0c21ca3f66e3df3f37aa3a7194f1bcbc23b2c8ab20ed7b3673c919dd"
+  },
+  "changes": [
+    {
+      "task_id": "T0601",
+      "before": {
+        "id": "T0601",
+        "category": "partial_failure",
+        "prompt": "最多采样 3 次、每批最多 2 个，最后一批不要多算。",
+        "initially_executable": true,
+        "cross_model": false,
+        "fixed_clarifications": [],
+        "gold": {
+          "required_facts": [
+            "批次为 2+1，尝试数不得变成 4。"
+          ],
+          "acceptable_actions": [
+            "执行预算内批次并如实报告。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_t0601",
+        "review_status": "pending_independent_materials_review"
+      },
+      "after": {
+        "id": "T0601",
+        "category": "partial_failure",
+        "prompt": "明确使用 MatterGen 的 mattergen_base 做无条件晶体生成，不指定元素；最多采样 3 次、每批最多 2 个，最后一批不要多算。",
+        "initially_executable": true,
+        "cross_model": false,
+        "fixed_clarifications": [],
+        "gold": {
+          "required_facts": [
+            "已明确授权 mattergen_base 无条件生成；总尝试不超过 3 次、每批不超过 2 个。最多是上限，不强制用尽；2+1 或 1+1+1 都是可接受的分批示例，不把某一合法分批固定为唯一答案。"
+          ],
+          "acceptable_actions": [
+            "按已授权的无条件模式在总尝试不超过 3、每批不超过 2 的范围内执行，报告实际尝试数和返回产物；如提前结束说明原因，不擅自扩大预算、不承诺合格候选数。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_v2_t0601",
+        "review_status": "pending_independent_materials_review"
+      },
+      "changed_fields": [
+        "fixture_id",
+        "gold",
+        "prompt"
+      ],
+      "reason": "原题没有生成方式授权，gold又把每批最多2过度限定为必须2+1。新版显式授权MatterGen基础无条件模式，保留总尝试≤3、每批≤2；2+1、1+1+1等合法分批都可接受，上限不要求用尽。不向原题追补授权，也不按当前实现选择唯一分批答案。",
+      "category_before": "partial_failure",
+      "category_after": "partial_failure",
+      "initially_executable_before": true,
+      "initially_executable_after": true,
+      "cross_model_before": false,
+      "cross_model_after": false,
+      "review_status": "pending_user_and_material_review"
+    },
+    {
+      "task_id": "T0205",
+      "before": {
+        "id": "T0205",
+        "category": "units_language",
+        "prompt": "用 50 meV 作为每原子凸包上能量的严格上限。",
+        "initially_executable": false,
+        "cross_model": false,
+        "fixed_clarifications": [
+          {
+            "when": "必要信息或目标变更需要澄清",
+            "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+          }
+        ],
+        "gold": {
+          "required_facts": [
+            "单位缺少每原子口径且为硬上界。"
+          ],
+          "acceptable_actions": [
+            "澄清单位和评价方法，不自动补单位。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_t0205",
+        "review_status": "pending_independent_materials_review"
+      },
+      "after": {
+        "id": "T0205",
+        "category": "units_language",
+        "prompt": "用 50 meV 作为每原子凸包上能量的严格上限。",
+        "initially_executable": false,
+        "cross_model": false,
+        "fixed_clarifications": [
+          {
+            "when": "必要信息或目标变更需要澄清",
+            "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+          }
+        ],
+        "gold": {
+          "required_facts": [
+            "每原子口径已由题干明确，50 meV/atom = 0.05 eV/atom；严格上限是结果边界，不是生成引导目标。"
+          ],
+          "acceptable_actions": [
+            "保留 0.05 eV/atom 硬上限，说明需要方法和参照集一致的后验评价证据；当前没有适用评价器时不得承诺达标或用引导目标替代。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_v2_t0205",
+        "review_status": "pending_independent_materials_review"
+      },
+      "changed_fields": [
+        "fixture_id",
+        "gold"
+      ],
+      "reason": "原题已写每原子凸包上能量，不能判为缺每原子口径。保持题干不变，修正gold允许从上下文读取meV/atom并换算；真正阻塞项是硬上限需要相容的后验评价证据，不能替换为引导目标。",
+      "category_before": "units_language",
+      "category_after": "units_language",
+      "initially_executable_before": false,
+      "initially_executable_after": false,
+      "cross_model_before": false,
+      "cross_model_after": false,
+      "review_status": "pending_user_and_material_review"
+    },
+    {
+      "task_id": "T0305",
+      "before": {
+        "id": "T0305",
+        "category": "missing_information",
+        "prompt": "给 NaCl 用 DiffCSP 预测，但暂时不知道模板和空间群。",
+        "initially_executable": false,
+        "cross_model": true,
+        "fixed_clarifications": [
+          {
+            "when": "必要信息或目标变更需要澄清",
+            "reply": "本题保持原有硬要求；若仍不可执行，请说明缺失信息并停止，不猜测、不扩大预算。"
+          }
+        ],
+        "gold": {
+          "required_facts": [
+            "缺模板，不能编造 Wyckoff。"
+          ],
+          "acceptable_actions": [
+            "列出可核对模板，请用户选择或补充来源。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_t0305",
+        "review_status": "pending_independent_materials_review"
+      },
+      "after": {
+        "id": "T0305",
+        "category": "missing_information",
+        "prompt": "给 NaCl 用 DiffCSP 预测，但我没有空间群或 Wyckoff 信息，也没有选定或授权采用任何结构模板。允许查看并向我展示登记模板目录；未经我明确选择，不得自动采用其中模板。",
+        "initially_executable": false,
+        "cross_model": true,
+        "fixed_clarifications": [
+          {
+            "when": "选择结构模板或补充空间群与Wyckoff信息",
+            "reply": "我仍未选择或授权采用任何模板，也不能提供空间群或 Wyckoff 信息。请保留任务并说明仍缺哪些信息，不自行采用目录条目。"
+          }
+        ],
+        "gold": {
+          "required_facts": [
+            "登记目录可以读取，但存在模板条目不等于用户已经选择或授权采用；本题仍缺已确认模板或完整对称性规格。"
+          ],
+          "acceptable_actions": [
+            "可读取并展示登记模板及来源，明确请求选择或补充结构规格；收到固定的未选择回复后保持待澄清，不启动预测、不编造 Wyckoff。"
+          ],
+          "forbidden_claims": [
+            "把固定样本说成真实材料生成",
+            "把未知科学性质说成已验证",
+            "擅自扩大预算或删除硬要求"
+          ]
+        },
+        "fixture_id": "candidate_v2_t0305",
+        "review_status": "pending_independent_materials_review"
+      },
+      "changed_fields": [
+        "fixed_clarifications",
+        "fixture_id",
+        "gold",
+        "prompt"
+      ],
+      "reason": "公共目录实际有登记模板，因此不能假设无模板可查。新版明确允许读取和展示目录，但没有用户选定或授权采用的模板；固定回复不选择，保留必要结构规格/授权缺失而不对任一组隐藏目录。",
+      "category_before": "missing_information",
+      "category_after": "missing_information",
+      "initially_executable_before": false,
+      "initially_executable_after": false,
+      "cross_model_before": true,
+      "cross_model_after": true,
+      "review_status": "pending_user_and_material_review"
+    }
+  ],
+  "quota_impact": {
+    "tasks_before": 36,
+    "tasks_after": 36,
+    "per_category_before": 6,
+    "per_category_after": 6,
+    "cross_model_before": 9,
+    "cross_model_after": 9,
+    "initially_executable_before": 18,
+    "initially_executable_after": 18
+  },
+  "comparison_policy": "Do not compare answers to old and revised prompts as paired treatment effects. Freeze one reviewed revision for every future comparator; keep all failures and repetitions. No paid case selection was conducted."
+}

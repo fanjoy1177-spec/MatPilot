@@ -120,3 +120,14 @@ python -m matpilot.development_report RUNTIME_JSON RUN_DIRECTORY EXISTING_LEDGER
 可重复提供 `--run-id ID` 明确选择子集；默认按运行包全部计划行审计，缺记录仍计为缺失。输出含report.md、metrics.json以及逐次可见题干、答复与工具记录，系统提示、请求上下文与内部流不进入公开副本。程序核验运行包与源码身份、轨迹与事件日志、终态、账本请求及费用的一致性；失败、截断和审计错误均保留。
 
 自动汇总只报告对话终态、工具次数、运行墙钟与API计量；人工主动时间、任务正确率和提速保持未评价。当前用户选择在交付后自行审核，因此这一步不要求老师先做题。
+
+## dev7 新情境的工具层验证
+
+[候选v2修订](candidate_revision_proposal_v2.md)仍待审核。新增 prepare_context_development.py 将5个已公开开发情境复制为独立开发包，smoke_context_runtime.mjs通过实际Harness ToolRuntime注册并执行共享工具；[结果](../artifacts/v07-context-tool-runtime-validation.json)为15/15场、110次调用通过，U/U+/M原始事实和共享工具结构一致。未创建LLM智能体、未加载账户服务，也未执行材料模型。
+
+使用新的输出目录复算，避免覆盖历史包：
+
+    python benchmarks/study_drivers/prepare_context_development.py .work/context-recompute
+    node .work/context-recompute/source/benchmarks/study_drivers/smoke_context_runtime.mjs --pack .work/context-recompute/runtime.json --harness-modules .work/harness/node_modules --output .work/context-recompute-evidence --report artifacts/context-recompute.json
+
+运行前安装固定Harness依赖与研究驱动依赖；harness-modules指向相应node_modules。该检查不能满足harness_replay_end_to_end正式门槛，也不产生AI正确率、人工用时或整体提速数据。原r3/消融的真实LLM结果保持原版本。

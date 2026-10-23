@@ -15,7 +15,7 @@ from .config import Settings
 from .store import Store
 from .worker import launch_worker, verified_records
 from .requirements import audit_requirements, contract as requirement_contract
-from .evidence import screen_records
+from .evidence import compare_metrics, screen_records
 from .capabilities import cards
 from .repairs import repair_options
 
@@ -119,10 +119,14 @@ class Service:
     def get_results(self, job_id: str) -> dict:
         job = self.store.job(job_id)
         records = verified_records(job)
+        versions = {r["candidate_id"]: self.store.structure_versions(r["candidate_id"]) for r in records}
+        metrics = {v["structure_version_id"]: self.store.metrics(v["structure_version_id"])
+                   for candidate_versions in versions.values() for v in candidate_versions}
         return {"job_id": job_id, "status": job["status"], "provenance": job["provenance"],
                 "records": records, "count": len(records),
-                "structure_versions": {r["candidate_id"]: self.store.structure_versions(r["candidate_id"]) for r in records},
-                "scientific_status": "structural_sanity_only; properties not measured"}
+                "structure_versions": versions, "metrics_by_structure_version": metrics,
+                "scientific_status": "unvalidated_candidates; stored metric evidence is version-specific, not proof of material performance"
+                    if any(metrics.values()) else "structural_sanity_only; properties not measured"}
 
     def screen_candidates(self, job_id: str) -> dict:
         result = self.get_results(job_id)
@@ -131,27 +135,66 @@ class Service:
         screened = screen_records(plan, result["records"], metrics)
         target = plan.get("valid_candidates_target")
         return {**result, **screened, "metrics_by_structure_version": metrics,
+                "screening_version_scope": "original_generated_versions_only",
                 "valid_candidates_target": target,
                 "valid_target_met": screened["unique_valid_candidate_count"] >= target if target is not None else None,
                 "method": "CIF parsing, per-requirement three-valued checks, SHA256 identity and tolerance-defined pymatgen structure matching"}
 
-    def compare_runs(self, job_ids: list[str]) -> dict:
-        if not 2 <= len(job_ids) <= 10 or len(set(job_ids)) != len(job_ids):
-            raise ValueError("Provide 2 to 10 distinct job ids.")
+    def compare_runs(self, job_ids: list[str], metric_selections: list[dict] | None = None) -> dict:
+        minimum = 1 if metric_selections is not None else 2
+        if (not isinstance(job_ids, list) or not minimum <= len(job_ids) <= 10
+                or any(not isinstance(x, str) or not x for x in job_ids) or len(set(job_ids)) != len(job_ids)):
+            raise ValueError(f"Provide {minimum} to 10 distinct job ids.")
+        if metric_selections is not None:
+            fields = {"job_id", "candidate_id", "structure_version_id", "metric_id"}
+            if (not isinstance(metric_selections, list) or not 2 <= len(metric_selections) <= 20
+                    or any(not isinstance(x, dict) or set(x) != fields
+                           or any(not isinstance(v, str) or not v for v in x.values()) for x in metric_selections)):
+                raise ValueError("Provide 2 to 20 explicit metric selections, each with job_id, candidate_id, structure_version_id and metric_id.")
+            if len({tuple(x[k] for k in sorted(fields)) for x in metric_selections}) != len(metric_selections):
+                raise ValueError("Metric selections must not contain duplicates.")
         jobs = [self.store.job(x) for x in job_ids]
         plans = [self.store.plan(x["plan_id"]) for x in jobs]
-        if len({x["provenance"] for x in jobs}) != 1:
-            raise ValueError("Demo and real generation must not be compared as model performance.")
+        provenances = {x["provenance"] for x in jobs}
+        if metric_selections is None:
+            if len(provenances) != 1:
+                raise ValueError("Demo and real generation must not be compared as model performance.")
+        elif not (provenances == {"demonstration_fixture"}
+                  or provenances <= {"mattergen_execution", "diffcsp_execution"}):
+            raise ValueError("Explicit metric comparison cannot mix demo and real generation or use unknown provenance.")
         comparable = all((p["model_id"], p["conditions"], p["num_samples"], p["checkpoint"], p.get("template"), p.get("requirements")) ==
                          (plans[0]["model_id"], plans[0]["conditions"], plans[0]["num_samples"], plans[0]["checkpoint"], plans[0].get("template"), plans[0].get("requirements")) for p in plans)
-        rows = []
+        rows, available_versions, available_metrics = [], {}, {}
         for job in jobs:
             results = self.screen_candidates(job["job_id"])
             rows.append({"job_id": job["job_id"], "status": job["status"], "count": results["count"],
                 "basic_checks_pass": sum(x["basic_checks_pass"] for x in results["records"]),
                 "execution_seconds": job.get("execution_seconds")})
-        return {"same_task": comparable, "rows": rows,
+            if metric_selections is not None:
+                # Fetch every version's bound evidence, without changing the
+                # generated-candidate counts or the default screening selection.
+                full_results = self.get_results(job["job_id"])
+                available_versions[job["job_id"]] = {v["structure_version_id"]: v
+                    for versions in full_results["structure_versions"].values() for v in versions}
+                available_metrics[job["job_id"]] = full_results["metrics_by_structure_version"]
+        result = {"same_task": comparable, "rows": rows,
                 "interpretation": "Descriptive workflow comparison only. Different hardware, versions, seeds and checkpoints confound speed and quality comparisons; this is not evidence of AI benefit."}
+        if metric_selections is not None:
+            selected = []
+            for selection in metric_selections:
+                job_id, candidate_id, version_id, metric_id = (selection[k] for k in
+                    ("job_id", "candidate_id", "structure_version_id", "metric_id"))
+                version = available_versions.get(job_id, {}).get(version_id)
+                if version is None or version["candidate_id"] != candidate_id or version["job_id"] != job_id:
+                    raise ValueError("Selected job, candidate and structure version do not match available archived evidence.")
+                matches = [m for m in available_metrics[job_id][version_id] if m["metric_id"] == metric_id
+                           and m["candidate_id"] == candidate_id and m["structure_version_id"] == version_id]
+                if len(matches) != 1:
+                    raise ValueError("Selected metric does not belong to the explicit candidate and structure version.")
+                selected.append(matches[0])
+            result.update(metric_selections=metric_selections, selected_metrics=selected,
+                          metric_comparison=compare_metrics(selected))
+        return result
 
     def build_report(self, job_id: str) -> dict:
         job = self.store.job(job_id)

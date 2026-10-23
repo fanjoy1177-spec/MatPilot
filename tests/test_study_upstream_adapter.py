@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from study_context_fixture import write_context_fixture
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,10 +26,10 @@ class StudyUpstreamAdapterTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def worker(self, group, requests, fixture="development_control_semantics_0", cap=None):
+    def worker(self, group, requests, fixture="development_control_semantics_0", cap=None, manifest=MANIFEST):
         self.counter += 1
         output = self.root / f"run-{self.counter}"
-        command = [sys.executable, str(WORKER), "--group", group, "--manifest", str(MANIFEST),
+        command = [sys.executable, str(WORKER), "--group", group, "--manifest", str(manifest),
                    "--fixture-id", fixture, "--run-id", f"run-{self.counter}", "--output-dir", str(output)]
         if cap is not None:
             command += ["--sampling-cap", str(cap)]
@@ -100,6 +101,18 @@ class StudyUpstreamAdapterTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(Path(mapping["path"]).read_bytes()).hexdigest(), mapping["sha256"])
         self.assertEqual(mapping["provenance"]["kind"], "synthetic")
         self.assertIn("none", mapping["metric_inheritance"])
+
+    def test_upstream_read_boundary_exposes_shared_versions_database_failure_and_integrity(self):
+        manifest = write_context_fixture(self.root, tampered=True)
+        requests = [{"operation": "replay", "arguments": {"operation": name, "arguments": args}} for name, args in [
+            ("get_versions", {"candidate_id": "c_a"}),
+            ("query_database", {"database": "synthetic_materials_db", "query": {"chemical_system": "Na-Cl"}}),
+            ("verify_candidate_artifact", {"candidate_id": "c_b"})]]
+        rows, _ = self.worker("U+", requests, fixture="cpu_context", manifest=manifest)
+        self.assertEqual([r["version_key"] for r in rows[0]["records"]], ["s_a1", "s_a2"])
+        self.assertEqual((rows[1]["status"], rows[1]["novelty"], rows[1]["records"]), ("failed", "unknown", None))
+        self.assertFalse(rows[2]["intact"])
+        self.assertNotEqual(rows[2]["expected_sha256"], rows[2]["observed_sha256"])
 
     def test_actual_patched_partial_result_breaks_without_replenishment(self):
         request = self.generation(chemical_system=None, num_structures=3, batch_size=2)

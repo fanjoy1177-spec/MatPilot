@@ -2,9 +2,19 @@ from __future__ import annotations
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
+from pydantic import BaseModel, ConfigDict, Field
 
 from .config import Settings
 from .service import Service
+
+
+class MetricSelection(BaseModel):
+    """Explicit evidence identity; selection never happens by formula or value."""
+    model_config = ConfigDict(extra="forbid")
+    job_id: str = Field(min_length=1)
+    candidate_id: str = Field(min_length=1)
+    structure_version_id: str = Field(min_length=1)
+    metric_id: str = Field(min_length=1)
 
 
 INSTRUCTIONS = """材策 MatPilot 材料研究插件。先调用 get_capabilities 获取当前模型能力，再把用户需求转换为 prepare_plan 的 request。
@@ -16,6 +26,7 @@ conditions 使用能力表中的字段，数字默认采用其标准单位，也
 完整保留用户约束，raw_request 应完整复制用户原文。不能擅自删除或弱化冲突条件；定性要求不得编造数值；上下界和区间不能假装成目标值。只有真正缺失、冲突或模糊的必需信息才放入 clarifications；不要为用户未提出的可选参数追加澄清。催化、耐腐蚀、合成等研究目标放入 review_targets 并解释后续验证需求，除非用户要求性能保证，否则这类后验目标不阻塞合法的生成方案。
 prepare_plan 返回 blocked 或 needs_clarification 时不得提交。展示 ready 方案的条件、后验目标、数量和当前 demo/native/wsl 后端，取得用户对该方案的执行授权后，将相同 plan_id 作为 approved_plan_id 提交。重试同次提交必须复用 idempotency_key。程序记录计划匹配，不会证明自然语言授权真实发生，宿主仍需执行工具权限策略。
 submit_job 立即返回任务号；长任务使用 get_job 查询。只能查询提交实际返回的 job_id，plan_id 不是 job_id，提交失败时不得编造任务号。失败先读错误，禁止自动扩大预算或放宽材料条件。只在明确终止状态下 resume。
+get_results 返回 structure_versions 与 metrics_by_structure_version；指标只属于其明确的 candidate_id 和 structure_version_id，不得沿用父版本指标。需要比较性质证据时，compare_runs 可提供 metric_selections，每项包含 job_id、candidate_id、structure_version_id、metric_id，允许同一任务内显式选择多个版本。不得按化学式替代身份、自动选择最有利指标或对方法不可比的数值作材料优劣排名。
 示例模式是固定 NaCl 样本，不能说成 MatterGen 或 AI 生成。执行完成不是材料性能验证。报告只使用工具返回证据；不得宣称已有催化性能、耐腐蚀性、实验验证、AI 准确率提升或流程提速百分比。"""
 
 
@@ -52,18 +63,19 @@ def make_server(settings: Settings) -> FastMCP:
 
     @app.tool(annotations=read)
     def get_results(job_id: str) -> dict:
-        """取得候选结构、文件校验值及来源，不将候选结构解释为已验证材料。"""
+        """取得原始候选、每个结构版本及经工件校验的 metrics_by_structure_version；无指标的版本返回空数组，不继承父版本性质。"""
         return service.get_results(job_id)
 
     @app.tool(annotations=read)
     def screen_candidates(job_id: str) -> dict:
-        """执行 CIF 解析、元素组成和基础几何检查及文件去重，不计算材料性能。"""
+        """仅对原始生成版本执行 CIF 解析、逐项要求、几何及去重检查；变换版本指标通过 get_results 读取，不计为新增生成候选，不计算材料性能。"""
         return service.screen_candidates(job_id)
 
     @app.tool(annotations=read)
-    def compare_runs(job_ids: list[str]) -> dict:
-        """描述任务完成数量与耗时；区分任务可比性，禁止混合示例与真实生成。"""
-        return service.compare_runs(job_ids)
+    def compare_runs(job_ids: list[str], metric_selections: list[MetricSelection] | None = None) -> dict:
+        """默认比较2到10个任务的数量和耗时。可选2到20个明确指标身份，核验方法可比性，此时允许单任务多版本或已知真实模型间采用同一评价协议；不自动选指标、不作材料优劣或模型性能排名，禁止混合示例与真实生成。"""
+        return service.compare_runs(job_ids, [selection.model_dump() for selection in metric_selections]
+                                    if metric_selections is not None else None)
 
     @app.tool(annotations=write)
     def build_report(job_id: str) -> dict:

@@ -1,0 +1,894 @@
+{
+  "format": "matpilot-candidate-fixture-coverage/v1",
+  "scope": "synthetic_cpu_context_only_not_ai_effectiveness_or_formal_review",
+  "suite_sha256": "1825b50445efa8caf9582f239c4b121877c03f5d5137580c0aa0ef9991c05ffc",
+  "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+  "tasks": 36,
+  "resolved_fixtures": 36,
+  "cpu_passed": 36,
+  "cpu_failed": 0,
+  "generation_contexts": 12,
+  "unresolved_route_tasks": [
+    "T0601"
+  ],
+  "pending_semantic_adjudications": [
+    "T0205",
+    "T0305",
+    "T0601"
+  ],
+  "api_requests": 0,
+  "real_model_runs": 0,
+  "formal_ready": false,
+  "rows": [
+    {
+      "task_id": "T0101",
+      "fixture_id": "candidate_t0101",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "MatterGen chemical_system=Fe-Ni-O；采样上限4；析氧活性无性质指标。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 4,
+        "remaining_budget": 0,
+        "candidate_count": 4,
+        "element_matches": 3
+      },
+      "trace_receipt": {
+        "events": 4,
+        "head_sha256": "d87d77fed8717edfcb395a55775f72be507d1bf7bef66616859be2058dd90f66",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0102",
+      "fixture_id": "candidate_t0102",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "formula_matches": 2,
+        "space_groups": [
+          221,
+          221
+        ]
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "f230dddb238f6dccabf38a98f68d888665816ea380d0f3d89bc7c00254a3a848",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0103",
+      "fixture_id": "candidate_t0103",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "Na-Cl元素生成后按NaCl配比筛选；6次中包含配比不符样本，不能承诺6个合格候选。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 6,
+        "remaining_budget": 0,
+        "candidate_count": 6,
+        "formula_matches": 4
+      },
+      "trace_receipt": {
+        "events": 5,
+        "head_sha256": "bdc8a6faef17e713eac378ae86494cc3404f52698b869a305714dc938a86f587",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0104",
+      "fixture_id": "candidate_t0104",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "897791c848d0f9362edb9e65472c2258b427b2f9a88d8827d8ca31359653843a",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0105",
+      "fixture_id": "candidate_t0105",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "e67e2dc5318de445d14c4ba1bbc412c9409bf2ea7ff2c1f3cfb0f505d7e96a96",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0106",
+      "fixture_id": "candidate_t0106",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 3,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "65271ca9ee3d1a4b67a9e49526ddbf181c8304e432dcfd991bbf2e52db05a40d",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0201",
+      "fixture_id": "candidate_t0201",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "1200 meV归一到1.2 eV引导值；2次；无带隙结果指标。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "447236902d8686aa96d964190a865e1eb7257c990592489d7b74bfe90e1321e3",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0202",
+      "fixture_id": "candidate_t0202",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "80000 MPa归一到80 GPa，使用ml_bulk_modulus；2次。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "be448da6c5f92d6bbe409aa482162ac75a213558b207ae019ca73a7542c26a84",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0203",
+      "fixture_id": "candidate_t0203",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-O与凸包上能量0.05 eV/atom联合引导；最多4次。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 4,
+        "remaining_budget": 0,
+        "candidate_count": 4,
+        "element_matches": 4
+      },
+      "trace_receipt": {
+        "events": 4,
+        "head_sha256": "1375c699768ae7bff30db7ca69f7f183f6ef21d26e9b373548e5d86f9531037b",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0204",
+      "fixture_id": "candidate_t0204",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "a5060d6f3a38c659c0f6e4c31908c0c0bb62130849130cfa3e56da9ff8d186a6",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0205",
+      "fixture_id": "candidate_t0205",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [
+        {
+          "code": "unit_wording_gold_conflict",
+          "severity": "requires_adjudication",
+          "detail": "题干已明确“每原子凸包上能量”，gold却写“单位缺少每原子口径”；硬上界仍需评价器。保留原文，待审核。"
+        }
+      ],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "fddf664a690b24844bce40f8c3ee786eb067fd897390611b5c9608a6d12ea5b0",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0206",
+      "fixture_id": "candidate_t0206",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "caf88d415ee83f865083491066aef5057c5e5acf3444958be10b62728de06c4b",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0301",
+      "fixture_id": "candidate_t0301",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "formula_matches": 2,
+        "space_groups": [
+          221,
+          221
+        ]
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "6069bfd1cba94302479e83b9d78c53cbe1e5c83f109b916bd3e2b0b26ec140c2",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0302",
+      "fixture_id": "candidate_t0302",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-Ni-O元素条件；2次；耐腐蚀性未评价，不新增带隙条件。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "element_matches": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "2bab2e3bc6be9f0b4c2ce46110bdab7b26d376fa1f7e0b904e1dec7b68bda617",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0303",
+      "fixture_id": "candidate_t0303",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "已明确无条件生成；mattergen_base，空条件，2次。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "bf3672afd6d59a6a328a549665cf55c9fb963a99cf83f9610af0922d06633f42",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0304",
+      "fixture_id": "candidate_t0304",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "c200484a7a7346fe3e846c3e770f2e8221c07788c813ca35b6cb0bf5a42d20ff",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0305",
+      "fixture_id": "candidate_t0305",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [
+        {
+          "code": "registered_template_selection_policy",
+          "severity": "requires_adjudication",
+          "detail": "全局已登记cubic_nacl，而题干称不知道模板；是否允许主动采用登记模板还是必须询问，需要在正式评分前固定。保留当前blocked标注。"
+        }
+      ],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "df8014e681590f35f54f534677edb2ea558fdb17310db1f1ce414642275ae05c",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0306",
+      "fixture_id": "candidate_t0306",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "8b43b968a7435dd2f168b98b3f9cba1a2c24644fdf5329bf71fb4359efb3a458",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0401",
+      "fixture_id": "candidate_t0401",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "formula_matches": 2,
+        "space_groups": [
+          221,
+          221
+        ]
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "58f8ac6f3148f85481f30aad9f0edf6e379684bde05f8f1a4b9e698e2fec0dd7",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0402",
+      "fixture_id": "candidate_t0402",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-O与凸包上能量0.04 eV/atom联合引导；最多2次。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "element_matches": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "e163d59cbc47ba83938cc479bb054108718f95c047502f45e314642d0fc8601a",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0403",
+      "fixture_id": "candidate_t0403",
+      "initially_executable_annotation": true,
+      "context_kind": "generation",
+      "inputs_and_state": "磁密度0.1 mu_B/angstrom^3与HHI 0.2联合引导；2次。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "2a1f0a180ad324e60d5c3d7a94643ebbc57cc23cfce63c50dc263de61c04281a",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0404",
+      "fixture_id": "candidate_t0404",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "8d74c083c2c108de5e769396383e706fc1a4ded7422ffd915ee88f25fdc222f1",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0405",
+      "fixture_id": "candidate_t0405",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "d43c14cec76811f6910b74a852f7b8a551f8460d121c75ce991b89a8fa13907e",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0406",
+      "fixture_id": "candidate_t0406",
+      "initially_executable_annotation": false,
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "1cfa4ecc777da86a7f9681767e6cfe926663e8e7de311db48f6c6bacefd7e883",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0501",
+      "fixture_id": "candidate_t0501",
+      "initially_executable_annotation": true,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "两个NaCl候选的独立ID/版本及不同带隙指标；只选c_b。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "selected_metric_value": 2.2
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "cb187a1b8084316f6fd1f46215f7c09187047c0c8fab0b6b30585ea4736b4f1f",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0502",
+      "fixture_id": "candidate_t0502",
+      "initially_executable_annotation": true,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "c_a的s_a1/s_a2版本别名映射、父版本和合成弛豫变换，指标分别1.1/1.6 eV。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 1,
+        "version_keys": [
+          "s_a1",
+          "s_a2"
+        ],
+        "selected_metric_value": 1.6
+      },
+      "trace_receipt": {
+        "events": 4,
+        "head_sha256": "d758275210d19f706dfa2d87a646d63d9f36383a82341f0ba518fc3a7cc26052",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0503",
+      "fixture_id": "candidate_t0503",
+      "initially_executable_annotation": true,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "相同结构经整体平移产生不同CIF字节；真实StructureMatcher应识别一组。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "equivalent_structure_groups": 1
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "e8fc6107b15c388247a8521b3a1c6d48dd0fe24ff07980ad8dfba25ad0c25f22",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0504",
+      "fixture_id": "candidate_t0504",
+      "initially_executable_annotation": false,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "同单位但不同势模型的两份能量证据；不提供可比稳定性排序。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 2,
+        "methods_comparable": false
+      },
+      "trace_receipt": {
+        "events": 4,
+        "head_sha256": "6e0157215be779c4d3ad90815d6a5e87e8be9e5b960d004e91814fee57ade15a",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0505",
+      "fixture_id": "candidate_t0505",
+      "initially_executable_annotation": false,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "有来源的合成数据库查询超时记录；novelty保持unknown，查询结果null。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 1,
+        "database_novelty": "unknown"
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "9efd3b18e92b4026f6a3f9a9b06c594d71b9fc72da25b133808b07181c374991",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0506",
+      "fixture_id": "candidate_t0506",
+      "initially_executable_annotation": false,
+      "context_kind": "candidate_read",
+      "inputs_and_state": "可解析、元素和几何初筛通过的Fe-Ni-O样本；无催化/腐蚀性质指标。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 0,
+        "candidate_count": 1,
+        "scientific_property_metrics": 0
+      },
+      "trace_receipt": {
+        "events": 3,
+        "head_sha256": "59878d46beccb73b262230d22944c67dfcb37bc84f190eefa87339fa051bd1f2",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0601",
+      "fixture_id": "candidate_t0601",
+      "initially_executable_annotation": true,
+      "context_kind": "ambiguous_request",
+      "inputs_and_state": "仅能提供3次硬预算情境；题干缺生成模式/元素/模型，不能自行添加无条件授权。",
+      "review_notes": [
+        {
+          "code": "missing_generation_contract",
+          "severity": "blocks_route_coverage",
+          "detail": "initially_executable=true，但题干只给总次数与批大小，没有生成模式、元素、模型或既有计划；固定澄清为空。保留原文，不添加猜测路线。"
+        }
+      ],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 0,
+        "remaining_budget": 3,
+        "candidate_count": 0
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "55fc662ab1be480accc0e3c0298368b6db8352ed8787545d000d6dead60dc349",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0602",
+      "fixture_id": "candidate_t0602",
+      "initially_executable_annotation": true,
+      "context_kind": "execution_read",
+      "inputs_and_state": "3次已有尝试：2个已归档结构+第3次失败记录；state=partial。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 3,
+        "remaining_budget": 0,
+        "execution": {
+          "state": "partial",
+          "heartbeat_late": false,
+          "termination_confirmed": true,
+          "resume_allowed": false
+        },
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "998764a623152fc8ce3c8d2a71c55ab0a738a08cd90a05cd65ede4eadb1013aa",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0603",
+      "fixture_id": "candidate_t0603",
+      "initially_executable_annotation": true,
+      "context_kind": "execution_read",
+      "inputs_and_state": "2个已归档结构；停止已确认且来源记录为stop_requested，不重新生成。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 2,
+        "execution": {
+          "state": "stopped",
+          "heartbeat_late": false,
+          "termination_confirmed": true,
+          "resume_allowed": true
+        },
+        "candidate_count": 2
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "e6f602378324cd4862012e2ed94ea134194cf1b2cb97661be904d505118f5c4f",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0604",
+      "fixture_id": "candidate_t0604",
+      "initially_executable_annotation": false,
+      "context_kind": "execution_read",
+      "inputs_and_state": "2次预算均已使用，1产物1失败；remaining=0，不重置预算。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 2,
+        "remaining_budget": 0,
+        "execution": {
+          "state": "partial",
+          "heartbeat_late": false,
+          "termination_confirmed": true,
+          "resume_allowed": false
+        },
+        "candidate_count": 1
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "a9f3f8318eb19c8fa8ff548dbc9e5c45d9bb35beee289d211a0c8f206fddd1df",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0605",
+      "fixture_id": "candidate_t0605",
+      "initially_executable_annotation": false,
+      "context_kind": "execution_read",
+      "inputs_and_state": "心跳迟到但termination未确认，state=running；不得认定退出或重复启动。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 1,
+        "remaining_budget": 2,
+        "execution": {
+          "state": "running",
+          "heartbeat_late": true,
+          "termination_confirmed": false,
+          "resume_allowed": false
+        },
+        "candidate_count": 1
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "b3eb142a214cee7b6dc9e4d8f186dc59aa5faee435ad9cabd0695023461e5f73",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    },
+    {
+      "task_id": "T0606",
+      "fixture_id": "candidate_t0606",
+      "initially_executable_annotation": false,
+      "context_kind": "execution_read",
+      "inputs_and_state": "原CIF与附注释后的观察字节，实际哈希不符；旧指标/报告不能当成当前证据。",
+      "review_notes": [],
+      "cpu_status": "passed",
+      "task_correctness": null,
+      "formal_approval": false,
+      "observations": {
+        "attempts_used": 1,
+        "remaining_budget": 1,
+        "execution": {
+          "state": "completed",
+          "heartbeat_late": false,
+          "termination_confirmed": true,
+          "resume_allowed": false
+        },
+        "artifact_integrity": false
+      },
+      "trace_receipt": {
+        "events": 2,
+        "head_sha256": "3edbace0c90c2964ed7e44faf0547c4b4812d4730130f6da4f6b1d09e8f6e321",
+        "manifest_sha256": "a540c0647bf53ac6d541f154f1603ef27404dcbd2842383c4aa02d68f27be50d",
+        "limitation": "Export and freeze this receipt externally to detect tail deletion or complete-chain replacement."
+      }
+    }
+  ]
+}

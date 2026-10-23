@@ -1,0 +1,3739 @@
+{
+  "schema_version": 1,
+  "purpose": "development",
+  "author": "MatPilot implementation candidate fixture draft",
+  "evidence_scope": "workflow_engineering_only_not_material_property_evidence",
+  "review_status": "pending_independent_materials_review",
+  "source_task_content_sha256": "6a0f2b419d7dfb2a56205c0500b45bd61a14ef4ae934de7b5425d26b448454fd",
+  "notes": [
+    "Synthetic CPU context for 36 developer-seen candidate tasks; not an independently reviewed formal fixture set.",
+    "No real scientific model, provider, DFT or property evaluator is invoked. Numeric values and structures are illustrative fixtures only.",
+    "Task prompts, gold annotations, executable labels and fixed clarifications were preserved; only fixture_id mappings changed.",
+    "Task bindings, probe expectations, route catalogs, future attempts and review notes are auditor-only metadata; never inject them into LLM context.",
+    "All groups must retain equal access to returned raw artifacts, candidate versions, failed database records and execution observations.",
+    "T0601 has no authorized generation route because the original task lacks a generation contract; it remains an explicit coverage gap."
+  ],
+  "task_bindings": {
+    "T0101": {
+      "fixture_id": "candidate_t0101",
+      "task_content_sha256": "ad8a5bacd7c83f3674dc694119ae92502f2cc7e8106f8f253bfbb4671f9abbf9",
+      "context_kind": "generation",
+      "inputs_and_state": "MatterGen chemical_system=Fe-Ni-O；采样上限4；析氧活性无性质指标。",
+      "route_sha256": {
+        "generate": "8ec1cc1e4f446abaf643591d47c3040703979fa8fc69511930480008d557e5c8"
+      },
+      "probe": {
+        "batches": [
+          2,
+          2
+        ],
+        "element_set": [
+          "Fe",
+          "Ni",
+          "O"
+        ]
+      },
+      "review_notes": []
+    },
+    "T0102": {
+      "fixture_id": "candidate_t0102",
+      "task_content_sha256": "7d84c4ac482bcb6dc4b1d975bf10b0277b1647277dc6a1959edbe63dee987fb7",
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "route_sha256": {
+        "generate": "efc21c4e87f4a419e055603cd8670bd848c46418eb5e2c4808246edbff1d8dc2"
+      },
+      "probe": {
+        "batches": [
+          2
+        ],
+        "template_id": "cubic_nacl",
+        "formula": "NaCl",
+        "space_group": 221
+      },
+      "review_notes": []
+    },
+    "T0103": {
+      "fixture_id": "candidate_t0103",
+      "task_content_sha256": "4135ee403927e5c960d5afcd517c93ee1d4d3c695d001c3b9daf3cc331b35b59",
+      "context_kind": "generation",
+      "inputs_and_state": "Na-Cl元素生成后按NaCl配比筛选；6次中包含配比不符样本，不能承诺6个合格候选。",
+      "route_sha256": {
+        "generate": "f1dffbe2a12e114e36113fbf8e432d4d35ee33957a4b4a3a5ef03babed5173f1"
+      },
+      "probe": {
+        "batches": [
+          2,
+          2,
+          2
+        ],
+        "formula": "NaCl",
+        "expected_formula_matches": 4
+      },
+      "review_notes": []
+    },
+    "T0104": {
+      "fixture_id": "candidate_t0104",
+      "task_content_sha256": "7ed1966fcbb79fc2b831e5e47079eda68107321a978f860400f040df70617637",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0105": {
+      "fixture_id": "candidate_t0105",
+      "task_content_sha256": "9699d02716ff8c897b98ba4ec99ba0914f9089adaadc66ca43eb8b96e8278b49",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0106": {
+      "fixture_id": "candidate_t0106",
+      "task_content_sha256": "09115ff5c24fb4916697ccf92a854f33121dc225d42b42ba94f9d15a46d1a249",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0201": {
+      "fixture_id": "candidate_t0201",
+      "task_content_sha256": "4c2c905fbee1368ff329646c745271d1a08040a26a79cba7d8e97d179d123563",
+      "context_kind": "generation",
+      "inputs_and_state": "1200 meV归一到1.2 eV引导值；2次；无带隙结果指标。",
+      "route_sha256": {
+        "generate": "7a59fc3fe66511c6dee27bd94977b89ca51f6cccebed92761f41a2b5ec05b30f"
+      },
+      "probe": {
+        "batches": [
+          2
+        ]
+      },
+      "review_notes": []
+    },
+    "T0202": {
+      "fixture_id": "candidate_t0202",
+      "task_content_sha256": "24557b538dcc73ed2a410cebeae24fcb9706ef4f9567ef286e56e5ac121fdd05",
+      "context_kind": "generation",
+      "inputs_and_state": "80000 MPa归一到80 GPa，使用ml_bulk_modulus；2次。",
+      "route_sha256": {
+        "generate": "19d09e34a55b0ece530ef010c2b457013842d619f1f8637a4b04f1ae576ee516"
+      },
+      "probe": {
+        "batches": [
+          2
+        ]
+      },
+      "review_notes": []
+    },
+    "T0203": {
+      "fixture_id": "candidate_t0203",
+      "task_content_sha256": "9a07ab8cdbdc5974dab4cd7029ee9f4452034d0bc966fcca57a4d31fb531e63e",
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-O与凸包上能量0.05 eV/atom联合引导；最多4次。",
+      "route_sha256": {
+        "generate": "2f027ecbd936b18252f894ab3c640f2dfdd351f5962a06f96b7c561ea4bd2a32"
+      },
+      "probe": {
+        "batches": [
+          2,
+          2
+        ],
+        "element_set": [
+          "Fe",
+          "O"
+        ]
+      },
+      "review_notes": []
+    },
+    "T0204": {
+      "fixture_id": "candidate_t0204",
+      "task_content_sha256": "4f705848472e76a1883317fe03d1117d10991f68fdf25bb366b10535ffa06485",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0205": {
+      "fixture_id": "candidate_t0205",
+      "task_content_sha256": "ccf558fc070033558d34d10384933068d68458a30173f719aca25bc5b2578ad8",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": [
+        {
+          "code": "unit_wording_gold_conflict",
+          "severity": "requires_adjudication",
+          "detail": "题干已明确“每原子凸包上能量”，gold却写“单位缺少每原子口径”；硬上界仍需评价器。保留原文，待审核。"
+        }
+      ]
+    },
+    "T0206": {
+      "fixture_id": "candidate_t0206",
+      "task_content_sha256": "667c1805aa9dc3109d7b73e24b5dd1ff1f471836385bc882b7b352a7821d6f87",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0301": {
+      "fixture_id": "candidate_t0301",
+      "task_content_sha256": "ea9ca58685b5398915074e58a7a800b5eacebb67ab69313a744b0af13762e69b",
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "route_sha256": {
+        "generate": "efc21c4e87f4a419e055603cd8670bd848c46418eb5e2c4808246edbff1d8dc2"
+      },
+      "probe": {
+        "batches": [
+          2
+        ],
+        "template_id": "cubic_nacl",
+        "formula": "NaCl",
+        "space_group": 221
+      },
+      "review_notes": []
+    },
+    "T0302": {
+      "fixture_id": "candidate_t0302",
+      "task_content_sha256": "f3d3287da54a7428568f4d3ba5975d1989dbffbaa38fa0b8f7d4c5f270519993",
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-Ni-O元素条件；2次；耐腐蚀性未评价，不新增带隙条件。",
+      "route_sha256": {
+        "generate": "8ec1cc1e4f446abaf643591d47c3040703979fa8fc69511930480008d557e5c8"
+      },
+      "probe": {
+        "batches": [
+          2
+        ],
+        "element_set": [
+          "Fe",
+          "Ni",
+          "O"
+        ]
+      },
+      "review_notes": []
+    },
+    "T0303": {
+      "fixture_id": "candidate_t0303",
+      "task_content_sha256": "d9407c8ac4601e1734cab79817e92a874731e4d579ea2979171f5b18b122dd12",
+      "context_kind": "generation",
+      "inputs_and_state": "已明确无条件生成；mattergen_base，空条件，2次。",
+      "route_sha256": {
+        "generate": "c3e69f21a613a07a84382344c065df52050c20732a14179817c8f671147db517"
+      },
+      "probe": {
+        "batches": [
+          2
+        ]
+      },
+      "review_notes": []
+    },
+    "T0304": {
+      "fixture_id": "candidate_t0304",
+      "task_content_sha256": "03b8dfe95df75bfa1dc3afdc8609e9d54f0473e77543f3dc61cb09e8eff7ae64",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0305": {
+      "fixture_id": "candidate_t0305",
+      "task_content_sha256": "c81cc9cb2ad93e4d4bcbc4fed973f0c072a47df1f06f0911170864d75fa11af3",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": [
+        {
+          "code": "registered_template_selection_policy",
+          "severity": "requires_adjudication",
+          "detail": "全局已登记cubic_nacl，而题干称不知道模板；是否允许主动采用登记模板还是必须询问，需要在正式评分前固定。保留当前blocked标注。"
+        }
+      ]
+    },
+    "T0306": {
+      "fixture_id": "candidate_t0306",
+      "task_content_sha256": "15875a2683f517ce0dc737fb414ce2055187e99609a1f221c4711f947db17199",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0401": {
+      "fixture_id": "candidate_t0401",
+      "task_content_sha256": "d34a590be5e617160dcc6ab4248f3d1bd9aa60a82042dfdbc6c5b54084ddb3ee",
+      "context_kind": "generation",
+      "inputs_and_state": "共享已登记cubic_nacl模板；NaCl、221、Wyckoff a/b；采样2。",
+      "route_sha256": {
+        "generate": "efc21c4e87f4a419e055603cd8670bd848c46418eb5e2c4808246edbff1d8dc2"
+      },
+      "probe": {
+        "batches": [
+          2
+        ],
+        "template_id": "cubic_nacl",
+        "formula": "NaCl",
+        "space_group": 221
+      },
+      "review_notes": []
+    },
+    "T0402": {
+      "fixture_id": "candidate_t0402",
+      "task_content_sha256": "010caf1df4622927a5dd8c9b4b4f65efbd08509b8b1ff03dd72413815ca5d4f1",
+      "context_kind": "generation",
+      "inputs_and_state": "Fe-O与凸包上能量0.04 eV/atom联合引导；最多2次。",
+      "route_sha256": {
+        "generate": "7281cc77559372f6f273f54605fa9b07aaef94de51e6f0f2dc3e2b60ca55d9b9"
+      },
+      "probe": {
+        "batches": [
+          2
+        ],
+        "element_set": [
+          "Fe",
+          "O"
+        ]
+      },
+      "review_notes": []
+    },
+    "T0403": {
+      "fixture_id": "candidate_t0403",
+      "task_content_sha256": "e373731ea3bed9d40a9e6492d5f89b3818a10804b0e000793f9e8e969fd05bd6",
+      "context_kind": "generation",
+      "inputs_and_state": "磁密度0.1 mu_B/angstrom^3与HHI 0.2联合引导；2次。",
+      "route_sha256": {
+        "generate": "d6eab3918494ed4b21b05dab262b32ce7c76144c4c2cdcb2da66b3fe60db52ba"
+      },
+      "probe": {
+        "batches": [
+          2
+        ]
+      },
+      "review_notes": []
+    },
+    "T0404": {
+      "fixture_id": "candidate_t0404",
+      "task_content_sha256": "dbf01d6785808b2caa5c02353cc227a34cf89df1c859cd93e2c0457f34bfe35a",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0405": {
+      "fixture_id": "candidate_t0405",
+      "task_content_sha256": "dedd706a21c14a86203ea1f7bed985c5d5db58f686fc4ed8b968d9fc54e04f4d",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0406": {
+      "fixture_id": "candidate_t0406",
+      "task_content_sha256": "bed319cec3325b726cd8d9c8b9b05b5677170f2d9c31facf7ac8f3c18a727337",
+      "context_kind": "blocked_request",
+      "inputs_and_state": "保留原始要求并澄清或解释能力边界；无获准采样路线。",
+      "route_sha256": {},
+      "probe": {},
+      "review_notes": []
+    },
+    "T0501": {
+      "fixture_id": "candidate_t0501",
+      "task_content_sha256": "42703b3f97e66a34768a7d83fe2488e821abe2df1a5e4482de4cada7889de529",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "两个NaCl候选的独立ID/版本及不同带隙指标；只选c_b。",
+      "route_sha256": {},
+      "probe": {
+        "metric_selection": {
+          "candidate_id": "c_b",
+          "property": "dft_band_gap",
+          "value": 2.2
+        }
+      },
+      "review_notes": []
+    },
+    "T0502": {
+      "fixture_id": "candidate_t0502",
+      "task_content_sha256": "c54e79ef6bd66607abfccb34bc91cae9a61fab250d5c43b2d0f0e457d0fa4591",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "c_a的s_a1/s_a2版本别名映射、父版本和合成弛豫变换，指标分别1.1/1.6 eV。",
+      "route_sha256": {},
+      "probe": {
+        "version_metric": {
+          "candidate_id": "c_a",
+          "version_key": "s_a2",
+          "parent_version_key": "s_a1",
+          "property": "dft_band_gap",
+          "value": 1.6
+        }
+      },
+      "review_notes": []
+    },
+    "T0503": {
+      "fixture_id": "candidate_t0503",
+      "task_content_sha256": "d173eb2e1b0ec846515b83e8902b741195fa03fd4c0cdbb7cdabda95adf251b4",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "相同结构经整体平移产生不同CIF字节；真实StructureMatcher应识别一组。",
+      "route_sha256": {},
+      "probe": {
+        "equivalent_files": 2
+      },
+      "review_notes": []
+    },
+    "T0504": {
+      "fixture_id": "candidate_t0504",
+      "task_content_sha256": "36c886f8e4685a3418a3ddeac639999e6b2e05dc576bf2e37c11b9dc6df476d8",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "同单位但不同势模型的两份能量证据；不提供可比稳定性排序。",
+      "route_sha256": {},
+      "probe": {
+        "different_methods": true
+      },
+      "review_notes": []
+    },
+    "T0505": {
+      "fixture_id": "candidate_t0505",
+      "task_content_sha256": "b1d2a3a9a684e3c3576e3ad3eb190816bf95eca80a9cee40aca50f2d11697609",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "有来源的合成数据库查询超时记录；novelty保持unknown，查询结果null。",
+      "route_sha256": {},
+      "probe": {
+        "database_failure": "db_query_a"
+      },
+      "review_notes": []
+    },
+    "T0506": {
+      "fixture_id": "candidate_t0506",
+      "task_content_sha256": "8c5b1fa4339cff335f5116203e351fbe110fb657bad983d8d3de6db283a04b10",
+      "context_kind": "candidate_read",
+      "inputs_and_state": "可解析、元素和几何初筛通过的Fe-Ni-O样本；无催化/腐蚀性质指标。",
+      "route_sha256": {},
+      "probe": {
+        "sanity_only": [
+          "Fe",
+          "Ni",
+          "O"
+        ]
+      },
+      "review_notes": []
+    },
+    "T0601": {
+      "fixture_id": "candidate_t0601",
+      "task_content_sha256": "fdba3a40c20d04b64e829a3e73010ead495d8111c4772ecccbcb51205b6d7668",
+      "context_kind": "ambiguous_request",
+      "inputs_and_state": "仅能提供3次硬预算情境；题干缺生成模式/元素/模型，不能自行添加无条件授权。",
+      "route_sha256": {},
+      "probe": {
+        "remaining": 3,
+        "no_route": true
+      },
+      "review_notes": [
+        {
+          "code": "missing_generation_contract",
+          "severity": "blocks_route_coverage",
+          "detail": "initially_executable=true，但题干只给总次数与批大小，没有生成模式、元素、模型或既有计划；固定澄清为空。保留原文，不添加猜测路线。"
+        }
+      ]
+    },
+    "T0602": {
+      "fixture_id": "candidate_t0602",
+      "task_content_sha256": "f1dafb7cdc66b50686057afb63003da96cd2a1a481e524e8c5fe67112eb1ce9c",
+      "context_kind": "execution_read",
+      "inputs_and_state": "3次已有尝试：2个已归档结构+第3次失败记录；state=partial。",
+      "route_sha256": {},
+      "probe": {
+        "execution_state": "partial",
+        "remaining": 0,
+        "attempts_used": 3,
+        "initial_outcomes": 3
+      },
+      "review_notes": []
+    },
+    "T0603": {
+      "fixture_id": "candidate_t0603",
+      "task_content_sha256": "306bb4e39ff502678caf0deb2c478fe97d2260b3a191018d07d1357891a17d09",
+      "context_kind": "execution_read",
+      "inputs_and_state": "2个已归档结构；停止已确认且来源记录为stop_requested，不重新生成。",
+      "route_sha256": {},
+      "probe": {
+        "execution_state": "stopped",
+        "remaining": 2,
+        "attempts_used": 2,
+        "initial_outcomes": 2
+      },
+      "review_notes": []
+    },
+    "T0604": {
+      "fixture_id": "candidate_t0604",
+      "task_content_sha256": "f16d416d83438a4d3d0d6d87858e171971f567b689bbaa01d62a63f520981c1d",
+      "context_kind": "execution_read",
+      "inputs_and_state": "2次预算均已使用，1产物1失败；remaining=0，不重置预算。",
+      "route_sha256": {},
+      "probe": {
+        "execution_state": "partial",
+        "remaining": 0,
+        "attempts_used": 2,
+        "initial_outcomes": 2
+      },
+      "review_notes": []
+    },
+    "T0605": {
+      "fixture_id": "candidate_t0605",
+      "task_content_sha256": "72d462074a1c24c5a260579037d9922946db491228865317984f84ffe1f42ad4",
+      "context_kind": "execution_read",
+      "inputs_and_state": "心跳迟到但termination未确认，state=running；不得认定退出或重复启动。",
+      "route_sha256": {},
+      "probe": {
+        "execution_state": "running",
+        "remaining": 2,
+        "attempts_used": 1,
+        "initial_outcomes": 1,
+        "heartbeat_late": true,
+        "resume_allowed": false
+      },
+      "review_notes": []
+    },
+    "T0606": {
+      "fixture_id": "candidate_t0606",
+      "task_content_sha256": "d34b9ddb0659ab3b16da963bb7b23b0dbe9b33bd44ded5e4b3b0892d00e28ce8",
+      "context_kind": "execution_read",
+      "inputs_and_state": "原CIF与附注释后的观察字节，实际哈希不符；旧指标/报告不能当成当前证据。",
+      "route_sha256": {},
+      "probe": {
+        "execution_state": "completed",
+        "remaining": 1,
+        "attempts_used": 1,
+        "initial_outcomes": 1,
+        "artifact_changed": true
+      },
+      "review_notes": []
+    }
+  },
+  "fixtures": {
+    "candidate_t0101": {
+      "sampling_cap": 4,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system",
+          "conditions": {
+            "chemical_system": "Fe-Ni-O"
+          },
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_c": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_d": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_c",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_d",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0102": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "diffcsp",
+          "model_name": "mp_csp",
+          "conditions": {
+            "spacegroup": 221,
+            "wyckoff_letters": [
+              "a",
+              "b"
+            ],
+            "atom_types": [
+              "Na",
+              "Cl"
+            ]
+          },
+          "parameters": {
+            "step_lr": 1e-05
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0103": {
+      "sampling_cap": 6,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system",
+          "conditions": {
+            "chemical_system": "Cl-Na"
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_c": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_d": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_e": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_f": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_c",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_d",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_e",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_f",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0104": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0105": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0106": {
+      "sampling_cap": 3,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0201": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "dft_band_gap",
+          "conditions": {
+            "dft_band_gap": 1.2
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0202": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "ml_bulk_modulus",
+          "conditions": {
+            "ml_bulk_modulus": 80
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0203": {
+      "sampling_cap": 4,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system_energy_above_hull",
+          "conditions": {
+            "chemical_system": "Fe-O",
+            "energy_above_hull": 0.05
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_c": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_d": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_c",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_d",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0204": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0205": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0206": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0301": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "diffcsp",
+          "model_name": "mp_csp",
+          "conditions": {
+            "spacegroup": 221,
+            "wyckoff_letters": [
+              "a",
+              "b"
+            ],
+            "atom_types": [
+              "Na",
+              "Cl"
+            ]
+          },
+          "parameters": {
+            "step_lr": 1e-05
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0302": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system",
+          "conditions": {
+            "chemical_system": "Fe-Ni-O"
+          },
+          "parameters": {
+            "guidance_scale": 2
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0303": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "mattergen_base",
+          "conditions": {},
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0304": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0305": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0306": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0401": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "diffcsp",
+          "model_name": "mp_csp",
+          "conditions": {
+            "spacegroup": 221,
+            "wyckoff_letters": [
+              "a",
+              "b"
+            ],
+            "atom_types": [
+              "Na",
+              "Cl"
+            ]
+          },
+          "parameters": {
+            "step_lr": 1e-05
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0402": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "chemical_system_energy_above_hull",
+          "conditions": {
+            "chemical_system": "Fe-O",
+            "energy_above_hull": 0.04
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Fe",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0403": {
+      "sampling_cap": 2,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {
+        "generate": {
+          "engine": "mattergen",
+          "model_name": "dft_mag_density_hhi_score",
+          "conditions": {
+            "dft_mag_density": 0.1,
+            "hhi_score": 0.2
+          },
+          "parameters": {
+            "guidance_scale": 2.0
+          }
+        }
+      },
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [],
+      "attempts": [
+        {
+          "route_id": "generate",
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "route_id": "generate",
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ]
+    },
+    "candidate_t0404": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0405": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0406": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0501": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "dft_band_gap",
+              "value": 1.1,
+              "unit": "eV",
+              "method": {
+                "name": "synthetic-method-a",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-trained-weights",
+                "parameters": {
+                  "fixture_only": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              }
+            }
+          ]
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.2,
+                0,
+                0
+              ],
+              [
+                0,
+                4.2,
+                0
+              ],
+              [
+                0,
+                0,
+                4.2
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "dft_band_gap",
+              "value": 2.2,
+              "unit": "eV",
+              "method": {
+                "name": "synthetic-method-a",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-trained-weights",
+                "parameters": {
+                  "fixture_only": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              }
+            }
+          ]
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": []
+    },
+    "candidate_t0502": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "dft_band_gap",
+              "value": 1.1,
+              "unit": "eV",
+              "method": {
+                "name": "synthetic-method-a",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-trained-weights",
+                "parameters": {
+                  "fixture_only": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": null,
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              }
+            }
+          ],
+          "version_key": "s_a1",
+          "current_version_key": "s_a2",
+          "versions": [
+            {
+              "version_key": "s_a2",
+              "parent_version_key": "s_a1",
+              "transformation": "synthetic_relaxation",
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              },
+              "structure": {
+                "lattice": [
+                  [
+                    4.2,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    4.2,
+                    0
+                  ],
+                  [
+                    0,
+                    0,
+                    4.2
+                  ]
+                ],
+                "species": [
+                  "Na",
+                  "Cl"
+                ],
+                "frac_coords": [
+                  [
+                    0,
+                    0,
+                    0
+                  ],
+                  [
+                    0.5,
+                    0.5,
+                    0.5
+                  ]
+                ]
+              },
+              "metrics": [
+                {
+                  "property": "dft_band_gap",
+                  "value": 1.6,
+                  "unit": "eV",
+                  "method": {
+                    "name": "synthetic-method-a",
+                    "version": "synthetic-v1",
+                    "weights_identity": "synthetic-no-trained-weights",
+                    "parameters": {
+                      "fixture_only": true
+                    }
+                  },
+                  "convergence": "not_applicable",
+                  "reference_set": null,
+                  "provenance": {
+                    "kind": "synthetic",
+                    "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": []
+    },
+    "candidate_t0503": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0.1,
+                0.1,
+                0.1
+              ],
+              [
+                0.6,
+                0.6,
+                0.6
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": []
+    },
+    "candidate_t0504": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "energy_above_hull",
+              "value": 0.05,
+              "unit": "eV/atom",
+              "method": {
+                "name": "synthetic-potential-a",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-trained-weights",
+                "parameters": {
+                  "fixture_only": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": {
+                "id": "synthetic-common-reference",
+                "sha256": "ec5c6d90abca69f281f08860a584f0fb84053e5f66280d1718d3bc52bc3f23d2"
+              },
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              }
+            }
+          ]
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.2,
+                0,
+                0
+              ],
+              [
+                0,
+                4.2,
+                0
+              ],
+              [
+                0,
+                0,
+                4.2
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": [
+            {
+              "property": "energy_above_hull",
+              "value": 0.01,
+              "unit": "eV/atom",
+              "method": {
+                "name": "synthetic-potential-b",
+                "version": "synthetic-v1",
+                "weights_identity": "synthetic-no-trained-weights",
+                "parameters": {
+                  "fixture_only": true
+                }
+              },
+              "convergence": "not_applicable",
+              "reference_set": {
+                "id": "synthetic-common-reference",
+                "sha256": "ec5c6d90abca69f281f08860a584f0fb84053e5f66280d1718d3bc52bc3f23d2"
+              },
+              "provenance": {
+                "kind": "synthetic",
+                "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+              }
+            }
+          ]
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": []
+    },
+    "candidate_t0505": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": [],
+      "database_queries": [
+        {
+          "query_id": "db_query_a",
+          "database": "materials_project",
+          "query": {
+            "candidate_id": "c_a",
+            "formula": "NaCl"
+          },
+          "error": {
+            "code": "synthetic_timeout",
+            "message": "Synthetic query timeout; database membership is unknown."
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          }
+        }
+      ]
+    },
+    "candidate_t0506": {
+      "sampling_cap": 0,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "species": [
+              "Fe",
+              "Ni",
+              "O"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ],
+              [
+                0.25,
+                0.25,
+                0.25
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": []
+    },
+    "candidate_t0601": {
+      "sampling_cap": 3,
+      "initial_attempts": 0,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {},
+      "initial_candidates": [],
+      "attempts": []
+    },
+    "candidate_t0602": {
+      "sampling_cap": 3,
+      "initial_attempts": 3,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.0,
+                0,
+                0
+              ],
+              [
+                0,
+                4.0,
+                0
+              ],
+              [
+                0,
+                0,
+                4.0
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.2,
+                0,
+                0
+              ],
+              [
+                0,
+                4.2,
+                0
+              ],
+              [
+                0,
+                0,
+                4.2
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": [],
+      "initial_outcomes": [
+        {
+          "attempt": 1,
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "attempt": 2,
+          "candidate_id": "c_b",
+          "error": null
+        },
+        {
+          "attempt": 3,
+          "candidate_id": null,
+          "error": {
+            "code": "synthetic_generation_failure",
+            "message": "Synthetic failed attempt; budget remains consumed."
+          }
+        }
+      ],
+      "execution": {
+        "job_id": "job_t0602",
+        "state": "partial",
+        "observed_at": 100,
+        "heartbeat_at": 99,
+        "heartbeat_timeout_seconds": 5,
+        "termination": {
+          "confirmed": true,
+          "reason": "command_exited"
+        },
+        "provenance": {
+          "kind": "synthetic",
+          "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+        }
+      }
+    },
+    "candidate_t0603": {
+      "sampling_cap": 4,
+      "initial_attempts": 2,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.0,
+                0,
+                0
+              ],
+              [
+                0,
+                4.0,
+                0
+              ],
+              [
+                0,
+                0,
+                4.0
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        },
+        "c_b": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.2,
+                0,
+                0
+              ],
+              [
+                0,
+                4.2,
+                0
+              ],
+              [
+                0,
+                0,
+                4.2
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a",
+        "c_b"
+      ],
+      "attempts": [],
+      "initial_outcomes": [
+        {
+          "attempt": 1,
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "attempt": 2,
+          "candidate_id": "c_b",
+          "error": null
+        }
+      ],
+      "execution": {
+        "job_id": "job_t0603",
+        "state": "stopped",
+        "observed_at": 100,
+        "heartbeat_at": 99,
+        "heartbeat_timeout_seconds": 5,
+        "termination": {
+          "confirmed": true,
+          "reason": "stop_requested"
+        },
+        "provenance": {
+          "kind": "synthetic",
+          "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+        }
+      }
+    },
+    "candidate_t0604": {
+      "sampling_cap": 2,
+      "initial_attempts": 2,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.0,
+                0,
+                0
+              ],
+              [
+                0,
+                4.0,
+                0
+              ],
+              [
+                0,
+                0,
+                4.0
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": [],
+      "initial_outcomes": [
+        {
+          "attempt": 1,
+          "candidate_id": "c_a",
+          "error": null
+        },
+        {
+          "attempt": 2,
+          "candidate_id": null,
+          "error": {
+            "code": "synthetic_generation_failure",
+            "message": "Synthetic failed attempt; budget remains consumed."
+          }
+        }
+      ],
+      "execution": {
+        "job_id": "job_t0604",
+        "state": "partial",
+        "observed_at": 100,
+        "heartbeat_at": 99,
+        "heartbeat_timeout_seconds": 5,
+        "termination": {
+          "confirmed": true,
+          "reason": "command_exited"
+        },
+        "provenance": {
+          "kind": "synthetic",
+          "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+        }
+      }
+    },
+    "candidate_t0605": {
+      "sampling_cap": 3,
+      "initial_attempts": 1,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.0,
+                0,
+                0
+              ],
+              [
+                0,
+                4.0,
+                0
+              ],
+              [
+                0,
+                0,
+                4.0
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": [],
+      "initial_outcomes": [
+        {
+          "attempt": 1,
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ],
+      "execution": {
+        "job_id": "job_t0605",
+        "state": "running",
+        "observed_at": 100,
+        "heartbeat_at": 80,
+        "heartbeat_timeout_seconds": 5,
+        "termination": {
+          "confirmed": false,
+          "reason": "unconfirmed"
+        },
+        "provenance": {
+          "kind": "synthetic",
+          "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+        }
+      }
+    },
+    "candidate_t0606": {
+      "sampling_cap": 2,
+      "initial_attempts": 1,
+      "provenance": {
+        "kind": "synthetic",
+        "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+      },
+      "routes": {},
+      "candidates": {
+        "c_a": {
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          },
+          "structure": {
+            "lattice": [
+              [
+                4.0,
+                0,
+                0
+              ],
+              [
+                0,
+                4.0,
+                0
+              ],
+              [
+                0,
+                0,
+                4.0
+              ]
+            ],
+            "species": [
+              "Na",
+              "Cl"
+            ],
+            "frac_coords": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0.5,
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          "metrics": []
+        }
+      },
+      "initial_candidates": [
+        "c_a"
+      ],
+      "attempts": [],
+      "initial_outcomes": [
+        {
+          "attempt": 1,
+          "candidate_id": "c_a",
+          "error": null
+        }
+      ],
+      "execution": {
+        "job_id": "job_t0606",
+        "state": "completed",
+        "observed_at": 100,
+        "heartbeat_at": 99,
+        "heartbeat_timeout_seconds": 5,
+        "termination": {
+          "confirmed": true,
+          "reason": "command_exited"
+        },
+        "provenance": {
+          "kind": "synthetic",
+          "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+        }
+      },
+      "artifact_observations": [
+        {
+          "candidate_id": "c_a",
+          "version_key": "initial",
+          "observed_append_text": "\n# SYNTHETIC ARCHIVE ALTERATION: bytes differ from recorded source\n",
+          "provenance": {
+            "kind": "synthetic",
+            "description": "Hand-authored CPU candidate-fixture draft; no trained model, property evaluator, experiment or independent materials review."
+          }
+        }
+      ]
+    }
+  }
+}

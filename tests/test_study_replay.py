@@ -238,6 +238,211 @@ class StudyReplayTests(unittest.TestCase):
         with self.assertRaisesRegex(ReplayError, "must be declared"):
             ReplaySession(self.write_manifest(self.manifest), "development_control_semantics_0", self.root / "invalid", "invalid")
 
+    def context_fixture(self):
+        fixture = copy.deepcopy(self.manifest["fixtures"]["development_candidate_evidence_0"])
+        fixture.update(sampling_cap=2, initial_attempts=2,
+            initial_outcomes=[{"attempt": 1, "candidate_id": "c_a", "error": None},
+                              {"attempt": 2, "candidate_id": "c_b", "error": None}])
+        candidate = fixture["candidates"]["c_a"]
+        candidate["version_key"] = "s_a1"
+        child = copy.deepcopy(candidate)
+        child.update(version_key="s_a2", parent_version_key="s_a1", transformation="synthetic_relaxation", metrics=[])
+        child["structure"]["lattice"][0][0] += 0.1
+        candidate["versions"] = [child]
+        candidate["current_version_key"] = "s_a2"
+        return fixture
+
+    def context_session(self, fixture):
+        manifest = {**self.manifest, "fixtures": {"context": fixture}}
+        self.counter += 1
+        return ReplaySession(self.write_manifest(manifest), "context", self.root / f"context-{self.counter}", f"context-{self.counter}")
+
+    def execution_context(self, state="stopped", confirmed=True):
+        return {"job_id": "synthetic_job", "state": state, "observed_at": 100, "heartbeat_at": 80,
+                "heartbeat_timeout_seconds": 10,
+                "termination": {"confirmed": confirmed, "reason": "stop_requested" if state == "stopped" else "command_exited" if confirmed else "unconfirmed"},
+                "provenance": {"kind": "synthetic", "description": "CPU observation; no process or model was started."}}
+
+    def test_multiple_versions_preserve_parent_and_never_inherit_metrics(self):
+        session = self.context_session(self.context_fixture())
+        versions = session.invoke("get_versions", {"candidate_id": "c_a"})["records"]
+        self.assertEqual([v["version_key"] for v in versions], ["s_a1", "s_a2"])
+        parent, child = versions
+        self.assertEqual(child["parent_version_id"], parent["structure_version_id"])
+        self.assertNotEqual(child["sha256"], parent["sha256"])
+        self.assertEqual(session.invoke("get_candidates", {"candidate_ids": ["c_a"]})["records"][0]["structure_version_id"], child["structure_version_id"])
+        self.assertEqual(session.invoke("get_metrics", {"candidate_id": "c_a"})["metrics"], [])
+        metrics = session.invoke("get_metrics", {"candidate_id": "c_a", "structure_version_id": parent["structure_version_id"]})["metrics"]
+        self.assertTrue(metrics)
+        self.assertTrue(all(m["input_artifact"]["sha256"] == parent["sha256"] for m in metrics))
+        with self.assertRaisesRegex(ReplayError, "do not match"):
+            session.invoke("get_metrics", {"candidate_id": "c_b", "structure_version_id": parent["structure_version_id"]})
+        with self.assertRaisesRegex(ReplayError, "do not match"):
+            session.invoke("get_metrics", {"candidate_id": "c_a", "structure_version_id": "s_a1"})
+        parent["version_key"] = "mutated"
+        self.assertEqual(session.invoke("get_versions", {"candidate_id": "c_a"})["records"][0]["version_key"], "s_a1")
+
+    def test_version_graph_rejects_duplicate_forward_and_foreign_parents(self):
+        for changes in ({"version_key": "s_a1"}, {"parent_version_key": "s_a2"}, {"parent_version_key": "c_b"}):
+            fixture = self.context_fixture()
+            fixture["candidates"]["c_a"]["versions"][0].update(changes)
+            with self.subTest(changes=changes), self.assertRaisesRegex(ReplayError, "earlier parent"):
+                self.context_session(fixture)
+
+    def test_same_immutable_version_identity_cannot_overwrite_alias_metrics(self):
+        fixture = self.context_fixture()
+        candidate = fixture["candidates"]["c_a"]
+        candidate["versions"][0]["metrics"] = copy.deepcopy(candidate["metrics"])
+        alias = copy.deepcopy(candidate["versions"][0])
+        alias["version_key"] = "s_a3"
+        alias["metrics"][0]["value"] = 99
+        candidate["versions"].append(alias)
+        with self.assertRaisesRegex(ReplayError, "same immutable structure identity") as raised:
+            self.context_session(fixture)
+        self.assertEqual(raised.exception.code, "version_identity_conflict")
+        # Matching values do not make a second declaration a distinct version.
+        alias["metrics"][0]["value"] = candidate["versions"][0]["metrics"][0]["value"]
+        with self.assertRaisesRegex(ReplayError, "same immutable structure identity"):
+            self.context_session(fixture)
+
+    def test_database_failure_is_exact_query_bound_unknown_with_verifiable_raw_output(self):
+        fixture = self.context_fixture()
+        fixture["database_queries"] = [{"query_id": "db_failure", "database": "example_database",
+            "query": {"formula": "NaCl"}, "error": {"code": "timeout", "message": "Synthetic request timeout"},
+            "provenance": {"kind": "synthetic", "description": "No network query performed."}}]
+        session = self.context_session(fixture)
+        request = {"database": "example_database", "query": {"formula": "NaCl"}}
+        result = session.invoke("query_database", request)
+        self.assertEqual(result["status"], "failed")
+        self.assertEqual(result["novelty"], "unknown")
+        self.assertIsNone(result["records"])
+        raw = session.invoke("read_artifact", {"artifact_id": result["raw_output"]["artifact_id"]})
+        self.assertEqual(json.loads(raw["content"])["request_sha256"], result["request_sha256"])
+        with self.assertRaisesRegex(ReplayError, "exact request"):
+            session.invoke("query_database", {**request, "query": {"formula": "LiCl"}})
+        Path(result["raw_output"]["path"]).write_text("changed", encoding="utf-8")
+        with self.assertRaisesRegex(ReplayError, "changed"):
+            session.invoke("query_database", request)
+
+    def test_execution_resume_is_derived_from_termination_budget_and_heartbeat(self):
+        fixture = self.context_fixture()
+        fixture.update(sampling_cap=3, initial_attempts=2, attempts=[], execution=self.execution_context())
+        stopped = self.context_session(fixture).invoke("status")["execution"]
+        self.assertTrue(stopped["resume_allowed"])
+        self.assertTrue(stopped["heartbeat_late"])
+        self.assertTrue(stopped["termination_confirmed"])
+        fixture["execution"] = self.execution_context("running", False)
+        running_session = self.context_session(fixture)
+        running = running_session.invoke("status")["execution"]
+        self.assertEqual(running["state"], "running")
+        self.assertTrue(running["heartbeat_late"])
+        self.assertFalse(running["resume_allowed"])
+        with self.assertRaisesRegex(ReplayError, "termination has not been confirmed"):
+            running_session.invoke("sample", {"engine": "mattergen", "model_name": "mattergen_base", "conditions": {}, "parameters": {"guidance_scale": 2}, "num_samples": 1})
+        self.assertEqual(running_session.attempts_used, 2)
+        fixture["execution"] = self.execution_context()
+        fixture["sampling_cap"] = 2
+        self.assertFalse(self.context_session(fixture).invoke("status")["execution"]["resume_allowed"])
+
+    def test_execution_observation_rejects_contradictions_and_modified_receipt(self):
+        fixture = self.context_fixture()
+        fixture["execution"] = self.execution_context("running", True)
+        with self.assertRaisesRegex(ReplayError, "contradict"):
+            self.context_session(fixture)
+        fixture["execution"] = self.execution_context()
+        session = self.context_session(fixture)
+        output = session.invoke("status")["execution"]["raw_output"]
+        Path(output["path"]).write_text("changed", encoding="utf-8")
+        with self.assertRaisesRegex(ReplayError, "changed"):
+            session.invoke("status")
+
+    def test_execution_requires_attempt_evidence_and_consistent_terminal_state(self):
+        fixture = self.context_fixture()
+        fixture["execution"] = self.execution_context()
+        del fixture["initial_outcomes"]
+        with self.assertRaisesRegex(ReplayError, "complete initial attempt ledger"):
+            self.context_session(fixture)
+        fixture = self.context_fixture()
+        fixture.update(sampling_cap=3, initial_attempts=3,
+                       execution=self.execution_context("completed", True))
+        fixture["initial_outcomes"].append({"attempt": 3, "candidate_id": None,
+            "error": {"code": "engine_error", "message": "Explicit synthetic failed attempt"}})
+        with self.assertRaisesRegex(ReplayError, "terminal state contradicts"):
+            self.context_session(fixture)
+        fixture["execution"] = self.execution_context("failed", True)
+        with self.assertRaisesRegex(ReplayError, "terminal state contradicts"):
+            self.context_session(fixture)
+        fixture["execution"] = self.execution_context("partial", False)
+        with self.assertRaisesRegex(ReplayError, "termination evidence contradict"):
+            self.context_session(fixture)
+        fixture["execution"] = self.execution_context("partial", True)
+        self.assertEqual(self.context_session(fixture).invoke("status")["execution"]["state"], "partial")
+        fixture.update(initial_candidates=[], initial_attempts=1,
+            initial_outcomes=[{"attempt": 1, "candidate_id": None,
+                "error": {"code": "engine_error", "message": "No retained outputs"}}])
+        with self.assertRaisesRegex(ReplayError, "terminal state contradicts"):
+            self.context_session(fixture)
+        fixture["execution"] = self.execution_context("failed", True)
+        self.assertEqual(self.context_session(fixture).invoke("status")["execution"]["state"], "failed")
+
+    def test_completed_execution_may_use_less_than_its_upper_sampling_cap(self):
+        fixture = self.context_fixture()
+        fixture.update(sampling_cap=4, execution=self.execution_context("completed", True))
+        result = self.context_session(fixture).invoke("status")
+        self.assertEqual(result["remaining_budget"], 2)
+        self.assertEqual(result["execution"]["state"], "completed")
+        self.assertFalse(result["execution"]["resume_allowed"])
+        self.assertEqual(result["execution"]["termination_evidence_scope"], "synthetic_observation_not_live_process_supervision")
+
+    def test_modified_attempt_ledger_blocks_resume_before_charging_new_attempts(self):
+        fixture = self.context_fixture()
+        fixture.update(sampling_cap=3, execution=self.execution_context())
+        session = self.context_session(fixture)
+        status = session.invoke("status")
+        self.assertTrue(status["execution"]["resume_allowed"])
+        artifact = status["execution"]["attempt_ledger_artifact"]
+        Path(artifact["path"]).write_text('{"initial_outcomes": []}', encoding="utf-8")
+        with self.assertRaisesRegex(ReplayError, "changed"):
+            session.invoke("sample", {"engine": "mattergen", "model_name": "mattergen_base", "conditions": {},
+                "parameters": {"guidance_scale": 2}, "num_samples": 1})
+        self.assertEqual(session.attempts_used, 2)
+
+    def test_archived_cif_changes_remain_detectable_even_when_unparseable(self):
+        for content in ({"observed_text": "not a CIF"}, {"observed_append_text": "\n# synthetic modified archived bytes\n"}):
+            fixture = self.context_fixture()
+            fixture.update(sampling_cap=3, initial_attempts=2, execution=self.execution_context())
+            fixture["artifact_observations"] = [{"candidate_id": "c_a", "version_key": "s_a2", **content,
+                "provenance": {"kind": "synthetic", "description": "Controlled archive modification."}}]
+            session = self.context_session(fixture)
+            version = session.invoke("get_versions", {"candidate_id": "c_a"})["records"][1]
+            result = session.invoke("verify_candidate_artifact", {"candidate_id": "c_a", "structure_version_id": version["structure_version_id"]})
+            self.assertFalse(result["intact"])
+            self.assertEqual(result["expected_sha256"], version["sha256"])
+            raw = session.invoke("read_artifact", {"artifact_id": result["observed_artifact"]["artifact_id"]})
+            self.assertEqual(hashlib.sha256(raw["content"].encode()).hexdigest(), result["observed_sha256"])
+            self.assertFalse(session.invoke("status")["execution"]["resume_allowed"])
+            with self.assertRaisesRegex(ReplayError, "changed"):
+                session.invoke("get_candidates", {"candidate_ids": ["c_a"]})
+            with self.assertRaisesRegex(ReplayError, "changed"):
+                session.invoke("get_metrics", {"candidate_id": "c_a"})
+            self.assertTrue(session.invoke("get_metrics", {"candidate_id": "c_a", "structure_version_id": version["parent_version_id"]})["metrics"])
+
+    def test_initial_outcomes_account_for_failed_attempt_with_raw_evidence(self):
+        fixture = self.context_fixture()
+        fixture.update(sampling_cap=4, initial_attempts=3, attempts=[],
+            initial_outcomes=[{"attempt": 1, "candidate_id": "c_a", "error": None},
+                              {"attempt": 2, "candidate_id": "c_b", "error": None},
+                              {"attempt": 3, "candidate_id": None, "error": {"code": "engine_error", "message": "Synthetic failed attempt"}}])
+        session = self.context_session(fixture)
+        status = session.invoke("status")
+        self.assertEqual(status["remaining_budget"], 1)
+        self.assertEqual(status["initial_outcomes"][2]["error"]["code"], "engine_error")
+        raw = session.invoke("read_artifact", {"artifact_id": status["initial_outcomes_artifact"]["artifact_id"]})
+        self.assertEqual(json.loads(raw["content"])["initial_outcomes"], status["initial_outcomes"])
+        fixture["initial_outcomes"][2]["attempt"] = 4
+        with self.assertRaisesRegex(ReplayError, "contiguous"):
+            self.context_session(fixture)
+
     def test_jsonl_transport_uses_only_replay_and_returns_identity(self):
         result = subprocess.run([sys.executable, "-m", "matpilot.study_replay", "--manifest", str(MANIFEST),
                                  "--fixture-id", "development_candidate_evidence_0", "--run-id", "cli",

@@ -8,23 +8,25 @@ import sys
 import tempfile
 import threading
 import unittest
+from study_context_fixture import write_context_fixture
 
 
 ROOT = Path(__file__).resolve().parents[1]
 BROKER = ROOT / "benchmarks/study_drivers/broker.py"
 MANIFEST = ROOT / "benchmarks/study/fixtures.development.json"
 READ_TOOLS = {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics",
-              "list_templates", "list_upstream_artifacts", "read_upstream_artifact"}
+              "list_templates", "list_upstream_artifacts", "read_upstream_artifact",
+              "get_versions", "query_database", "verify_candidate_artifact"}
 
 
 class BrokerClient:
     """Exercise stdin/stdout, including dynamic plan IDs, without importing the broker."""
-    def __init__(self, folder, group, fixture, cap):
+    def __init__(self, folder, group, fixture, cap, manifest=MANIFEST):
         environment = dict(os.environ)
         environment["PYTHONPATH"] = str(ROOT / "src") + os.pathsep + environment.get("PYTHONPATH", "")
         environment["PYTHONIOENCODING"] = "utf-8"
         self.process = subprocess.Popen(
-            [sys.executable, str(BROKER), "--group", group, "--manifest", str(MANIFEST),
+            [sys.executable, str(BROKER), "--group", group, "--manifest", str(manifest),
              "--fixture-id", fixture, "--run-id", folder.name, "--output-dir", str(folder),
              "--sampling-cap", str(cap)], cwd=ROOT, env=environment,
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -104,8 +106,8 @@ class StudyBrokerTests(unittest.TestCase):
             client.close()
         self.tmp.cleanup()
 
-    def broker(self, group="M", fixture="development_control_semantics_0", cap=4):
-        client = BrokerClient(self.root / f"broker-{len(self.clients)}", group, fixture, cap)
+    def broker(self, group="M", fixture="development_control_semantics_0", cap=4, manifest=MANIFEST):
+        client = BrokerClient(self.root / f"broker-{len(self.clients)}", group, fixture, cap, manifest)
         self.clients.append(client)
         return client
 
@@ -264,6 +266,34 @@ class StudyBrokerTests(unittest.TestCase):
         status = client.result("status")
         self.assertEqual((status["attempts_used"], status["sampling_cap"], status["remaining_budget"]), (1, 1, 0))
         self.assertEqual(status["requested_samples"], 2)
+
+    def test_all_groups_receive_identical_context_schemas_versions_failures_and_changed_bytes(self):
+        manifest = write_context_fixture(self.root, tampered=True)
+        facts, schemas = [], []
+        for group in ("U", "U+", "M"):
+            client = self.broker(group, "cpu_context", manifest=manifest)
+            description = client.result("describe_tools")
+            self.assertEqual(description["identity"]["shared_context_contract"], "matpilot-shared-replay-context/v2")
+            schemas.append({t["name"]: t for t in description["tools"] if t["name"] in READ_TOOLS})
+            versions = client.result("get_versions", {"candidate_id": "c_a"})["records"]
+            metrics = [client.result("get_metrics", {"candidate_id": "c_a", "structure_version_id": r["structure_version_id"]})["metrics"][0]["value"] for r in versions]
+            query = client.result("query_database", {"database": "synthetic_materials_db", "query": {"chemical_system": "Na-Cl"}})
+            integrity = client.result("verify_candidate_artifact", {"candidate_id": "c_b"})
+            execution = client.result("status")["execution"]
+            facts.append({"versions": [(r["version_key"], r["structure_version_id"], r["parent_version_id"], r["sha256"]) for r in versions],
+                "metrics": metrics, "database": [query[k] for k in ("status", "novelty", "records", "error")],
+                "integrity": [integrity[k] for k in ("intact", "expected_sha256", "observed_sha256")],
+                "execution": [execution[k] for k in ("state", "heartbeat_late", "termination_confirmed")]})
+            self.assertEqual(query["novelty"], "unknown")
+            self.assertIsNone(query["records"])
+            self.assertFalse(integrity["intact"])
+            self.assertEqual(execution["state"], "running")
+            self.assertFalse(execution["termination_confirmed"])
+            self.assertIn("error", client.call("get_metrics", {"candidate_id": "c_b"}))
+        self.assertEqual(schemas[0], schemas[1])
+        self.assertEqual(schemas[0], schemas[2])
+        self.assertEqual(facts[0], facts[1])
+        self.assertEqual(facts[0], facts[2])
 
 
 if __name__ == "__main__":

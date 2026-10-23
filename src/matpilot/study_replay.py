@@ -26,6 +26,7 @@ from .evidence import validate_metric, verify_artifact
 VERSION = "study-replay-v1"
 SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}\Z")
 SCOPE = "workflow_engineering_only_not_material_property_evidence"
+CONTEXT_CONTRACT = "matpilot-shared-replay-context/v2"
 
 
 class ReplayError(ValueError):
@@ -107,6 +108,41 @@ def request_identity(arguments: dict) -> dict:
     return equal_number_form(result)
 
 
+def _provenance(value: Any, label: str, *, synthetic_only: bool = False) -> None:
+    if (not isinstance(value, dict) or value.get("kind") not in ({"synthetic"} if synthetic_only else {"synthetic", "recorded"})
+            or not isinstance(value.get("description"), str) or not value["description"].strip()
+            or value["kind"] == "recorded" and not value.get("source")):
+        raise ReplayError("invalid_manifest", f"{label} needs explicit provenance.")
+
+
+def _version_definitions(candidate: dict) -> list[dict]:
+    root = {**candidate, "version_key": candidate.get("version_key", "initial"),
+            "parent_version_key": None, "transformation": "fixture_import"}
+    return [root, *candidate.get("versions", [])]
+
+
+def _validate_version(definition: dict) -> None:
+    _provenance(definition.get("provenance"), "Structure version")
+    source = definition["provenance"]
+    if source["kind"] == "synthetic":
+        if set(definition.get("structure", {})) != {"lattice", "species", "frac_coords"}:
+            raise ReplayError("invalid_manifest", "Synthetic structures require explicit lattice, species and fractional coordinates.")
+    elif (not isinstance(definition.get("cif_text"), str)
+          or _bytes_hash(definition["cif_text"].encode()) != definition.get("cif_sha256")):
+        raise ReplayError("invalid_manifest", "Recorded CIF requires an exact content hash.")
+    metrics = definition.get("metrics", [])
+    if not isinstance(metrics, list):
+        raise ReplayError("invalid_manifest", "metrics must be an array.")
+    for metric in metrics:
+        required = {"property", "value", "unit", "method", "convergence", "reference_set", "provenance"}
+        if not isinstance(metric, dict) or set(metric) != required:
+            raise ReplayError("invalid_manifest", "Metric evidence/provenance schema is incomplete.")
+        _provenance(metric["provenance"], "Metric")
+        value = metric["value"]
+        if value is not None and (type(value) not in {int, float} or not math.isfinite(value)):
+            raise ReplayError("invalid_manifest", "Metric value must be finite or unknown.")
+
+
 def _validate_manifest(manifest: dict) -> None:
     if manifest.get("schema_version") != 1 or manifest.get("evidence_scope") != SCOPE:
         raise ReplayError("invalid_manifest", "Explicit version and non-scientific evidence scope required.")
@@ -143,27 +179,111 @@ def _validate_manifest(manifest: dict) -> None:
             raise ReplayError("invalid_manifest", "candidates must be an object.")
         for candidate_id, candidate in candidates.items():
             _safe_id(candidate_id, "candidate_id")
-            source = candidate.get("provenance", {})
-            if source.get("kind") not in {"synthetic", "recorded"} or not source.get("description"):
-                raise ReplayError("invalid_manifest", "Candidate provenance is required.")
-            if source["kind"] == "synthetic":
-                if set(candidate.get("structure", {})) != {"lattice", "species", "frac_coords"}:
-                    raise ReplayError("invalid_manifest", "Synthetic structures require explicit lattice, species and fractional coordinates.")
-            else:
-                if not source.get("source") or not isinstance(candidate.get("cif_text"), str) or _bytes_hash(candidate["cif_text"].encode()) != candidate.get("cif_sha256"):
-                    raise ReplayError("invalid_manifest", "Recorded CIF requires source identity and an exact content hash.")
-            for metric in candidate.get("metrics", []):
-                required = {"property", "value", "unit", "method", "convergence", "reference_set", "provenance"}
-                if set(metric) != required or metric["provenance"].get("kind") not in {"synthetic", "recorded"}:
-                    raise ReplayError("invalid_manifest", "Metric evidence/provenance schema is incomplete.")
-                value = metric["value"]
-                if value is not None and (type(value) not in {int, float} or not math.isfinite(value)):
-                    raise ReplayError("invalid_manifest", "Metric value must be finite or unknown.")
-                if metric["provenance"]["kind"] == "recorded" and not metric["provenance"].get("source"):
-                    raise ReplayError("invalid_manifest", "Recorded metric needs a source identity.")
+            if not isinstance(candidate.get("versions", []), list):
+                raise ReplayError("invalid_manifest", "versions must be an ordered array.")
+            seen_versions = set()
+            for index, definition in enumerate(_version_definitions(candidate)):
+                key = _safe_id(definition.get("version_key"), "version_key")
+                if key in seen_versions or (index and definition.get("parent_version_key") not in seen_versions):
+                    raise ReplayError("invalid_manifest", "Versions need unique keys and an earlier parent in the same candidate.")
+                if index and (not isinstance(definition.get("transformation"), str) or not definition["transformation"].strip()):
+                    raise ReplayError("invalid_manifest", "Child versions require an explicit transformation.")
+                _validate_version(definition)
+                seen_versions.add(key)
+            if candidate.get("current_version_key", candidate.get("version_key", "initial")) not in seen_versions:
+                raise ReplayError("invalid_manifest", "Current version must reference a declared version.")
         initial = fixture.get("initial_candidates", [])
         if not isinstance(initial, list) or len(set(initial)) != len(initial) or any(x not in candidates for x in initial):
             raise ReplayError("invalid_manifest", "Invalid initial candidate references.")
+        if "initial_outcomes" in fixture:
+            outcomes = fixture["initial_outcomes"]
+            if not isinstance(outcomes, list) or len(outcomes) != used:
+                raise ReplayError("invalid_manifest", "Initial outcomes must account for every existing attempt.")
+            exposed = set()
+            for index, outcome in enumerate(outcomes, 1):
+                if not isinstance(outcome, dict) or set(outcome) != {"attempt", "candidate_id", "error"} or type(outcome["attempt"]) is not int or outcome["attempt"] != index:
+                    raise ReplayError("invalid_manifest", "Initial outcomes require contiguous exact attempt identities.")
+                candidate, error = outcome["candidate_id"], outcome["error"]
+                if candidate is not None:
+                    if candidate not in initial or candidate in exposed:
+                        raise ReplayError("invalid_manifest", "Initial outcome candidate is missing or repeated.")
+                    exposed.add(candidate)
+                if error is not None and (not isinstance(error, dict) or set(error) != {"code", "message"} or not all(isinstance(x, str) and x for x in error.values())):
+                    raise ReplayError("invalid_manifest", "Initial failure requires a code and message.")
+                if candidate is None and error is None:
+                    raise ReplayError("invalid_manifest", "Initial outcome cannot be empty.")
+            if exposed != set(initial):
+                raise ReplayError("invalid_manifest", "Initial outcomes must explain every available candidate.")
+        execution = fixture.get("execution")
+        if execution is not None:
+            if "initial_outcomes" not in fixture:
+                raise ReplayError("invalid_manifest", "Execution context requires a complete initial attempt ledger, including an explicit empty ledger.")
+            required = {"job_id", "state", "observed_at", "heartbeat_at", "heartbeat_timeout_seconds", "termination", "provenance"}
+            if not isinstance(execution, dict) or set(execution) != required:
+                raise ReplayError("invalid_manifest", "Execution context requires its complete observation schema.")
+            _safe_id(execution["job_id"], "job_id")
+            _provenance(execution["provenance"], "CPU execution observation", synthetic_only=True)
+            if execution["state"] not in {"running", "stopped", "partial", "failed", "completed"}:
+                raise ReplayError("invalid_manifest", "Unknown observed execution state.")
+            for key in ("observed_at", "heartbeat_at", "heartbeat_timeout_seconds"):
+                _positive_int(execution[key], key, zero=key != "heartbeat_timeout_seconds")
+            if execution["heartbeat_at"] > execution["observed_at"]:
+                raise ReplayError("invalid_manifest", "Heartbeat cannot follow the fixed observation clock.")
+            termination = execution["termination"]
+            if (not isinstance(termination, dict) or set(termination) != {"confirmed", "reason"}
+                    or type(termination["confirmed"]) is not bool
+                    or termination["reason"] not in {"stop_requested", "command_exited", "unconfirmed"}
+                    or termination["confirmed"] != (termination["reason"] != "unconfirmed")
+                    or execution["state"] == "stopped" and termination != {"confirmed": True, "reason": "stop_requested"}
+                    or execution["state"] == "running" and termination["confirmed"]
+                    or execution["state"] != "running" and not termination["confirmed"]
+                    or execution["state"] in {"completed", "partial", "failed"} and termination["reason"] != "command_exited"):
+                raise ReplayError("invalid_manifest", "Execution state and termination evidence contradict each other.")
+            # A cap is only an upper bound, not the requested completion count.
+            # Check the evidence we do have; never infer failure merely because
+            # the observed job used less than its maximum sampling allowance.
+            outcomes = fixture["initial_outcomes"]
+            failed_attempts = any(outcome["error"] is not None for outcome in outcomes)
+            if (execution["state"] == "completed" and failed_attempts
+                    or execution["state"] == "failed" and initial
+                    or execution["state"] == "partial" and not initial):
+                raise ReplayError("invalid_manifest", "Execution terminal state contradicts its attempt outcomes and archived candidates.")
+        queries = fixture.get("database_queries", [])
+        if not isinstance(queries, list):
+            raise ReplayError("invalid_manifest", "database_queries must be an array.")
+        query_ids, query_hashes = set(), set()
+        for query in queries:
+            if not isinstance(query, dict) or set(query) != {"query_id", "database", "query", "error", "provenance"}:
+                raise ReplayError("invalid_manifest", "Database failure requires an exact request and error schema.")
+            query_id = _safe_id(query["query_id"], "query_id")
+            if not isinstance(query["database"], str) or not query["database"] or not isinstance(query["query"], dict):
+                raise ReplayError("invalid_manifest", "Database request needs a name and query object.")
+            digest = canonical_hash({"database": query["database"], "query": query["query"]})
+            if query_id in query_ids or digest in query_hashes:
+                raise ReplayError("invalid_manifest", "Database requests and IDs must be unique.")
+            query_ids.add(query_id)
+            query_hashes.add(digest)
+            _provenance(query["provenance"], "CPU database observation", synthetic_only=True)
+            if not isinstance(query["error"], dict) or set(query["error"]) != {"code", "message"} or not all(isinstance(x, str) and x for x in query["error"].values()):
+                raise ReplayError("invalid_manifest", "Database failure needs a nonempty code and message.")
+        observations = fixture.get("artifact_observations", [])
+        if not isinstance(observations, list):
+            raise ReplayError("invalid_manifest", "artifact_observations must be an array.")
+        observed = set()
+        for observation in observations:
+            keys = set(observation) if isinstance(observation, dict) else set()
+            content_keys = keys & {"observed_text", "observed_append_text"}
+            if len(content_keys) != 1 or keys != {"candidate_id", "version_key", "provenance", *content_keys}:
+                raise ReplayError("invalid_manifest", "Artifact observation requires a version and exactly one byte-content instruction.")
+            candidate_id, key = observation["candidate_id"], observation["version_key"]
+            if (candidate_id not in initial or key not in {v["version_key"] for v in _version_definitions(candidates[candidate_id])}
+                    or (candidate_id, key) in observed):
+                raise ReplayError("invalid_manifest", "Artifact observations must uniquely bind initially available versions.")
+            observed.add((candidate_id, key))
+            _provenance(observation["provenance"], "CPU artifact observation", synthetic_only=True)
+            value = observation[next(iter(content_keys))]
+            if not isinstance(value, str) or len(value.encode()) > 4 * 1024 * 1024:
+                raise ReplayError("invalid_manifest", "Observed artifact text must fit the 4 MiB fixture limit.")
         frames = fixture.get("attempts", [])
         if not isinstance(frames, list) or len(frames) > cap - used:
             raise ReplayError("invalid_manifest", "Attempt stream exceeds the approved remaining budget.")
@@ -237,6 +357,11 @@ class ReplaySession:
         self.artifacts: dict[str, dict] = {}
         self.candidates: dict[str, dict] = {}
         self.metrics: dict[str, list] = {}
+        self.versions: dict[str, dict] = {}
+        self.metrics_by_version: dict[str, list] = {}
+        self.context_artifacts: dict[str, dict] = {}
+        self.database_results: dict[str, dict] = {}
+        self.artifact_observations: dict[str, dict] = {}
         self.routes = {canonical_hash(request_identity(v)): k for k, v in self.fixture.get("routes", {}).items()}
         self.identity = {"backend": VERSION, "manifest_sha256": self.manifest_sha256,
                          "fixture_id": fixture_id, "fixture_sha256": canonical_hash(self.fixture),
@@ -247,9 +372,11 @@ class ReplaySession:
                                      "structure_serializer": "pymatgen.io.cif.CifWriter"},
                          "provenance": self.fixture["provenance"], "evidence_scope": SCOPE,
                          "science_computation_performed": False}
+        self.identity["shared_context_contract"] = CONTEXT_CONTRACT
         _write_new(self.root / "session.json", _json_bytes({**self.identity, "run_id": run_id, "sampling_cap": self.sampling_cap}))
         for candidate_id in self.fixture.get("initial_candidates", []):
             self._materialize(candidate_id)
+        self._materialize_context()
 
     def _artifact(self, artifact_id: str, relative: str, data: bytes, kind: str) -> dict:
         path = self.root / relative
@@ -260,9 +387,21 @@ class ReplaySession:
         return record
 
     def _materialize(self, candidate_id: str) -> dict:
+        candidate = self.fixture["candidates"][candidate_id]
+        by_key = {}
+        for index, definition in enumerate(_version_definitions(candidate)):
+            parent = by_key.get(definition["parent_version_key"])
+            record = self._materialize_version(candidate_id, definition, parent, index == 0)
+            by_key[definition["version_key"]] = record
+            self.versions[record["structure_version_id"]] = record
+        current = by_key[candidate.get("current_version_key", candidate.get("version_key", "initial"))]
+        self.candidates[candidate_id] = current
+        self.metrics[candidate_id] = self.metrics_by_version[current["structure_version_id"]]
+        return current
+
+    def _materialize_version(self, candidate_id: str, definition: dict, parent: dict | None, root: bool) -> dict:
         from pymatgen.core import Lattice, Structure
         from pymatgen.io.cif import CifWriter
-        definition = self.fixture["candidates"][candidate_id]
         source = definition["provenance"]
         if source["kind"] == "synthetic":
             data = definition["structure"]
@@ -271,18 +410,25 @@ class ReplaySession:
         else:
             cif = definition["cif_text"].encode()
             crystal = Structure.from_str(cif.decode(), fmt="cif")
-        artifact = self._artifact(f"{candidate_id}.cif", f"candidates/{candidate_id}.cif", cif, "structure")
-        version_id = "s_" + canonical_hash([self.identity["fixture_sha256"], candidate_id, artifact["sha256"], None, "fixture_import"])
+        stem = candidate_id if root else f"{candidate_id}--{definition['version_key']}"
+        artifact = self._artifact(f"{stem}.cif", f"candidates/{stem}.cif", cif, "structure")
+        parent_id = parent["structure_version_id"] if parent else None
+        version_id = "s_" + canonical_hash([self.identity["fixture_sha256"], candidate_id, artifact["sha256"], parent_id, definition["transformation"]])
+        # Reject before touching the per-version metric registry. A later alias
+        # with the same parent, content and transformation is the same version,
+        # not permission to replace its already bound scientific evidence.
+        if version_id in self.versions:
+            raise ReplayError("version_identity_conflict", "Different version declarations resolve to the same immutable structure identity; aliases cannot overwrite metadata or metrics.")
         record = {"candidate_id": candidate_id, "structure_version_id": version_id,
-                  "parent_version_id": None, "transformation": "fixture_import", **artifact,
+                  "version_key": definition["version_key"], "parent_version_id": parent_id,
+                  "transformation": definition["transformation"], **artifact,
                   "formula": crystal.composition.reduced_formula,
                   "elements": sorted(x.symbol for x in crystal.composition.elements),
                   "num_sites": len(crystal), "parse_valid": True,
                   "provenance": source, "evidence_scope": SCOPE}
-        self.candidates[candidate_id] = record
-        self.metrics[candidate_id] = []
+        self.metrics_by_version[version_id] = []
         for index, definition_metric in enumerate(definition.get("metrics", [])):
-            raw = self._artifact(f"{candidate_id}.metric.{index}", f"metrics/{candidate_id}-{index}.json",
+            raw = self._artifact(f"{stem}.metric.{index}", f"metrics/{stem}-{index}.json",
                                  _json_bytes({**definition_metric, "candidate_id": candidate_id,
                                               "structure_version_id": version_id, "evidence_scope": SCOPE}), "metric_raw")
             metric = {k: copy.deepcopy(v) for k, v in definition_metric.items() if k != "provenance"}
@@ -290,20 +436,110 @@ class ReplaySession:
                           input_artifact={k: artifact[k] for k in ("path", "sha256")},
                           raw_output={k: raw[k] for k in ("path", "sha256")})
             validated = validate_metric(metric, record)
-            self.metrics[candidate_id].append({**validated, "provenance": definition_metric["provenance"], "evidence_scope": SCOPE})
+            self.metrics_by_version[version_id].append({**validated, "provenance": definition_metric["provenance"], "evidence_scope": SCOPE})
         return record
 
+    def _materialize_context(self) -> None:
+        for key in ("execution", "initial_outcomes"):
+            if key in self.fixture:
+                self.context_artifacts[key] = self._artifact(f"context.{key}", f"context/{key}.json",
+                    _json_bytes({"format": CONTEXT_CONTRACT, key: self.fixture[key], "evidence_scope": SCOPE,
+                                 "provenance": self.fixture["provenance"], "science_computation_performed": False}), "execution_context")
+        for query in self.fixture.get("database_queries", []):
+            request = {k: query[k] for k in ("database", "query")}
+            result = {"query_id": query["query_id"], **request, "request_sha256": canonical_hash(request),
+                      "status": "failed", "novelty": "unknown", "records": None, "error": query["error"],
+                      "provenance": query["provenance"], "evidence_scope": SCOPE,
+                      "network_request_performed": False}
+            raw = self._artifact(f"database.{query['query_id']}", f"database/{query['query_id']}.json",
+                                 _json_bytes(result), "database_failure")
+            self.database_results[result["request_sha256"]] = {**result, "raw_output": raw}
+        for observation in self.fixture.get("artifact_observations", []):
+            record = next(v for v in self.versions.values() if v["candidate_id"] == observation["candidate_id"] and v["version_key"] == observation["version_key"])
+            original = {k: record[k] for k in ("artifact_id", "path", "relative_path", "sha256", "kind", "bytes")}
+            observed_bytes = (observation["observed_text"].encode() if "observed_text" in observation
+                              else Path(original["path"]).read_bytes() + observation["observed_append_text"].encode())
+            stem = f"{record['candidate_id']}--{record['version_key']}"
+            actual = self._artifact(f"{stem}.observed", f"observations/{stem}.cif", observed_bytes, "structure_observation")
+            receipt = self._artifact(f"{stem}.observation", f"observations/{stem}.json",
+                _json_bytes({"format": CONTEXT_CONTRACT, "candidate_id": record["candidate_id"],
+                             "structure_version_id": record["structure_version_id"], "original_artifact": original,
+                             "observed_artifact": actual, "provenance": observation["provenance"], "evidence_scope": SCOPE}), "artifact_observation")
+            # Keep expected content identity and version ID. The observed file
+            # is a separate immutable artifact, never a silent new structure version.
+            record.update(path=actual["path"], relative_path=actual["relative_path"], artifact_id=actual["artifact_id"])
+            self.artifact_observations[record["structure_version_id"]] = {
+                "original_artifact": original, "observed_artifact": actual,
+                "observation_receipt": receipt, "provenance": observation["provenance"]}
+
+    def _selected_version(self, args: dict) -> dict:
+        current = self.candidates.get(args["candidate_id"])
+        if current is None:
+            raise ReplayError("candidate_unavailable", "Candidate does not exist in this session.")
+        selected = self.versions.get(args.get("structure_version_id", current["structure_version_id"]))
+        if selected is None or selected["candidate_id"] != args["candidate_id"]:
+            raise ReplayError("version_mismatch", "Requested candidate and structure version do not match.")
+        return selected
+
+    def _integrity(self, record: dict) -> dict:
+        path = Path(record["path"])
+        actual = _bytes_hash(path.read_bytes()) if path.is_file() else None
+        observation = self.artifact_observations.get(record["structure_version_id"], {})
+        for key in ("original_artifact", "observation_receipt"):
+            if key in observation:
+                verify_artifact(observation[key])
+        return {"candidate_id": record["candidate_id"], "structure_version_id": record["structure_version_id"],
+                "expected_sha256": record["sha256"], "observed_sha256": actual, "intact": actual == record["sha256"],
+                "path": str(path), **observation, "evidence_scope": SCOPE}
+
+    def _execution_status(self) -> dict | None:
+        execution = self.fixture.get("execution")
+        if execution is None:
+            return None
+        verify_artifact(self.context_artifacts["execution"])
+        verify_artifact(self.context_artifacts["initial_outcomes"])
+        integrity = [self._integrity(v) for v in self.versions.values()]
+        reasons = []
+        if execution["state"] not in {"partial", "failed", "stopped"}:
+            reasons.append("The observed job is not in a resumable terminal state.")
+        if not execution["termination"]["confirmed"]:
+            reasons.append("Execution termination has not been confirmed.")
+        if self.attempts_used >= self.sampling_cap:
+            reasons.append("The hard sampling budget is exhausted, including failed attempts.")
+        if any(not value["intact"] for value in integrity):
+            reasons.append("An archived structure is missing or changed.")
+        return {**execution, "heartbeat_age_seconds": execution["observed_at"] - execution["heartbeat_at"],
+                "heartbeat_late": execution["observed_at"] - execution["heartbeat_at"] > execution["heartbeat_timeout_seconds"],
+                "termination_confirmed": execution["termination"]["confirmed"],
+                "resume_allowed": not reasons, "resume_blockers": reasons,
+                "raw_output": self.context_artifacts["execution"], "artifact_integrity": integrity,
+                "attempt_ledger_artifact": self.context_artifacts["initial_outcomes"],
+                "termination_evidence_scope": "synthetic_observation_not_live_process_supervision",
+                "clock_kind": "fixed_synthetic_observation_not_wall_clock", "evidence_scope": SCOPE}
+
     def _status(self) -> dict:
-        return {**self.identity, "attempts_used": self.attempts_used, "sampling_cap": self.sampling_cap,
+        result = {**self.identity, "attempts_used": self.attempts_used, "sampling_cap": self.sampling_cap,
                 "remaining_budget": self.sampling_cap - self.attempts_used,
                 "requested_samples": self.requested_samples,
                 "candidate_ids": list(self.candidates), "events_recorded": self.event_count}
+        if "execution" in self.fixture:
+            result["execution"] = self._execution_status()
+        if "initial_outcomes" in self.fixture:
+            verify_artifact(self.context_artifacts["initial_outcomes"])
+            result["initial_outcomes"] = self.fixture["initial_outcomes"]
+            result["initial_outcomes_artifact"] = self.context_artifacts["initial_outcomes"]
+        return result
 
     def _sample(self, args: dict) -> dict:
         if not isinstance(args, dict) or set(args) != {"engine", "model_name", "conditions", "parameters", "num_samples"}:
             raise ReplayError("invalid_request", "sample needs the complete route plus num_samples.")
         count = _positive_int(args["num_samples"], "num_samples")
         self.requested_samples += count
+        execution = self._execution_status()
+        if execution is not None and not execution["resume_allowed"]:
+            raise ReplayError("execution_not_resumable", " ".join(execution["resume_blockers"]))
+        if any(not self._integrity(v)["intact"] for v in self.versions.values()):
+            raise ReplayError("artifact_changed", "Existing archived structures must match their frozen identity before further attempts.")
         route_hash = canonical_hash(request_identity({k: v for k, v in args.items() if k != "num_samples"}))
         if count > self.sampling_cap - self.attempts_used:
             raise ReplayError("budget_exceeded", "Entire request denied: it exceeds the remaining hard sampling budget.")
@@ -356,17 +592,30 @@ class ReplaySession:
             for candidate_id in ids:
                 verify_artifact(self.candidates[candidate_id])
             return {"records": [self.candidates[x] for x in ids]}
+        if operation == "get_versions" and set(args) == {"candidate_id"}:
+            self._selected_version(args)
+            return {"candidate_id": args["candidate_id"], "records": [
+                {**record, "integrity": self._integrity(record)} for record in self.versions.values()
+                if record["candidate_id"] == args["candidate_id"]]}
+        if operation == "verify_candidate_artifact" and set(args) <= {"candidate_id", "structure_version_id"} and "candidate_id" in args:
+            return self._integrity(self._selected_version(args))
+        if operation == "query_database" and set(args) == {"database", "query"}:
+            if not isinstance(args["database"], str) or not isinstance(args["query"], dict):
+                raise ReplayError("invalid_request", "Database request needs a name and query object.")
+            result = self.database_results.get(canonical_hash(args))
+            if result is None:
+                raise ReplayError("query_unavailable", "No frozen database observation matches the exact request.")
+            verify_artifact(result["raw_output"])
+            return result
         if operation == "get_metrics" and set(args) <= {"candidate_id", "structure_version_id"} and "candidate_id" in args:
-            record = self.candidates.get(args["candidate_id"])
-            if record is None:
-                raise ReplayError("candidate_unavailable", "Candidate does not exist in this session.")
-            if args.get("structure_version_id", record["structure_version_id"]) != record["structure_version_id"]:
-                raise ReplayError("version_mismatch", "Requested candidate and structure version do not match.")
+            record = self._selected_version(args)
             verify_artifact(record)
-            for metric in self.metrics[record["candidate_id"]]:
+            metrics = self.metrics_by_version[record["structure_version_id"]]
+            for metric in metrics:
+                verify_artifact(metric["input_artifact"])
                 verify_artifact(metric["raw_output"])
             return {"candidate_id": record["candidate_id"], "structure_version_id": record["structure_version_id"],
-                    "metrics": self.metrics[record["candidate_id"]]}
+                    "metrics": metrics}
         raise ReplayError("invalid_request", "Unknown operation or invalid operation arguments.")
 
     def invoke(self, operation: str, arguments: dict | None = None) -> dict:

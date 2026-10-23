@@ -106,6 +106,8 @@ def build_instructions(source: Path, capability: dict):
         "真正缺少必需信息时调用ask_clarification；固定控制器无答案时不能代替用户作决定。遵守题目已有的执行授权范围。\n"
         "以下正常上游技能全文仅适用于已提供工具与共同科学能力；环境安装、训练、外部脚本和真实计算步骤不在本研究工具范围内。\n\n"
         "共同科学能力（各组相同）：\n" + json.dumps(capability, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+    common += (
+        "共享情境可用get_versions读取version_key与真实structure_version_id，再用get_metrics指定版本；query_database保留失败原始记录，verify_candidate_artifact显示期望与实际文件字节身份，status.execution保留停止确认与心跳观察事实。所有组均可读取这些相同原始事实。\n")
     for skill in skill_paths:
         common += "\n--- BEGIN NORMAL UPSTREAM SKILL " + skill.relative_to(upstream).as_posix() + " ---\n"
         common += skill.read_text(encoding="utf-8")
@@ -124,6 +126,9 @@ def build_instructions(source: Path, capability: dict):
         "完整复制用户原文到raw_request，并逐条保留requirements；不得为了通过验证删去原文。ready方案只在用户原任务授权范围内执行一次。\n"
         "结果检查首先针对共享engine产物版本。上游CIF重序列化的新版本必须保留父版本映射，不能直接继承另一版本的性质证据。\n"
         "本研究没有真实模型推理或随机种子推理验证，不宣称AI已提高正确率、提速或产生材料突破。\n")
+    override += (
+        "新增生产说明不改变本研究工具集合：禁止调用未提供的compare_runs或不存在的compare_metrics。\n"
+        "生产说明中的get_results.metrics_by_structure_version在研究中对应get_versions与get_metrics(candidate_id,structure_version_id)；研究核验使用check_candidates(plan_id,candidate_ids,structure_versions)，比较使用compare_candidate_metrics(candidate_ids,property_name,structure_versions,metric_ids)。structure_versions必须是明确的candidate_id与structure_version_id配对；version_key仅用于查找，不冒充哈希版本ID。\n")
     matpilot_path = instruction_dir / "matpilot.txt"
     matpilot_path.write_text(common + "\n--- ACTUAL MatPilot server.INSTRUCTIONS ---\n" + production + override,
                              encoding="utf-8", newline="\n")
@@ -200,7 +205,7 @@ def verify_smoke(report, source: Path, manifest, fixture_hash, groups=GROUPS):
 
 def prepare(output, *, provider, model, reasoning_mode, host_version, python_path=None, node_path=None,
             max_turns=12, max_output_tokens=2048, max_requests=16, timeout_ms=180000, sampling_cap=32, repeats=1,
-            task_ids=None, groups=None):
+            task_ids=None, groups=None, suite_path=None, fixture_manifest_path=None):
     for label, value in (("provider", provider), ("model", model), ("reasoning_mode", reasoning_mode), ("host_version", host_version)):
         if not isinstance(value, str) or not value.strip():
             raise ValueError("Explicit nonempty " + label + " is required; it will not be inferred.")
@@ -210,7 +215,17 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
             raise ValueError(label + " must be a positive integer.")
     if type(repeats) is not int or repeats not in (1, 2, 3):
         raise ValueError("Development repeats must be 1, 2 or 3.")
-    suite = json.loads((ROOT / "benchmarks/study/development_tasks.json").read_text(encoding="utf-8"))
+    if (suite_path is None) != (fixture_manifest_path is None):
+        raise ValueError("Custom development tasks and fixtures must be supplied together.")
+    suite_file = Path(suite_path) if suite_path is not None else ROOT / "benchmarks/study/development_tasks.json"
+    suite = json.loads(suite_file.read_text(encoding="utf-8"))
+    custom_fixture_bytes = Path(fixture_manifest_path).read_bytes() if fixture_manifest_path is not None else None
+    if custom_fixture_bytes is not None:
+        from matpilot.study_replay import _validate_manifest
+        custom_manifest = json.loads(custom_fixture_bytes)
+        _validate_manifest(custom_manifest)
+        if custom_manifest.get("purpose") != "development":
+            raise ValueError("Custom CPU preparation only accepts explicit development fixtures.")
     task_ids, groups = development_selection(suite, task_ids, groups)
     defined_groups = list(dict.fromkeys((*GROUPS, *groups)))
     python_path = executable(python_path, sys.executable, "Python")
@@ -220,6 +235,13 @@ def prepare(output, *, provider, model, reasoning_mode, host_version, python_pat
     source = root / "source"
     source.mkdir()
     copy_sources(source)
+    if custom_fixture_bytes is not None:
+        # This path belongs to the newly created copy, never the source checkout.
+        (source / "benchmarks/study/fixtures.development.json").write_bytes(custom_fixture_bytes)
+        save(source / "development-input-identity.json", {
+            "scope": "explicit_development_inputs_not_formal_review",
+            "suite_sha256": hash_file(suite_file),
+            "fixture_manifest_sha256": hashlib.sha256(custom_fixture_bytes).hexdigest()})
     runtime_probe = subprocess.run([python_path, "-c", "import json,sys,importlib.metadata as m;print(json.dumps({'python':sys.version.split()[0],'packages':{p:m.version(p) for p in ['pymatgen','mcp','PyYAML']}}))"],
                                    check=True, text=True, encoding="utf-8", capture_output=True, timeout=30, env=safe_environment())
     runtime_versions = json.loads(runtime_probe.stdout)
@@ -342,6 +364,8 @@ def main(argv=None):
     parser.add_argument("--repeats", type=int, default=1)
     parser.add_argument("--task-id", "--task-ids", dest="task_ids", nargs="+", action="extend")
     parser.add_argument("--group", "--groups", dest="groups", nargs="+", action="extend", choices=(*GROUPS, *ABLATIONS))
+    parser.add_argument("--suite-path")
+    parser.add_argument("--fixture-manifest-path")
     args = parser.parse_args(argv)
     print(json.dumps(prepare(**vars(args)), ensure_ascii=False, indent=2))
     return 0

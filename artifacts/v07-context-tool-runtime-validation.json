@@ -1,0 +1,714 @@
+{
+  "format": "matpilot-shared-context-harness-tools-cpu/v1",
+  "evidence_scope": "cpu_tool_contract_only",
+  "acceptance": "real_harness_tool_runtime_not_llm_end_to_end",
+  "formal_ready": false,
+  "passed": true,
+  "started_at": "2026-10-23T08:24:50.001Z",
+  "runtime_pack_sha256": "ab785eb9cd281d94e39b51e1211fdd43bd33d914ce97f7ad6077a2a583943017",
+  "source_manifest_sha256": {
+    "U": "9f59ab205c092056b1ddaa4f7a999b315c169e41785acc4f272d7b64df07b135",
+    "U+": "9f59ab205c092056b1ddaa4f7a999b315c169e41785acc4f272d7b64df07b135",
+    "M": "9f59ab205c092056b1ddaa4f7a999b315c169e41785acc4f272d7b64df07b135"
+  },
+  "fixture_manifest_sha256": "a93b1753d71d4b053e1daa562e9ce5860977857d781627e016b0d783bd71b09e",
+  "harness_packages": {
+    "cordis": {
+      "version": "4.0.5",
+      "package_sha256": "b73831b926b16cbd684aa1b277461e7800a2b35e2dd351ad3c2c8c0db158589d",
+      "entrypoint_sha256": "6a9394c0877ff45218818c6e815edd038f8057e1a1deb390a8d43ec81c57691e"
+    },
+    "dsh-system-prompt": {
+      "version": "0.2.1-rc.2",
+      "package_sha256": "f2195d2ec056f26988a7135f9036b9ade365ebdedf291bc7b7092a28abf5061b",
+      "entrypoint_sha256": "7be9f7aafbf345d01ddcc12fd297b16e9a1d41283a6a04073b867becca0bf020"
+    },
+    "dsh-tools": {
+      "version": "0.2.1-rc.2",
+      "package_sha256": "13adfd07328b98cd248054efb17be7895ba9db0e01ab87f4adca3d4c6385d636",
+      "entrypoint_sha256": "1e53932e7c4213ea24a7d87f06960b7a7702cb21f8a5741c97242b4a470a442a"
+    }
+  },
+  "api_requests": 0,
+  "api_cny": 0,
+  "real_material_model_runs": 0,
+  "llm_agent_created": false,
+  "credentials_service_loaded": false,
+  "cost_ledger_opened": false,
+  "cases": [
+    {
+      "task_id": "T0505",
+      "group": "U+",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "failed database query retains unknown novelty, null records and readable failed-response bytes"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 5,
+      "harness_result_events": 5,
+      "shared_facts": {
+        "database": {
+          "status": "failed",
+          "novelty": "unknown",
+          "records": null,
+          "error": {
+            "code": "synthetic_timeout",
+            "message": "Synthetic query timeout; database membership is unknown."
+          },
+          "raw_sha256": "d8d3d3464a640d9a67a1c19b2ca2398c1e03669f818c4748185310029c50cb9a"
+        }
+      },
+      "shared_facts_sha256": "b73a521ee816d94c7cdfb0f683e9fb3f7f3ee647e9baaab393617541e9d11e8d",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0505",
+      "group": "M",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "failed database query retains unknown novelty, null records and readable failed-response bytes"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 17,
+      "tool_executions": 5,
+      "harness_result_events": 5,
+      "shared_facts": {
+        "database": {
+          "status": "failed",
+          "novelty": "unknown",
+          "records": null,
+          "error": {
+            "code": "synthetic_timeout",
+            "message": "Synthetic query timeout; database membership is unknown."
+          },
+          "raw_sha256": "d8d3d3464a640d9a67a1c19b2ca2398c1e03669f818c4748185310029c50cb9a"
+        }
+      },
+      "shared_facts_sha256": "b73a521ee816d94c7cdfb0f683e9fb3f7f3ee647e9baaab393617541e9d11e8d",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0505",
+      "group": "U",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "failed database query retains unknown novelty, null records and readable failed-response bytes"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 5,
+      "harness_result_events": 5,
+      "shared_facts": {
+        "database": {
+          "status": "failed",
+          "novelty": "unknown",
+          "records": null,
+          "error": {
+            "code": "synthetic_timeout",
+            "message": "Synthetic query timeout; database membership is unknown."
+          },
+          "raw_sha256": "d8d3d3464a640d9a67a1c19b2ca2398c1e03669f818c4748185310029c50cb9a"
+        }
+      },
+      "shared_facts_sha256": "b73a521ee816d94c7cdfb0f683e9fb3f7f3ee647e9baaab393617541e9d11e8d",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0605",
+      "group": "U+",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "late heartbeat remains running/unconfirmed and cannot justify resuming the same job"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "running",
+          "termination_confirmed": false,
+          "heartbeat_late": true,
+          "resume_allowed": false,
+          "observed_at": 100,
+          "heartbeat_at": 80,
+          "raw_sha256": "375dbc0a3b469473a19a8504f2ed0a8ef5151569ad42b2e0912779f1509c649b",
+          "attempt_ledger_sha256": "224f99d88fd50be8117f3b0d3ff5d982de08c1b7301d65d3247ca571811d3439",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_6978a74ed9983088465791cf00f0e5041f56b81ecb622b488d630098316fcfc6",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "c9ba522bb311e167b2c9a11b15c26527d4bfaa53de37c60ed56a2e263be5df27",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0605",
+      "group": "M",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "late heartbeat remains running/unconfirmed and cannot justify resuming the same job"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 17,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "running",
+          "termination_confirmed": false,
+          "heartbeat_late": true,
+          "resume_allowed": false,
+          "observed_at": 100,
+          "heartbeat_at": 80,
+          "raw_sha256": "375dbc0a3b469473a19a8504f2ed0a8ef5151569ad42b2e0912779f1509c649b",
+          "attempt_ledger_sha256": "224f99d88fd50be8117f3b0d3ff5d982de08c1b7301d65d3247ca571811d3439",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_6978a74ed9983088465791cf00f0e5041f56b81ecb622b488d630098316fcfc6",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "c9ba522bb311e167b2c9a11b15c26527d4bfaa53de37c60ed56a2e263be5df27",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0605",
+      "group": "U",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "late heartbeat remains running/unconfirmed and cannot justify resuming the same job"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "running",
+          "termination_confirmed": false,
+          "heartbeat_late": true,
+          "resume_allowed": false,
+          "observed_at": 100,
+          "heartbeat_at": 80,
+          "raw_sha256": "375dbc0a3b469473a19a8504f2ed0a8ef5151569ad42b2e0912779f1509c649b",
+          "attempt_ledger_sha256": "224f99d88fd50be8117f3b0d3ff5d982de08c1b7301d65d3247ca571811d3439",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_6978a74ed9983088465791cf00f0e5041f56b81ecb622b488d630098316fcfc6",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "c9ba522bb311e167b2c9a11b15c26527d4bfaa53de37c60ed56a2e263be5df27",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0502",
+      "group": "U+",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "s_a1 and s_a2 remain distinct; exact-version metrics and CIF bytes are accessible"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 8,
+      "harness_result_events": 8,
+      "shared_facts": {
+        "versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "version_key": "s_a1",
+            "parent_version_id": null,
+            "transformation": "fixture_import",
+            "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+          },
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "version_key": "s_a2",
+            "parent_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "transformation": "synthetic_relaxation",
+            "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+          }
+        ],
+        "metrics": [
+          {
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "property": "dft_band_gap",
+            "value": 1.1,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+            "raw_sha256": "c6a78aebf58652367be45466f28bd22f6a816e2bd39cbc53e9ed312d30403d7a"
+          },
+          {
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "property": "dft_band_gap",
+            "value": 1.6,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13",
+            "raw_sha256": "3e878271864d06ae305a36934198ea9221a6b7327cc1e07d576c1e6c84a91930"
+          }
+        ]
+      },
+      "shared_facts_sha256": "2b841d4cf7f151c1263c3d3142be8c9c6df63a1bbea44051438a044c010c7fe2",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0502",
+      "group": "U",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "s_a1 and s_a2 remain distinct; exact-version metrics and CIF bytes are accessible"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 8,
+      "harness_result_events": 8,
+      "shared_facts": {
+        "versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "version_key": "s_a1",
+            "parent_version_id": null,
+            "transformation": "fixture_import",
+            "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+          },
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "version_key": "s_a2",
+            "parent_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "transformation": "synthetic_relaxation",
+            "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+          }
+        ],
+        "metrics": [
+          {
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "property": "dft_band_gap",
+            "value": 1.1,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+            "raw_sha256": "c6a78aebf58652367be45466f28bd22f6a816e2bd39cbc53e9ed312d30403d7a"
+          },
+          {
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "property": "dft_band_gap",
+            "value": 1.6,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13",
+            "raw_sha256": "3e878271864d06ae305a36934198ea9221a6b7327cc1e07d576c1e6c84a91930"
+          }
+        ]
+      },
+      "shared_facts_sha256": "2b841d4cf7f151c1263c3d3142be8c9c6df63a1bbea44051438a044c010c7fe2",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0502",
+      "group": "M",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "M explicit-version production evidence checks retain s_a2 and compare one metric per candidate/version",
+        "s_a1 and s_a2 remain distinct; exact-version metrics and CIF bytes are accessible"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 17,
+      "tool_executions": 11,
+      "harness_result_events": 11,
+      "shared_facts": {
+        "versions": [
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "version_key": "s_a1",
+            "parent_version_id": null,
+            "transformation": "fixture_import",
+            "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+          },
+          {
+            "candidate_id": "c_a",
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "version_key": "s_a2",
+            "parent_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "transformation": "synthetic_relaxation",
+            "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+          }
+        ],
+        "metrics": [
+          {
+            "structure_version_id": "s_32c71735ab1ea66f5c9de23d4460ba6443c59cef6579e9070feb177f9d1a840e",
+            "property": "dft_band_gap",
+            "value": 1.1,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+            "raw_sha256": "c6a78aebf58652367be45466f28bd22f6a816e2bd39cbc53e9ed312d30403d7a"
+          },
+          {
+            "structure_version_id": "s_a731d5ef46ad054a5718e6051feaefba9023374d56f9c1897ee706ec1f34c20e",
+            "property": "dft_band_gap",
+            "value": 1.6,
+            "unit": "eV",
+            "method": {
+              "name": "synthetic-method-a",
+              "version": "synthetic-v1",
+              "weights_identity": "synthetic-no-trained-weights",
+              "parameters": {
+                "fixture_only": true
+              }
+            },
+            "input_sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13",
+            "raw_sha256": "3e878271864d06ae305a36934198ea9221a6b7327cc1e07d576c1e6c84a91930"
+          }
+        ]
+      },
+      "shared_facts_sha256": "2b841d4cf7f151c1263c3d3142be8c9c6df63a1bbea44051438a044c010c7fe2",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0606",
+      "group": "U+",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "all groups can inspect original/observed bytes and metadata while stale metric reads fail"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 10,
+      "harness_result_events": 10,
+      "shared_facts": {
+        "integrity": {
+          "intact": false,
+          "expected_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+          "observed_sha256": "92b7207235b7e8716b058beacc5f13e871948de781f555906b3d5fd9d12a89c3",
+          "versions": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_039b1bcb56623d0359f05dd9feb61091783da36b2c166f164fd237d5b97ed2d8",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "06a9a0b5d8ac9c9abbc9946f0482f7447aee92b484992b288e229ff7ac77b661",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0606",
+      "group": "M",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "M check refuses to endorse changed CIF using the old version evidence",
+        "all groups can inspect original/observed bytes and metadata while stale metric reads fail"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 17,
+      "tool_executions": 12,
+      "harness_result_events": 12,
+      "shared_facts": {
+        "integrity": {
+          "intact": false,
+          "expected_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+          "observed_sha256": "92b7207235b7e8716b058beacc5f13e871948de781f555906b3d5fd9d12a89c3",
+          "versions": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_039b1bcb56623d0359f05dd9feb61091783da36b2c166f164fd237d5b97ed2d8",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "06a9a0b5d8ac9c9abbc9946f0482f7447aee92b484992b288e229ff7ac77b661",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0606",
+      "group": "U",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "all groups can inspect original/observed bytes and metadata while stale metric reads fail"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 10,
+      "harness_result_events": 10,
+      "shared_facts": {
+        "integrity": {
+          "intact": false,
+          "expected_sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c",
+          "observed_sha256": "92b7207235b7e8716b058beacc5f13e871948de781f555906b3d5fd9d12a89c3",
+          "versions": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_039b1bcb56623d0359f05dd9feb61091783da36b2c166f164fd237d5b97ed2d8",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "06a9a0b5d8ac9c9abbc9946f0482f7447aee92b484992b288e229ff7ac77b661",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0603",
+      "group": "M",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "confirmed stop exposes completed artifacts without restarting execution"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 17,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "stopped",
+          "termination_confirmed": true,
+          "heartbeat_late": false,
+          "resume_allowed": true,
+          "observed_at": 100,
+          "heartbeat_at": 99,
+          "raw_sha256": "a69014b73a9a5928f1be067fcae14526c669bc0a779b7fbd362d3b1807974482",
+          "attempt_ledger_sha256": "a74a6e052fadd97cfc4ded115f738afbb46804a6a6a6ce04ff72acfe0e9c5abe",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_a460671332961d0b3fa195564a808408fee8aca5496ab0250d4878d991ff190c",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            },
+            {
+              "candidate_id": "c_b",
+              "structure_version_id": "s_6f7cee2477972cb521050c870bb5da8f647807812dd646d6e9f234017a921372",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "ad17b816d2d9aef5738e582da90bb4eabf121fc469486d45d220711cd8d1385d",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0603",
+      "group": "U+",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "confirmed stop exposes completed artifacts without restarting execution"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "stopped",
+          "termination_confirmed": true,
+          "heartbeat_late": false,
+          "resume_allowed": true,
+          "observed_at": 100,
+          "heartbeat_at": 99,
+          "raw_sha256": "a69014b73a9a5928f1be067fcae14526c669bc0a779b7fbd362d3b1807974482",
+          "attempt_ledger_sha256": "a74a6e052fadd97cfc4ded115f738afbb46804a6a6a6ce04ff72acfe0e9c5abe",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_a460671332961d0b3fa195564a808408fee8aca5496ab0250d4878d991ff190c",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            },
+            {
+              "candidate_id": "c_b",
+              "structure_version_id": "s_6f7cee2477972cb521050c870bb5da8f647807812dd646d6e9f234017a921372",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "ad17b816d2d9aef5738e582da90bb4eabf121fc469486d45d220711cd8d1385d",
+      "sampling_attempts_delta": 0
+    },
+    {
+      "task_id": "T0603",
+      "group": "U",
+      "passed": true,
+      "checks": [
+        "actual Harness registry, canonical result event and shared tool schemas; generation guard blocks dispatch",
+        "confirmed stop exposes completed artifacts without restarting execution"
+      ],
+      "shared_tool_schema_sha256": "9bdec2da3564d2899ece79681f363fa417a5466314aad25627567567779d0a5b",
+      "tool_count": 14,
+      "tool_executions": 6,
+      "harness_result_events": 6,
+      "shared_facts": {
+        "execution": {
+          "state": "stopped",
+          "termination_confirmed": true,
+          "heartbeat_late": false,
+          "resume_allowed": true,
+          "observed_at": 100,
+          "heartbeat_at": 99,
+          "raw_sha256": "a69014b73a9a5928f1be067fcae14526c669bc0a779b7fbd362d3b1807974482",
+          "attempt_ledger_sha256": "a74a6e052fadd97cfc4ded115f738afbb46804a6a6a6ce04ff72acfe0e9c5abe",
+          "candidates": [
+            {
+              "candidate_id": "c_a",
+              "structure_version_id": "s_a460671332961d0b3fa195564a808408fee8aca5496ab0250d4878d991ff190c",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "66e270c5cede46739e728b694b28c42b99525eceb8a6747567b9a9f41ffc044c"
+            },
+            {
+              "candidate_id": "c_b",
+              "structure_version_id": "s_6f7cee2477972cb521050c870bb5da8f647807812dd646d6e9f234017a921372",
+              "version_key": "initial",
+              "parent_version_id": null,
+              "transformation": "fixture_import",
+              "sha256": "3976b7c606d21b2789a7f68b9d5ad53702b987c3c1974f6b8753a56579affb13"
+            }
+          ]
+        }
+      },
+      "shared_facts_sha256": "ad17b816d2d9aef5738e582da90bb4eabf121fc469486d45d220711cd8d1385d",
+      "sampling_attempts_delta": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "task_id": "T0502",
+      "same_shared_tool_schema": true,
+      "same_shared_facts": true
+    },
+    {
+      "task_id": "T0505",
+      "same_shared_tool_schema": true,
+      "same_shared_facts": true
+    },
+    {
+      "task_id": "T0603",
+      "same_shared_tool_schema": true,
+      "same_shared_facts": true
+    },
+    {
+      "task_id": "T0605",
+      "same_shared_tool_schema": true,
+      "same_shared_facts": true
+    },
+    {
+      "task_id": "T0606",
+      "same_shared_tool_schema": true,
+      "same_shared_facts": true
+    }
+  ],
+  "invocation": "node benchmarks/study_drivers/smoke_context_runtime.mjs --pack <new-pack>/runtime.json --harness-modules <harness>/node_modules --output <new-evidence-directory> --report <new-report.json>",
+  "limitations": [
+    "Developer-seen pending-review cases; not a formal freeze or independent assessment.",
+    "Programmatic tool arguments are fixed CPU assertions, not language-model decisions or scores.",
+    "Real Harness ToolRuntime registration, guards, execution and result normalization are exercised; no agent loop or desktop UI session is exercised.",
+    "Execution receipts and timestamps inside fixtures are synthetic observations, not live worker-stop or GPU acceptance.",
+    "Passing does not establish material properties, AI task accuracy, task-time reduction or a comparison effect.",
+    "Host hashes identify loaded package entrypoints, not an independently certified full dependency closure."
+  ],
+  "pinned_sources_unchanged": true,
+  "refused_network_calls": 0,
+  "completed_at": "2026-10-23T08:25:17.922Z",
+  "wall_seconds": 27.919533399999995,
+  "passed_cases": 15,
+  "total_cases": 15
+}

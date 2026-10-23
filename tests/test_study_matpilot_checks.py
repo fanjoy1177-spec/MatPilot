@@ -10,6 +10,7 @@ from unittest.mock import patch
 from matpilot.config import Settings
 from matpilot.requirements import contract, audit_requirements
 from matpilot.study_replay import ReplayError, ReplaySession
+from study_context_fixture import write_context_fixture
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -210,6 +211,62 @@ class MatPilotStudyChecksTests(unittest.TestCase):
             CHECKS.MatPilotChecks(Settings(data_dir=self.root / "unsafe", real_compute_enabled=True), replay)
         with self.assertRaises(ValueError):
             self.layer(replay, requirement_mapping=False, evidence_checks=False)
+
+    def test_same_candidate_versions_select_exact_metrics_and_reject_foreign_identity(self):
+        manifest = write_context_fixture(self.root)
+        replay = ReplaySession(manifest, "cpu_context", self.root / "versions", "versions")
+        layer = self.layer(replay)
+        versions = replay.invoke("get_versions", {"candidate_id": "c_a"})["records"]
+        by_key = {r["version_key"]: r for r in versions}
+        selection = [{k: by_key[key][k] for k in ("candidate_id", "structure_version_id")} for key in ("s_a1", "s_a2")]
+        result = layer.invoke("compare_candidate_metrics", {"candidate_ids": ["c_a"], "property_name": "band_gap", "structure_versions": selection})
+        self.assertTrue(result["comparable"])
+        self.assertEqual([m["value"] for m in result["metrics"]], [.75, 1.5])
+        plan = layer.prepare_plan({"conditions": {"chemical_system": "Na-Cl"}, "num_samples": 1})["plan"]
+        checked = layer.check_candidates(plan["plan_id"], ["c_a"], selection[1:])
+        self.assertEqual(checked["records"][0]["structure_version_id"], by_key["s_a2"]["structure_version_id"])
+        with self.assertRaisesRegex(ValueError, "one exact version"):
+            layer.check_candidates(plan["plan_id"], ["c_a"], selection)
+        foreign = replay.invoke("get_versions", {"candidate_id": "c_b"})["records"][0]
+        with self.assertRaisesRegex(ValueError, "does not belong"):
+            layer.compare_candidate_metrics(["c_a"], "band_gap", structure_versions=[selection[0],
+                {"candidate_id": "c_a", "structure_version_id": foreign["structure_version_id"]}])
+        ablated = self.layer(replay, evidence_checks=False)
+        with patch.object(CHECKS.evidence, "compare_metrics", side_effect=AssertionError("ablation must not compare")):
+            result = ablated.compare_candidate_metrics(["c_a"], "band_gap", structure_versions=selection)
+        self.assertIsNone(result["comparable"])
+        self.assertEqual([m["value"] for m in result["metrics"]], [.75, 1.5])
+
+    def test_context_facts_are_shared_and_changed_cif_cannot_reuse_metrics(self):
+        manifest = write_context_fixture(self.root, tampered=True)
+        replay = ReplaySession(manifest, "cpu_context", self.root / "context", "context")
+        layer = self.layer(replay)
+        query = {"database": "synthetic_materials_db", "query": {"chemical_system": "Na-Cl"}}
+        raw = replay.invoke("query_database", query)
+        forwarded = layer.invoke("query_database", query)
+        for key in ("status", "novelty", "records", "error"):
+            self.assertEqual(forwarded[key], raw[key])
+        self.assertEqual((raw["status"], raw["novelty"], raw["records"]), ("failed", "unknown", None))
+        execution = layer.invoke("status")["execution"]
+        self.assertTrue(execution["heartbeat_late"])
+        self.assertFalse(execution["termination_confirmed"])
+        self.assertEqual(execution["state"], "running")
+        integrity = layer.invoke("verify_candidate_artifact", {"candidate_id": "c_b"})
+        self.assertFalse(integrity["intact"])
+        self.assertNotEqual(integrity["expected_sha256"], integrity["observed_sha256"])
+        version = replay.invoke("get_versions", {"candidate_id": "c_b"})["records"][0]
+        selection = [{k: version[k] for k in ("candidate_id", "structure_version_id")}]
+        plan = layer.prepare_plan({"conditions": {"chemical_system": "Na-Cl"}, "num_samples": 1})["plan"]
+        with self.assertRaises((ReplayError, ValueError)):
+            layer.check_candidates(plan["plan_id"], ["c_b"], selection)
+        stopped_root = self.root / "stopped-source"
+        stopped_root.mkdir()
+        stopped_manifest = write_context_fixture(stopped_root, stopped=True)
+        stopped = ReplaySession(stopped_manifest, "cpu_context", self.root / "stopped", "stopped")
+        observation = self.layer(stopped).invoke("status")["execution"]
+        self.assertTrue(observation["heartbeat_late"])
+        self.assertTrue(observation["termination_confirmed"])
+        self.assertEqual(observation["state"], "stopped")
 
 
 if __name__ == "__main__":

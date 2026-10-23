@@ -27,7 +27,9 @@ from upstream_replay import UpstreamWorker
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 GROUPS = {"U", "U+", "M", "M_without_mapping", "M_without_evidence"}
-READ_OPS = {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics"}
+READ_OPS = {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics",
+            "get_versions", "query_database", "verify_candidate_artifact"}
+SHARED_CONTEXT_CONTRACT = "matpilot-shared-replay-context/v2"
 
 
 def tool(name, description, properties=None, required=()):
@@ -37,12 +39,18 @@ def tool(name, description, properties=None, required=()):
 
 def read_tools():
     string = {"type": "string"}
-    return [tool("status", "Read shared replay budget and execution status; no computation."),
+    return [tool("status", "Read shared replay budget and execution facts, including heartbeat and explicit termination receipts when supplied. A stop request or late heartbeat alone is not termination confirmation; no computation."),
             tool("list_artifacts", "List the returned CIF and raw metric artifacts, available equally to all groups."),
             tool("read_artifact", "Read an existing artifact by its explicit ID and verify its bytes.", {"artifact_id": string}, ["artifact_id"]),
             tool("get_candidates", "Read candidate IDs, structure versions and CIF paths; omitted IDs return all currently available candidates.",
                  {"candidate_ids": {"type": "array", "items": string}}),
-            tool("get_metrics", "Read metrics for a candidate and optional exact structure version. Synthetic values are workflow data only.",
+            tool("get_metrics", "Read metrics for a candidate and optional exact structure version. Metrics are not inherited between versions. Synthetic values are workflow data only.",
+                 {"candidate_id": string, "structure_version_id": string}, ["candidate_id"]),
+            tool("get_versions", "Read every available structure version, its explicit version key, parent identity and artifact integrity facts for one candidate. No version is automatically preferred.",
+                 {"candidate_id": string}, ["candidate_id"]),
+            tool("query_database", "Read the recorded response to an exact database query, including raw output and errors. A failed query does not establish an empty database or material novelty; no network request is made.",
+                 {"database": string, "query": {"type": "object"}}, ["database", "query"]),
+            tool("verify_candidate_artifact", "Compare expected and observed bytes for a candidate's exact CIF version and expose the original, observed and receipt artifacts equally to every group.",
                  {"candidate_id": string, "structure_version_id": string}, ["candidate_id"])]
 
 
@@ -73,6 +81,7 @@ class Broker:
                                        requirement_mapping=self.group != "M_without_mapping",
                                        evidence_checks=self.group != "M_without_evidence")
         self.identity = {"group": self.group, "real_compute_allowed": False,
+                         "shared_context_contract": SHARED_CONTEXT_CONTRACT,
                          "process_id": os.getpid(),
                          "upstream": self.worker.identity, "checking_layer": self.checks.identity if self.checks else None,
                          "scientific_defaults": {"guidance_scale": self.guidance_scale, "step_lr": self.step_lr},
@@ -96,12 +105,16 @@ class Broker:
         if self.checks:
             string = {"type": "string"}
             strings = {"type": "array", "items": string}
+            versions = {"type": "array", "minItems": 1, "items": {
+                "type": "object", "properties": {"candidate_id": string, "structure_version_id": string},
+                "required": ["candidate_id", "structure_version_id"], "additionalProperties": False}}
             tools += [tool("get_capabilities", "Read production model input contracts and requirement schema. Real computation stays disabled; execution here uses the shared replay backend."),
                       tool("prepare_plan", "Keep the full user request and individual requirements. Validate and freeze a plan without generating.", {"request": {"type": "object"}}, ["request"]),
                       tool("execute_plan", "Execute an existing ready plan once using the same patched upstream tools and synthetic replay budget. No real science runs.", {"plan_id": string}, ["plan_id"]),
-                      tool("check_candidates", "Check explicit candidate identities and each requirement using MatPilot's evidence functions.", {"plan_id": string, "candidate_ids": strings}, ["plan_id", "candidate_ids"]),
-                      tool("compare_candidate_metrics", "Compare explicit candidate metrics only when their calculation methods are compatible.",
-                           {"candidate_ids": strings, "property_name": string, "metric_ids": strings}, ["candidate_ids", "property_name"])]
+                      tool("check_candidates", "Check explicit candidate identities and each requirement using MatPilot's evidence functions. Optional structure_versions selects one exact version per candidate; absent selection preserves the current-version behavior.",
+                           {"plan_id": string, "candidate_ids": strings, "structure_versions": versions}, ["plan_id", "candidate_ids"]),
+                      tool("compare_candidate_metrics", "Compare explicit candidate/version metrics only when their calculation methods are compatible. Optional structure_versions can select multiple versions of the same candidate; choose exactly one metric per selected version.",
+                           {"candidate_ids": strings, "property_name": string, "metric_ids": strings, "structure_versions": versions}, ["candidate_ids", "property_name"])]
         else:
             tools += upstream["tools"]
         return {"tools": tools, "identity": self.identity, "normal_instructions": upstream["normal_instructions"]}

@@ -127,6 +127,12 @@ class StudyPrepareTests(unittest.TestCase):
         self.assertIn(override, matpilot)
         self.assertNotIn(override, common)
         self.assertGreater(matpilot.index(override), matpilot.index(production) + len(production))
+        self.assertIn("get_versions", common)
+        self.assertIn("query_database", common)
+        self.assertIn("verify_candidate_artifact", common)
+        research_override = matpilot[matpilot.index(override):]
+        self.assertIn("禁止调用未提供的compare_runs或不存在的compare_metrics", research_override)
+        self.assertIn("compare_candidate_metrics(candidate_ids,property_name,structure_versions,metric_ids)", research_override)
         # Production sources remain byte-identical; only the research instructions override them.
         self.assertEqual((source / "src/matpilot/server.py").read_bytes(), (ROOT / "src/matpilot/server.py").read_bytes())
 
@@ -223,6 +229,21 @@ class StudyPrepareTests(unittest.TestCase):
             with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
                 MODULE.prepare(output, provider="test", model="test", reasoning_mode="off", host_version="test", **kwargs)
             self.assertFalse(output.exists())
+
+    def test_custom_inputs_require_a_pair_and_cannot_promote_formal_fixtures(self):
+        output = self.root / "rejected-custom-inputs"
+        suite_path = ROOT / "benchmarks/study/development_tasks.json"
+        with self.assertRaisesRegex(ValueError, "supplied together"):
+            MODULE.prepare(output, provider="test", model="test", reasoning_mode="off", host_version="test",
+                           suite_path=suite_path)
+        fixture = json.loads((ROOT / "benchmarks/study/fixtures.development.json").read_text(encoding="utf-8"))
+        fixture["purpose"] = "formal_workflow_study"
+        fixture_path = self.root / "not-development.json"
+        fixture_path.write_text(json.dumps(fixture), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "explicit development"):
+            MODULE.prepare(output, provider="test", model="test", reasoning_mode="off", host_version="test",
+                           suite_path=suite_path, fixture_manifest_path=fixture_path)
+        self.assertFalse(output.exists())
 
     def test_ablation_receipt_requires_real_flag_and_behavior_evidence(self):
         original = json.loads((self.output / "reports/cpu-smoke.json").read_text(encoding="utf-8"))

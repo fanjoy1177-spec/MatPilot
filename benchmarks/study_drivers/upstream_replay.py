@@ -326,7 +326,8 @@ class UpstreamWorker:
                 raise ReplayError("artifact_changed", "Upstream artifact changed after tool completion.")
             return {**artifact, "content": content.decode("utf-8")}
         if operation == "replay" and set(arguments) <= {"operation", "arguments"}:
-            if arguments.get("operation") not in {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics"}:
+            if arguments.get("operation") not in {"status", "list_artifacts", "read_artifact", "get_candidates", "get_metrics",
+                                                   "get_versions", "query_database", "verify_candidate_artifact"}:
                 raise ReplayError("invalid_request", "Raw engine access is unavailable; use the actual upstream generation functions.")
             return self.session.invoke(arguments["operation"], arguments.get("arguments", {}))
         if operation == "trace_receipt" and not arguments:

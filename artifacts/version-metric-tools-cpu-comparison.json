@@ -1,0 +1,249 @@
+{
+  "format": "matpilot-version-metric-tools-cpu-comparison/v1",
+  "scope": "production_service_and_registered_mcp_function_capabilities_only",
+  "baseline": {
+    "path": "releases/0.2.0.dev6/matpilot_core-0.2.0.dev6-py3-none-any.whl",
+    "sha256": "bcc5b7b0ff44503f61598f8f66d1288aff37bc04dfcd0f9b07b9a7cf2e6c0f51",
+    "release_unchanged": true
+  },
+  "versions": {
+    "frozen_release": {
+      "declared_version": "0.2.0.dev6",
+      "source_sha256": {
+        "__init__.py": "53d9e77c37a89b2a064da7ace4df7f00850e32d475685cad2e5a3420025d7356",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "a241222e012e6f7523be464eb2d6241e0ca579ccefb569558683b248bd0f4315",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+        "config.py": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "ed052ebff953096cb30ef10f8963065f180d391bfba21844a958c9354dacb0a5",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "df0fdaf66e9aaeebeb731afefe0a57662e1ba7a3449a8f5ee3e172192966f019",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "7f6e5c458156eb09df67aa9e68bb0ef3a5d7415fd85493cde34493df1c9f1f5c",
+        "service.py": "b6a7a2a3ce19310a8661414b9d856c49fc64fa031f51ac687d0bfacf2a20b32e",
+        "store.py": "4d9703059147cb5274981464d2d618c1b376c1d6d69c826ee3c168c8bfdd7475",
+        "structures.py": "935c1c86edefa21216a445a927ee55d9d5ae7e1528bb85c2c6cf8dfe71d8c4be",
+        "study_replay.py": "535d93ac34b865cd81b5b18c39fdc64e24e716a96815ad7d303e908cf036bc35",
+        "study_workspace.py": "a70cf7e31b7f529199de2e0c92121e3df1b32ec89558b3a09fddfe14c4a76e3a",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "4ab94e0ac1da21ccb9683773f2bd82f8fb84b8f30b91a549996feb41f1339b55"
+      },
+      "tool_count": 9,
+      "compare_runs_input_schema": {
+        "properties": {
+          "job_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Job Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "job_ids"
+        ],
+        "title": "compare_runsArguments",
+        "type": "object"
+      },
+      "cases": {
+        "version_metrics_read": {
+          "generated_candidate_count": 1,
+          "registered_version_count": 2,
+          "versions_with_readable_metrics": 0,
+          "readable_metric_count": 0,
+          "mcp_registered_function_exposes_metrics": false
+        },
+        "single_job_same_method": {
+          "supported": false,
+          "error_type": "TypeError",
+          "error": "Service.compare_runs() got an unexpected keyword argument 'metric_selections'",
+          "ranking_returned": false
+        },
+        "single_job_different_methods": {
+          "supported": false,
+          "error_type": "TypeError",
+          "error": "Service.compare_runs() got an unexpected keyword argument 'metric_selections'",
+          "ranking_returned": false
+        }
+      },
+      "fixture_sha256": "5bf98b900115a4815af240a642304fa5d0e44d9d36cfc869afc66d2d28528e0a",
+      "original_cif_sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+      "child_cif_sha256": "bebab2b6157d6b5179501fac03e54aa7607701f7969b4685874b9216d33893b7",
+      "synthetic_metric_raw_sha256": [
+        "31a554d4f750c448efae07465bb7e0646373ac76813cbdb9bddf9834f7a758c4",
+        "d66e6eb32f1449f2db2bc7db84172ed2d35b4a2901b31798a2463cc7e6f5a710",
+        "b299fcf8156f54064816f9acd8e4d4b5f50b3f8e02452d916016eeb6e532db1e"
+      ],
+      "default_screened_candidate_count": 1,
+      "sampling_attempts_charged": 1
+    },
+    "candidate_source": {
+      "declared_version": "0.2.0.dev7",
+      "source_sha256": {
+        "__init__.py": "7a80a56d7b4f714b43cd5feded3fa4726946df28881b465475bab19ad6b752f7",
+        "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+        "adapters/__init__.py": "00bcb3e7b4f0c8ac7c8922c927f4d8b5b1712dedaa835a5bcaf27554255129b1",
+        "adapters/diffcsp.py": "8b8b46740d419e2b581e2c0ec74ff6531b3bc882899bde45336c084bacc46f36",
+        "adapters/mattergen.py": "a241222e012e6f7523be464eb2d6241e0ca579ccefb569558683b248bd0f4315",
+        "bridges/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bridges/diffcsp_runner.py": "e9f7b3f4fc50e9f076fbad29a94c6b7d85d0db8ef7ed974e52242ce966be6a89",
+        "capabilities.py": "09029a740c1a8138c1c35b2b75bbf84011cb113ad51c26235523eb8f8cd62a60",
+        "cli.py": "595e2c55d1f4e78f62c635e469ade39b6cdeabb7f431d0f434066a3da588d6ef",
+        "compute_process.py": "ba652eb10b4ec43e4d287638f469474b0923919c1a06582e71a0449ae9273749",
+        "config.py": "fafe2d60c0ea981315267d1c64687ef1e65373b4e411db96a8e4ba92e1620218",
+        "development_report.py": "ef45ed826ad024f1aca25e1d23d47acdae8ecb581dc05281e731a39efc2cdd81",
+        "evaluation.py": "ed052ebff953096cb30ef10f8963065f180d391bfba21844a958c9354dacb0a5",
+        "evidence.py": "2ffc249843228d6f796be44f59b810516ccfb77b717d1bc65b30b61744621934",
+        "repairs.py": "df0fdaf66e9aaeebeb731afefe0a57662e1ba7a3449a8f5ee3e172192966f019",
+        "requirements.py": "43a1ed41219e6f3c42ae31a104bf8a7882f6c15046af9567a09f6b5f79e5f327",
+        "server.py": "ee0e41cab3eb9b5f074c7faae4302e525431ea5255cf89963d217bf445265da2",
+        "service.py": "96fe2a43d459f1ef52b6474d812ce46d7d53181405ee350f631f5fa838842f4c",
+        "store.py": "4d9703059147cb5274981464d2d618c1b376c1d6d69c826ee3c168c8bfdd7475",
+        "structures.py": "935c1c86edefa21216a445a927ee55d9d5ae7e1528bb85c2c6cf8dfe71d8c4be",
+        "study_replay.py": "8c25c5f0db3ec7b6b5a710d7db9113e835f67793c014042e516e6f9dc606fe6a",
+        "study_workspace.py": "a70cf7e31b7f529199de2e0c92121e3df1b32ec89558b3a09fddfe14c4a76e3a",
+        "templates.py": "3ab70109274015d0d0c49a248bc3fa3093acacc28f183ce44d33271c20ca1140",
+        "worker.py": "4ab94e0ac1da21ccb9683773f2bd82f8fb84b8f30b91a549996feb41f1339b55"
+      },
+      "tool_count": 9,
+      "compare_runs_input_schema": {
+        "$defs": {
+          "MetricSelection": {
+            "additionalProperties": false,
+            "description": "Explicit evidence identity; selection never happens by formula or value.",
+            "properties": {
+              "job_id": {
+                "minLength": 1,
+                "title": "Job Id",
+                "type": "string"
+              },
+              "candidate_id": {
+                "minLength": 1,
+                "title": "Candidate Id",
+                "type": "string"
+              },
+              "structure_version_id": {
+                "minLength": 1,
+                "title": "Structure Version Id",
+                "type": "string"
+              },
+              "metric_id": {
+                "minLength": 1,
+                "title": "Metric Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "job_id",
+              "candidate_id",
+              "structure_version_id",
+              "metric_id"
+            ],
+            "title": "MetricSelection",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "job_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Job Ids",
+            "type": "array"
+          },
+          "metric_selections": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/MetricSelection"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Metric Selections"
+          }
+        },
+        "required": [
+          "job_ids"
+        ],
+        "title": "compare_runsArguments",
+        "type": "object"
+      },
+      "cases": {
+        "version_metrics_read": {
+          "generated_candidate_count": 1,
+          "registered_version_count": 2,
+          "versions_with_readable_metrics": 2,
+          "readable_metric_count": 3,
+          "mcp_registered_function_exposes_metrics": true
+        },
+        "single_job_same_method": {
+          "supported": true,
+          "comparable": true,
+          "reasons": [],
+          "selected_values": [
+            1.1,
+            1.6
+          ],
+          "ranking_returned": false
+        },
+        "single_job_different_methods": {
+          "supported": true,
+          "comparable": false,
+          "reasons": [
+            "Property, units, scientific method or reference sets differ."
+          ],
+          "selected_values": [
+            1.1,
+            0.5
+          ],
+          "ranking_returned": false
+        }
+      },
+      "fixture_sha256": "5bf98b900115a4815af240a642304fa5d0e44d9d36cfc869afc66d2d28528e0a",
+      "original_cif_sha256": "d469ee8209ec4d7e6a0069166f1a57052d1a02f5bdbd072088732da79b97b7c5",
+      "child_cif_sha256": "bebab2b6157d6b5179501fac03e54aa7607701f7969b4685874b9216d33893b7",
+      "synthetic_metric_raw_sha256": [
+        "31a554d4f750c448efae07465bb7e0646373ac76813cbdb9bddf9834f7a758c4",
+        "d66e6eb32f1449f2db2bc7db84172ed2d35b4a2901b31798a2463cc7e6f5a710",
+        "b299fcf8156f54064816f9acd8e4d4b5f50b3f8e02452d916016eeb6e532db1e"
+      ],
+      "default_screened_candidate_count": 1,
+      "sampling_attempts_charged": 1
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "win32",
+    "pymatgen": "2026.9.24",
+    "mcp": "1.30.0"
+  },
+  "real_material_model_runs": 0,
+  "property_calculations": 0,
+  "api_requests": 0,
+  "api_cny": 0,
+  "limitations": [
+    "All structures, transformations and metrics are explicitly synthetic CPU fixtures, not scientific evidence.",
+    "The same ZIP/CIF/raw metric byte hashes are checked across isolated stores and source processes.",
+    "This is tool functionality, not an LLM success rate, general benchmark score, causal AI benefit or user-time measurement.",
+    "Mixed-method numerical rankings are never requested or produced; rejection of comparability is the supported behavior.",
+    "The comparison invokes actual Service and registered MCP functions; it does not claim external Harness or protocol deployment acceptance.",
+    "The current source snapshot is identified by its file hashes, even if its package version label has not yet been changed."
+  ],
+  "reproduction": {
+    "script_path": "benchmarks/compare_version_metric_tools.py",
+    "script_sha256": "1cb3eb2f3af9f66292c97fc9648d2b63d78f024ff0a845cd235237ade024c3a0",
+    "command": "python benchmarks/compare_version_metric_tools.py --baseline-wheel releases/0.2.0.dev6/matpilot_core-0.2.0.dev6-py3-none-any.whl --work-dir .work/version-metrics-recompute --output artifacts/version-metrics-recompute.json"
+  }
+}
