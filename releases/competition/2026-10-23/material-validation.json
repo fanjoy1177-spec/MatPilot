@@ -1,0 +1,210 @@
+{
+  "date": "2026-10-23",
+  "passed": true,
+  "pdfs": [
+    {
+      "file": "MatPilot_作品说明书_清晰阅读版.pdf",
+      "sha256": "62bb781b95f7756eee2b81d90c8fc9224d75d7cffb2e0576efc36ddf966ab439",
+      "pages": 6,
+      "anonymous": true,
+      "fonts_used": [
+        "AAAAAA+MicrosoftYaHei-0",
+        "AAAAAA+MicrosoftYaHei-Bold-0",
+        "AAAAAB+MicrosoftYaHei-0",
+        "AAAAAC+MicrosoftYaHei-0"
+      ],
+      "embedded_fonts": [
+        "/AAAAAA+MicrosoftYaHei-0",
+        "/AAAAAA+MicrosoftYaHei-Bold-0",
+        "/AAAAAA+TimesNewRomanPSMT",
+        "/AAAAAB+MicrosoftYaHei-0",
+        "/AAAAAC+MicrosoftYaHei-0"
+      ],
+      "content_bounds": [
+        {
+          "page": 1,
+          "left": 62.69,
+          "right": 543.69,
+          "top": 81.43,
+          "bottom": 626.16
+        },
+        {
+          "page": 2,
+          "left": 62.69,
+          "right": 547.37,
+          "top": 80.67,
+          "bottom": 716.16
+        },
+        {
+          "page": 3,
+          "left": 62.69,
+          "right": 543.69,
+          "top": 80.67,
+          "bottom": 637.16
+        },
+        {
+          "page": 4,
+          "left": 62.69,
+          "right": 543.69,
+          "top": 80.67,
+          "bottom": 670.16
+        },
+        {
+          "page": 5,
+          "left": 62.69,
+          "right": 531.68,
+          "top": 80.16,
+          "bottom": 708.84
+        },
+        {
+          "page": 6,
+          "left": 62.69,
+          "right": 545.18,
+          "top": 80.16,
+          "bottom": 708.65
+        }
+      ]
+    },
+    {
+      "file": "MatPilot_作品说明书_匿名提交版.pdf",
+      "sha256": "d26672650128796afa82795c2f70d9908536703d6a92233c96e2b91ae45aa804",
+      "pages": 5,
+      "anonymous": true,
+      "fonts_used": [
+        "AAAAAA+FangSong",
+        "AAAAAA+SimHei",
+        "AAAAAA+SimSun-0",
+        "AAAAAA+TimesNewRomanPSMT",
+        "AAAAAB+FangSong",
+        "AAAAAC+FangSong"
+      ],
+      "embedded_fonts": [
+        "/AAAAAA+FangSong",
+        "/AAAAAA+SimHei",
+        "/AAAAAA+SimSun-0",
+        "/AAAAAA+TimesNewRomanPSMT",
+        "/AAAAAB+FangSong",
+        "/AAAAAC+FangSong"
+      ],
+      "content_bounds": [
+        {
+          "page": 1,
+          "left": 62.69,
+          "right": 547.37,
+          "top": 79.12,
+          "bottom": 724.55
+        },
+        {
+          "page": 2,
+          "left": 62.69,
+          "right": 542.69,
+          "top": 78.55,
+          "bottom": 745.75
+        },
+        {
+          "page": 3,
+          "left": 62.69,
+          "right": 538.02,
+          "top": 78.83,
+          "bottom": 511.66
+        },
+        {
+          "page": 4,
+          "left": 62.69,
+          "right": 542.69,
+          "top": 78.55,
+          "bottom": 761.54
+        },
+        {
+          "page": 5,
+          "left": 62.69,
+          "right": 542.69,
+          "top": 78.55,
+          "bottom": 397.06
+        }
+      ]
+    },
+    {
+      "file": "MatPilot_申报书三栏正文.pdf",
+      "sha256": "a194b13a51bcf16af58992c06ccdf5343337fef91bf2ee6ae0293d4c1b516da8",
+      "pages": 2,
+      "anonymous": false,
+      "fonts_used": [
+        "AAAAAA+MicrosoftYaHei-0",
+        "AAAAAA+MicrosoftYaHei-Bold-0",
+        "AAAAAB+MicrosoftYaHei-0"
+      ],
+      "embedded_fonts": [
+        "/AAAAAA+MicrosoftYaHei-0",
+        "/AAAAAA+MicrosoftYaHei-Bold-0",
+        "/AAAAAA+TimesNewRomanPSMT",
+        "/AAAAAB+MicrosoftYaHei-0"
+      ],
+      "content_bounds": [
+        {
+          "page": 1,
+          "left": 62.69,
+          "right": 543.69,
+          "top": 81.43,
+          "bottom": 707.16
+        },
+        {
+          "page": 2,
+          "left": 62.69,
+          "right": 531.4,
+          "top": 80.67,
+          "bottom": 402.16
+        }
+      ]
+    },
+    {
+      "file": "MatPilot_安装与使用说明.pdf",
+      "sha256": "f17cb078afd31ebaf26c82bd6ff1cf188841caf3451e27768bd1612e2092f76b",
+      "pages": 3,
+      "anonymous": false,
+      "fonts_used": [
+        "AAAAAA+MicrosoftYaHei-0",
+        "AAAAAA+MicrosoftYaHei-Bold-0",
+        "AAAAAB+MicrosoftYaHei-0",
+        "Courier"
+      ],
+      "embedded_fonts": [
+        "/AAAAAA+MicrosoftYaHei-0",
+        "/AAAAAA+MicrosoftYaHei-Bold-0",
+        "/AAAAAA+TimesNewRomanPSMT",
+        "/AAAAAB+MicrosoftYaHei-0"
+      ],
+      "content_bounds": [
+        {
+          "page": 1,
+          "left": 62.69,
+          "right": 537.0,
+          "top": 81.43,
+          "bottom": 530.16
+        },
+        {
+          "page": 2,
+          "left": 62.69,
+          "right": 543.78,
+          "top": 80.67,
+          "bottom": 657.16
+        },
+        {
+          "page": 3,
+          "left": 62.69,
+          "right": 531.52,
+          "top": 80.67,
+          "bottom": 508.16
+        }
+      ]
+    }
+  ],
+  "source_evidence_hashes_checked": 9,
+  "visual_review": {
+    "status": "passed",
+    "reviewed_pages": 16,
+    "method": "All 5 official, 6 reading, 2 application and 3 guide page PNGs inspected at 120 dpi; no cropped text, overlapping content or split code blocks found."
+  },
+  "new_api_calls": 0,
+  "new_material_computations": 0
+}
