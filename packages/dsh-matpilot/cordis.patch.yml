@@ -1,13 +1,4 @@
 - insert:
-    - id: matpilot-mcp
-      name: '@deepseek-ai/dsh-mcp-client'
-      config:
-        serverName: matpilot
-        transport: stdio
-        command: !!js process.env.MATPILOT_PYTHON || 'python'
-        args: ['-m', 'matpilot', 'serve']
-        env:
-          MATPILOT_CONFIG: !!js process.env.MATPILOT_CONFIG || ''
-          PYTHONIOENCODING: utf-8
-        toolCallTimeoutMs: 60000
-        failOnStartupError: true
+    - id: matpilot
+      name: dsh-matpilot
+      config: {}

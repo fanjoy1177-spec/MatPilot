@@ -50,39 +50,22 @@ Linux：
 
 ## 安装到 Harness
 
-先安装 Node.js，再执行：
+桌面版直接使用原生插件页面：
 
-```text
-npm install -g @deepseek-ai/dsh@0.2.1-rc.2
-dsh --profile matpilot --from-default-profile web --dump-config
-dsh plugin --profile matpilot add ./packages/dsh-matpilot
-```
+1. 完成上面的 Python 服务安装，下载 [桌面插件包 0.2.0-dev.10](releases/harness/0.2.0-dev.10/dsh-matpilot-0.2.0-dev.10.tgz)，按同目录 SHA256SUMS.txt 核对。
+2. 在 Harness 中选择“插件 → 添加插件”，填写下载的 tgz **绝对路径**，安装并启用。
+3. 向下找到“已安装插件 → 材策 MatPilot”，打开连接配置，填写 Python 可执行文件、MatPilot 配置文件的绝对路径，保存。普通 pip 安装无需填写独立安装目录。
+4. 新建会话，输入“查询 MatPilot 能力，告诉我当前后端，先不要执行任务”。首次选择 demo 配置并核对真实计算关闭。
 
-发行包用户把最后一个参数改成下载的 `dsh-matpilot-0.2.0-dev.8.tgz`。这是本地发行名称，不代表已发布到 npm。
+完整步骤和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。本次只升级 Harness 连接包；Python 后端继续使用 0.2.0.dev8。两个包的版本独立编号，尚未发布 npm 或 PyPI。
 
-以上命令用于 Harness 命令行/Web 配置。**桌面版的 `desktop` 配置由 Electron 应用管理，不能使用 `dsh plugin --profile desktop add` 安装。** 已验证的桌面接入方法见 [桌面配置说明](docs/desktop_setup.md)。
-
-在同一终端设置实际路径。Windows PowerShell 示例：
-
-```powershell
-$env:MATPILOT_PYTHON = 'D:\MatPilot\.venv\Scripts\python.exe'
-$env:MATPILOT_CONFIG = 'D:\MatPilot\examples\config.demo.json'
-dsh --profile matpilot
-```
-
-Linux 示例：
-
-```sh
-export MATPILOT_PYTHON=/opt/MatPilot/.venv/bin/python
-export MATPILOT_CONFIG=/opt/MatPilot/examples/config.demo.json
-dsh --profile matpilot
-```
+CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
 
 在 Harness 中配置大模型账户或 API，然后可输入：
 
 > 先查询 MatPilot 的能力。准备一个 Fe-Ni-O 体系、4 个候选结构的任务，把析氧活性和耐氯腐蚀性列为后续验证目标。先展示方案，不开始生成。
 
-检查条件、数量和后端后再授权执行。无 API 时仍可用 CLI 和 MCP 客户端验证工具。真实 API 验收案例及失败记录见 `artifacts/desktop-acceptance.json`。
+检查条件、数量和后端后再授权执行。无 API 时仍可用 CLI 和 MCP 客户端验证工具。历史真实 API 验收案例及失败记录见 `artifacts/desktop-acceptance.json`。
 
 ## 连接实际 MatterGen
 

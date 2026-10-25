@@ -1,5 +1,12 @@
 # Changelog
 
+## Harness bundle 0.2.0-dev.10 — 2026-10-25
+
+- Register MatPilot as a native installed plugin with localized metadata, icon, bundle toggle and connection form.
+- Persist editable connection fields through Harness settings and reconnect the owned MCP child after accepted changes.
+- Replace the manually inserted MCP entry during desktop migration; Python core remains 0.2.0.dev8.
+- Preserve dev8 scientific and comparison evidence; this change concerns installation and tool access only. No paid LLM requests or real materials computation.
+
 ## 0.2.0.dev8 — 2026-10-23
 
 - Carry explicit candidate/version/metric selections from the existing screening tool into reports; retain all available evidence and keep different selection reports separate. Ambiguous or incomplete evidence remains unknown by default.

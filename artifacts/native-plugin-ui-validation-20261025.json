@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-25T06:48:58.362Z",
+  "host": {
+    "name": "DeepSeek Harness Desktop",
+    "version": "0.2.1-rc.2",
+    "platform": "Windows"
+  },
+  "bundle": {
+    "name": "dsh-matpilot",
+    "version": "0.2.0-dev.10",
+    "sha256": "f9dbc9d42a54b348c3abcf17e67431663d0bf2b4da4866b80099721ff251304b",
+    "installed_bytes_match_source": true
+  },
+  "python_core_version": "0.2.0.dev8",
+  "checks": {
+    "native_add_plugin_install": true,
+    "native_card_visible": true,
+    "native_metadata_and_icon": true,
+    "native_form_reads_saved_paths": true,
+    "ui_timeout_save_sequence": [
+      60000,
+      61000,
+      60000
+    ],
+    "saved_to_profile": true,
+    "capability_call_after_reconnect": true,
+    "disabled_tool_count": 0,
+    "reenabled_tool_count": 9,
+    "old_mcp_entry_removed": true,
+    "temporary_audit_removed": true,
+    "unrelated_profile_settings_preserved": true,
+    "syntax_checks": [
+      "index.mjs",
+      "client.js"
+    ]
+  },
+  "fixed_demo": {
+    "backend": "demo",
+    "status": "completed",
+    "valid_files": 2,
+    "unique_valid_structures": 1,
+    "provenance": "demonstration_fixture",
+    "scientific_status": "unvalidated_candidates",
+    "report_sha256": "f937c8e3441e3437640b9a8490c248bdbd0f89381f8ccfb3afa5b3f525db2931",
+    "evidence_sha256": "12e002c75401df635bc8e94d9046b4d74c31bf071e39efa8bcb5dc3bf2332e3d"
+  },
+  "observed_failures": [
+    {
+      "stage": "initial_dev9_helper_install",
+      "error": "HMR transactions cannot be nested",
+      "resolution": "Native UI activation succeeded; helper not used for further installation mutations."
+    },
+    {
+      "stage": "initial_dev9_form",
+      "error": "Host settings omitted non-volatile fields",
+      "resolution": "Declared volatile fields and MCP reconnect listener in dev10."
+    },
+    {
+      "stage": "same_path_dev9_reinstall",
+      "error": "No dependency change; original package retained",
+      "resolution": "New dev10 archive installed through native Add Plugin UI."
+    },
+    {
+      "stage": "save_reconnect_immediate_probe",
+      "error": "Tool not registered during reconnect",
+      "resolution": "Waited for registration before subsequent probes."
+    },
+    {
+      "stage": "first_capability_after_reconnect",
+      "error": "SDK timeout at 30 seconds, seen after save and re-enable",
+      "resolution": "A subsequent explicit capability/demo attempt succeeded. Initial requests after reconnect can require retry."
+    }
+  ],
+  "boundaries": {
+    "api_calls": 0,
+    "api_cost_cny": 0,
+    "real_material_computations": 0,
+    "weights_downloaded": 0,
+    "new_llm_effect_evaluation": false,
+    "human_time_measurement": false,
+    "overall_speedup_claim": false,
+    "core_changed": false
+  },
+  "evidence": {
+    "screenshot": "docs/images/native-plugin-card.png",
+    "private_raw_run_directory": "not_published"
+  }
+}
