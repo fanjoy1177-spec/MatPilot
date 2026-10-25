@@ -12,6 +12,8 @@ MatPilot 的 MIT 许可证只覆盖本仓库原创代码与文档。模型权重
 
 本项目没有重新训练 MatterGen，也没有训练或压缩 DeepSeek。未将模型性能、模型架构或 Harness 界面列为本项目原创成果。发行包不包含第三方权重、GPU 运行环境或用户密钥。
 
+dev11 部署包包含从 MatterGen 官方提交 `92423660a8bd70e83679086e88f88596d484dc16` 未修改源码构建的 wheel，保留 `deployment/assets/MatterGen-LICENSE.txt`（MIT）。wheel 源码压缩包的 URL/SHA256 记录于 recipe.json；上游修正了 PyPI 发布元数据中的旧 CUDA 依赖。权重从固定 Hugging Face 提交按需下载，不打入发行包。uv 和 python-build-standalone 引导包也从各自官方发布按固定 SHA256 下载，使用时适用其第三方许可证。源安装脚本与完整依赖锁随包提供。
+
 ## DiffCSP++ and AtomisticSkills baseline snapshot
 
 DiffCSP++ is an upstream generative model, not a MatPilot model. The bridge imports the operator-installed AtomisticSkills wrapper at commit 6afdd465a35088136e4875d7d2fbaefc633f4adf after identity checks. No checkpoint is redistributed. Verify the selected checkpoint terms separately.

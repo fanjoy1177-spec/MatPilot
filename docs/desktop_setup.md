@@ -1,5 +1,7 @@
 # DeepSeek Harness 桌面接入
 
+**dev11 首次安装入口已改为插件内环境部署**，无 Python/MatterGen 时也能检查和安装。请优先阅读[环境部署指南](deployment.md)。下文保留 dev10 的已有环境手动接入方式和历史验收范围；其未自动部署的描述仅适用于旧版。原文快照另存于 `benchmarks/deployment/baseline/`。
+
 适用：Harness Desktop 0.2.1-rc.2，MatPilot 原生连接包 0.2.0-dev.10，Python 服务 0.2.0.dev8。账户和 API 密钥由 Harness 管理，连接表单不填写密钥。
 
 ## 1. 安装 Python 服务

@@ -2,14 +2,14 @@
 
 通过现有 Harness 对话完成需求核对、任务跟踪、候选筛选与报告整理。
 
-本包 0.2.0-dev.10 增加桌面原生插件卡片、启用开关和连接配置表单，连接已发行的 matpilot-core 0.2.0.dev8。Python 材料计算后端未在本次修改。
+本包 0.2.0-dev.11 集成环境检查、隔离安装、失败恢复、分层验证和自动连接，使用 matpilot-core 0.2.0.dev8。没有预装 Python 时，七个部署工具也能加载。支持 Linux x86_64 和 Windows/WSL2；真实生成需要兼容 NVIDIA GPU。
 
 ## 在桌面插件页安装
 
-1. 安装 matpilot-core，并解压同版源码包保留 examples 与模板。
+1. 下载本包，无需先安装 Python 或 MatterGen。
 2. 在 Harness 的“插件 → 添加插件”输入本插件目录的绝对路径，或下载的 tgz 文件路径；安装后启用。
-3. 打开“材策 MatPilot”，在连接表单填写 Python 可执行文件与 MatPilot 配置文件的绝对路径。常规 pip 安装的“独立安装目录”留空；target 安装才填写 PYTHONPATH 目录。
-4. 保存连接配置，然后新建会话，输入“查询 MatPilot 能力，先不要执行任务”。首次使用选择 examples/config.multimodel.demo.json，确认 demo 后端及真实计算关闭。
+3. 打开“材策 MatPilot”，复制环境检查指令并发送：“检查材策运行 MatterGen 的环境，并准备安装计划。保留现有环境，先不生成材料。”
+4. 确认计划后要求安装。可随时查询进度，失败时要求恢复。安装通过后，另行授权一个候选的真实验证，再连接并启用真实计算。已有环境可以继续用手动连接表单。
 
 主开关停用此插件和它注册的 MCP 工具，重新启用会重新连接。停用工具入口并不等同取消已经提交的独立任务；停用前应查询或停止任务。
 
@@ -17,4 +17,6 @@
 
 若以前手动配置过 id=matpilot-mcp 的 MCP 插件，应备份并移除该旧条目，把它的 Python 路径、MATPILOT_CONFIG、可选 PYTHONPATH 转入本插件的连接配置。两套入口不能同时占用 mcp__matpilot__ 工具名。
 
-不会自动运行材料模型、下载权重或发送 API 请求。Python 服务及真实模型环境仍须单独安装。当前演示不能证明材料性能或整体提速；本包尚未发布到 npm。
+启用插件本身不开始下载或材料生成。用户授权安装后会下载固定 Python、依赖及 chemical_system 权重，校验后安装到独立目录。缺少 WSL/系统驱动时报告需完成的系统步骤，不自动修改驱动或重启。安装包需联网，不包含完整 GPU 环境或权重。安装通过、MCP 连接、真实样本通过分别报告，均不能证明材料性能或整体提速。
+
+说明、原流程归档与评估协议见 https://github.com/fanjoy1177-spec/MatPilot/blob/main/docs/deployment.md 。本包尚未发布到 npm。

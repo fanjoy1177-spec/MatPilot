@@ -26,6 +26,8 @@ dev8进一步将显式指标选择接入筛选和报告，保留未选证据及�
 
 ## 安装后端
 
+**首次使用建议直接安装 [dev11 环境部署包](releases/harness/0.2.0-dev.11/)。无需预装 Python 或 MatterGen。** 插件集成环境检查、固定版本安装、失败恢复、CUDA/MCP 验证和单候选验证入口。具体范围与原/新流程对照见[环境部署指南](docs/deployment.md)。下面保留已有环境的手动安装方式。
+
 需要 Python 3.10 或以上。下载源码，在项目目录建立独立环境：
 
 ```text
@@ -52,12 +54,12 @@ Linux：
 
 桌面版直接使用原生插件页面：
 
-1. 完成上面的 Python 服务安装，下载 [桌面插件包 0.2.0-dev.10](releases/harness/0.2.0-dev.10/dsh-matpilot-0.2.0-dev.10.tgz)，按同目录 SHA256SUMS.txt 核对。
+1. 下载 [桌面插件包 0.2.0-dev.11](releases/harness/0.2.0-dev.11/)，按 SHA256SUMS.txt 核对；首次使用无需先装 Python。
 2. 在 Harness 中选择“插件 → 添加插件”，填写下载的 tgz **绝对路径**，安装并启用。
-3. 向下找到“已安装插件 → 材策 MatPilot”，打开连接配置，填写 Python 可执行文件、MatPilot 配置文件的绝对路径，保存。普通 pip 安装无需填写独立安装目录。
-4. 新建会话，输入“查询 MatPilot 能力，告诉我当前后端，先不要执行任务”。首次选择 demo 配置并核对真实计算关闭。
+3. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。检查并确认安装计划后，插件安装隔离环境；已有环境也可使用手动连接表单。
+4. 查询安装进度，按需恢复，完成导入/CUDA/MCP 检查。真实单候选验证和启用真实计算分别授权。只需固定样本体验时明确选择 demo。
 
-完整步骤和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。本次只升级 Harness 连接包；Python 后端继续使用 0.2.0.dev8。两个包的版本独立编号，尚未发布 npm 或 PyPI。
+自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。Harness 插件为 dev11，Python 核心继续使用 0.2.0.dev8。两个包独立编号，尚未发布 npm 或 PyPI。
 
 CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
 
@@ -69,7 +71,7 @@ CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpil
 
 ## 连接实际 MatterGen
 
-按 [MatterGen 官方说明](https://github.com/microsoft/mattergen) 在独立 Linux/CUDA 环境安装模型和权重。复制 `examples/config.native.json`，将 `command` 改为实际可执行文件的路径，将 `MATPILOT_CONFIG` 指向该配置。真实计算默认禁用；只有取得相应授权、完成环境核对后才可由操作者设置 real_compute_enabled=true。当前任务禁止真实计算，保持 false。
+新用户使用插件部署工具安装并验证后自动连接。已有环境也可按 [MatterGen 官方说明](https://github.com/microsoft/mattergen) 安装模型和权重，复制 `examples/config.native.json`，将 `command` 改为实际可执行文件路径，将 `MATPILOT_CONFIG` 指向该配置。真实计算默认禁用，取得对应授权并完成验证后启用。
 
 可用 `checkpoint_paths` 将检查点名称映射到已下载的模型目录，避免运行时下载。较旧 MatterGen 不支持 `--seed` 时设置 `seed_supported: false`；记录会明确标注种子未应用，不能保证逐结构复现。
 

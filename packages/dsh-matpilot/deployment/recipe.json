@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "id": "mattergen-1.0.3-cu121-v1",
+  "python": "3.10.19",
+  "core_version": "0.2.0.dev8",
+  "mattergen_version": "1.0.3",
+  "upstream_commit": "92423660a8bd70e83679086e88f88596d484dc16",
+  "uv_version": "0.13.5",
+  "uv_url": "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-gnu.tar.gz",
+  "uv_sha256": "f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f",
+  "minimum_free_gib": 12,
+  "checkpoints": [
+    "chemical_system"
+  ],
+  "sources": [
+    "github.com",
+    "pypi.org",
+    "files.pythonhosted.org",
+    "download.pytorch.org",
+    "data.pyg.org",
+    "huggingface.co"
+  ],
+  "support": "Linux x86_64 glibc >= 2.28; Windows through WSL2. CUDA/NVIDIA required for MatterGen. Driver/WSL installation and remote provisioning are guided prerequisites.",
+  "core_wheel": "matpilot_core-0.2.0.dev8-py3-none-any.whl",
+  "core_sha256": "34b56e52267874cbeef77399c1281fb0e7bbd06936bff195949878c3a205d1ad",
+  "weight_directory": "checkpoints/chemical_system",
+  "weights_revision": "5244495dd9a979ff71abc7548a0b14b9deb0069a",
+  "weights": [
+    {
+      "path": "checkpoints/chemical_system/checkpoints/last.ckpt",
+      "relative_path": "checkpoints/last.ckpt",
+      "sha256": "4ad21d977c2b776a31c92498c4d1c88d3e1e286deeb941e997af8e082310b80e",
+      "size": 512404276,
+      "url": "https://huggingface.co/microsoft/mattergen/resolve/5244495dd9a979ff71abc7548a0b14b9deb0069a/checkpoints/chemical_system/checkpoints/last.ckpt"
+    },
+    {
+      "path": "checkpoints/chemical_system/config.yaml",
+      "relative_path": "config.yaml",
+      "sha256": "0640de891dc75e34c92c4da022344767918fe4a2300908b1013fe6161f3c2c81",
+      "size": 7293,
+      "url": "https://huggingface.co/microsoft/mattergen/resolve/5244495dd9a979ff71abc7548a0b14b9deb0069a/checkpoints/chemical_system/config.yaml"
+    }
+  ],
+  "python_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260211/cpython-3.10.19%2B20260211-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz",
+  "python_sha256": "d71df61d1cdb59af4443912da8eeca744a52e782ff5deefa966ead893235a39e",
+  "mattergen_source_url": "https://codeload.github.com/microsoft/mattergen/tar.gz/92423660a8bd70e83679086e88f88596d484dc16",
+  "mattergen_source_sha256": "73d9c5fee71aa6a7b80f5ec3875ca694c2ef2553b5d3e3d768c2917043dc2fcf",
+  "core_lock_sha256": "331bef1795f52106b52f5cfd2295397c474d940c71560ddf3191e014f3357abc",
+  "mattergen_lock_sha256": "2efe2f6efc96905fcba225ecab766b12d74b289ff24e4f6fde1c17909e00864e",
+  "mattergen_wheel": "mattergen-1.0.3-py3-none-any.whl",
+  "mattergen_wheel_sha256": "4f41152e5ee9b0463b14aa2607eec65cd2cbb6c1cde0e472d821e98ff18f8fa7"
+}

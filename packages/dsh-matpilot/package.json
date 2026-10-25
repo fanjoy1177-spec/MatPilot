@@ -1,7 +1,7 @@
 {
   "name": "dsh-matpilot",
-  "version": "0.2.0-dev.10",
-  "description": "MatPilot 材料研究助手：需求核对、任务管理、候选筛选与可追溯报告。",
+  "version": "0.2.0-dev.11",
+  "description": "材策 MatPilot：环境检查、自动安装与恢复，材料任务管理和可追溯报告。",
   "type": "module",
   "files": [
     "cordis.patch.yml",
@@ -10,7 +10,13 @@
     "icon.svg",
     "locale/*.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "deployment/*.mjs",
+    "deployment/*.py",
+    "deployment/recipe.json",
+    "deployment/locks/*.txt",
+    "deployment/assets/*.whl",
+    "deployment/assets/*LICENSE*"
   ],
   "dsh": {
     "bundle": {
@@ -30,7 +36,8 @@
   },
   "peerDependencies": {
     "@deepseek-ai/dsh-mcp-client": ">=0.2.1-rc.2 <0.3.0",
-    "@deepseek-ai/schemastery": "~3.18.5"
+    "@deepseek-ai/schemastery": "~3.18.5",
+    "@deepseek-ai/dsh-tools": ">=0.2.1-rc.2 <0.3.0"
   },
   "license": "MIT",
   "main": "./index.mjs",
