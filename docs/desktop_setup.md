@@ -2,6 +2,28 @@
 
 **dev11 首次安装入口已改为插件内环境部署**，无 Python/MatterGen 时也能检查和安装。请优先阅读[环境部署指南](deployment.md)。下文保留 dev10 的已有环境手动接入方式和历史验收范围；其未自动部署的描述仅适用于旧版。原文快照另存于 `benchmarks/deployment/baseline/`。
 
+## core dev9 推荐能力升级（2026-10-26）
+
+本轮新增的 `recommend_candidates` 来自 [Python core 0.2.0.dev9](../releases/0.2.0.dev9/)，不是另一个 Harness 界面包。保留已发布 dev11 的环境检查、固定安装、失败恢复、CUDA/MCP验证及单候选验证流程；不要为使用推荐功能回退到 dev10。
+
+已发布 dev11 部署配方使用 core dev8。需要推荐能力时，在单独的 Python 核心环境安装并核对 dev9 wheel，再使用已有环境的手动连接入口，指定该核心的 Python、MatPilot 配置及可选独立安装目录；不要覆盖 dev11 固定配方或其受管环境。材料模型环境可继续通过配置中的 command/cwd/WSL 等设置连接。本文不把两个版本的独立验证说成 dev11 自动安装配方已经升级。
+
+保存配置后停用再启用 MatPilot，调用 `get_capabilities` 核对实际核心版本为 `0.2.0.dev9`、返回 `candidate_recommendation`，并发现 `recommend_candidates`。此时 Python 核心有10个 MCP 工具；dev11额外的环境部署工具不计入这10个。恢复或重新连接受管环境后也应核对实际版本，不以界面包版本推断核心版本。
+
+### 推荐已有候选
+
+完成生成或登记已有候选集合后，可输入：“对这个任务的结构做代表候选推荐，最多12个，说明组成、空间群、规模覆盖和排除原因；不要启动新的生成或弛豫。”程序从任务计划或登记清单取得明确组成，重新检查CIF及哈希，去重后排序；没有足够合格代表时返回实际数量。
+
+`recommend_candidates` 参数二选一使用 `job_id` 或能力表中的 `collection_id`，不能传任意目录。默认只返回入选记录和汇总，`include_all_records=true` 可查看全量审计；任务报告可使用 `build_report` 的 `recommendation_limit` 独立保存推荐部分。注册集合与CLI用法见[候选推荐说明](candidate_recommendation.md)。
+
+只读推荐无需开启真实计算。登记集合的来源与当前 demo 后端分别记录：历史真实CIF不因使用demo配置就变成固定样本，也不能冒充本轮生成。推荐是后处理和计算规划，满占位及类别覆盖不证明稳定性、可合成性或材料性能改善。
+
+本轮成果入口：[插件能力与MatterGen对比PDF](../output/pdf/MatPilot_插件能力与MatterGen对比报告.pdf)、[机器可读证据](../artifacts/mattergen-usage-comparison-20261026.json)、[公开复现目录](../releases/studies/2026-10-26-mattergen-comparison/)。其中新生成、历史参考和固定演示分别解释，不能合并成一次性能实验。
+
+## 历史手动接入记录（core dev8 / bundle dev10）
+
+以下保留原手动安装步骤及九工具历史验收范围；新用户的 dev11 部署/恢复流程仍以前述环境部署指南为准。
+
 适用：Harness Desktop 0.2.1-rc.2，MatPilot 原生连接包 0.2.0-dev.10，Python 服务 0.2.0.dev8。账户和 API 密钥由 Harness 管理，连接表单不填写密钥。
 
 ## 1. 安装 Python 服务

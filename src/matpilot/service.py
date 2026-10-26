@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import importlib.metadata
+import hashlib
+from collections import Counter
 import json
 import platform
 import shutil
@@ -18,6 +20,7 @@ from .requirements import audit_requirements, contract as requirement_contract
 from .evidence import compare_metrics, screen_records
 from .capabilities import cards
 from .repairs import repair_options
+from .recommendations import recommend_candidates as recommend_records
 
 
 class Service:
@@ -30,6 +33,13 @@ class Service:
                 "backend": self.settings.backend, "max_samples": self.settings.max_samples,
                 "default_samples": min(16, self.settings.max_samples), "seed_supported": self.settings.seed_supported,
                 "requirements_contract": requirement_contract(),
+                "candidate_recommendation": {
+                    "tool": "recommend_candidates", "max_candidates": 256, "default_limit": 12,
+                    "collection_ids": sorted(self.settings.candidate_collections),
+                    "sources": "Choose exactly one existing job_id or operator-registered collection_id; arbitrary paths are not accepted.",
+                    "method": "Verified CIFs, explicit composition and occupancy checks, structural representatives and equal-weight composition/space-group/site-bin coverage.",
+                    "scope": "Read-only postprocessing and compute planning, not material-property optimization; collection provenance is independent of the current generation backend.",
+                    "registration_notice": "Listed collection IDs are configured sources; manifest and CIF checksums are reverified when used."},
                 "request_example": {"raw_request": "Fe-Ni-O，最多4个",
                     "model_id": "mattergen", "conditions": {"chemical_system": "Fe-Ni-O"},
                     "requirements": requirement_contract()["example"]["requirements"], "review_targets": [],
@@ -44,7 +54,7 @@ class Service:
                     "Use clarifications only for genuinely missing, conflicting or ambiguous required information. Do not ask for optional numerical targets that the user did not request.",
                     "Only query a job_id actually returned by submit_job. A plan_id is not a job_id; a failed submission creates no usable job identifier."],
                 "demo_notice": "Demo uses fixed NaCl fixtures, not MatterGen or AI-generated results." if self.settings.backend == "demo" else None,
-                "workflow": "prepare_plan -> show conditions, review_targets and budget -> submit_job with explicit user authorization -> get_job -> screen_candidates -> build_report"}
+                "workflow": "prepare_plan -> show conditions, review_targets and budget -> submit_job with explicit user authorization -> get_job -> screen_candidates -> optional recommend_candidates -> build_report"}
 
     def prepare_plan(self, request: dict) -> dict:
         model_id = request.get("model_id", "mattergen") if isinstance(request, dict) else "mattergen"
@@ -200,6 +210,90 @@ class Service:
                             all_metrics_by_structure_version=result["metrics_by_structure_version"])
         return response
 
+    @staticmethod
+    def _recommendation_elements(plan: dict) -> list[str]:
+        from pymatgen.core import Composition, Element
+        conditions = plan.get("conditions", {})
+        system = conditions.get("chemical_system")
+        if isinstance(system, str) and system:
+            try:
+                return sorted({Element(value).symbol for value in system.split("-")})
+            except (ValueError, TypeError) as exc:
+                raise ValueError("Task chemical_system does not define valid expected elements.") from exc
+        formula = conditions.get("chemical_formula")
+        if isinstance(formula, str) and formula:
+            try:
+                return sorted(element.symbol for element in Composition(formula).elements)
+            except (ValueError, TypeError) as exc:
+                raise ValueError("Task chemical_formula does not define valid expected elements.") from exc
+        raise ValueError("Recommendation needs an explicit chemical_system or chemical_formula in the task plan; expected elements cannot be guessed from candidates.")
+
+    @staticmethod
+    def _recommendation_view(recommendation: dict, source: dict, include_all_records: bool) -> dict:
+        if type(include_all_records) is not bool:
+            raise ValueError("include_all_records must be boolean.")
+        records = recommendation["records"]
+        counts = Counter(reason for row in records for reason in row["exclusion_reasons"])
+        selected = sorted((row for row in records if row["selected"]), key=lambda row: row["selection_rank"])
+        return {**recommendation, "source": source,
+                "all_candidate_audit_sha256": canonical_hash(records),
+                "excluded_reason_counts": dict(sorted(counts.items())),
+                "unselected_qualified_count": sum(row["qualified"] and not row["selected"] for row in records),
+                "include_all_records": include_all_records,
+                "records": records if include_all_records else selected}
+
+    def _load_candidate_collection(self, collection_id: str) -> tuple[dict, dict]:
+        if not isinstance(collection_id, str) or collection_id not in self.settings.candidate_collections:
+            raise ValueError("Unknown candidate collection; choose a registered collection_id from get_capabilities.")
+        registration = self.settings.candidate_collections[collection_id]
+        manifest_path = Path(registration["manifest_path"])
+        if not manifest_path.is_absolute():
+            if not self.settings.config_path:
+                raise ValueError("Relative collection manifest paths need an operator config_path.")
+            manifest_path = Path(self.settings.config_path).parent / manifest_path
+        with manifest_path.open("rb") as handle:
+            content = handle.read(8 * 1024 * 1024 + 1)
+        if len(content) > 8 * 1024 * 1024:
+            raise ValueError("Candidate manifest exceeds 8 MiB.")
+        digest = hashlib.sha256(content).hexdigest()
+        if digest != registration["manifest_sha256"]:
+            raise ValueError("Candidate collection manifest SHA256 mismatch.")
+        manifest = json.loads(content.decode("utf-8-sig"))
+        required = {"schema_version", "expected_elements", "provenance", "records"}
+        allowed = required | {"priority_candidate_ids", "priority_selection_basis"}
+        if (not isinstance(manifest, dict) or not required <= set(manifest) or set(manifest) - allowed
+                or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+                or not isinstance(manifest["expected_elements"], list) or not manifest["expected_elements"]
+                or not isinstance(manifest["provenance"], (str, dict)) or not manifest["provenance"]
+                or not isinstance(manifest["records"], list) or not 1 <= len(manifest["records"]) <= 256
+                or not all(isinstance(row, dict) for row in manifest["records"])):
+            raise ValueError("Invalid registered candidate manifest schema.")
+        for row in manifest["records"]:
+            if isinstance(row.get("path"), str) and not Path(row["path"]).is_absolute():
+                row["path"] = str((manifest_path.parent / row["path"]).resolve())
+        return manifest, {"kind": "registered_collection", "collection_id": collection_id,
+                          "manifest_sha256": digest, "provenance": manifest["provenance"],
+                          "scope": "Existing archived candidates; current generation backend does not establish their provenance."}
+
+    def recommend_candidates(self, job_id: str | None = None, collection_id: str | None = None,
+                             limit: int = 12, include_all_records: bool = False) -> dict:
+        """Read-only candidate planning from one known job or registered collection."""
+        if (job_id is None) == (collection_id is None):
+            raise ValueError("Provide exactly one job_id or collection_id.")
+        if job_id is not None:
+            if not isinstance(job_id, str) or not job_id:
+                raise ValueError("job_id must be a nonempty string.")
+            screened = self.screen_candidates(job_id)
+            plan = self.store.plan(self.store.job(job_id)["plan_id"])
+            recommendation = recommend_records(screened["records"], self._recommendation_elements(plan), limit)
+            source = {"kind": "job", "job_id": job_id, "provenance": screened["provenance"]}
+        else:
+            manifest, source = self._load_candidate_collection(collection_id)
+            recommendation = recommend_records(manifest["records"], manifest["expected_elements"], limit,
+                priority_candidate_ids=manifest.get("priority_candidate_ids"),
+                priority_selection_basis=manifest.get("priority_selection_basis"))
+        return self._recommendation_view(recommendation, source, include_all_records)
+
     def compare_runs(self, job_ids: list[str], metric_selections: list[dict] | None = None) -> dict:
         minimum = 1 if metric_selections is not None else 2
         if (not isinstance(job_ids, list) or not minimum <= len(job_ids) <= 10
@@ -237,13 +331,20 @@ class Service:
                           metric_comparison=compare_metrics(selected))
         return result
 
-    def build_report(self, job_id: str, metric_selections: list[dict] | None = None) -> dict:
+    def build_report(self, job_id: str, metric_selections: list[dict] | None = None,
+                     recommendation_limit: int | None = None) -> dict:
         job = self.store.job(job_id)
         plan = self.store.plan(job["plan_id"])
         result = self.screen_candidates(job_id, metric_selections)
         folder = self.store.root / "reports" / job_id
         if metric_selections is not None:
             folder = folder / "metric-selections" / result["metric_selection_audit"]["selection_sha256"]
+        recommendation = None
+        if recommendation_limit is not None:
+            recommendation = self._recommendation_view(
+                recommend_records(result["records"], self._recommendation_elements(plan), recommendation_limit),
+                {"kind": "job", "job_id": job_id, "provenance": result["provenance"]}, True)
+            folder = folder / "recommendations" / str(recommendation_limit)
         folder.mkdir(parents=True, exist_ok=True)
         packages = {}
         for name in ["matpilot-core", "mcp", "pymatgen"]:
@@ -254,6 +355,8 @@ class Service:
         evidence = {"schema_version": 2, "plan": plan, "job": self.get_job(job_id), "screening": result,
                     "events": self.store.events(job_id), "environment": {"python": platform.python_version(), "platform": platform.platform(), "packages": packages},
                     "limitations": ["Execution completion is not validation of material performance.", "AI effectiveness and user time savings require a separate controlled study."]}
+        if recommendation is not None:
+            evidence["recommendation"] = recommendation
         json_path = folder / "evidence.json"
         json_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2), encoding="utf-8")
         lines = ["# 材策 MatPilot 任务报告", "", f"任务编号：{job_id}", f"执行状态：{job['status']}",
@@ -286,6 +389,17 @@ class Service:
                       "| 候选 ID | 结构版本 | 所选指标 ID |", "|---|---|---|"]
             lines += ["| " + " | ".join(cell(selection[k]) for k in ("candidate_id", "structure_version_id", "metric_id")) + " |" for selection in audit["selections"]]
             lines += ["", "未选指标 ID：" + (", ".join(audit["unselected_metric_ids"]) or "无")]
+        if recommendation is not None:
+            lines += ["", "## 候选代表推荐", "",
+                      "此排序用于后续计算规划，不代表材料性质更优。组成、空间群和晶胞规模档位等权覆盖；原子数仅为规模代理，不是实际计算费用。",
+                      f"请求 {recommendation_limit} 个；合格代表 {recommendation['eligible_representative_count']} 个；实际推荐 {recommendation['selected_count']} 个。",
+                      f"全量候选审计 SHA256：{recommendation['all_candidate_audit_sha256']}", "",
+                      "| 顺序 | 候选 ID | 约化组成 | 空间群 | 输入原子数 | 新增覆盖类别 |", "|---|---|---|---|---|---|"]
+            for row in sorted((r for r in recommendation["records"] if r["selected"]), key=lambda r: r["selection_rank"]):
+                lines.append("| " + " | ".join(cell(value) for value in [row["selection_rank"], row["candidate_id"],
+                    row["reduced_formula"], row["space_group_symbol"], row["site_count"],
+                    ", ".join(row["selection_reason"]["new_category_coverage"]) or "同分按规模及ID选择"]) + " |")
+            lines += ["", "满占位、组成完整与结构预检通过不证明稳定性、可合成性或催化性能。没有执行新生成、弛豫或DFT。未知分析结果已排除，所有排除原因保存在JSON证据中。"]
         md_path = folder / "report.md"
         md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return {"job_id": job_id, "report_path": str(md_path), "evidence_path": str(json_path),

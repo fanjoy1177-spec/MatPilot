@@ -143,11 +143,11 @@ class MetricScreeningSelectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "checksum"):
             self.service.build_report(self.job, [self.selection(self.passing)])
 
-    def test_actual_nine_tool_mcp_accepts_selection_for_screen_and_report(self):
+    def test_actual_ten_tool_mcp_accepts_selection_for_screen_and_report(self):
         async def exercise():
             app = make_server(self.service.settings)
             tools = await app.list_tools()
-            self.assertEqual(len(tools), 9)
+            self.assertEqual(len(tools), 10)
             for name in ("screen_candidates", "build_report"):
                 schema = next(t.inputSchema for t in tools if t.name == name)
                 self.assertIn("metric_selections", schema["properties"])

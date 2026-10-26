@@ -26,6 +26,13 @@ def main():
     for name in ["job", "results", "screen", "report", "stop", "resume"]:
         p = sub.add_parser(name)
         p.add_argument("job_id")
+        if name == "report":
+            p.add_argument("--recommendation-limit", type=int)
+    for name, source in [("recommend", "job_id"), ("recommend-collection", "collection_id")]:
+        p = sub.add_parser(name)
+        p.add_argument(source)
+        p.add_argument("--limit", type=int, default=12)
+        p.add_argument("--include-all-records", action="store_true")
     p = sub.add_parser("compare")
     p.add_argument("job_ids", nargs="+")
     p = sub.add_parser("_worker", help=argparse.SUPPRESS)
@@ -57,7 +64,11 @@ def main():
         elif args.command == "screen":
             result = service.screen_candidates(args.job_id)
         elif args.command == "report":
-            result = service.build_report(args.job_id)
+            result = service.build_report(args.job_id, recommendation_limit=args.recommendation_limit)
+        elif args.command in {"recommend", "recommend-collection"}:
+            result = service.recommend_candidates(job_id=getattr(args, "job_id", None),
+                collection_id=getattr(args, "collection_id", None), limit=args.limit,
+                include_all_records=args.include_all_records)
         elif args.command == "compare":
             result = service.compare_runs(args.job_ids)
         elif args.command in {"stop", "resume"}:

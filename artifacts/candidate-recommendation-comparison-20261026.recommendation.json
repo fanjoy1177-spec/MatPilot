@@ -1,0 +1,4366 @@
+{
+  "schema_version": 1,
+  "method": "verified_cif_category_coverage_v1",
+  "expected_elements": [
+    "Fe",
+    "Ni",
+    "O"
+  ],
+  "input_count": 128,
+  "eligible_representative_count": 66,
+  "requested_count": 12,
+  "selected_count": 12,
+  "target_met": true,
+  "selected_candidate_ids": [
+    "NiFeO-001",
+    "NiFeO-060",
+    "NiFeO-022",
+    "NiFeO-057",
+    "NiFeO-093",
+    "NiFeO-031",
+    "NiFeO-066",
+    "NiFeO-050",
+    "NiFeO-053",
+    "NiFeO-117",
+    "NiFeO-123",
+    "NiFeO-097"
+  ],
+  "records": [
+    {
+      "candidate_id": "NiFeO-001",
+      "structure_version_id": "historical-original-9b9353b17ba6425d",
+      "sha256": "9b9353b17ba6425d5b8289ff7570e96455692223942977e305ceefb7469e280c",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.715990023379874,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-001",
+      "selection_rank": 1,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number",
+          "size_bin"
+        ],
+        "coverage_gain": 3,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-002",
+      "structure_version_id": "historical-original-da2c734928eaf92a",
+      "sha256": "da2c734928eaf92adae0515c22acda6d0152dc9d65c96f15760368cf2aba179d",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "reduced_formula": "FeO2",
+      "site_count": 3,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 36.65437064702214,
+      "missing_elements": [
+        "Ni"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector",
+      "space_group_number": 187
+    },
+    {
+      "candidate_id": "NiFeO-003",
+      "structure_version_id": "historical-original-bd266867d3ba3b8e",
+      "sha256": "bd266867d3ba3b8e8ae7cde04d2b79919189b6da8e7fa34024bf07b1e216ca7b",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO3",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 195.06791393809243,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-003",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-004",
+      "structure_version_id": "historical-original-a94ea4631dadee93",
+      "sha256": "a94ea4631dadee934e78052912e474aa70ff254af41fa71fc0bbb180c1132447",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO5",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 192.06190617444307,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 5,
+      "space_group_symbol": "C2",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-005",
+      "structure_version_id": "historical-original-08906e1c1f5bd359",
+      "sha256": "08906e1c1f5bd3593ac8ec7afc5ea8dbe24e60f875940603ec13a108c1c4bea9",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5Ni3O10",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 202.19878036326566,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-006",
+      "structure_version_id": "historical-original-c2b479747ca9dc23",
+      "sha256": "c2b479747ca9dc23870fb380530b892885543ac49b3fbf4cbd65420e5d63acf9",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO7",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 120.30769396113045,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-007",
+      "structure_version_id": "historical-original-cbb471c93497eb92",
+      "sha256": "cbb471c93497eb922b5c3e049b190bc8e43e00f9796963a5312bf8699adbcec2",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 79.56159251982365,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 129,
+      "space_group_symbol": "P4/nmm",
+      "representative_id": "NiFeO-007",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-008",
+      "structure_version_id": "historical-original-69f20be2c7ffb592",
+      "sha256": "69f20be2c7ffb592a44058470898cdbd33cf69a6c735eb4b65ba48203260c857",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 155.9925027220026,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-008",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-009",
+      "structure_version_id": "historical-original-f300d14ac6125238",
+      "sha256": "f300d14ac6125238f2c76cf8e40209518968d999dd44d5984226f2a628f5b054",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 135.685487138871,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-009",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-010",
+      "structure_version_id": "historical-original-d047b36b7c4429c8",
+      "sha256": "d047b36b7c4429c863214cf5e9fd23dc43fd26ef2744d6575743ffac2ba2570a",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3(NiO2)2",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 115.1394558212041,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-011",
+      "structure_version_id": "historical-original-d4f1aad910b1f1ef",
+      "sha256": "d4f1aad910b1f1efd5e44f37294c6bf8f55d28d4f32815c59418e8396f60bd8a",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe6NiO5",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 153.0155297753323,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 6,
+      "space_group_symbol": "Pm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-012",
+      "structure_version_id": "historical-original-96d1467d999913e8",
+      "sha256": "96d1467d999913e8444b97ee52bfad07795dfcb73bb7406dd9b4bd9e095abb93",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 110.39580185035373,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 5,
+      "space_group_symbol": "C2",
+      "representative_id": "NiFeO-012",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-013",
+      "structure_version_id": "historical-original-3a5f3685026d1d02",
+      "sha256": "3a5f3685026d1d02bc591e8738e77c7086ee0da5bd86d2d22261b3a1988df296",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "NiO",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 42.938859722546745,
+      "missing_elements": [
+        "Fe"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-014",
+      "structure_version_id": "historical-original-7d014874163557f0",
+      "sha256": "7d014874163557f013e78896882a9d297425a7460584a54a27b50d658e5940da",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "NiO3",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 48.548217905565274,
+      "missing_elements": [
+        "Fe"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-015",
+      "structure_version_id": "historical-original-0e71a31b324dc0fa",
+      "sha256": "0e71a31b324dc0fab9e4a2abfd00c14c13e11a9c3557078d1fdf2d885bbcc1b1",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni3O8",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 147.50161406440785,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-016",
+      "structure_version_id": "historical-original-4c7e3867f4b77359",
+      "sha256": "4c7e3867f4b77359cd0497cfa2891d265503a92347d31ec1ccbacb09efc336d4",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 44.591332877793384,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 187,
+      "space_group_symbol": "P-6m2",
+      "representative_id": "NiFeO-016",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-017",
+      "structure_version_id": "historical-original-5c4c5cf1e91366ce",
+      "sha256": "5c4c5cf1e91366cec08256ed4ee14c5096ff7c3e0265dc78c6c0c8292fa4fa40",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5(NiO2)3",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 144.39859398502242,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-018",
+      "structure_version_id": "historical-original-3ae7b8bf29b7dbf7",
+      "sha256": "3ae7b8bf29b7dbf7e8516e400600ef1435ae9c2b09cf067c6bd162bd6caf987d",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni2O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 103.21128980785848,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-018",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-019",
+      "structure_version_id": "historical-original-44fd13c861341b3f",
+      "sha256": "44fd13c861341b3f6bac42d3a706d0a7769ae17691366df6d88391ca716f0f6a",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 46.64912195036571,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-020",
+      "structure_version_id": "historical-original-6c084cf47c3b2b4f",
+      "sha256": "6c084cf47c3b2b4f58b3d5ae752a1ca9ee7a15779894403b629daffe0c6cb2e7",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3(NiO2)4",
+      "site_count": 15,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 176.79024629784416,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-021",
+      "structure_version_id": "historical-original-d44196faabd628e5",
+      "sha256": "d44196faabd628e58f5d9f2609051a69b7db47d6771ff11a1dbcb3898cf59fef",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4NiO5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 107.09719938258367,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-021",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-022",
+      "structure_version_id": "historical-original-6d63d5ac00c4a09a",
+      "sha256": "6d63d5ac00c4a09abff13e85366836f69f3e05de77d7085f44d5fb3e983286f9",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 52.56108198300251,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-022",
+      "selection_rank": 3,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-023",
+      "structure_version_id": "historical-original-1d912250b3ae444f",
+      "sha256": "1d912250b3ae444f39a214a1a1e293381d4fac94f8354af86b072a0ea44fa207",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi5O8",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 144.01503854004633,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-024",
+      "structure_version_id": "historical-original-910a5a6ee1f43fbe",
+      "sha256": "910a5a6ee1f43fbecdc23ebae1c27159d8a59020b9060d3ebe3b216dc2559466",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 52.73122773033895,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-022",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-025",
+      "structure_version_id": "historical-original-1c3f42b80ccc44df",
+      "sha256": "1c3f42b80ccc44df410ef2d48714d55be72e099d1f53d0f51b3ea5354d836802",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 122.65526214716982,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 6,
+      "space_group_symbol": "Pm",
+      "representative_id": "NiFeO-025",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-026",
+      "structure_version_id": "historical-original-57458539d1960cdc",
+      "sha256": "57458539d1960cdc614f4f8f57b0b82d7945df2e197f6400649f62702305ce27",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 58.98893610977795,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-026",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-027",
+      "structure_version_id": "historical-original-86a9839853f069f8",
+      "sha256": "86a9839853f069f8638cc30b7d782edb832fa172d63d8c092860fb7d0b70c830",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 107.06668592149579,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-028",
+      "structure_version_id": "historical-original-a20c28b24d98234d",
+      "sha256": "a20c28b24d98234d2a8222120ba07ffb150db766a69a58262646a3b59e6b6ee0",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 16,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 160.09275217702574,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-029",
+      "structure_version_id": "historical-original-7164fb9f20aa7a2d",
+      "sha256": "7164fb9f20aa7a2d4dcc54f654a84b1a78f04ffb60581e7f59b83851d3eab611",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 116.38201174349771,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-065",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-030",
+      "structure_version_id": "historical-original-630b12a771dc4624",
+      "sha256": "630b12a771dc4624abc9373307fb10a976dfdcbd5ce73ecc47f7e957917713a1",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO2",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 105.89792212112403,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 71,
+      "space_group_symbol": "Immm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-031",
+      "structure_version_id": "historical-original-76eb84eb7091ec73",
+      "sha256": "76eb84eb7091ec731e6fdae16d4a3d453842af3a503168c77a0df7a67ed8affb",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 81.6648447832554,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 2,
+      "space_group_symbol": "P-1",
+      "representative_id": "NiFeO-031",
+      "selection_rank": 6,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-032",
+      "structure_version_id": "historical-original-31a262ed67dff443",
+      "sha256": "31a262ed67dff443f0f6e045a71d1d243e2e0fe54913cc74dfa2b2d41bd47168",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4NiO7",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 122.35216240911734,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-032",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-033",
+      "structure_version_id": "historical-original-1c61c26475f189c5",
+      "sha256": "1c61c26475f189c505ec7a18a8cbbece125a29aadd332001f0975b10f0be2564",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni5O7",
+      "site_count": 15,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 151.1658860096645,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 99,
+      "space_group_symbol": "P4mm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-034",
+      "structure_version_id": "historical-original-8a06d445800ef081",
+      "sha256": "8a06d445800ef081adb44da8ad8e347517f755e16db1f39739c087d85f8974c6",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 45.74819362517545,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-035",
+      "structure_version_id": "historical-original-9b379906c7e51672",
+      "sha256": "9b379906c7e5167273a675704ab3eb78f19195c3a17c1274b60cf9e29f883edd",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO8",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 122.78705795123311,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-036",
+      "structure_version_id": "historical-original-980dd20c49ea0974",
+      "sha256": "980dd20c49ea09747c2cdb648df3b9a0ee99f8e6dd05e673a26c769fc7f9fb0f",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 128.91446811914142,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 25,
+      "space_group_symbol": "Pmm2",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-037",
+      "structure_version_id": "historical-original-064f516001dfd1b4",
+      "sha256": "064f516001dfd1b4521fec8bc383591a60711e6c412767506d13bf17649e382b",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 151.39953152536876,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-037",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-038",
+      "structure_version_id": "historical-original-3fb904bdf19420b4",
+      "sha256": "3fb904bdf19420b49563c282f41e93fc1a31df4cafb57c8dcec8e5e092dd8e11",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 53.57304145326989,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-022",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-039",
+      "structure_version_id": "historical-original-96a692e3ecee7520",
+      "sha256": "96a692e3ecee7520774d496aefe1ebc67b8b3a05fe9a2970852a9894381f6773",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO4",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 122.24747859728096,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 31,
+      "space_group_symbol": "Pmn2_1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-040",
+      "structure_version_id": "historical-original-b1392f082db6b896",
+      "sha256": "b1392f082db6b89620f4f83e51ba05a8a491d0b33264f023bed3c5a9a052a476",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 99.06236332094713,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-040",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-041",
+      "structure_version_id": "historical-original-01f07febe4472c79",
+      "sha256": "01f07febe4472c79d3be76ad80217918297b7acfc4d6db7ba54805724a553d2b",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 124.59230151786929,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-041",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-042",
+      "structure_version_id": "historical-original-a2d62cd07d63bfdd",
+      "sha256": "a2d62cd07d63bfdd338aab42f88e0b172e3eaf4a37d9e6785125b0f41a9265a3",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe7NiO8",
+      "site_count": 16,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 192.56911275770602,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-042",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-043",
+      "structure_version_id": "historical-original-8f0219e39174a665",
+      "sha256": "8f0219e39174a665563cdca2010abd92f9beae07630c09efc4ca5da22d380558",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 79.69385105886522,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-043",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-044",
+      "structure_version_id": "historical-original-d3695ef764bb28f5",
+      "sha256": "d3695ef764bb28f54864f6e86a4c6f6d0db6cf09006b807824e95ce8e30886c4",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni2O7",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 129.30292103834185,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-045",
+      "structure_version_id": "historical-original-dec85b86af9a87ea",
+      "sha256": "dec85b86af9a87ea9c9bbc6827b9ce5ed168970b6b5c501166cfd5cfaddb5c50",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 112.72588819435548,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-045",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-046",
+      "structure_version_id": "historical-original-cebd38256d74d718",
+      "sha256": "cebd38256d74d718cd49c1e2c24268fe25aed073d9c4624fbdfbcdcbbbca305c",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4NiO6",
+      "site_count": 11,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 139.78846096280205,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 6,
+      "space_group_symbol": "Pm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-047",
+      "structure_version_id": "historical-original-28a2847892ae8217",
+      "sha256": "28a2847892ae82179359779e836f68224532f15f6efc02397785b980c762e664",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.32095229404286,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-048",
+      "structure_version_id": "historical-original-d348328802093174",
+      "sha256": "d348328802093174bf6dfa3c7f294a8b0153f9acbd506c5659baf0fd70735867",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 79.89860109667651,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-049",
+      "structure_version_id": "historical-original-e6d14cac79d8d10c",
+      "sha256": "e6d14cac79d8d10c4f2b182cfb26bde1eb9c0e22b4b1fac7ae1c5d49540a933b",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO6",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 97.55859053973653,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 5,
+      "space_group_symbol": "C2",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-050",
+      "structure_version_id": "historical-original-acca4c279fba7363",
+      "sha256": "acca4c279fba73632f71b3387953e5999029fc55ef60f6ea0d6a72dbe97b4955",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni2O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 95.07079905216675,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-050",
+      "selection_rank": 8,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-051",
+      "structure_version_id": "historical-original-7dd18a6be51f5847",
+      "sha256": "7dd18a6be51f5847c786f88dd32623067cae217d7e9c5aaba141944c3ccf7bcd",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 100.52884110484479,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-052",
+      "structure_version_id": "historical-original-e57c83c6a8995cd1",
+      "sha256": "e57c83c6a8995cd1056c5ea70340e6cca5e5e90767f41a94035468fe46eeb999",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 80.62776401422136,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-052",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-053",
+      "structure_version_id": "historical-original-be765a7649cdcb51",
+      "sha256": "be765a7649cdcb51995aa6bfabd3c9ef2c7c231e4f2f3639848f4f6ef1d2d818",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 117.0747962742736,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-053",
+      "selection_rank": 9,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-054",
+      "structure_version_id": "historical-original-a099ac0cf1de17ba",
+      "sha256": "a099ac0cf1de17baee30dfb5783c8dff49d9606fd63b2cbb92eb9b0c15261851",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO2",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 54.33690157011055,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 164,
+      "space_group_symbol": "P-3m1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-055",
+      "structure_version_id": "historical-original-3cc4f63ad40d6720",
+      "sha256": "3cc4f63ad40d67208b06a08f0f94205e337529733bbadddfdbbe37144fc2147f",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni2O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 101.28982932632785,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-055",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-056",
+      "structure_version_id": "historical-original-793fb090553333a0",
+      "sha256": "793fb090553333a00061bba9d53b0336968c766d104cd05a11cacb06bcbfd1b3",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni3O8",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 170.0067861006697,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-057",
+      "structure_version_id": "historical-original-e94c667dc370eb84",
+      "sha256": "e94c667dc370eb84b250a52c00cc94a6b6f05330ff68da0428d6fbc73e643e10",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO3",
+      "site_count": 6,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 60.96467285000059,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-057",
+      "selection_rank": 4,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-058",
+      "structure_version_id": "historical-original-8f07153b33c2db93",
+      "sha256": "8f07153b33c2db93fb23e0425eea5b1bbe730c12e4234f34332cb0a5764bebd2",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 135.82754739422938,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-058",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-059",
+      "structure_version_id": "historical-original-7217f47a2b59363b",
+      "sha256": "7217f47a2b59363b4317cec63d5a290e9e025e871aa00c5544ad0518ed6db09a",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 44.43713467018626,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-059",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-060",
+      "structure_version_id": "historical-original-70cb4f59e91e5a0a",
+      "sha256": "70cb4f59e91e5a0a888df052388b6aaec1ed5ff04db857a574684eab3e5c84f8",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3(NiO3)2",
+      "site_count": 11,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 118.97692287601264,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-060",
+      "selection_rank": 2,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number",
+          "size_bin"
+        ],
+        "coverage_gain": 3,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-061",
+      "structure_version_id": "historical-original-9f0dd1be63cb77e6",
+      "sha256": "9f0dd1be63cb77e69fda19178db0292c84c9cb8801cd949dcb6df2f2751b1c81",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi5O6",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 117.25139028770054,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-061",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-062",
+      "structure_version_id": "historical-original-95f655f1f45c2718",
+      "sha256": "95f655f1f45c27184da41a18fa24ddb7b1efed2268cf1061be786d61a108dc65",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe7Ni2O3",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 129.49137002307944,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-063",
+      "structure_version_id": "historical-original-2017fc120b91e34e",
+      "sha256": "2017fc120b91e34efbc1b9a5ea7601d50212470a1416c169a99bae5941949824",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 79.0022662623481,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-064",
+      "structure_version_id": "historical-original-964e7637267ed800",
+      "sha256": "964e7637267ed800775f44a132cb0b55ba1552efbf9f79026a3e7ef2c7120507",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Ni4O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 93.12866505564246,
+      "missing_elements": [
+        "Fe"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-065",
+      "structure_version_id": "historical-original-52032c34a25e6ef4",
+      "sha256": "52032c34a25e6ef499e3d1e7560c0e739d4d84dd44d88ed03ceee3b8481a0889",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 6,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 59.51052956876988,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-065",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-066",
+      "structure_version_id": "historical-original-2201dade7bc0f601",
+      "sha256": "2201dade7bc0f6011eba377658f344fc4da50d3419531d463b293ca747a293f1",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi3O4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 77.31772015515324,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 123,
+      "space_group_symbol": "P4/mmm",
+      "representative_id": "NiFeO-066",
+      "selection_rank": 7,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-067",
+      "structure_version_id": "historical-original-fa63c1306fde5411",
+      "sha256": "fa63c1306fde5411b05fe3eedf7438d6f2bac00aba3136dd765dd2055c7dfdae",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe(NiO)2",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 52.553907157671425,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-068",
+      "structure_version_id": "historical-original-8b5f65dc00d6a0fc",
+      "sha256": "8b5f65dc00d6a0fc8f5b3ad00b32f6d3af69c9533ae3e986446a793494c4cbfd",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 45.96740412455808,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-069",
+      "structure_version_id": "historical-original-c42b8c7bffc206b3",
+      "sha256": "c42b8c7bffc206b352c909b99b421bd2c39a39c5b4a57d1f3ff6ff0e510bb310",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 109.90512997143321,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-069",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-070",
+      "structure_version_id": "historical-original-fa7a813f31ed38e9",
+      "sha256": "fa7a813f31ed38e94b464554f77a9af8af6329cee289dcf075f58605f5b463d7",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5(NiO3)2",
+      "site_count": 13,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 161.92201957508493,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-071",
+      "structure_version_id": "historical-original-28a4e4f3e6006deb",
+      "sha256": "28a4e4f3e6006deb5f965388ecc9161aaa1c9bb13f3021755827080a2e7fb981",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi5O6",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 115.38596916185116,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-071",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-072",
+      "structure_version_id": "historical-original-1ab46975a9257dd3",
+      "sha256": "1ab46975a9257dd39f459e26e00d727f3df5e65ae235da9b3c23af2266319900",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 98.50561587872185,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 38,
+      "space_group_symbol": "Amm2",
+      "representative_id": "NiFeO-072",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-073",
+      "structure_version_id": "historical-original-b5b4843c51a03060",
+      "sha256": "b5b4843c51a030600bab29fddcb5fb042fe0d0965013fa328246071502496903",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 111.44665816303475,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 5,
+      "space_group_symbol": "C2",
+      "representative_id": "NiFeO-012",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-074",
+      "structure_version_id": "historical-original-9520fba1c5eca9a0",
+      "sha256": "9520fba1c5eca9a040e6d380c47fb371c969a716bc8df228734f32da1d04b6a2",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni2O5",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 199.26065082823249,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-074",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-075",
+      "structure_version_id": "historical-original-e18d9007acb3e493",
+      "sha256": "e18d9007acb3e493f9f078b39e3354d4592472a8486b6b73ade61a06d63467ad",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 44.08667297089407,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 44,
+      "space_group_symbol": "Imm2",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-076",
+      "structure_version_id": "historical-original-2d61c4c0366f8398",
+      "sha256": "2d61c4c0366f8398550bf1398bc8fcfd1971ef4bcfa184dcac1d7e7bd0aedef1",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 47.16243888762478,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 38,
+      "space_group_symbol": "Amm2",
+      "representative_id": "NiFeO-076",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-077",
+      "structure_version_id": "historical-original-e00b213f531dafdf",
+      "sha256": "e00b213f531dafdff016431329fc9779aefc1676f7eb07c73bd08d439cd939e2",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3(NiO3)2",
+      "site_count": 11,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 118.04807639382878,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-077",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-078",
+      "structure_version_id": "historical-original-0701bb2dc3b44a17",
+      "sha256": "0701bb2dc3b44a1759353508f76414f0bb509296d5b106ab45cae3ce2b33c601",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "reduced_formula": "FeO",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 50.119058946225614,
+      "missing_elements": [
+        "Ni"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-079",
+      "structure_version_id": "historical-original-e8a7e1dea3619b95",
+      "sha256": "e8a7e1dea3619b953dae6020138df778e06155ab5fee7a9ae5af6c56b76d209d",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe(NiO)2",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 53.32102620621745,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 107,
+      "space_group_symbol": "I4mm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-080",
+      "structure_version_id": "historical-original-626b5158998cc537",
+      "sha256": "626b5158998cc537d0a310463908239b96117da2fbcc34967a72b49a69e0094d",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 119.95383388973039,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-080",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-081",
+      "structure_version_id": "historical-original-5d29cd8dd771f2b5",
+      "sha256": "5d29cd8dd771f2b5417dfd3bdb6d0dc7e5fdcf9c6b6f2b0019c45432eaa03d0c",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "reduced_formula": "Fe4O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 106.42496609534959,
+      "missing_elements": [
+        "Ni"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-082",
+      "structure_version_id": "historical-original-1a482f0555e38bd9",
+      "sha256": "1a482f0555e38bd95ff48d62e1c627f1e9926f140402cb110b46bc01cdadfabe",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 45.15312716818144,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-082",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-083",
+      "structure_version_id": "historical-original-bf1af1ff82e81fa7",
+      "sha256": "bf1af1ff82e81fa7d00f3cfd3129cdd59c574950342acc93de8559b7b2f35ffd",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 44.15889295636324,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-084",
+      "structure_version_id": "historical-original-c32b399420946a4f",
+      "sha256": "c32b399420946a4f76e739b773c0c9ac4ed3b4b5cce9673b397912e2ad6b3e3a",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2NiO5",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 105.93386627914833,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-085",
+      "structure_version_id": "historical-original-2c70588c259e22f9",
+      "sha256": "2c70588c259e22f93d9ed5ada7e6d483924e4bd353c55ca3b2bbb593c42089b1",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "reduced_formula": "FeO",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 42.272777164345754,
+      "missing_elements": [
+        "Ni"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-086",
+      "structure_version_id": "historical-original-18096f86f5b60881",
+      "sha256": "18096f86f5b608816a21eec779d4b12b6e8bad0dbed518965a9afe2e0c6ffcf6",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 52.846872288826646,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-022",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-087",
+      "structure_version_id": "historical-original-2eed5ae3ccec6462",
+      "sha256": "2eed5ae3ccec6462f4ad46ab085d6e85ec13014f6b6b7a7e8399ea70c2c17d66",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 177.9195779676539,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 40,
+      "space_group_symbol": "Ama2",
+      "representative_id": "NiFeO-087",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-088",
+      "structure_version_id": "historical-original-24fa2585307c72a5",
+      "sha256": "24fa2585307c72a52dcd5a9349db0781649ead9a59a30d2e7fccaa9c8f825fa5",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni2O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 98.93709220135824,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-088",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-089",
+      "structure_version_id": "historical-original-afadc2af74c884c7",
+      "sha256": "afadc2af74c884c7c549fb182f08c6188f28d217937e33f1cd389f26bf8840a0",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 101.78949573961297,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 2,
+      "space_group_symbol": "P-1",
+      "representative_id": "NiFeO-089",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-090",
+      "structure_version_id": "historical-original-4a81cbb27e361f89",
+      "sha256": "4a81cbb27e361f89cd3515c585fc96e6effc53e8e2a54002944c1efc74365409",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O5",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 86.60620553523708,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-091",
+      "structure_version_id": "historical-original-97bfb910cde6b3f2",
+      "sha256": "97bfb910cde6b3f22f0dd0d4e166bd857d5a0fae3096ac32e3d7b8b6e063f10d",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 59.324702148241585,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 160,
+      "space_group_symbol": "R3m",
+      "representative_id": "NiFeO-091",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-092",
+      "structure_version_id": "historical-original-e08a217bb78aa2fc",
+      "sha256": "e08a217bb78aa2fcdeb0d260e4b572d8ac4679312c5c1bd139c6a77a94459db2",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4NiO5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 104.69307106519561,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 139,
+      "space_group_symbol": "I4/mmm",
+      "representative_id": "NiFeO-021",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-093",
+      "structure_version_id": "historical-original-11c83a7a5f2fbd5f",
+      "sha256": "11c83a7a5f2fbd5fe1c83add08744888be5dafae3ede27df35cc39207f94f4ed",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 6,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 59.40617057308854,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 71,
+      "space_group_symbol": "Immm",
+      "representative_id": "NiFeO-093",
+      "selection_rank": 5,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-094",
+      "structure_version_id": "historical-original-b493fb4286c70aee",
+      "sha256": "b493fb4286c70aee0cd0ba7e8756cb6c67ad66b3611d1316682a887f386e8bb5",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni3O8",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 145.48643257588353,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-095",
+      "structure_version_id": "historical-original-5f12804c84f1a680",
+      "sha256": "5f12804c84f1a680ae80b694f634ba2152b285aeb6158f86c266f2cd01544dc0",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 46.08909579674355,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-096",
+      "structure_version_id": "historical-original-5bca96595bbbe168",
+      "sha256": "5bca96595bbbe16845fe5f02db1e0a551e78fe53284b842266718f68eba6ab98",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.44797128193096,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-097",
+      "structure_version_id": "historical-original-31026e601e5ad314",
+      "sha256": "31026e601e5ad314e2a884f33d7ec8fb761d9e4c13a44de5dc365b137a10976d",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4Ni5O9",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 191.1128790027953,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 38,
+      "space_group_symbol": "Amm2",
+      "representative_id": "NiFeO-097",
+      "selection_rank": 12,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-098",
+      "structure_version_id": "historical-original-a81d70f80ba4ad1b",
+      "sha256": "a81d70f80ba4ad1bb06c345d2cede3fd628317d5b05ba2e7933537d40ef2bf34",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5Ni3O10",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 200.78167255923378,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-099",
+      "structure_version_id": "historical-original-f1da4be51030c358",
+      "sha256": "f1da4be51030c3588c953c1d1aee5d7ae7c9bf7eaf241243488bdf83d5789159",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.20605501896305,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-001",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-100",
+      "structure_version_id": "historical-original-b19dec64db3e618b",
+      "sha256": "b19dec64db3e618b13338101a6b6a6e90bd94c5bbedfe2c859e32add69d49f55",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 92.04481488412027,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-101",
+      "structure_version_id": "historical-original-2650a925df50ef53",
+      "sha256": "2650a925df50ef5382b02de9dd7cc4795854a6a6b9b5d716d4b935e76ffce530",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 46.25065301061652,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-082",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-102",
+      "structure_version_id": "historical-original-f48161d67e650dd1",
+      "sha256": "f48161d67e650dd1afa39e231e4a7a414b17a801c0cc0db76f94fcb9eeadc401",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni4O9",
+      "site_count": 16,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 169.0410956758923,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-102",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-103",
+      "structure_version_id": "historical-original-17696f7a2560a8b5",
+      "sha256": "17696f7a2560a8b54df782b2d585bd5e0fd87a614c85ed2ab77d84b5810ef063",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.34619706083706,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-047",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-104",
+      "structure_version_id": "historical-original-3360fa2b6f56a688",
+      "sha256": "3360fa2b6f56a6886dff4802d04a9d6e31fbcf643d1f3369bbb9531c0edc09c0",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi3O8",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 139.93857036385006,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 10,
+      "space_group_symbol": "P2/m",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-105",
+      "structure_version_id": "historical-original-553f069030fdd7b0",
+      "sha256": "553f069030fdd7b0cbcc863f6ac0a980a09922bee3392b221c3b3cc39af2bbad",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 80.44551446390939,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 2,
+      "space_group_symbol": "P-1",
+      "representative_id": "NiFeO-105",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-106",
+      "structure_version_id": "historical-original-ccad1b0d6ebcccb5",
+      "sha256": "ccad1b0d6ebcccb555f5e9e9a74bb8df08808816086565bf8d96093f5ca3956f",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 40.58061498891438,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 123,
+      "space_group_symbol": "P4/mmm",
+      "representative_id": "NiFeO-106",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-107",
+      "structure_version_id": "historical-original-03fa5f6a1764d8a8",
+      "sha256": "03fa5f6a1764d8a8bed344cc10ff09b8ac2175232d68daa6efc12922eeebdfcb",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3(NiO3)2",
+      "site_count": 11,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 128.21744117974205,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 25,
+      "space_group_symbol": "Pmm2",
+      "representative_id": "NiFeO-107",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-108",
+      "structure_version_id": "historical-original-d3f225e6aa86aa87",
+      "sha256": "d3f225e6aa86aa876f65b92a9323daf7fe5e30795f14cdbae8bae56497783866",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 98.92778461849579,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "representative_id": "NiFeO-108",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-109",
+      "structure_version_id": "historical-original-ac0004ecab88eddd",
+      "sha256": "ac0004ecab88eddd27c5d88dcab0735239b33d29709b381707951998222000e7",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi5O6",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 119.50129658103724,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-109",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-110",
+      "structure_version_id": "historical-original-eb1831100cba5eba",
+      "sha256": "eb1831100cba5eba769d7ce3e75c2788e2c7a8190b479e4389601343a953496b",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4NiO5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 112.6339419290283,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-110",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-111",
+      "structure_version_id": "historical-original-107764749ef559f8",
+      "sha256": "107764749ef559f86bf162430488381c16c27bd2d545d494e7e68541f486f6a8",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 96.39157421729088,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 122,
+      "space_group_symbol": "I-42d",
+      "representative_id": "NiFeO-111",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-112",
+      "structure_version_id": "historical-original-ea6264d7159fdb62",
+      "sha256": "ea6264d7159fdb6288dedd637a0ebc70f3c88d77338b96f37d578097877faaea",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni2O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 110.91511682733439,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "NiFeO-112",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-113",
+      "structure_version_id": "historical-original-594ea73f76ef088b",
+      "sha256": "594ea73f76ef088b822e6a6c89281af1a2efb6daeb6d438eebe0e03cd6465b7d",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO3",
+      "site_count": 5,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 50.31886667799831,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 38,
+      "space_group_symbol": "Amm2",
+      "representative_id": "NiFeO-113",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-114",
+      "structure_version_id": "historical-original-dd1277eeced00a25",
+      "sha256": "dd1277eeced00a25a7cba32c348cf4a7c906cb5e913ff0b0e3183e981675dde1",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 135.72504793545409,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "representative_id": "NiFeO-114",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-115",
+      "structure_version_id": "historical-original-6e1c62d2f0edf3e2",
+      "sha256": "6e1c62d2f0edf3e205c48b9f51b324a1cc3c82b677708777eb4f60224f61e519",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3NiO4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 90.59276447937182,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 164,
+      "space_group_symbol": "P-3m1",
+      "representative_id": "NiFeO-115",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-116",
+      "structure_version_id": "historical-original-01071990c2ff2da8",
+      "sha256": "01071990c2ff2da89ad835e488553ed19063bce5706b72f9819df6756a0402b4",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe3Ni4O7",
+      "site_count": 14,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 155.22574435178169,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-116",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-117",
+      "structure_version_id": "historical-original-397bd78d9ee3b231",
+      "sha256": "397bd78d9ee3b231e4cec2555c23b418d79e1aac2652d78bd125f943a4e87560",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi4O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 96.92955175345807,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 87,
+      "space_group_symbol": "I4/m",
+      "representative_id": "NiFeO-117",
+      "selection_rank": 10,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-118",
+      "structure_version_id": "historical-original-0902db1369491a04",
+      "sha256": "0902db1369491a049674c50d850f574be3dc7a835cbf0fe9fa3e7c1985dc764d",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni"
+      ],
+      "reduced_formula": "FeNi2",
+      "site_count": 3,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 34.30215493102857,
+      "missing_elements": [
+        "O"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-119",
+      "structure_version_id": "historical-original-f8ac385d1476e889",
+      "sha256": "f8ac385d1476e889d44973db8054bdadddc4f55151a7eeb879ddce283a3673cc",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5NiO6",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 124.92214528840194,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 123,
+      "space_group_symbol": "P4/mmm",
+      "representative_id": "NiFeO-119",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-120",
+      "structure_version_id": "historical-original-3cb7e4afc1dc2f70",
+      "sha256": "3cb7e4afc1dc2f70b5151562ac272150b24f5fd7f58eb451c3237daffa8cfc47",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni5O6",
+      "site_count": 13,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 137.4718628666108,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-121",
+      "structure_version_id": "historical-original-eb8d7053036ab594",
+      "sha256": "eb8d7053036ab594c6110b3cd5ac525c348bde3277ea5a551f3fd8cc7c3225a5",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 120.12190481539488,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "representative_id": "NiFeO-025",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-122",
+      "structure_version_id": "historical-original-4278e6eaec26fc39",
+      "sha256": "4278e6eaec26fc393aef044072d8bf302df330ef10782b035284c8a125c56050",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi2O3",
+      "site_count": 6,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 65.25368303449814,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 10,
+      "space_group_symbol": "P2/m",
+      "representative_id": "NiFeO-122",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-123",
+      "structure_version_id": "historical-original-0fa2b33bbe29c499",
+      "sha256": "0fa2b33bbe29c49902ae5eeb3081ae7a73efc841382a990d6cf33433599abb5b",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe(NiO2)3",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 101.1396058213722,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 146,
+      "space_group_symbol": "R3",
+      "representative_id": "NiFeO-123",
+      "selection_rank": 11,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      }
+    },
+    {
+      "candidate_id": "NiFeO-124",
+      "structure_version_id": "historical-original-44a5b9377aa6240d",
+      "sha256": "44a5b9377aa6240df951c2bff10b02a3df93fff736923e343e3b1f916fe72734",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO4",
+      "site_count": 6,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 59.33365560520481,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 65,
+      "space_group_symbol": "Cmmm",
+      "not_selected_reason": "outside_explicit_priority_selector"
+    },
+    {
+      "candidate_id": "NiFeO-125",
+      "structure_version_id": "historical-original-00050ad118b3ba42",
+      "sha256": "00050ad118b3ba429b06ebbd9932d72355f0b83a6ff990481fea7c4facaae5ed",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 78.87987058150418,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 59,
+      "space_group_symbol": "Pmmn",
+      "representative_id": "NiFeO-125",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-126",
+      "structure_version_id": "historical-original-bf5915deff327a36",
+      "sha256": "bf5915deff327a362eeffed37a27cd80fa48ecc2d355be9824fa0f93c2406457",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi3O4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 77.3934779625159,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 123,
+      "space_group_symbol": "P4/mmm",
+      "representative_id": "NiFeO-066",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    },
+    {
+      "candidate_id": "NiFeO-127",
+      "structure_version_id": "historical-original-db61418d0f7658cd",
+      "sha256": "db61418d0f7658cd1ecfbb38ee923b2ea4ff818fcafa9c53aaba48f4fff4a323",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi3O4",
+      "site_count": 8,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 94.94559702070576,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 121,
+      "space_group_symbol": "I-42m",
+      "representative_id": "NiFeO-127",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy"
+    },
+    {
+      "candidate_id": "NiFeO-128",
+      "structure_version_id": "historical-original-6927fed58d0b741c",
+      "sha256": "6927fed58d0b741c0b5c7e6f0b121bc193c3b812fbf408139e48665c346194b8",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "equivalent_to_qualified_representative"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 46.016782342328895,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 166,
+      "space_group_symbol": "R-3m",
+      "representative_id": "NiFeO-019",
+      "not_selected_reason": "equivalent_to_qualified_representative"
+    }
+  ],
+  "coverage": {
+    "reduced_formula": {
+      "selected_values": [
+        "Fe(NiO2)3",
+        "Fe2Ni2O5",
+        "Fe2Ni3O5",
+        "Fe2NiO3",
+        "Fe3(NiO3)2",
+        "Fe3NiO4",
+        "Fe4Ni5O9",
+        "FeNi2O3",
+        "FeNi3O4",
+        "FeNi4O5",
+        "FeNiO2",
+        "FeNiO3"
+      ],
+      "selected_count": 12,
+      "pool_count": 20
+    },
+    "space_group_number": {
+      "selected_values": [
+        1,
+        2,
+        8,
+        12,
+        38,
+        71,
+        87,
+        123,
+        139,
+        146,
+        156,
+        160
+      ],
+      "selected_count": 12,
+      "pool_count": 24
+    },
+    "size_bin": {
+      "selected_values": [
+        "1-10",
+        "11-20"
+      ],
+      "selected_count": 2,
+      "pool_count": 2
+    }
+  },
+  "priority_selector": {
+    "candidate_ids": [
+      "NiFeO-001",
+      "NiFeO-003",
+      "NiFeO-007",
+      "NiFeO-008",
+      "NiFeO-009",
+      "NiFeO-012",
+      "NiFeO-016",
+      "NiFeO-018",
+      "NiFeO-019",
+      "NiFeO-021",
+      "NiFeO-022",
+      "NiFeO-024",
+      "NiFeO-025",
+      "NiFeO-026",
+      "NiFeO-028",
+      "NiFeO-029",
+      "NiFeO-031",
+      "NiFeO-032",
+      "NiFeO-034",
+      "NiFeO-037",
+      "NiFeO-038",
+      "NiFeO-040",
+      "NiFeO-041",
+      "NiFeO-042",
+      "NiFeO-043",
+      "NiFeO-045",
+      "NiFeO-047",
+      "NiFeO-048",
+      "NiFeO-050",
+      "NiFeO-052",
+      "NiFeO-053",
+      "NiFeO-055",
+      "NiFeO-057",
+      "NiFeO-058",
+      "NiFeO-059",
+      "NiFeO-060",
+      "NiFeO-061",
+      "NiFeO-063",
+      "NiFeO-065",
+      "NiFeO-066",
+      "NiFeO-068",
+      "NiFeO-069",
+      "NiFeO-071",
+      "NiFeO-072",
+      "NiFeO-073",
+      "NiFeO-074",
+      "NiFeO-076",
+      "NiFeO-077",
+      "NiFeO-080",
+      "NiFeO-082",
+      "NiFeO-086",
+      "NiFeO-087",
+      "NiFeO-088",
+      "NiFeO-089",
+      "NiFeO-091",
+      "NiFeO-092",
+      "NiFeO-093",
+      "NiFeO-095",
+      "NiFeO-096",
+      "NiFeO-097",
+      "NiFeO-099",
+      "NiFeO-100",
+      "NiFeO-101",
+      "NiFeO-102",
+      "NiFeO-103",
+      "NiFeO-105",
+      "NiFeO-106",
+      "NiFeO-107",
+      "NiFeO-108",
+      "NiFeO-109",
+      "NiFeO-110",
+      "NiFeO-111",
+      "NiFeO-112",
+      "NiFeO-113",
+      "NiFeO-114",
+      "NiFeO-115",
+      "NiFeO-116",
+      "NiFeO-117",
+      "NiFeO-119",
+      "NiFeO-121",
+      "NiFeO-122",
+      "NiFeO-123",
+      "NiFeO-125",
+      "NiFeO-126",
+      "NiFeO-127",
+      "NiFeO-128"
+    ],
+    "basis": "Caller explicitly selects the historical label 优先弛豫; label agreement checked across experiment_handoff/structure_screening.json SHA256=283559cd452f180a3fe5f62fc20847272203cb7d36d8f6cbf1c29980d916a1db, experiment_handoff/structure_screening.csv SHA256=836ba5c3329ee8eb68243c53aaf839f24338f38a34878477b9fabbab94d9b36b, dft_preparation/candidate_catalog.csv SHA256=3877e2f637fa5ff6e02a76bb788d943f959576b6dc5aae8fee18f53a807b6a07. This is a historical heuristic preference, not scientific validation or a measured property.",
+    "evidence_scope": "explicit_caller_preference_not_property_validation"
+  },
+  "policy": {
+    "category_weights": {
+      "reduced_formula": 1,
+      "space_group_number": 1,
+      "size_bin": 1
+    },
+    "size_bins_sites": [
+      "1-10",
+      "11-20",
+      "21+"
+    ],
+    "symprec_angstrom": 0.1,
+    "angle_tolerance_degrees": 5.0,
+    "structure_matcher": {
+      "ltol": 0.2,
+      "stol": 0.3,
+      "angle_tol": 5,
+      "primitive_cell": true,
+      "scale": true,
+      "attempt_supercell": false
+    },
+    "minimum_contact_angstrom": 0.5,
+    "occupancy_tolerance": 1e-06,
+    "requires_explicit_cif_occupancies": true
+  },
+  "limitations": [
+    "Ranking selects a representative shortlist; it does not improve or validate material properties.",
+    "Full occupancy and structural sanity do not prove stability, synthesizability or catalytic performance.",
+    "Space groups and equivalence depend on the stated tolerances; unknown analysis is excluded, never replaced by P1.",
+    "Site count is an input-cell scale proxy, not measured runtime, compute cost or physical quality.",
+    "Greedy fixed-weight category coverage is not a proof of globally optimal selection.",
+    "No generation, relaxation, DFT, external novelty search or API request is performed."
+  ]
+}

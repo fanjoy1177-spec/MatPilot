@@ -1,0 +1,27 @@
+{
+  "schema_version": "matpilot-native-recommendation-validation/v1",
+  "date": "2026-10-26",
+  "host": "Running DeepSeek Harness desktop",
+  "bundle_version": "0.2.0-dev.10",
+  "core_version": "0.2.0.dev9",
+  "registered_tool_count": 10,
+  "backend": "demo",
+  "real_compute_enabled": false,
+  "collection_id": "mattergen_fresh_20261026",
+  "actual_readonly_tool_success": true,
+  "selected_candidate_ids": [
+    "D003",
+    "D005",
+    "P001",
+    "D001"
+  ],
+  "initial_hot_reconnect_call": {
+    "status": "timeout",
+    "timeout_seconds": 60
+  },
+  "second_capability_call": {
+    "status": "passed"
+  },
+  "api_calls_for_this_native_probe": 0,
+  "scope": "In-process installed bundle and MCP calls; prior UI screenshot reused only to locate card, no new UI toggle/save exercise"
+}

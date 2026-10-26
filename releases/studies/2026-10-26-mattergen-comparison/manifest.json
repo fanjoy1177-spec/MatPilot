@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "expected_elements": [
+    "Fe",
+    "Ni",
+    "O"
+  ],
+  "provenance": {
+    "kind": "fresh_mattergen_execution",
+    "experiment_date": "2026-10-26",
+    "experiment_label": "6 direct CLI + 6 MatPilot production service",
+    "historical_candidates_included": false,
+    "generated_by_llm": false,
+    "no_relaxation_or_dft": true,
+    "order": "D001..D006 then P001..P006; fixed by group, run and source member, not post-hoc ranked",
+    "priority_labels": "None: no measured-property or priority-relaxation eligibility assigned"
+  },
+  "records": [
+    {
+      "candidate_id": "D001",
+      "path": "cifs/D001.cif",
+      "sha256": "460aacc1372eabd336eeb9bc461e473c61a0de91f025ae3db54b133f70a7179f",
+      "source_group": "direct",
+      "source_run": "direct-result.json",
+      "source_member": "gen_0.cif",
+      "structure_version_id": "fresh-original-460aacc1372eabd3"
+    },
+    {
+      "candidate_id": "D002",
+      "path": "cifs/D002.cif",
+      "sha256": "658be1bfdede1aa630e66929dcd72397406b4afdc51cffc47f52b929f8c7812d",
+      "source_group": "direct",
+      "source_run": "direct-result.json",
+      "source_member": "gen_1.cif",
+      "structure_version_id": "fresh-original-658be1bfdede1aa6"
+    },
+    {
+      "candidate_id": "D003",
+      "path": "cifs/D003.cif",
+      "sha256": "288549381c89643be07b20d022205afc623e899ce6bd3b7fdab1fe65ce2645cc",
+      "source_group": "direct",
+      "source_run": "direct-extra-result.json",
+      "source_member": "gen_0.cif",
+      "structure_version_id": "fresh-original-288549381c89643b"
+    },
+    {
+      "candidate_id": "D004",
+      "path": "cifs/D004.cif",
+      "sha256": "2bfe5c488b1c345fd0f1289b4af346c025a705bdc12cf83a7f873d18de100fe6",
+      "source_group": "direct",
+      "source_run": "direct-extra-result.json",
+      "source_member": "gen_1.cif",
+      "structure_version_id": "fresh-original-2bfe5c488b1c345f"
+    },
+    {
+      "candidate_id": "D005",
+      "path": "cifs/D005.cif",
+      "sha256": "f965bf881aba997ccfb79b51af0cbb34325fa6f372e6fe59cc9199da31aef219",
+      "source_group": "direct",
+      "source_run": "direct-extra-result.json",
+      "source_member": "gen_2.cif",
+      "structure_version_id": "fresh-original-f965bf881aba997c"
+    },
+    {
+      "candidate_id": "D006",
+      "path": "cifs/D006.cif",
+      "sha256": "d4f0752a028c2d4b1cbbe10a66d0c7231b1a2653a074b34b5c05c9b5d5316b44",
+      "source_group": "direct",
+      "source_run": "direct-extra-result.json",
+      "source_member": "gen_3.cif",
+      "structure_version_id": "fresh-original-d4f0752a028c2d4b"
+    },
+    {
+      "candidate_id": "P001",
+      "path": "cifs/P001.cif",
+      "sha256": "0d535ef5f870640c3497b50ace272f8c2cb7e21a9fefba8d479828a673d6a497",
+      "source_group": "plugin",
+      "source_run": "plugin-result.json",
+      "source_member": "gen_0.cif",
+      "structure_version_id": "s_6ea5356a69253311c318770b13b66fc599a288d80603ebf93d56581884ea3548",
+      "original_candidate_id": "c_940324d9e98c0542acc55ffe"
+    },
+    {
+      "candidate_id": "P002",
+      "path": "cifs/P002.cif",
+      "sha256": "34c49d12ed578b534e60737cafced31aeff8e44308089f4368b5400e3b02f156",
+      "source_group": "plugin",
+      "source_run": "plugin-result.json",
+      "source_member": "gen_1.cif",
+      "structure_version_id": "s_341f3ea146600163453a3bb69da5c546baad406d6907eed1bf26ad90d56426b5",
+      "original_candidate_id": "c_acdb9fe090b65baaf99b728c"
+    },
+    {
+      "candidate_id": "P003",
+      "path": "cifs/P003.cif",
+      "sha256": "e95c8758a85ef3fcb87f44a3d2dbe6558b443798458c68beda8f02726ce9244d",
+      "source_group": "plugin",
+      "source_run": "plugin-extra-result.json",
+      "source_member": "gen_0.cif",
+      "structure_version_id": "s_2a1e1ab2bb36022be7fbd536478573f89865c3b52037236b3344d65d13800436",
+      "original_candidate_id": "c_9e71482d87d222fa9c1b71c5"
+    },
+    {
+      "candidate_id": "P004",
+      "path": "cifs/P004.cif",
+      "sha256": "cc085e8d670a85d44eddc3530dfbb3a7ff2dc88806f192c411672853c9666032",
+      "source_group": "plugin",
+      "source_run": "plugin-extra-result.json",
+      "source_member": "gen_1.cif",
+      "structure_version_id": "s_e99afb22430a0de0944fe08bb3c32233c1d228e5fa98d992c3012348e70e8dfa",
+      "original_candidate_id": "c_bb37a396a5e8188dfff77c6b"
+    },
+    {
+      "candidate_id": "P005",
+      "path": "cifs/P005.cif",
+      "sha256": "ca767016e2a335f45acdcabc5535df29ddf1e713d6609a0d607319eeb891a387",
+      "source_group": "plugin",
+      "source_run": "plugin-extra-result.json",
+      "source_member": "gen_0.cif",
+      "structure_version_id": "s_a7fc7ead590b1177ed3c609344ae086a813d734d4947bbd668cf76ab6243ce0f",
+      "original_candidate_id": "c_c76810c80e5e15bed7ed4f95"
+    },
+    {
+      "candidate_id": "P006",
+      "path": "cifs/P006.cif",
+      "sha256": "035c48af5a392e39e7cfe20b7e56d15e3b76a9a9b91a326c8db166a64a4298c2",
+      "source_group": "plugin",
+      "source_run": "plugin-extra-result.json",
+      "source_member": "gen_1.cif",
+      "structure_version_id": "s_68aa8abb61d28f4d85689c95bee68a1e3a815e2a25bbe6a64f9aa462ba2e0738",
+      "original_candidate_id": "c_aebc8fae754243c1c6569ca2"
+    }
+  ]
+}

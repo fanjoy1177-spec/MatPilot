@@ -22,7 +22,7 @@ class MCPTests(unittest.IsolatedAsyncioTestCase):
                 async with ClientSession(read, write) as session:
                     await session.initialize()
                     tools = await session.list_tools()
-                    self.assertEqual(len(tools.tools), 9)
+                    self.assertEqual(len(tools.tools), 10)
                     caps = await session.call_tool("get_capabilities", {})
                     self.assertFalse(caps.isError)
                     planned = await session.call_tool("prepare_plan", {"request": {"conditions": {"chemical_system": "Fe-O", "dft_band_gap": 2}}})

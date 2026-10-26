@@ -28,6 +28,7 @@ prepare_plan 返回 blocked 或 needs_clarification 时不得提交。展示 rea
 submit_job 立即返回任务号；长任务使用 get_job 查询。只能查询提交实际返回的 job_id，plan_id 不是 job_id，提交失败时不得编造任务号。失败先读错误，禁止自动扩大预算或放宽材料条件。只在明确终止状态下 resume。
 get_results 返回 structure_versions 与 metrics_by_structure_version；指标只属于其明确的 candidate_id 和 structure_version_id，不得沿用父版本指标。需要比较性质证据时，compare_runs 可提供 metric_selections，每项包含 job_id、candidate_id、structure_version_id、metric_id，允许同一任务内显式选择多个版本。不得按化学式替代身份、自动选择最有利指标或对方法不可比的数值作材料优劣排名。
 screen_candidates 和 build_report 可提供相同身份格式的 metric_selections，用明确选定的指标核验原始生成版本；未明确选择时，多份同性质有效指标保持 unknown。每个版本每项性质至多选一个指标，不能自动选择有利数值；所有未选指标保留在报告证据中。选择记录不改变采样预算或生成候选数，结论仅适用于所选方法和指标。
+recommend_candidates 是只读候选后处理工具，job_id 与 collection_id 必须且只能提供一个。collection_id 只能来自 get_capabilities 的已登记集合；不能把任意目录或文件作为模型输入。集合来源独立于当前 demo/native/wsl 生成后端，已归档的真实候选不能误称为本轮生成或固定示例。默认推荐12个，最多256；默认仅返回入选记录与排除原因计数，需要全量审计才设 include_all_records=true。程序重新检查CIF身份、组成完整性、显式满占位和结构预检，去重后按组成/空间群/规模档位等权覆盖排序。优先弛豫名单仅为明确筛选偏好，结构预检通过仍待物性验证；不得宣称稳定、合成成功、性质优化或实际DFT费用降低。build_report 的 recommendation_limit 可把推荐及全量审计写入独立报告，不覆盖默认报告。
 示例模式是固定 NaCl 样本，不能说成 MatterGen 或 AI 生成。执行完成不是材料性能验证。报告只使用工具返回证据；不得宣称已有催化性能、耐腐蚀性、实验验证、AI 准确率提升或流程提速百分比。"""
 
 
@@ -74,15 +75,22 @@ def make_server(settings: Settings) -> FastMCP:
                                          if metric_selections is not None else None)
 
     @app.tool(annotations=read)
+    def recommend_candidates(job_id: str | None = None, collection_id: str | None = None,
+                             limit: int = 12, include_all_records: bool = False) -> dict:
+        """对已有候选做只读后处理与计算规划，不生成、弛豫或优化物性。二选一提供job_id或已登记collection_id；limit为1到256，默认12。重新核验文件/组成/满占位/空间群及去重，按类别覆盖推荐。默认仅返回入选记录和排除计数，全量审计用include_all_records=true。"""
+        return service.recommend_candidates(job_id, collection_id, limit, include_all_records)
+
+    @app.tool(annotations=read)
     def compare_runs(job_ids: list[str], metric_selections: list[MetricSelection] | None = None) -> dict:
         """默认比较2到10个任务的数量和耗时。可选2到20个明确指标身份，核验方法可比性，此时允许单任务多版本或已知真实模型间采用同一评价协议；不自动选指标、不作材料优劣或模型性能排名，禁止混合示例与真实生成。"""
         return service.compare_runs(job_ids, [selection.model_dump() for selection in metric_selections]
                                     if metric_selections is not None else None)
 
     @app.tool(annotations=write)
-    def build_report(job_id: str, metric_selections: list[MetricSelection] | None = None) -> dict:
-        """生成 Markdown 与 JSON。可传与筛选相同的明确指标选择；保存全部/采用指标与选择审计，按选择哈希分别保存报告，不覆盖另一选择或默认报告。"""
+    def build_report(job_id: str, metric_selections: list[MetricSelection] | None = None,
+                     recommendation_limit: int | None = None) -> dict:
+        """生成 Markdown 与 JSON。明确指标选择按哈希独立保存。可选recommendation_limit为1到256，将代表推荐与全量审计保存到独立recommendations/k子目录，不覆盖默认或指标选择报告；推荐仅用于后处理规划，不证明物性改善。"""
         return service.build_report(job_id, [selection.model_dump() for selection in metric_selections]
-                                    if metric_selections is not None else None)
+                                    if metric_selections is not None else None, recommendation_limit)
 
     return app

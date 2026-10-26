@@ -1,0 +1,2 @@
+1c2abe7c3f38d9b0432bad00f2d0d925018226507e482a5c799d4d25280af7dd  matpilot_core-0.2.0.dev9-py3-none-any.whl
+f1f398695bfc5c22849ac1c0fe40b859a426788718c6ca877a232b5035b901a6  matpilot_core-0.2.0.dev9.tar.gz

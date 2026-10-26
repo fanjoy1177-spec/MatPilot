@@ -2,19 +2,23 @@
 
 **让材料研究需求成为可检查、可执行、可追溯的任务。**
 
-MatPilot 是 DeepSeek Harness 的材料研究工具插件，直接使用 Harness 界面。第一版接入 MatterGen，提供能力查询、完整条件检查、持久化任务、候选检查和证据报告。开发版已增加 DiffCSP++ 模板适配器及统一核验；第二模型尚未通过真实计算验收，当前不宣称已获得双模型科学成果。
+MatPilot 是 DeepSeek Harness 的材料研究工具插件，直接使用 Harness 界面。第一版接入 MatterGen，提供能力查询、完整条件检查、持久化任务、候选检查、代表结构推荐和证据报告。开发版已增加 DiffCSP++ 模板适配器及统一核验；第二模型尚未通过真实计算验收，当前不宣称已获得双模型科学成果。
 
 MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V1 integrates MatterGen. A DiffCSP++ template bridge is implemented but not yet accepted on real inference; no new LLM is trained and MatterGen's neural network is unchanged.
 
 ## 当前开发范围
 
-当前源码正在按 [研发方案 v1.1](docs/specification_v1.1.md) 实现，版本为 `0.2.0.dev8`，尚未完成整份方案验收。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配。进度与未完成事项见 [实施状态](docs/implementation_status.md)。
+当前 Python 核心版本为 `0.2.0.dev9`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
 
 自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
 dev7补齐正式工具的逐版本指标读取和显式比较，实际前后结果见[版本指标工具对照](docs/version_metric_tools.md)，本轮验收见[dev7记录](docs/release_acceptance_v07.md)。新增36情境草稿和15场Harness工具验证不属于正式AI效果评分；已有整体提速未成立的结果继续保留。
 
 dev8进一步将显式指标选择接入筛选和报告，保留未选证据及不同选择的报告；配置采样上限统一为32，小额度默认数量与能力卡一致。接口与对照见[指标工具说明](docs/version_metric_tools.md)，验收记录见[dev8记录](docs/release_acceptance_v08.md)。
+
+dev9新增第10个工具 `recommend_candidates`：对已有任务或操作者登记的候选集合重新核验CIF身份、组成、满占位和结构等价，按组成、空间群与输入晶胞规模覆盖推荐代表结构，并记录入选及排除原因。它用于候选后处理与后续计算规划，不改变MatterGen网络，也不把推荐顺序解释为材料性质排名。使用方式见[候选推荐说明](docs/candidate_recommendation.md)。
+
+2026-10-26新增交付入口：[插件能力与MatterGen对比报告（PDF）](output/pdf/MatPilot_插件能力与MatterGen对比报告.pdf)、[机器可读对比证据](artifacts/mattergen-usage-comparison-20261026.json)、[公开复现目录](releases/studies/2026-10-26-mattergen-comparison/)。本轮新生成数据、历史128候选参考池及固定演示分别记录；流程步骤与候选覆盖的改善不等同于材料性能、人员总用时或总计算费用改善。下方历次验收数字保留其原有版本和范围。
 
 ## 0.1.1 历史已验证状态
 
@@ -48,7 +52,7 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [发行文件目录](releases/0.2.0.dev8/) 下载同版本 Python wheel、源码包和 Harness 插件包，按其中 SHA256SUMS.txt 核对。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [dev9 Python 发行文件目录](releases/0.2.0.dev9/) 下载 wheel 和源码包，按其中 SHA256SUMS.txt 核对；Harness 原生连接包单独安装，见下一节。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
@@ -59,7 +63,7 @@ Linux：
 3. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。检查并确认安装计划后，插件安装隔离环境；已有环境也可使用手动连接表单。
 4. 查询安装进度，按需恢复，完成导入/CUDA/MCP 检查。真实单候选验证和启用真实计算分别授权。只需固定样本体验时明确选择 demo。
 
-自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。Harness 插件为 dev11，Python 核心继续使用 0.2.0.dev8。两个包独立编号，尚未发布 npm 或 PyPI。
+自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。已发布的 Harness dev11 环境部署包及其安装、失败恢复功能保留；其固定配方使用 Python 核心 0.2.0.dev8。本轮另提供核心 0.2.0.dev9 的候选推荐能力，需连接相应核心环境后查询 get_capabilities 确认，不能把安装 dev11 等同于已升级核心。推荐升级方式见[桌面配置说明](docs/desktop_setup.md#core-dev9-推荐能力升级2026-10-26)。两个包独立编号，尚未发布 npm 或 PyPI。
 
 CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
 
@@ -87,12 +91,15 @@ python -m matpilot --config examples/config.demo.json plan examples/request.json
 python -m matpilot --config examples/config.demo.json submit PLAN_ID --approve-plan PLAN_ID --key my-request-0001
 python -m matpilot --config examples/config.demo.json job JOB_ID
 python -m matpilot --config examples/config.demo.json screen JOB_ID
+python -m matpilot --config examples/config.demo.json recommend JOB_ID --limit 12
 python -m matpilot --config examples/config.demo.json report JOB_ID
 ```
 
 用实际返回的编号替换大写占位符。`--approve-plan` 表示已检查并授权该计划。同一次提交重试应保持幂等键一致。关闭 MCP 连接不会取消独立进程中的计算；停止任务用 `control_job` 或 CLI 的 `stop`。
 
-## 工具
+## 工具（Python core dev9：10个）
+
+此表仅统计 Python 核心 MCP 工具；Harness dev11 的环境部署、安装及恢复工具另行提供，见[环境部署指南](docs/deployment.md)。
 
 | 工具 | 作用 |
 |---|---|
@@ -103,8 +110,9 @@ python -m matpilot --config examples/config.demo.json report JOB_ID
 | control_job | 停止及恢复明确终止的任务 |
 | get_results | 结构文件与完整性校验值 |
 | screen_candidates | CIF、组成、基础几何与文件重复检查 |
+| recommend_candidates | 核验已有候选，去重后按类别覆盖推荐代表；返回理由与审计 |
 | compare_runs | 描述可比性、完成数量与耗时 |
-| build_report | Markdown 任务报告与 JSON 证据 |
+| build_report | Markdown 任务报告与 JSON 证据；可将推荐保存到独立子目录 |
 
 ## 验证任务提升与流程提速
 

@@ -1,0 +1,463 @@
+{
+  "format": "matpilot-fresh-recommendation-comparison/v1",
+  "created_at": "2026-10-26T13:11:14.577341+00:00",
+  "scope": "current_session_generated_candidates_cpu_postprocessing_fixed_pool_comparison",
+  "source": {
+    "manifest_sha256": "5a1707f4f812e856d64e6e63a16d02fe9adcbcc370c29f5844fb2e8f2513839e",
+    "provenance_sha256": "8a185f10338ea3cf5dd3d97d378a98fd00d3972b0d46b62b93cb67ee556286ed",
+    "input_records": [
+      {
+        "candidate_id": "D001",
+        "sha256": "460aacc1372eabd336eeb9bc461e473c61a0de91f025ae3db54b133f70a7179f",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "D002",
+        "sha256": "658be1bfdede1aa630e66929dcd72397406b4afdc51cffc47f52b929f8c7812d",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "D003",
+        "sha256": "288549381c89643be07b20d022205afc623e899ce6bd3b7fdab1fe65ce2645cc",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "D004",
+        "sha256": "2bfe5c488b1c345fd0f1289b4af346c025a705bdc12cf83a7f873d18de100fe6",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "D005",
+        "sha256": "f965bf881aba997ccfb79b51af0cbb34325fa6f372e6fe59cc9199da31aef219",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "D006",
+        "sha256": "d4f0752a028c2d4b1cbbe10a66d0c7231b1a2653a074b34b5c05c9b5d5316b44",
+        "source_group": "direct"
+      },
+      {
+        "candidate_id": "P001",
+        "sha256": "0d535ef5f870640c3497b50ace272f8c2cb7e21a9fefba8d479828a673d6a497",
+        "source_group": "plugin"
+      },
+      {
+        "candidate_id": "P002",
+        "sha256": "34c49d12ed578b534e60737cafced31aeff8e44308089f4368b5400e3b02f156",
+        "source_group": "plugin"
+      },
+      {
+        "candidate_id": "P003",
+        "sha256": "e95c8758a85ef3fcb87f44a3d2dbe6558b443798458c68beda8f02726ce9244d",
+        "source_group": "plugin"
+      },
+      {
+        "candidate_id": "P004",
+        "sha256": "cc085e8d670a85d44eddc3530dfbb3a7ff2dc88806f192c411672853c9666032",
+        "source_group": "plugin"
+      },
+      {
+        "candidate_id": "P005",
+        "sha256": "ca767016e2a335f45acdcabc5535df29ddf1e713d6609a0d607319eeb891a387",
+        "source_group": "plugin"
+      },
+      {
+        "candidate_id": "P006",
+        "sha256": "035c48af5a392e39e7cfe20b7e56d15e3b76a9a9b91a326c8db166a64a4298c2",
+        "source_group": "plugin"
+      }
+    ],
+    "provenance_limit": "Candidate identities and bytes verified against caller manifest; generation and environment verification are separate records"
+  },
+  "implementation": {
+    "script_sha256": "3eedae3cf68db15a066da586b7ff453b2bdb63a1e489676b41b7a4427351ce57",
+    "shared_metric_code_sha256": "de2c8bc23c0e47d5bc93a09c583b69c126e4ed3f04c26ef17b892a741b5f1058",
+    "recommendation_module_sha256": "92c248586ef91caffa62bcf5555168d1005fd425e422bb61bdd925be4d20fb86",
+    "python": "3.12.14",
+    "pymatgen": "2026.9.24",
+    "spglib": "2.8.0"
+  },
+  "protocol": {
+    "requested_k": 4,
+    "actual_matched_k": 4,
+    "target_met": true,
+    "no_auto_resampling": true,
+    "common_pool": "Same exact element set, explicit full occupancy, basic geometry/symmetry checks and structural deduplication for every strategy",
+    "source_groups_hidden_from_ranking_function": true,
+    "historical_priority_labels_used": false,
+    "priority_interpretation": "Passing representatives may be considered for later evaluation, but are not scientifically certified as suitable for relaxation or stable",
+    "policy": {
+      "category_weights": {
+        "reduced_formula": 1,
+        "space_group_number": 1,
+        "size_bin": 1
+      },
+      "size_bins_sites": [
+        "1-10",
+        "11-20",
+        "21+"
+      ],
+      "symprec_angstrom": 0.1,
+      "angle_tolerance_degrees": 5.0,
+      "structure_matcher": {
+        "ltol": 0.2,
+        "stol": 0.3,
+        "angle_tol": 5,
+        "primitive_cell": true,
+        "scale": true,
+        "attempt_supercell": false
+      },
+      "minimum_contact_angstrom": 0.5,
+      "occupancy_tolerance": 1e-06,
+      "requires_explicit_cif_occupancies": true
+    },
+    "random_repeats": 1000,
+    "random_seed": 20261026,
+    "random_sampling": "Fixed-seed independent samples from the same pool; without replacement inside each sample",
+    "metric_definitions": {
+      "formula_count": "Distinct reduced formulae",
+      "space_group_count": "Distinct symmetry-analyzed SG numbers",
+      "size_bin_count": "Distinct fixed input-cell site bins 1-10, 11-20, 21+",
+      "category_count_sum": "Sum of the above three category counts, the designed objective rather than independent scientific quality",
+      "site_count_sum": "Input sites sum: scale proxy, not measured computing time/cost",
+      "ineligible_count": "Structural qualification failures among selected items, excluding duplicate aliases",
+      "within_shortlist_duplicate_count": "Repeated structural representatives in the selection"
+    }
+  },
+  "counts": {
+    "raw_candidates": 12,
+    "qualified_unique_pool": 11,
+    "exclusion_reason_counts": {
+      "element_set_mismatch": 1
+    }
+  },
+  "source_group_observations": {
+    "direct": {
+      "raw_count": 6,
+      "precheck_pass_before_dedup": 5,
+      "common_pool_representatives": 5,
+      "exclusion_reason_counts": {
+        "element_set_mismatch": 1
+      }
+    },
+    "plugin": {
+      "raw_count": 6,
+      "precheck_pass_before_dedup": 6,
+      "common_pool_representatives": 6,
+      "exclusion_reason_counts": {}
+    }
+  },
+  "source_group_observation_caveat": "Small independent generated samples and canonical representative assignment cannot establish generator quality differences or plugin causality",
+  "common_pool_candidate_ids": [
+    "D001",
+    "D002",
+    "D003",
+    "D005",
+    "D006",
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P005",
+    "P006"
+  ],
+  "common_pool_metrics": {
+    "selected_count": 11,
+    "formula_count": 10,
+    "space_group_count": 9,
+    "size_bin_count": 2,
+    "category_count_sum": 21,
+    "formula_values": [
+      "Fe2Ni2O5",
+      "Fe2Ni3O4",
+      "Fe2Ni5O8",
+      "Fe4Ni3O8",
+      "Fe5Ni3O10",
+      "Fe7Ni2O11",
+      "FeNi3O5",
+      "FeNi4O5",
+      "FeNiO2",
+      "FeNiO4"
+    ],
+    "space_group_values": [
+      1,
+      2,
+      6,
+      8,
+      12,
+      14,
+      87,
+      99,
+      156
+    ],
+    "size_bin_values": [
+      "1-10",
+      "11-20"
+    ],
+    "site_count_sum": 150,
+    "site_count_mean": 13.636363636363637,
+    "ineligible_count": 0,
+    "ineligible_rate": 0.0,
+    "within_shortlist_duplicate_count": 0,
+    "within_shortlist_duplicate_rate": 0.0,
+    "missing_space_group_count": 0
+  },
+  "strategies": {
+    "qualified_first_k": {
+      "candidate_ids": [
+        "D001",
+        "D002",
+        "D003",
+        "D005"
+      ],
+      "metrics": {
+        "selected_count": 4,
+        "formula_count": 4,
+        "space_group_count": 4,
+        "size_bin_count": 2,
+        "category_count_sum": 10,
+        "formula_values": [
+          "Fe2Ni3O4",
+          "Fe7Ni2O11",
+          "FeNi4O5",
+          "FeNiO2"
+        ],
+        "space_group_values": [
+          1,
+          12,
+          87,
+          99
+        ],
+        "size_bin_values": [
+          "1-10",
+          "11-20"
+        ],
+        "site_count_sum": 51,
+        "site_count_mean": 12.75,
+        "ineligible_count": 0,
+        "ineligible_rate": 0.0,
+        "within_shortlist_duplicate_count": 0,
+        "within_shortlist_duplicate_rate": 0.0,
+        "missing_space_group_count": 0
+      },
+      "source_group_counts": {
+        "direct": 4
+      },
+      "same_qualified_unique_pool": true
+    },
+    "qualified_smallest_k": {
+      "candidate_ids": [
+        "D003",
+        "P001",
+        "D001",
+        "D005"
+      ],
+      "metrics": {
+        "selected_count": 4,
+        "formula_count": 4,
+        "space_group_count": 4,
+        "size_bin_count": 2,
+        "category_count_sum": 10,
+        "formula_values": [
+          "Fe2Ni2O5",
+          "Fe2Ni3O4",
+          "FeNi4O5",
+          "FeNiO2"
+        ],
+        "space_group_values": [
+          6,
+          12,
+          87,
+          99
+        ],
+        "size_bin_values": [
+          "1-10",
+          "11-20"
+        ],
+        "site_count_sum": 40,
+        "site_count_mean": 10,
+        "ineligible_count": 0,
+        "ineligible_rate": 0.0,
+        "within_shortlist_duplicate_count": 0,
+        "within_shortlist_duplicate_rate": 0.0,
+        "missing_space_group_count": 0
+      },
+      "source_group_counts": {
+        "direct": 3,
+        "plugin": 1
+      },
+      "same_qualified_unique_pool": true
+    },
+    "matpilot_diversity_k": {
+      "candidate_ids": [
+        "D003",
+        "D005",
+        "P001",
+        "D001"
+      ],
+      "metrics": {
+        "selected_count": 4,
+        "formula_count": 4,
+        "space_group_count": 4,
+        "size_bin_count": 2,
+        "category_count_sum": 10,
+        "formula_values": [
+          "Fe2Ni2O5",
+          "Fe2Ni3O4",
+          "FeNi4O5",
+          "FeNiO2"
+        ],
+        "space_group_values": [
+          6,
+          12,
+          87,
+          99
+        ],
+        "size_bin_values": [
+          "1-10",
+          "11-20"
+        ],
+        "site_count_sum": 40,
+        "site_count_mean": 10,
+        "ineligible_count": 0,
+        "ineligible_rate": 0.0,
+        "within_shortlist_duplicate_count": 0,
+        "within_shortlist_duplicate_rate": 0.0,
+        "missing_space_group_count": 0
+      },
+      "source_group_counts": {
+        "direct": 3,
+        "plugin": 1
+      },
+      "same_qualified_unique_pool": true
+    }
+  },
+  "random_baseline": {
+    "same_qualified_unique_pool": true,
+    "repeats": 1000,
+    "metrics": {
+      "formula_count": {
+        "mean": 3.897,
+        "median": 4.0,
+        "p05": 3.0,
+        "p95": 4.0,
+        "min": 3,
+        "max": 4,
+        "fraction_random_less_than_matpilot": 0.103,
+        "fraction_random_equal_to_matpilot": 0.897,
+        "fraction_random_greater_than_matpilot": 0.0
+      },
+      "space_group_count": {
+        "mean": 3.793,
+        "median": 4.0,
+        "p05": 3.0,
+        "p95": 4.0,
+        "min": 2,
+        "max": 4,
+        "fraction_random_less_than_matpilot": 0.202,
+        "fraction_random_equal_to_matpilot": 0.798,
+        "fraction_random_greater_than_matpilot": 0.0
+      },
+      "size_bin_count": {
+        "mean": 1.775,
+        "median": 2.0,
+        "p05": 1.0,
+        "p95": 2.0,
+        "min": 1,
+        "max": 2,
+        "fraction_random_less_than_matpilot": 0.225,
+        "fraction_random_equal_to_matpilot": 0.775,
+        "fraction_random_greater_than_matpilot": 0.0
+      },
+      "category_count_sum": {
+        "mean": 9.465,
+        "median": 10.0,
+        "p05": 8.0,
+        "p95": 10.0,
+        "min": 7,
+        "max": 10,
+        "fraction_random_less_than_matpilot": 0.398,
+        "fraction_random_equal_to_matpilot": 0.602,
+        "fraction_random_greater_than_matpilot": 0.0
+      },
+      "site_count_sum": {
+        "mean": 54.734,
+        "median": 54.0,
+        "p05": 45.0,
+        "p95": 65.0,
+        "min": 40,
+        "max": 71,
+        "fraction_random_less_than_matpilot": 0.0,
+        "fraction_random_equal_to_matpilot": 0.005,
+        "fraction_random_greater_than_matpilot": 0.995
+      },
+      "ineligible_count": {
+        "mean": 0,
+        "median": 0.0,
+        "p05": 0.0,
+        "p95": 0.0,
+        "min": 0,
+        "max": 0,
+        "fraction_random_less_than_matpilot": 0.0,
+        "fraction_random_equal_to_matpilot": 1.0,
+        "fraction_random_greater_than_matpilot": 0.0
+      },
+      "within_shortlist_duplicate_count": {
+        "mean": 0,
+        "median": 0.0,
+        "p05": 0.0,
+        "p95": 0.0,
+        "min": 0,
+        "max": 0,
+        "fraction_random_less_than_matpilot": 0.0,
+        "fraction_random_equal_to_matpilot": 1.0,
+        "fraction_random_greater_than_matpilot": 0.0
+      }
+    },
+    "interpretation": "Fixed-pool empirical distribution; fractions are not inferential p-values or material performance estimates"
+  },
+  "execution": {
+    "cpu_recommendation_wall_seconds": 1.3981393999420106,
+    "api_requests": 0,
+    "api_cny": 0,
+    "new_material_generation_runs_in_this_script": 0,
+    "relaxation_runs": 0,
+    "property_calculations": 0,
+    "source_inputs_unchanged": true,
+    "human_active_seconds": null
+  },
+  "limitations": [
+    "Ranking selects a representative shortlist; it does not improve or validate material properties.",
+    "Full occupancy and structural sanity do not prove stability, synthesizability or catalytic performance.",
+    "Space groups and equivalence depend on the stated tolerances; unknown analysis is excluded, never replaced by P1.",
+    "Site count is an input-cell scale proxy, not measured runtime, compute cost or physical quality.",
+    "Greedy fixed-weight category coverage is not a proof of globally optimal selection.",
+    "No generation, relaxation, DFT, external novelty search or API request is performed.",
+    "Fresh generation is documented separately; this comparison only performs CPU postprocessing.",
+    "No claim that the diversity strategy must beat first, smallest or random selections; every outcome and tie is retained.",
+    "Common preprocessing benefits apply equally to every baseline and are not diversity-ranking gains.",
+    "Small-sample source-group counts do not demonstrate model improvements, materials quality, speedup or LLM reasoning benefits."
+  ],
+  "artifacts": {
+    "candidates": {
+      "filename": "fresh-candidate-recommendation-comparison-20261026.candidates.csv",
+      "sha256": "2ed6e78a521e61b9d08849307ff5b0c28ee4929ffdc94bf26840f71604fbe036"
+    },
+    "selections": {
+      "filename": "fresh-candidate-recommendation-comparison-20261026.selections.csv",
+      "sha256": "4fbe4a212879c9a890b42e5268eb99d579f0c26b67d363ecb644eab6f9fc221e"
+    },
+    "random": {
+      "filename": "fresh-candidate-recommendation-comparison-20261026.random.csv",
+      "sha256": "867cf30780e3c4fce53fc7dd749626048387dcc9178393a04e074eeedffbc77f"
+    },
+    "recommendation": {
+      "filename": "fresh-candidate-recommendation-comparison-20261026.recommendation.json",
+      "sha256": "4123db338013495ae1abf54fbb6d3bbc6e6c0f8943b174c4df43867e125f9eee"
+    },
+    "summary": {
+      "filename": "fresh-candidate-recommendation-comparison-20261026.summary.md",
+      "sha256": "28078a8c7b0782a6d5ac184f805562afde2ca728e97d3f5b964706d104e41b71"
+    }
+  }
+}

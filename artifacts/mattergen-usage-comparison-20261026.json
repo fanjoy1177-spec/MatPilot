@@ -1,0 +1,147 @@
+{
+  "schema_version": "matpilot-mattergen-usage-comparison/v1",
+  "date": "2026-10-26",
+  "scope": "fresh real generation and workflow integration; descriptive small-case study",
+  "historical_data_is_reference_only": true,
+  "chemical_system": "Fe-Ni-O",
+  "checkpoint": {
+    "checkpoint": "chemical_system",
+    "files": [
+      {
+        "path": "checkpoints/last.ckpt",
+        "bytes": 512404276,
+        "sha256": "4ad21d977c2b776a31c92498c4d1c88d3e1e286deeb941e997af8e082310b80e"
+      },
+      {
+        "path": "config.yaml",
+        "bytes": 7293,
+        "sha256": "0640de891dc75e34c92c4da022344767918fe4a2300908b1013fe6161f3c2c81"
+      }
+    ],
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB",
+    "mattergen_git_commit": "a245cf2b7538eea6d873e6430b0e30c56d26c60e"
+  },
+  "total_new_candidates": 12,
+  "direct_candidates": 6,
+  "plugin_candidates": 6,
+  "runs": [
+    {
+      "group": "direct",
+      "num_samples": 2,
+      "batch_size": 2,
+      "wall_seconds": 200.821407698,
+      "raw_result_sha256": "191d0da0fd4b1a05337598a454bfd8a15f517916cb3cdf20761f28b9412d502e",
+      "result_name": "direct-result.json",
+      "api_calls": 0,
+      "seed_applied": false,
+      "status": "completed",
+      "llm_driven": false,
+      "invocation": "direct_mattergen_cli",
+      "model_processes": 1
+    },
+    {
+      "group": "direct",
+      "num_samples": 4,
+      "batch_size": 2,
+      "wall_seconds": 337.664531675,
+      "raw_result_sha256": "2c7728320f482a941e56950707db05f5f9d2125bf4a87ca09762ce27a6d83ff0",
+      "result_name": "direct-extra-result.json",
+      "api_calls": 0,
+      "seed_applied": false,
+      "status": "completed",
+      "llm_driven": false,
+      "invocation": "direct_mattergen_cli",
+      "model_processes": 1
+    },
+    {
+      "group": "plugin",
+      "num_samples": 2,
+      "batch_size": 2,
+      "wall_seconds": 201.0470000000205,
+      "raw_result_sha256": "3f48ff97bbb93ab9bef9e3bfa6f0c37043391332564bce75640c2229883a04ba",
+      "result_name": "plugin-result.json",
+      "api_calls": 0,
+      "seed_applied": false,
+      "status": "completed",
+      "llm_driven": false,
+      "invocation": "matpilot_production_service",
+      "model_processes": 1
+    },
+    {
+      "group": "plugin",
+      "num_samples": 4,
+      "batch_size": 2,
+      "wall_seconds": 421.655999999959,
+      "raw_result_sha256": "d01244e3bcbdb4768f37312dbf788c2b6242b489b115bdea35cffd89eb322b42",
+      "result_name": "plugin-extra-result.json",
+      "api_calls": 0,
+      "seed_applied": false,
+      "status": "completed",
+      "llm_driven": false,
+      "invocation": "matpilot_production_service",
+      "model_processes": 2
+    }
+  ],
+  "groups": {
+    "direct": {
+      "samples": 6,
+      "wall_seconds_sum": 538.485939373,
+      "model_processes": 2
+    },
+    "plugin": {
+      "samples": 6,
+      "wall_seconds_sum": 622.7029999999795,
+      "model_processes": 3
+    }
+  },
+  "shared_generation_parameters": {
+    "batch_size": 2,
+    "checkpoint": "chemical_system",
+    "chemical_system": "Fe-Ni-O",
+    "diffusion_guidance_factor": 2.0,
+    "record_trajectories": false,
+    "local_weights_offline": true,
+    "seed_applied": false
+  },
+  "generation_entry": "Direct CLI versus scripted ProductionService methods; neither generation arm used an LLM. A separate current Harness demo uses real DeepSeek for read-only shortlist recommendation.",
+  "fairness": {
+    "same_candidate_pool_for_recommendation": true,
+    "fresh_pool_manifest_sha256": "b8b9df3a9d20a2663b631497f681e5a1d40bcd111c811e1623e466f0dacb7add",
+    "generation_outputs_are_unpaired_random_draws": true,
+    "timing_comparable_for_speedup": false,
+    "human_active_time_measured": false,
+    "different_process_count_and_postprocessing": true,
+    "seed_note": "Installed pinned MatterGen CLI does not expose --seed; current upstream may differ. No paired-sample generation superiority claim."
+  },
+  "process_comparison": [
+    {
+      "stage": "request",
+      "direct": "User selects checkpoint and writes CLI options and property dictionary",
+      "plugin": "User expresses intent; agent queries capabilities and produces structured plan with unsupported requirements exposed"
+    },
+    {
+      "stage": "execution",
+      "direct": "User chooses output directory and launches/checks command",
+      "plugin": "Approved plan ID, idempotency key, job state and bounded sample budget"
+    },
+    {
+      "stage": "collection",
+      "direct": "Extract and inspect CIFs; script or official evaluation needed for checks",
+      "plugin": "Collect records with SHA256, stable IDs, parse/requirement checks and report"
+    },
+    {
+      "stage": "shortlist",
+      "direct": "User implements selection rules or uses other tools; strong baselines use identical prechecks here",
+      "plugin": "One recommend_candidates tool applies fixed eligibility, deduplication and categorical coverage with reasons"
+    }
+  ],
+  "boundaries": [
+    "Workflow integration and categorical shortlist coverage are tested; no energy, stability, synthesizability, catalysis, corrosion or device-performance conclusion.",
+    "No material relaxation or DFT was performed.",
+    "No timing speedup or causal scientific-quality claim from unpaired random generation.",
+    "Generic Harness can also invoke scripts; integration advantage is reusable capability-aware tools and audit trail, not exclusive access to these algorithms."
+  ],
+  "api_generation_calls": 0,
+  "relaxation_runs": 0,
+  "dft_runs": 0
+}

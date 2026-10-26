@@ -1,0 +1,13 @@
+﻿candidate_id,source_group,sha256,qualified,representative_id,reduced_formula,space_group_number,site_count,size_bin,selected,exclusion_reasons
+D001,direct,460aacc1372eabd336eeb9bc461e473c61a0de91f025ae3db54b133f70a7179f,True,D001,FeNi4O5,87,10,1-10,True,
+D002,direct,658be1bfdede1aa630e66929dcd72397406b4afdc51cffc47f52b929f8c7812d,True,D002,Fe7Ni2O11,1,20,11-20,False,
+D003,direct,288549381c89643be07b20d022205afc623e899ce6bd3b7fdab1fe65ce2645cc,True,D003,Fe2Ni3O4,12,9,1-10,True,
+D004,direct,2bfe5c488b1c345fd0f1289b4af346c025a705bdc12cf83a7f873d18de100fe6,False,,NiO3,,4,1-10,False,element_set_mismatch
+D005,direct,f965bf881aba997ccfb79b51af0cbb34325fa6f372e6fe59cc9199da31aef219,True,D005,FeNiO2,99,12,11-20,True,
+D006,direct,d4f0752a028c2d4b1cbbe10a66d0c7231b1a2653a074b34b5c05c9b5d5316b44,True,D006,Fe2Ni5O8,2,15,11-20,False,
+P001,plugin,0d535ef5f870640c3497b50ace272f8c2cb7e21a9fefba8d479828a673d6a497,True,P001,Fe2Ni2O5,6,9,1-10,True,
+P002,plugin,34c49d12ed578b534e60737cafced31aeff8e44308089f4368b5400e3b02f156,True,P002,FeNi3O5,8,18,11-20,False,
+P003,plugin,e95c8758a85ef3fcb87f44a3d2dbe6558b443798458c68beda8f02726ce9244d,True,P003,Fe4Ni3O8,156,15,11-20,False,
+P004,plugin,cc085e8d670a85d44eddc3530dfbb3a7ff2dc88806f192c411672853c9666032,True,P004,FeNiO2,156,12,11-20,False,
+P005,plugin,ca767016e2a335f45acdcabc5535df29ddf1e713d6609a0d607319eeb891a387,True,P005,Fe5Ni3O10,8,18,11-20,False,
+P006,plugin,035c48af5a392e39e7cfe20b7e56d15e3b76a9a9b91a326c8db166a64a4298c2,True,P006,FeNiO4,14,12,11-20,False,

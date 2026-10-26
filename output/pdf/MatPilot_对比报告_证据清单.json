@@ -1,0 +1,63 @@
+{
+  "format": "matpilot-comparison-report-evidence/v1",
+  "date": "2026-10-26",
+  "pdf": {
+    "filename": "MatPilot_插件能力与MatterGen对比报告.pdf",
+    "sha256": "3af73317b518ca8121425399d5c5271a3dd84590b50077e4c17bcd8a938d75c5",
+    "bytes": 394134,
+    "pages": 8
+  },
+  "source_files": [
+    {
+      "path": "artifacts/mattergen-usage-comparison-20261026.json",
+      "sha256": "c7517c210cbf60b8c281d17976359060c6d9005b6422c534ac57325abb9559d0"
+    },
+    {
+      "path": "artifacts/fresh-candidate-recommendation-comparison-20261026.json",
+      "sha256": "fbca948d851218bd007c3a55954686848c13cbb06e649d66cb6a0551f7cfc4a6"
+    },
+    {
+      "path": "artifacts/harness-recommendation-validation-20261026.json",
+      "sha256": "01ea7f8dddd10d5552a756e1c455e42d653114af9ec71d4f7c121c511184c083"
+    },
+    {
+      "path": "artifacts/harness-recommendation-validation-20261026.transcript.md",
+      "sha256": "7bdb3fce94a052b5a21e40963110552795021894e125ef0765325ade459f8a9b"
+    },
+    {
+      "path": "artifacts/native-recommendation-validation-20261026.json",
+      "sha256": "b0d6a4a0364660261ce061822ac74600b1dd77afe99452773727f232fcf57ce9"
+    },
+    {
+      "path": "artifacts/candidate-recommendation-comparison-20261026.json",
+      "sha256": "888af74c72d6d4782771e545debc9440389f0c470765e85e3446877386db1f6e"
+    },
+    {
+      "path": "docs/study_plugin_effects.md",
+      "sha256": "711eb1a576a61515261d6460a7095081fed37c2b5d79d24a7481b2a28c95f291"
+    },
+    {
+      "path": "docs/native_plugin_acceptance.md",
+      "sha256": "bb90aac4926edf6ffd5de84f15349835d0ef27d9bb7224cadc63d18b700fe2de"
+    },
+    {
+      "path": "docs/images/native-plugin-card.png",
+      "sha256": "147f763aabe19ec52a19030c73ab3e188a27499ff27eea1539e89056dffcdc07"
+    },
+    {
+      "path": "artifacts/fresh-candidate-public-reproduction-validation-20261026.json",
+      "sha256": "d05b15f25f5dc5733e378e915d7bde47d808fb5c1a04ef97944f062b717f15c1"
+    }
+  ],
+  "official_sources": [
+    {
+      "url": "https://github.com/microsoft/mattergen",
+      "accessed": "2026-10-26"
+    }
+  ],
+  "visual_review": "8 pages rendered at 120 dpi and inspected",
+  "authoring": {
+    "script_sha256": "5883652574018aa25d0942c914894bb36045786ceb70c75e83b7bfd01d7d5e48",
+    "data_sha256": "080f48a0c9513650733b480593e2707ea38fc7e0ce1519f7f4aaf72f90b3353d"
+  }
+}

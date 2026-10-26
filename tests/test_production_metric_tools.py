@@ -158,7 +158,7 @@ class ProductionMetricToolsTests(unittest.TestCase):
             with self.subTest(choices=choices), self.assertRaises(ValueError):
                 self.service.compare_runs([self.job], choices)
 
-    def test_actual_fastmcp_still_has_nine_tools_and_accepts_explicit_metric_schema(self):
+    def test_actual_fastmcp_has_ten_tools_and_accepts_explicit_metric_schema(self):
         first, second = self.metric(self.original), self.metric(self.child, 2)
         async def exercise():
             app = make_server(self.service.settings)
@@ -166,7 +166,7 @@ class ProductionMetricToolsTests(unittest.TestCase):
                 response = await app.call_tool(name, arguments)
                 return response[1] if isinstance(response, tuple) else json.loads(response[0].text)
             tools = await app.list_tools()
-            self.assertEqual(len(tools), 9)
+            self.assertEqual(len(tools), 10)
             schema = next(t.inputSchema for t in tools if t.name == "compare_runs")
             self.assertIn("metric_selections", schema["properties"])
             self.assertIn("MetricSelection", schema["$defs"])

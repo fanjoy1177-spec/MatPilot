@@ -1,0 +1,9 @@
+{
+  "temporary_helpers_removed": 2,
+  "budget_lock_removed": true,
+  "desktop_core": "0.2.0.dev9",
+  "desktop_backend": "demo",
+  "desktop_real_compute_enabled": false,
+  "ledger_records": 552,
+  "ledger_accounted_cny": 22.315822000000004
+}

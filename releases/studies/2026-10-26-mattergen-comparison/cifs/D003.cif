@@ -1,0 +1,34 @@
+data_image0
+_chemical_formula_structural       FeNiOFeO2Ni2O
+_chemical_formula_sum              "Fe2 Ni3 O4"
+_cell_length_a       2.959963009448697
+_cell_length_b       5.130810612828365
+_cell_length_c       6.648682117462158
+_cell_angle_alpha    74.75839987853062
+_cell_angle_beta     77.32863510454816
+_cell_angle_gamma    73.36137325623798
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Fe  Fe1       1.0  0.7313428521156311  0.6993927955627441  0.44420251250267034  1.0000
+  Ni  Ni1       1.0  0.9451624751091003  0.07399667799472809  0.6407435536384584  1.0000
+  O   O1        1.0  0.7376708984375  0.17537753283977509  0.9552323818206788  1.0000
+  Fe  Fe2       1.0  0.5429947376251221  0.2521030604839325  0.26640886068344116  1.0000
+  O   O2        1.0  0.5378471016883851  0.7762428522109985  0.7539353966712953  1.0000
+  O   O3        1.0  0.3370276093482972  0.3761049509048462  0.5546046495437622  1.0000
+  Ni  Ni2       1.0  0.3302052617073058  0.8780534267425537  0.06778130680322651  1.0000
+  Ni  Ni3       1.0  0.13794399797916415  0.4751987755298614  0.8547692894935609  1.0000
+  O   O4        1.0  0.9376551508903503  0.575741708278656  0.15525957942008972  1.0000

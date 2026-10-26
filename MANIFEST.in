@@ -34,3 +34,6 @@ include artifacts/v07-context-tool-runtime-validation.json
 
 include artifacts/v08-unit-validation.json artifacts/v08-deployment-validation.json artifacts/metric-screening-cpu-comparison.json
 include artifacts/v08-unit-validation-r1-source-drift.json
+
+recursive-include packages/dsh-matpilot *.mjs *.js *.svg
+include artifacts/v09-unit-validation.json artifacts/candidate-recommendation-comparison-20261026*.json artifacts/fresh-candidate-recommendation-comparison-20261026*.json
