@@ -1,0 +1,76 @@
+{
+  "schema_version": "matpilot-triage-correction-protocol/v1",
+  "date": "2026-10-26",
+  "status": "fixed_before_running_new_triage_on_current_candidates",
+  "reason": "User requested automatic priority-relaxation classification; dev9 omitted it. Supplemental analysis after user feedback, not a new independent experiment.",
+  "source_rule": {
+    "file": "MG-Flow/scripts/structure_screen_candidates.py",
+    "sha256": "1dbb9b0485e34506c2f8778debfdd19f79c817623c02e3eb65646fedf7afacd7",
+    "policy_id": "fe_ni_o_relaxation_v1",
+    "expected_elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "thresholds": {
+      "severe_short_distance_angstrom": 0.8,
+      "suspicious_covalent_ratio": 0.65,
+      "volume_per_site_interval_angstrom3": [
+        5,
+        40
+      ],
+      "density_interval_g_cm3": [
+        1,
+        12
+      ],
+      "initial_score": 100,
+      "priority_min_score": 85,
+      "review_min_score": 60
+    },
+    "score_penalties": {
+      "severe_short_distance": 50,
+      "otherwise_suspicious_ratio": 25,
+      "volume": 20,
+      "density": 15,
+      "uniform_common_oxidation_balance_failed": 15
+    },
+    "priority_additional_gate": "uniform-per-element Fe/Ni(+2,+3), O(-2) charge-balance hint must not be false; this does not model mixed valence and false means review, not impossible chemistry."
+  },
+  "input": {
+    "public_manifest": "releases/studies/2026-10-26-mattergen-comparison/manifest.json",
+    "sha256": "b8b9df3a9d20a2663b631497f681e5a1d40bcd111c811e1623e466f0dacb7add",
+    "count": 12,
+    "same_previously_new_generated_candidates": true,
+    "historical128_included": false
+  },
+  "selection": {
+    "k": 4,
+    "source_group_hidden": true,
+    "ranking_weights": [
+      1,
+      1,
+      1
+    ],
+    "ties": "fewer input sites then ID",
+    "strong_baselines": [
+      "same_priority_pool_first_k",
+      "same_priority_pool_smallest_k",
+      "same_priority_pool_random_1000"
+    ],
+    "random_seed": 20261026,
+    "insufficient_priority_candidates": "return fewer; no resampling or relaxation"
+  },
+  "pipeline_contrast": "Full raw pool and fixed first4 versus full plugin pipeline are exploratory product-level descriptions; shared-priority-pool comparisons isolate ranking.",
+  "boundaries": {
+    "no_new_generation": true,
+    "no_relaxation": true,
+    "no_dft": true,
+    "no_api_needed": true,
+    "no_performance_or_stability_inference": true,
+    "no_population_generalization": true
+  },
+  "implementation": {
+    "triage_sha256": "1a4b19bb00400cf8581f79dc64b1eb5ab8c259068070e7401ed6d761e8797727",
+    "ranking_sha256": "92c248586ef91caffa62bcf5555168d1005fd425e422bb61bdd925be4d20fb86"
+  }
+}

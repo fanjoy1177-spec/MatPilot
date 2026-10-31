@@ -37,3 +37,5 @@ include artifacts/v08-unit-validation-r1-source-drift.json
 
 recursive-include packages/dsh-matpilot *.mjs *.js *.svg
 include artifacts/v09-unit-validation.json artifacts/candidate-recommendation-comparison-20261026*.json artifacts/fresh-candidate-recommendation-comparison-20261026*.json
+
+include artifacts/triage-candidate-comparison-20261026.json artifacts/triage-correction-protocol-20261026.json artifacts/v10-unit-validation.json

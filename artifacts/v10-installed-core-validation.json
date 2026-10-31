@@ -1,0 +1,6 @@
+{
+  "version": "0.2.0.dev10",
+  "wheel_sha256": "fcda558970dd0d90dfcd920dad05bf0d18d9ee7cf96ebb5c085c8f2bc9dd0a60",
+  "python_source_and_installed_bytes_match": true,
+  "install_method": "verified wheel contents to dedicated PYTHONPATH target; dependencies unchanged"
+}

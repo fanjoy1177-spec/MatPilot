@@ -1,0 +1,40 @@
+{
+  "schema_version": "matpilot-triage-native-validation/v1",
+  "date": "2026-10-26",
+  "host": "Running DeepSeek Harness desktop",
+  "core": "0.2.0.dev10",
+  "native_bundle": "0.2.0-dev.10",
+  "requested_policy": "auto",
+  "effective_policy": "fe_ni_o_relaxation_v1",
+  "stage_counts": {
+    "input_count": 12,
+    "structural_representative_count": 11,
+    "priority_relaxation_count": 5,
+    "manual_review_count": 6,
+    "defer_count": 0,
+    "not_eligible_count": 1,
+    "selected_count": 4,
+    "requested_count": 4,
+    "shortfall_count": 0
+  },
+  "selected_candidate_ids": [
+    "P001",
+    "D005",
+    "D001",
+    "D006"
+  ],
+  "full_audit_returned": true,
+  "byte_bound_cpu_result_equal": true,
+  "initial_hot_reconnect_capability_call": "timeout at 60 seconds; second call succeeded",
+  "second_capability_call_success": true,
+  "readonly_recommendation_call_success": true,
+  "api_calls": 0,
+  "new_generation_runs": 0,
+  "relaxation_runs": 0,
+  "dft_runs": 0,
+  "desktop_real_compute_enabled": false,
+  "limitations": [
+    "Native tool invocation verified; old dev9 real LLM transcript is not new dev10 LLM validation.",
+    "Priority classes are heuristic workflow recommendations, not measured material properties."
+  ]
+}

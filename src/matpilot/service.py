@@ -37,7 +37,9 @@ class Service:
                     "tool": "recommend_candidates", "max_candidates": 256, "default_limit": 12,
                     "collection_ids": sorted(self.settings.candidate_collections),
                     "sources": "Choose exactly one existing job_id or operator-registered collection_id; arbitrary paths are not accepted.",
-                    "method": "Verified CIFs, explicit composition and occupancy checks, structural representatives and equal-weight composition/space-group/site-bin coverage.",
+                    "default_selection_policy": "auto",
+                    "selection_policies": self._recommendation_policy_cards(),
+                    "method": "Verified CIFs, explicit composition and occupancy checks, structural representatives; auto applies the declared Fe-Ni-O relaxation triage before equal-weight composition/space-group/site-bin coverage. Other element systems use structural coverage only.",
                     "scope": "Read-only postprocessing and compute planning, not material-property optimization; collection provenance is independent of the current generation backend.",
                     "registration_notice": "Listed collection IDs are configured sources; manifest and CIF checksums are reverified when used."},
                 "request_example": {"raw_request": "Fe-Ni-O，最多4个",
@@ -54,7 +56,7 @@ class Service:
                     "Use clarifications only for genuinely missing, conflicting or ambiguous required information. Do not ask for optional numerical targets that the user did not request.",
                     "Only query a job_id actually returned by submit_job. A plan_id is not a job_id; a failed submission creates no usable job identifier."],
                 "demo_notice": "Demo uses fixed NaCl fixtures, not MatterGen or AI-generated results." if self.settings.backend == "demo" else None,
-                "workflow": "prepare_plan -> show conditions, review_targets and budget -> submit_job with explicit user authorization -> get_job -> screen_candidates -> optional recommend_candidates -> build_report"}
+                "workflow": "prepare_plan -> show conditions, review_targets and budget -> submit_job with explicit user authorization -> get_job -> screen_candidates -> recommend_candidates when the user requests screening, sorting or recommendations -> build_report with recommendation_limit for a recommendation report"}
 
     def prepare_plan(self, request: dict) -> dict:
         model_id = request.get("model_id", "mattergen") if isinstance(request, dict) else "mattergen"
@@ -242,6 +244,34 @@ class Service:
                 "include_all_records": include_all_records,
                 "records": records if include_all_records else selected}
 
+    @staticmethod
+    def _recommendation_policy_cards() -> dict:
+        from .relaxation_triage import policy_description
+        return {
+            "auto": {"routing": "Exact declared element set Fe/Ni/O uses fe_ni_o_relaxation_v1; every other element system uses structural_v1."},
+            "structural_v1": {
+                "method": "Original structural checks, representative deduplication and equal-weight categorical diversity coverage.",
+                "scope": "No automatic relaxation-priority classification; retained for explicit historical replay and unsupported element systems."},
+            "fe_ni_o_relaxation_v1": policy_description(),
+        }
+
+    @staticmethod
+    def _recommendation_result(records: list[dict], expected_elements, limit: int,
+                               selection_policy: str = "auto", **priority) -> dict:
+        if not isinstance(selection_policy, str) or selection_policy not in {
+                "auto", "structural_v1", "fe_ni_o_relaxation_v1"}:
+            raise ValueError("selection_policy must be auto, structural_v1 or fe_ni_o_relaxation_v1.")
+        applicable = set(expected_elements) == {"Fe", "Ni", "O"}
+        if selection_policy == "fe_ni_o_relaxation_v1" and not applicable:
+            raise ValueError("fe_ni_o_relaxation_v1 applies only to the explicitly declared Fe-Ni-O element system.")
+        effective = ("fe_ni_o_relaxation_v1" if applicable else "structural_v1") if selection_policy == "auto" else selection_policy
+        if effective == "fe_ni_o_relaxation_v1":
+            from .relaxation_triage import recommend_for_relaxation
+            result = recommend_for_relaxation(records, expected_elements, limit, **priority)
+        else:
+            result = recommend_records(records, expected_elements, limit, **priority)
+        return {**result, "requested_selection_policy": selection_policy, "effective_selection_policy": effective}
+
     def _load_candidate_collection(self, collection_id: str) -> tuple[dict, dict]:
         if not isinstance(collection_id, str) or collection_id not in self.settings.candidate_collections:
             raise ValueError("Unknown candidate collection; choose a registered collection_id from get_capabilities.")
@@ -276,7 +306,8 @@ class Service:
                           "scope": "Existing archived candidates; current generation backend does not establish their provenance."}
 
     def recommend_candidates(self, job_id: str | None = None, collection_id: str | None = None,
-                             limit: int = 12, include_all_records: bool = False) -> dict:
+                             limit: int = 12, include_all_records: bool = False,
+                             selection_policy: str = "auto") -> dict:
         """Read-only candidate planning from one known job or registered collection."""
         if (job_id is None) == (collection_id is None):
             raise ValueError("Provide exactly one job_id or collection_id.")
@@ -285,11 +316,11 @@ class Service:
                 raise ValueError("job_id must be a nonempty string.")
             screened = self.screen_candidates(job_id)
             plan = self.store.plan(self.store.job(job_id)["plan_id"])
-            recommendation = recommend_records(screened["records"], self._recommendation_elements(plan), limit)
+            recommendation = self._recommendation_result(screened["records"], self._recommendation_elements(plan), limit, selection_policy)
             source = {"kind": "job", "job_id": job_id, "provenance": screened["provenance"]}
         else:
             manifest, source = self._load_candidate_collection(collection_id)
-            recommendation = recommend_records(manifest["records"], manifest["expected_elements"], limit,
+            recommendation = self._recommendation_result(manifest["records"], manifest["expected_elements"], limit, selection_policy,
                 priority_candidate_ids=manifest.get("priority_candidate_ids"),
                 priority_selection_basis=manifest.get("priority_selection_basis"))
         return self._recommendation_view(recommendation, source, include_all_records)
@@ -332,7 +363,7 @@ class Service:
         return result
 
     def build_report(self, job_id: str, metric_selections: list[dict] | None = None,
-                     recommendation_limit: int | None = None) -> dict:
+                     recommendation_limit: int | None = None, recommendation_policy: str = "auto") -> dict:
         job = self.store.job(job_id)
         plan = self.store.plan(job["plan_id"])
         result = self.screen_candidates(job_id, metric_selections)
@@ -342,9 +373,12 @@ class Service:
         recommendation = None
         if recommendation_limit is not None:
             recommendation = self._recommendation_view(
-                recommend_records(result["records"], self._recommendation_elements(plan), recommendation_limit),
+                self._recommendation_result(result["records"], self._recommendation_elements(plan), recommendation_limit, recommendation_policy),
                 {"kind": "job", "job_id": job_id, "provenance": result["provenance"]}, True)
-            folder = folder / "recommendations" / str(recommendation_limit)
+            folder = folder / "recommendations"
+            if recommendation["effective_selection_policy"] != "structural_v1":
+                folder = folder / recommendation["effective_selection_policy"]
+            folder = folder / str(recommendation_limit)
         folder.mkdir(parents=True, exist_ok=True)
         packages = {}
         for name in ["matpilot-core", "mcp", "pymatgen"]:
@@ -392,8 +426,23 @@ class Service:
         if recommendation is not None:
             lines += ["", "## 候选代表推荐", "",
                       "此排序用于后续计算规划，不代表材料性质更优。组成、空间群和晶胞规模档位等权覆盖；原子数仅为规模代理，不是实际计算费用。",
+                      f"请求策略：{recommendation['requested_selection_policy']}；实际策略：{recommendation['effective_selection_policy']}。",
                       f"请求 {recommendation_limit} 个；合格代表 {recommendation['eligible_representative_count']} 个；实际推荐 {recommendation['selected_count']} 个。",
-                      f"全量候选审计 SHA256：{recommendation['all_candidate_audit_sha256']}", "",
+                      f"全量候选审计 SHA256：{recommendation['all_candidate_audit_sha256']}"]
+            if "relaxation_triage_policy" in recommendation:
+                lines += ["", "### 自动弛豫优先级", "",
+                          "使用明示的 Fe-Ni-O 结构启发式生成优先弛豫、人工复核或暂缓标签，再从优先池的代表结构选择多样化候选。标签用于安排后续计算，不是弛豫结果、能量或催化性能结论。",
+                          "阶段计数：" + cell(json.dumps(recommendation.get("stage_counts", {}), ensure_ascii=False)), "",
+                          "| 候选 ID | 分层 | 启发式分数 | 原因或规则检查 |", "|---|---|---|---|"]
+                for row in recommendation["records"]:
+                    triage = row.get("relaxation_priority", {})
+                    if triage:
+                        issues = triage.get("issues", [])
+                        lines.append("| " + " | ".join(cell(value) for value in [row["candidate_id"],
+                            triage.get("priority", triage.get("tier", "未知")), triage.get("score"),
+                            json.dumps(issues, ensure_ascii=False) if issues else "通过所列启发式规则；仍待物性验证"]) + " |")
+                lines += ["", "完整阈值、度量、排除理由与局限保存在 JSON 的 relaxation_triage_policy 和逐候选 relaxation_priority 中。"]
+            lines += ["",
                       "| 顺序 | 候选 ID | 约化组成 | 空间群 | 输入原子数 | 新增覆盖类别 |", "|---|---|---|---|---|---|"]
             for row in sorted((r for r in recommendation["records"] if r["selected"]), key=lambda r: r["selection_rank"]):
                 lines.append("| " + " | ".join(cell(value) for value in [row["selection_rank"], row["candidate_id"],

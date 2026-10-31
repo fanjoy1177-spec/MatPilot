@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "scope": "actual_desktop_screenshots_and_explicit_record_review",
+  "display_pixels": [
+    1920,
+    1080
+  ],
+  "images": [
+    {
+      "file": "screenshots/plugin-card.png",
+      "sha256": "511dc94d3699da99b174535530189858ca77bb575b781391a2a11e47505e46e8",
+      "bytes": 12822,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        345,
+        825,
+        1585,
+        990
+      ],
+      "kind": "actual_ui",
+      "description": "DeepSeek Harness 原生插件启用开关",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    },
+    {
+      "file": "screenshots/direct-command.png",
+      "sha256": "46a666fdecf7c9f4318bfb5914e0277f61d6da9904be1e1bf73c040bac106e3c",
+      "bytes": 73385,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        32,
+        32,
+        1513,
+        658
+      ],
+      "kind": "actual_ui_record_review",
+      "description": "Windows Terminal 中回看2026-10-26直接MatterGen运行记录，未重新生成，绝对路径已缩短",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    },
+    {
+      "file": "screenshots/direct-cif.png",
+      "sha256": "a44ed9926413384d6408034f5b54925e25a53e13499b238c4cfdf6ef19838e7c",
+      "bytes": 25609,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        41,
+        33,
+        1000,
+        550
+      ],
+      "kind": "actual_ui_record_review",
+      "description": "Windows Notepad直接打开D004.cif，内容未经修改",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    },
+    {
+      "file": "screenshots/harness-request.png",
+      "sha256": "89230b8d06f795812303e85dec13b6d781903b8e95f53f99cc980d1cb1ce5e41",
+      "bytes": 48841,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        160,
+        0,
+        1760,
+        520
+      ],
+      "kind": "actual_ui",
+      "description": "本次真实DeepSeek请求与回答顶部",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    },
+    {
+      "file": "screenshots/harness-ranking.png",
+      "sha256": "16862cabf16aba49aa8261d84a581ca38e5d9ad154462da16bc081493708107b",
+      "bytes": 61522,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        432,
+        145,
+        1710,
+        770
+      ],
+      "kind": "actual_ui",
+      "description": "本次真实DeepSeek回答的推荐表和阶段数量",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    },
+    {
+      "file": "screenshots/harness-audit.png",
+      "sha256": "3b60b433e625152d1ab87191a4368f22d659b671daf5b3dd5ecd67cf3def5515",
+      "bytes": 36003,
+      "capture_date": "2026-10-31",
+      "capture_tool": "Windows MCP Screenshot",
+      "region": [
+        432,
+        330,
+        1480,
+        856
+      ],
+      "kind": "actual_ui",
+      "description": "实际Harness展开recommend_candidates工具参数及输出开头",
+      "source_pixels_repainted": false,
+      "reviewed": true
+    }
+  ],
+  "source_experiment": "2026-10-26-mattergen-comparison",
+  "same_12_candidates": true,
+  "historical_128_used_as_primary_evidence": false,
+  "no_new_generation": true,
+  "no_relaxation_or_dft": true,
+  "ai_validation": "../../../artifacts/harness-visual-recommendation-validation-20261031.json",
+  "caveats": [
+    "9秒为只读推荐对话，不可与生成耗时比较。",
+    "直接命令画面是已完成真实记录的格式化回看，不是2026-10-31重新运行MatterGen。",
+    "Harness对话由受控测试助手创建并实际调用DeepSeek及生产工具；不是人工参与者完成时间测试。",
+    "截图仅裁切桌面视口；未生成或重绘软件界面。",
+    "材料性质与科学性能改善尚未验证。"
+  ]
+}

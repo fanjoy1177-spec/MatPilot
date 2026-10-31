@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0.dev10",
+  "tests_run": 303,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 9,
+  "elapsed_seconds": 112.45299999997951,
+  "passed": true,
+  "scope": "Python CPU tests; no generation or model API"
+}

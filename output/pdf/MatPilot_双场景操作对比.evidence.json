@@ -1,0 +1,243 @@
+{
+  "schema_version": "matpilot-screenshot-led-report/v1",
+  "created_date": "2026-10-31",
+  "experiment_date": "2026-10-26",
+  "pdf": {
+    "path": "output/pdf/MatPilot_双场景操作对比.pdf",
+    "sha256": "c104d540b98528c1a75eb1cdacc03e08810ac558f63d7aef7c2f3e3e53c33661",
+    "pages": 8,
+    "bytes": 497630
+  },
+  "sources": [
+    {
+      "path": "artifacts/triage-candidate-comparison-20261026.json",
+      "sha256": "a5f390378869f3f5252b82f390215c4b23cdeaa1168dd265f0e07d90a13d70cd"
+    },
+    {
+      "path": "artifacts/mattergen-usage-comparison-20261026.json",
+      "sha256": "c7517c210cbf60b8c281d17976359060c6d9005b6422c534ac57325abb9559d0"
+    },
+    {
+      "path": "artifacts/triage-native-validation-20261026.json",
+      "sha256": "c89ea7ede3686f6b20a81862cb031420181c31c9fa0aa5dcce9402b57087ae00"
+    },
+    {
+      "path": "artifacts/v10-unit-validation.json",
+      "sha256": "950d190c7948d79789fc6f844d32f3d90d7ae490654b26fb08861df0f4c72cac"
+    },
+    {
+      "path": "artifacts/harness-visual-recommendation-validation-20261031.json",
+      "sha256": "68b610d03ac2729e7f436e9af3560202690a5c7683692d98eaaff41afdc3df66"
+    },
+    {
+      "path": "artifacts/harness-visual-recommendation-validation-20261031.transcript.md",
+      "sha256": "a16d97179a871b9afe7b2e77555a76b2b92af3e245d95e15a848e8ff8d7071cc"
+    },
+    {
+      "path": "releases/studies/2026-10-31-visual-comparison/capture-manifest.json",
+      "sha256": "c3b1061ac62a350be9eef7d21dda2cdbd9894371a4eb5cbcc4b89fabcf9d9263"
+    }
+  ],
+  "screenshots": {
+    "direct_command": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/direct-command.png",
+      "sha256": "46a666fdecf7c9f4318bfb5914e0277f61d6da9904be1e1bf73c040bac106e3c",
+      "kind": "actual_ui_record_review",
+      "reviewed": true,
+      "caption": "实际终端回看：2026-10-26 完成记录，2026-10-31 只读展示；路径已缩短。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI"
+    },
+    "direct_cif": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/direct-cif.png",
+      "sha256": "a44ed9926413384d6408034f5b54925e25a53e13499b238c4cfdf6ef19838e7c",
+      "kind": "actual_ui_record_review",
+      "reviewed": true,
+      "caption": "实际 Notepad：D004 原始 CIF 的组成 O3 Ni1，缺少 Fe。图中 P1 是原文件标签，不是本次容差分析结果。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI"
+    },
+    "harness_request": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-request.png",
+      "sha256": "89230b8d06f795812303e85dec13b6d781903b8e95f53f99cc980d1cb1ce5e41",
+      "kind": "actual_ui",
+      "reviewed": true,
+      "caption": "实际 Harness 会话：自然语言只读请求与真实 AI 回应；9 秒不是模型生成耗时。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI",
+      "crop": [
+        260,
+        145,
+        1350,
+        520
+      ]
+    },
+    "harness_ranking": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-ranking.png",
+      "sha256": "16862cabf16aba49aa8261d84a581ca38e5d9ad154462da16bc081493708107b",
+      "kind": "actual_ui",
+      "reviewed": true,
+      "caption": "实际 Harness 推荐表：排序、组成、空间群、输入规模及 stage_counts。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI"
+    },
+    "harness_audit": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-audit.png",
+      "sha256": "3b60b433e625152d1ab87191a4368f22d659b671daf5b3dd5ecd67cf3def5515",
+      "kind": "actual_ui",
+      "reviewed": true,
+      "caption": "实际 Harness 工具展开：registered collection、limit=4、auto；读取既有真实 CIF。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI"
+    },
+    "plugin_card": {
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/plugin-card.png",
+      "sha256": "511dc94d3699da99b174535530189858ca77bb575b781391a2a11e47505e46e8",
+      "kind": "actual_ui",
+      "reviewed": true,
+      "caption": "实际 Harness 已安装插件区域：材策 MatPilot 已启用。",
+      "captured_date": "2026-10-31",
+      "source": "Actual Windows desktop screenshot; no simulated UI"
+    }
+  },
+  "image_placements": [
+    {
+      "page": 1,
+      "key": "direct_command",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/direct-command.png",
+      "crop": [
+        0,
+        0,
+        1481,
+        626
+      ],
+      "sha256": "46a666fdecf7c9f4318bfb5914e0277f61d6da9904be1e1bf73c040bac106e3c",
+      "draw_width": 375.945,
+      "draw_height": 158.90720459149222
+    },
+    {
+      "page": 1,
+      "key": "harness_ranking",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-ranking.png",
+      "crop": [
+        0,
+        0,
+        1278,
+        625
+      ],
+      "sha256": "16862cabf16aba49aa8261d84a581ca38e5d9ad154462da16bc081493708107b",
+      "draw_width": 375.94500000000005,
+      "draw_height": 183.85416666666669
+    },
+    {
+      "page": 2,
+      "key": "direct_command",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/direct-command.png",
+      "crop": [
+        0,
+        0,
+        1481,
+        626
+      ],
+      "sha256": "46a666fdecf7c9f4318bfb5914e0277f61d6da9904be1e1bf73c040bac106e3c",
+      "draw_width": 761.7923322683706,
+      "draw_height": 322
+    },
+    {
+      "page": 3,
+      "key": "harness_request",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-request.png",
+      "crop": [
+        260,
+        145,
+        1350,
+        520
+      ],
+      "sha256": "89230b8d06f795812303e85dec13b6d781903b8e95f53f99cc980d1cb1ce5e41",
+      "draw_width": 769.89,
+      "draw_height": 264.8704128440367
+    },
+    {
+      "page": 4,
+      "key": "direct_cif",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/direct-cif.png",
+      "crop": [
+        0,
+        0,
+        959,
+        517
+      ],
+      "sha256": "a44ed9926413384d6408034f5b54925e25a53e13499b238c4cfdf6ef19838e7c",
+      "draw_width": 597.2882011605416,
+      "draw_height": 322
+    },
+    {
+      "page": 5,
+      "key": "harness_ranking",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-ranking.png",
+      "crop": [
+        0,
+        0,
+        1278,
+        625
+      ],
+      "sha256": "16862cabf16aba49aa8261d84a581ca38e5d9ad154462da16bc081493708107b",
+      "draw_width": 613.4399999999999,
+      "draw_height": 300
+    },
+    {
+      "page": 6,
+      "key": "harness_audit",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/harness-audit.png",
+      "crop": [
+        0,
+        0,
+        1048,
+        526
+      ],
+      "sha256": "3b60b433e625152d1ab87191a4368f22d659b671daf5b3dd5ecd67cf3def5515",
+      "draw_width": 440,
+      "draw_height": 220.83969465648855
+    },
+    {
+      "page": 7,
+      "key": "plugin_card",
+      "path": "releases/studies/2026-10-31-visual-comparison/screenshots/plugin-card.png",
+      "crop": [
+        0,
+        0,
+        1240,
+        165
+      ],
+      "sha256": "511dc94d3699da99b174535530189858ca77bb575b781391a2a11e47505e46e8",
+      "draw_width": 769.89,
+      "draw_height": 102.44504032258064
+    }
+  ],
+  "scope": "Real screenshots and explicitly labelled record review; same 12 candidates, no new generation/relaxation/DFT; workflow and shortlist evidence only.",
+  "visual_review": {
+    "status": "passed",
+    "method": "All eight pages rendered with Poppler at 120 DPI and visually inspected; last complete rerender matches reviewed page hashes.",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "clipping_or_overlap_found": false,
+    "png_sha256": {
+      "1": "5644e8a56b5702823e71de2946516e4f7ebb49eddea2ca8572f67ee4e83ef68e",
+      "2": "627248f4ff54f6ea9775ed6d492a3700057db816c54974bf0ccb42e9cc7123d6",
+      "3": "faa9ecf29d7a735167f0c53ebb63693d73d0e4f29e5e0e031feafb7260309c79",
+      "4": "fd2f49929c74a23baf184963c6e9b356a17911cc1043af277791ea8a68c3e5d5",
+      "5": "7b1a8e018e93a45ece5499b430299358b1069b52f3b13a622aecd8715e90ff64",
+      "6": "6e12e47bd4e3f18bf2925a6e12c909efe7259ba1e7b8d011e0747eb6cc183d93",
+      "7": "c386cb6e29a05c3fb5bf91040f6bdd1bcc9d69ef0c44de1ad54c3882516f2dcb",
+      "8": "c4af83b16999e0d13e34784ff12fc3ec8eccd884a0aea64ed4d74e6f70f8da2f"
+    }
+  }
+}

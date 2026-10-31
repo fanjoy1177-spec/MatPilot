@@ -8,7 +8,7 @@ MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V
 
 ## 当前开发范围
 
-当前 Python 核心版本为 `0.2.0.dev9`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
+当前 Python 核心版本为 `0.2.0.dev10`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
 
 自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
@@ -20,6 +20,8 @@ dev9新增第10个工具 `recommend_candidates`：对已有任务或操作者登
 
 2026-10-26新增交付入口：[插件能力与MatterGen对比报告（PDF）](output/pdf/MatPilot_插件能力与MatterGen对比报告.pdf)、[机器可读对比证据](artifacts/mattergen-usage-comparison-20261026.json)、[公开复现目录](releases/studies/2026-10-26-mattergen-comparison/)。本轮新生成数据、历史128候选参考池及固定演示分别记录；流程步骤与候选覆盖的改善不等同于材料性能、人员总用时或总计算费用改善。下方历次验收数字保留其原有版本和范围。
 
+dev10补齐此前未自动执行的“优先弛豫”分级：Fe-Ni-O推荐默认先做结构核验与代表去重，再按固定启发式分为优先弛豫、人工复核、暂缓，最后从优先池按组成/空间群/规模推荐。其它体系保留通用结构策略。见[双场景操作对比PDF](output/pdf/MatPilot_双场景操作对比.pdf)和[补充对照证据](artifacts/triage-candidate-comparison-20261026.json)。沿用同12个候选的事后补充验证显示：与最小结构基线相比，多覆盖1种组成而多3个输入位点；与顺序基线持平。该成果属于候选清单与计算计划优化，未证明物性或总提速。旧报告和旧结果保留。
+
 ## 0.1.1 历史已验证状态
 
 - 21 项流程测试与 1 项官方 MCP 客户端协议测试通过。
@@ -27,6 +29,8 @@ dev9新增第10个工具 `recommend_candidates`：对已有任务或操作者登
 - 本机 WSL 与 RTX 4050 完成 1 个 Fe-Ni-O 候选生成、解析、检查和报告，执行约 248 秒。这是单任务联调，不是性能基准。
 - 已在用户的 Harness 桌面版中接入真实 DeepSeek API，完成中文需求、条件冲突、固定化学式、单位转换和演示流程联调。过程与局限见 [桌面验收记录](docs/desktop_acceptance.md)。
 - **用户提速对照尚未进行。** 固定示例数据不计作材料模型生成成果；本轮 AI 验收没有运行 MatterGen、DFT 或其他真实材料计算。
+
+2026-10-31新增[实际操作截图与来源清单](releases/studies/2026-10-31-visual-comparison/capture-manifest.json)及[新版真实AI联调记录](artifacts/harness-visual-recommendation-validation-20261031.json)：报告以直接MatterGen运行记录/CIF回看与Harness真实推荐界面对照。本次只读对话3次API、2次工具，未新增生成、弛豫或DFT；9.22秒仅是该次推荐对话耗时，不与生成耗时比较。
 
 ## 安装后端
 
@@ -52,7 +56,7 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [dev9 Python 发行文件目录](releases/0.2.0.dev9/) 下载 wheel 和源码包，按其中 SHA256SUMS.txt 核对；Harness 原生连接包单独安装，见下一节。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [dev10 Python 发行文件目录](releases/0.2.0.dev10/) 下载 wheel 和源码包，按其中 SHA256SUMS.txt 核对；Harness 原生连接包单独安装，见下一节。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
@@ -63,7 +67,7 @@ Linux：
 3. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。检查并确认安装计划后，插件安装隔离环境；已有环境也可使用手动连接表单。
 4. 查询安装进度，按需恢复，完成导入/CUDA/MCP 检查。真实单候选验证和启用真实计算分别授权。只需固定样本体验时明确选择 demo。
 
-自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。已发布的 Harness dev11 环境部署包及其安装、失败恢复功能保留；其固定配方使用 Python 核心 0.2.0.dev8。本轮另提供核心 0.2.0.dev9 的候选推荐能力，需连接相应核心环境后查询 get_capabilities 确认，不能把安装 dev11 等同于已升级核心。推荐升级方式见[桌面配置说明](docs/desktop_setup.md#core-dev9-推荐能力升级2026-10-26)。两个包独立编号，尚未发布 npm 或 PyPI。
+自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。已发布的 Harness dev11 环境部署包及其安装、失败恢复功能保留；其固定配方使用 Python 核心 0.2.0.dev8。本轮另提供核心 0.2.0.dev10 的自动分级与候选推荐能力，需连接相应核心环境后查询 get_capabilities 确认，不能把安装 dev11 等同于已升级核心。推荐升级方式见[桌面配置说明](docs/desktop_setup.md#core-dev10-推荐能力升级2026-10-26)。两个包独立编号，尚未发布 npm 或 PyPI。
 
 CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
 
@@ -97,7 +101,7 @@ python -m matpilot --config examples/config.demo.json report JOB_ID
 
 用实际返回的编号替换大写占位符。`--approve-plan` 表示已检查并授权该计划。同一次提交重试应保持幂等键一致。关闭 MCP 连接不会取消独立进程中的计算；停止任务用 `control_job` 或 CLI 的 `stop`。
 
-## 工具（Python core dev9：10个）
+## 工具（Python core dev10：10个）
 
 此表仅统计 Python 核心 MCP 工具；Harness dev11 的环境部署、安装及恢复工具另行提供，见[环境部署指南](docs/deployment.md)。
 

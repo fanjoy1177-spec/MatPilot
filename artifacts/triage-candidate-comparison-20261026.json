@@ -1,0 +1,1151 @@
+{
+  "schema_version": "matpilot-relaxation-triage-comparison/v1",
+  "date": "2026-10-26",
+  "created_at": "2026-10-26T14:36:09.112090+00:00",
+  "scope": "Supplemental product verification after user feedback; reuse the same 12 newly generated CIFs, not independent new evidence or a preregistered experiment",
+  "input": {
+    "manifest_sha256": "b8b9df3a9d20a2663b631497f681e5a1d40bcd111c811e1623e466f0dacb7add",
+    "candidate_count": 12,
+    "historical128_included": false,
+    "input_hashes": [
+      {
+        "candidate_id": "D001",
+        "sha256": "460aacc1372eabd336eeb9bc461e473c61a0de91f025ae3db54b133f70a7179f"
+      },
+      {
+        "candidate_id": "D002",
+        "sha256": "658be1bfdede1aa630e66929dcd72397406b4afdc51cffc47f52b929f8c7812d"
+      },
+      {
+        "candidate_id": "D003",
+        "sha256": "288549381c89643be07b20d022205afc623e899ce6bd3b7fdab1fe65ce2645cc"
+      },
+      {
+        "candidate_id": "D004",
+        "sha256": "2bfe5c488b1c345fd0f1289b4af346c025a705bdc12cf83a7f873d18de100fe6"
+      },
+      {
+        "candidate_id": "D005",
+        "sha256": "f965bf881aba997ccfb79b51af0cbb34325fa6f372e6fe59cc9199da31aef219"
+      },
+      {
+        "candidate_id": "D006",
+        "sha256": "d4f0752a028c2d4b1cbbe10a66d0c7231b1a2653a074b34b5c05c9b5d5316b44"
+      },
+      {
+        "candidate_id": "P001",
+        "sha256": "0d535ef5f870640c3497b50ace272f8c2cb7e21a9fefba8d479828a673d6a497"
+      },
+      {
+        "candidate_id": "P002",
+        "sha256": "34c49d12ed578b534e60737cafced31aeff8e44308089f4368b5400e3b02f156"
+      },
+      {
+        "candidate_id": "P003",
+        "sha256": "e95c8758a85ef3fcb87f44a3d2dbe6558b443798458c68beda8f02726ce9244d"
+      },
+      {
+        "candidate_id": "P004",
+        "sha256": "cc085e8d670a85d44eddc3530dfbb3a7ff2dc88806f192c411672853c9666032"
+      },
+      {
+        "candidate_id": "P005",
+        "sha256": "ca767016e2a335f45acdcabc5535df29ddf1e713d6609a0d607319eeb891a387"
+      },
+      {
+        "candidate_id": "P006",
+        "sha256": "035c48af5a392e39e7cfe20b7e56d15e3b76a9a9b91a326c8db166a64a4298c2"
+      }
+    ]
+  },
+  "implementation": {
+    "triage_sha256": "1a4b19bb00400cf8581f79dc64b1eb5ab8c259068070e7401ed6d761e8797727",
+    "ranking_sha256": "92c248586ef91caffa62bcf5555168d1005fd425e422bb61bdd925be4d20fb86",
+    "benchmark_sha256": "c9d2585c662728b50f5e401f5e3ffdf893ffb31920ade3c0f9cd94bb2ff9e4f3"
+  },
+  "rule": {
+    "id": "fe_ni_o_relaxation_v1",
+    "scope": "exact_Fe_Ni_O_workflow_review_only",
+    "origin": "MG-Flow/scripts/structure_screen_candidates.py:analyze_cif",
+    "frozen_before_current_collection_analysis": true,
+    "initial_score": 100,
+    "penalties": {
+      "minimum_distance_below_0_8_angstrom": 50,
+      "otherwise_minimum_covalent_ratio_below_0_65": 25,
+      "volume_per_atom_outside_inclusive_5_to_40_angstrom3": 20,
+      "density_outside_inclusive_1_to_12_g_cm3": 15,
+      "uniform_oxidation_state_balance_not_found": 15
+    },
+    "priority_rule": "score >= 85 and uniform oxidation-state balance found",
+    "manual_review_rule": "known score >= 60 but not priority, or unknown analysis",
+    "defer_rule": "known score < 60",
+    "covalent_radii_angstrom": {
+      "O": 0.66,
+      "Fe": 1.32,
+      "Ni": 1.24
+    },
+    "uniform_oxidation_states": {
+      "Fe": [
+        2,
+        3
+      ],
+      "Ni": [
+        2,
+        3
+      ],
+      "O": [
+        -2
+      ]
+    },
+    "distance_method": "pymatgen nearest periodic pair distances including shortest nonzero lattice self-image",
+    "occupancy_method": "frozen structural checker requires explicit full CIF occupancy",
+    "limitations": [
+      "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+      "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+      "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+      "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+    ]
+  },
+  "stage_counts": {
+    "input_count": 12,
+    "structural_representative_count": 11,
+    "priority_relaxation_count": 5,
+    "manual_review_count": 6,
+    "defer_count": 0,
+    "not_eligible_count": 1,
+    "selected_count": 4,
+    "requested_count": 4,
+    "shortfall_count": 0
+  },
+  "records": [
+    {
+      "candidate_id": "D001",
+      "structure_version_id": "fresh-original-460aacc1372eabd3",
+      "sha256": "460aacc1372eabd336eeb9bc461e473c61a0de91f025ae3db54b133f70a7179f",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi4O5",
+      "site_count": 10,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 96.51815518416524,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 87,
+      "space_group_symbol": "I4/m",
+      "representative_id": "D001",
+      "selection_rank": 3,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      },
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "priority_relaxation",
+        "priority": "优先弛豫",
+        "score": 100,
+        "eligible_for_relaxation_shortlist": true,
+        "issues": [],
+        "metrics": {
+          "minimum_distance_angstrom": 2.0895790144693787,
+          "minimum_covalent_ratio": 1.0605439927855769,
+          "volume_per_atom_angstrom3": 9.651815518416523,
+          "density_g_cm3": 6.376192750876689,
+          "uniform_charge_balance_possible": true,
+          "composition": {
+            "Fe": 1,
+            "Ni": 4,
+            "O": 5
+          },
+          "cell_volume_angstrom3": 96.51815518416524,
+          "input_site_count": 10
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "D002",
+      "structure_version_id": "fresh-original-658be1bfdede1aa6",
+      "sha256": "658be1bfdede1aa630e66929dcd72397406b4afdc51cffc47f52b929f8c7812d",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe7Ni2O11",
+      "site_count": 20,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 231.63580401946737,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 1,
+      "space_group_symbol": "P1",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 1.8909835547096299,
+          "minimum_covalent_ratio": 0.9685465575323906,
+          "volume_per_atom_angstrom3": 11.58179020097337,
+          "density_g_cm3": 4.905509366848443,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 7,
+            "Ni": 2,
+            "O": 11
+          },
+          "cell_volume_angstrom3": 231.63580401946737,
+          "input_site_count": 20
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "D002"
+    },
+    {
+      "candidate_id": "D003",
+      "structure_version_id": "fresh-original-288549381c89643b",
+      "sha256": "288549381c89643be07b20d022205afc623e899ce6bd3b7fdab1fe65ce2645cc",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni3O4",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 92.20208697659342,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 12,
+      "space_group_symbol": "C2/m",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 2.085064336702337,
+          "minimum_covalent_ratio": 1.0284217257496073,
+          "volume_per_atom_angstrom3": 10.244676330732602,
+          "density_g_cm3": 6.335230975386869,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 2,
+            "Ni": 3,
+            "O": 4
+          },
+          "cell_volume_angstrom3": 92.20208697659342,
+          "input_site_count": 9
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "D003"
+    },
+    {
+      "candidate_id": "D004",
+      "structure_version_id": "fresh-original-2bfe5c488b1c345f",
+      "sha256": "2bfe5c488b1c345fd0f1289b4af346c025a705bdc12cf83a7f873d18de100fe6",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "element_set_mismatch",
+        "outside_explicit_priority_selector"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "unknown",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "NiO3",
+      "site_count": 4,
+      "size_bin": "1-10",
+      "composition_complete": false,
+      "volume_angstrom3": 40.19879687190885,
+      "missing_elements": [
+        "Fe"
+      ],
+      "unexpected_elements": [],
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "not_selected_reason": "element_set_mismatch; outside_explicit_priority_selector",
+      "structural_representative_qualified": false,
+      "structural_exclusion_reasons": [
+        "element_set_mismatch"
+      ],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "not_eligible",
+        "priority": "未通过代表结构资格检查",
+        "score": null,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "element_set_mismatch"
+        ],
+        "metrics": {},
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "D005",
+      "structure_version_id": "fresh-original-f965bf881aba997c",
+      "sha256": "f965bf881aba997ccfb79b51af0cbb34325fa6f372e6fe59cc9199da31aef219",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 119.4865121611081,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 99,
+      "space_group_symbol": "P4mm",
+      "representative_id": "D005",
+      "selection_rank": 2,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number",
+          "size_bin"
+        ],
+        "coverage_gain": 3,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      },
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "priority_relaxation",
+        "priority": "优先弛豫",
+        "score": 100,
+        "eligible_for_relaxation_shortlist": true,
+        "issues": [],
+        "metrics": {
+          "minimum_distance_angstrom": 2.0650097561743124,
+          "minimum_covalent_ratio": 1.0429342202900567,
+          "volume_per_atom_angstrom3": 9.957209346759008,
+          "density_g_cm3": 6.10937784887806,
+          "uniform_charge_balance_possible": true,
+          "composition": {
+            "Fe": 3,
+            "Ni": 3,
+            "O": 6
+          },
+          "cell_volume_angstrom3": 119.4865121611081,
+          "input_site_count": 12
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "D006",
+      "structure_version_id": "fresh-original-d4f0752a028c2d4b",
+      "sha256": "d4f0752a028c2d4b1cbbe10a66d0c7231b1a2653a074b34b5c05c9b5d5316b44",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni5O8",
+      "site_count": 15,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 152.57438597122498,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 2,
+      "space_group_symbol": "P-1",
+      "representative_id": "D006",
+      "selection_rank": 4,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number"
+        ],
+        "coverage_gain": 2,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      },
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "priority_relaxation",
+        "priority": "优先弛豫",
+        "score": 100,
+        "eligible_for_relaxation_shortlist": true,
+        "issues": [],
+        "metrics": {
+          "minimum_distance_angstrom": 1.9259382936603593,
+          "minimum_covalent_ratio": 1.0136517335054522,
+          "volume_per_atom_angstrom3": 10.171625731414998,
+          "density_g_cm3": 5.802512244654819,
+          "uniform_charge_balance_possible": true,
+          "composition": {
+            "Fe": 2,
+            "Ni": 5,
+            "O": 8
+          },
+          "cell_volume_angstrom3": 152.57438597122498,
+          "input_site_count": 15
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "P001",
+      "structure_version_id": "s_6ea5356a69253311c318770b13b66fc599a288d80603ebf93d56581884ea3548",
+      "sha256": "0d535ef5f870640c3497b50ace272f8c2cb7e21a9fefba8d479828a673d6a497",
+      "qualified": true,
+      "selected": true,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe2Ni2O5",
+      "site_count": 9,
+      "size_bin": "1-10",
+      "composition_complete": true,
+      "volume_angstrom3": 95.62087948511224,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 6,
+      "space_group_symbol": "Pm",
+      "representative_id": "P001",
+      "selection_rank": 1,
+      "selection_reason": {
+        "new_category_coverage": [
+          "reduced_formula",
+          "space_group_number",
+          "size_bin"
+        ],
+        "coverage_gain": 3,
+        "tie_break": "fewer_input_sites_then_candidate_id"
+      },
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "priority_relaxation",
+        "priority": "优先弛豫",
+        "score": 100,
+        "eligible_for_relaxation_shortlist": true,
+        "issues": [],
+        "metrics": {
+          "minimum_distance_angstrom": 1.908377625608387,
+          "minimum_covalent_ratio": 0.9638270836405995,
+          "volume_per_atom_angstrom3": 10.624542165012471,
+          "density_g_cm3": 5.367298450379646,
+          "uniform_charge_balance_possible": true,
+          "composition": {
+            "Fe": 2,
+            "Ni": 2,
+            "O": 5
+          },
+          "cell_volume_angstrom3": 95.62087948511224,
+          "input_site_count": 9
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "P002",
+      "structure_version_id": "s_341f3ea146600163453a3bb69da5c546baad406d6907eed1bf26ad90d56426b5",
+      "sha256": "34c49d12ed578b534e60737cafced31aeff8e44308089f4368b5400e3b02f156",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNi3O5",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 189.36573454775044,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 1.8764666852641638,
+          "minimum_covalent_ratio": 0.9655450283492494,
+          "volume_per_atom_angstrom3": 10.520318585986136,
+          "density_g_cm3": 5.4704266217822815,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 2,
+            "Ni": 6,
+            "O": 10
+          },
+          "cell_volume_angstrom3": 189.36573454775044,
+          "input_site_count": 18
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "P002"
+    },
+    {
+      "candidate_id": "P003",
+      "structure_version_id": "s_2a1e1ab2bb36022be7fbd536478573f89865c3b52037236b3344d65d13800436",
+      "sha256": "e95c8758a85ef3fcb87f44a3d2dbe6558b443798458c68beda8f02726ce9244d",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe4Ni3O8",
+      "site_count": 15,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 158.88192633435142,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 1.815868204768489,
+          "minimum_covalent_ratio": 0.9171051539234794,
+          "volume_per_atom_angstrom3": 10.592128422290095,
+          "density_g_cm3": 5.512615588641376,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 4,
+            "Ni": 3,
+            "O": 8
+          },
+          "cell_volume_angstrom3": 158.88192633435142,
+          "input_site_count": 15
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "P003"
+    },
+    {
+      "candidate_id": "P004",
+      "structure_version_id": "s_e99afb22430a0de0944fe08bb3c32233c1d228e5fa98d992c3012348e70e8dfa",
+      "sha256": "cc085e8d670a85d44eddc3530dfbb3a7ff2dc88806f192c411672853c9666032",
+      "qualified": true,
+      "selected": false,
+      "exclusion_reasons": [],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO2",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 137.9906895224377,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 156,
+      "space_group_symbol": "P3m1",
+      "representative_id": "P004",
+      "not_selected_reason": "requested_shortlist_limit_reached_under_fixed_coverage_policy",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "priority_relaxation",
+        "priority": "优先弛豫",
+        "score": 100,
+        "eligible_for_relaxation_shortlist": true,
+        "issues": [],
+        "metrics": {
+          "minimum_distance_angstrom": 1.892778432097625,
+          "minimum_covalent_ratio": 0.9559487030796087,
+          "volume_per_atom_angstrom3": 11.499224126869807,
+          "density_g_cm3": 5.290126842348117,
+          "uniform_charge_balance_possible": true,
+          "composition": {
+            "Fe": 3,
+            "Ni": 3,
+            "O": 6
+          },
+          "cell_volume_angstrom3": 137.9906895224377,
+          "input_site_count": 12
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      }
+    },
+    {
+      "candidate_id": "P005",
+      "structure_version_id": "s_a7fc7ead590b1177ed3c609344ae086a813d734d4947bbd668cf76ab6243ce0f",
+      "sha256": "ca767016e2a335f45acdcabc5535df29ddf1e713d6609a0d607319eeb891a387",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "Fe5Ni3O10",
+      "site_count": 18,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 221.95329418731941,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 8,
+      "space_group_symbol": "Cm",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 1.84732974043874,
+          "minimum_covalent_ratio": 0.9329948184034041,
+          "volume_per_atom_angstrom3": 12.33073856596219,
+          "density_g_cm3": 4.6033185532681005,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 5,
+            "Ni": 3,
+            "O": 10
+          },
+          "cell_volume_angstrom3": 221.95329418731941,
+          "input_site_count": 18
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "P005"
+    },
+    {
+      "candidate_id": "P006",
+      "structure_version_id": "s_68aa8abb61d28f4d85689c95bee68a1e3a815e2a25bbe6a64f9aa462ba2e0738",
+      "sha256": "035c48af5a392e39e7cfe20b7e56d15e3b76a9a9b91a326c8db166a64a4298c2",
+      "qualified": false,
+      "selected": false,
+      "exclusion_reasons": [
+        "not_in_heuristic_priority_relaxation_pool"
+      ],
+      "warnings": [
+        "Initializing CifParser from StringIO is deprecated, use `from_str()` instead."
+      ],
+      "structural_status": "structural_precheck_passed_pending_properties",
+      "artifact_verified": true,
+      "full_occupancy": true,
+      "ordered": true,
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "reduced_formula": "FeNiO4",
+      "site_count": 12,
+      "size_bin": "11-20",
+      "composition_complete": true,
+      "volume_angstrom3": 120.50327386388622,
+      "minimum_distance_threshold_angstrom": 0.5,
+      "basic_geometry_pass": true,
+      "space_group_number": 14,
+      "space_group_symbol": "P2_1/c",
+      "not_selected_reason": "not_in_heuristic_priority_relaxation_pool",
+      "structural_representative_qualified": true,
+      "structural_exclusion_reasons": [],
+      "relaxation_priority": {
+        "policy_id": "fe_ni_o_relaxation_v1",
+        "tier": "manual_review",
+        "priority": "人工复核",
+        "score": 85,
+        "eligible_for_relaxation_shortlist": false,
+        "issues": [
+          "uniform_oxidation_state_balance_requires_review_mixed_valence_not_tested"
+        ],
+        "metrics": {
+          "minimum_distance_angstrom": 1.9148459264327673,
+          "minimum_covalent_ratio": 0.9671480728573029,
+          "volume_per_atom_angstrom3": 10.041939488657185,
+          "density_g_cm3": 4.920419776592286,
+          "uniform_charge_balance_possible": false,
+          "composition": {
+            "Fe": 2,
+            "Ni": 2,
+            "O": 8
+          },
+          "cell_volume_angstrom3": 120.50327386388622,
+          "input_site_count": 12
+        },
+        "limitations": [
+          "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+          "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+          "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+          "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed."
+        ]
+      },
+      "representative_id": "P006"
+    }
+  ],
+  "selected_candidate_ids": [
+    "P001",
+    "D005",
+    "D001",
+    "D006"
+  ],
+  "product_pipeline_comparison": {
+    "raw_all": {
+      "candidate_ids": [
+        "D001",
+        "D002",
+        "D003",
+        "D004",
+        "D005",
+        "D006",
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006"
+      ],
+      "count": 12,
+      "structural_precheck_representatives": 11,
+      "priority_relaxation_count": 5,
+      "manual_review_count": 6,
+      "not_eligible_count": 1,
+      "input_sites_known_sum": 154,
+      "unknown_site_count": 0
+    },
+    "raw_first_four": {
+      "candidate_ids": [
+        "D001",
+        "D002",
+        "D003",
+        "D004"
+      ],
+      "count": 4,
+      "structural_precheck_representatives": 3,
+      "priority_relaxation_count": 1,
+      "manual_review_count": 2,
+      "not_eligible_count": 1,
+      "input_sites_known_sum": 43,
+      "unknown_site_count": 0
+    },
+    "plugin_selected": {
+      "candidate_ids": [
+        "P001",
+        "D005",
+        "D001",
+        "D006"
+      ],
+      "count": 4,
+      "structural_precheck_representatives": 4,
+      "priority_relaxation_count": 4,
+      "manual_review_count": 0,
+      "not_eligible_count": 0,
+      "input_sites_known_sum": 46,
+      "unknown_site_count": 0
+    },
+    "interpretation": "Raw-first-four was added after user feedback and is an exploratory use scenario. It does not represent expert use or all MatterGen users. Qualification ratios refer only to explicit workflow criteria, not scientific quality."
+  },
+  "same_priority_pool": {
+    "candidate_ids": [
+      "D001",
+      "D005",
+      "D006",
+      "P001",
+      "P004"
+    ],
+    "requested_k": 4,
+    "actual_k": 4,
+    "strategies": {
+      "same_priority_pool_first_k": {
+        "candidate_ids": [
+          "D001",
+          "D005",
+          "D006",
+          "P001"
+        ],
+        "metrics": {
+          "selected_count": 4,
+          "formula_count": 4,
+          "space_group_count": 4,
+          "size_bin_count": 2,
+          "category_count_sum": 10,
+          "formula_values": [
+            "Fe2Ni2O5",
+            "Fe2Ni5O8",
+            "FeNi4O5",
+            "FeNiO2"
+          ],
+          "space_group_values": [
+            2,
+            6,
+            87,
+            99
+          ],
+          "size_bin_values": [
+            "1-10",
+            "11-20"
+          ],
+          "site_count_sum": 46,
+          "site_count_mean": 11.5,
+          "ineligible_count": 0,
+          "ineligible_rate": 0.0,
+          "within_shortlist_duplicate_count": 0,
+          "within_shortlist_duplicate_rate": 0.0,
+          "missing_space_group_count": 0
+        }
+      },
+      "same_priority_pool_smallest_k": {
+        "candidate_ids": [
+          "P001",
+          "D001",
+          "D005",
+          "P004"
+        ],
+        "metrics": {
+          "selected_count": 4,
+          "formula_count": 3,
+          "space_group_count": 4,
+          "size_bin_count": 2,
+          "category_count_sum": 9,
+          "formula_values": [
+            "Fe2Ni2O5",
+            "FeNi4O5",
+            "FeNiO2"
+          ],
+          "space_group_values": [
+            6,
+            87,
+            99,
+            156
+          ],
+          "size_bin_values": [
+            "1-10",
+            "11-20"
+          ],
+          "site_count_sum": 43,
+          "site_count_mean": 10.75,
+          "ineligible_count": 0,
+          "ineligible_rate": 0.0,
+          "within_shortlist_duplicate_count": 0,
+          "within_shortlist_duplicate_rate": 0.0,
+          "missing_space_group_count": 0
+        }
+      },
+      "matpilot_full_pipeline": {
+        "candidate_ids": [
+          "P001",
+          "D005",
+          "D001",
+          "D006"
+        ],
+        "metrics": {
+          "selected_count": 4,
+          "formula_count": 4,
+          "space_group_count": 4,
+          "size_bin_count": 2,
+          "category_count_sum": 10,
+          "formula_values": [
+            "Fe2Ni2O5",
+            "Fe2Ni5O8",
+            "FeNi4O5",
+            "FeNiO2"
+          ],
+          "space_group_values": [
+            2,
+            6,
+            87,
+            99
+          ],
+          "size_bin_values": [
+            "1-10",
+            "11-20"
+          ],
+          "site_count_sum": 46,
+          "site_count_mean": 11.5,
+          "ineligible_count": 0,
+          "ineligible_rate": 0.0,
+          "within_shortlist_duplicate_count": 0,
+          "within_shortlist_duplicate_rate": 0.0,
+          "missing_space_group_count": 0
+        }
+      }
+    },
+    "random_1000": {
+      "formula_count": {
+        "mean": 3.395,
+        "min": 3,
+        "max": 4,
+        "fraction_equal_to_plugin": 0.395
+      },
+      "space_group_count": {
+        "mean": 4,
+        "min": 4,
+        "max": 4,
+        "fraction_equal_to_plugin": 1.0
+      },
+      "size_bin_count": {
+        "mean": 2,
+        "min": 2,
+        "max": 2,
+        "fraction_equal_to_plugin": 1.0
+      },
+      "category_count_sum": {
+        "mean": 9.395,
+        "min": 9,
+        "max": 10,
+        "fraction_equal_to_plugin": 0.395
+      },
+      "site_count_sum": {
+        "mean": 46.428,
+        "min": 43,
+        "max": 49,
+        "fraction_equal_to_plugin": 0.395
+      }
+    },
+    "random_seed": 20261026,
+    "interpretation": "All strategies share the newly completed priority triage. This isolates selection strategy within the same pool; retain ties, gains and costs."
+  },
+  "execution": {
+    "cpu_wall_seconds": 0.856556500075385,
+    "api_calls": 0,
+    "new_generation_runs": 0,
+    "relaxation_runs": 0,
+    "dft_runs": 0,
+    "human_active_seconds": null
+  },
+  "limitations": [
+    "Ranking selects a representative shortlist; it does not improve or validate material properties.",
+    "Full occupancy and structural sanity do not prove stability, synthesizability or catalytic performance.",
+    "Space groups and equivalence depend on the stated tolerances; unknown analysis is excluded, never replaced by P1.",
+    "Site count is an input-cell scale proxy, not measured runtime, compute cost or physical quality.",
+    "Greedy fixed-weight category coverage is not a proof of globally optimal selection.",
+    "No generation, relaxation, DFT, external novelty search or API request is performed.",
+    "This Fe-Ni-O heuristic assigns a next-step review priority, not material properties or relaxation success.",
+    "Uniform Fe and Ni oxidation states of +2 or +3 with O -2 are a deliberately limited check; a failed check does not exclude mixed valence or other oxidation states.",
+    "Covalent radii, volume and density thresholds are review heuristics and are not universal criteria for acceptable crystals.",
+    "No relaxation, DFT, force, energy, stability or catalytic-property calculation is performed.",
+    "Reusing this same small pool is an exploratory correction, not independent confirmation of a general advantage.",
+    "Old dev9 real-LLM output did not use this priority policy; new protocol testing is separate.",
+    "Counts and input-site sums are workflow outcomes, not measured time, expense, energy or material properties."
+  ]
+}
