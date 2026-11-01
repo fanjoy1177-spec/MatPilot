@@ -2,7 +2,7 @@
 
 通过现有 Harness 对话完成需求核对、任务跟踪、候选筛选与报告整理。
 
-本包 0.2.0-dev.11 集成环境检查、隔离安装、失败恢复、分层验证和自动连接，使用 matpilot-core 0.2.0.dev8。没有预装 Python 时，七个部署工具也能加载。支持 Linux x86_64 和 Windows/WSL2；真实生成需要兼容 NVIDIA GPU。
+本包 0.2.0-dev.12 集成环境检查、隔离安装、失败恢复、分层验证和自动连接，使用 matpilot-core 0.2.0.dev14。没有预装 Python 时，七个部署工具也能加载。支持 Linux x86_64 和 Windows/WSL2；真实生成需要兼容 NVIDIA GPU。
 
 ## 在桌面插件页安装
 

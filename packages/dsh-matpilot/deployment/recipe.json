@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "id": "mattergen-1.0.3-cu121-v1",
+  "id": "mattergen-1.0.3-cu121-core14-v1",
   "python": "3.10.19",
-  "core_version": "0.2.0.dev8",
+  "core_version": "0.2.0.dev14",
   "mattergen_version": "1.0.3",
   "upstream_commit": "92423660a8bd70e83679086e88f88596d484dc16",
   "uv_version": "0.13.5",
@@ -21,8 +21,8 @@
     "huggingface.co"
   ],
   "support": "Linux x86_64 glibc >= 2.28; Windows through WSL2. CUDA/NVIDIA required for MatterGen. Driver/WSL installation and remote provisioning are guided prerequisites.",
-  "core_wheel": "matpilot_core-0.2.0.dev8-py3-none-any.whl",
-  "core_sha256": "34b56e52267874cbeef77399c1281fb0e7bbd06936bff195949878c3a205d1ad",
+  "core_wheel": "matpilot_core-0.2.0.dev14-py3-none-any.whl",
+  "core_sha256": "30a919820732c7b57917afcf0677d1e4cd91c0423c9dd414dbea420122f79a48",
   "weight_directory": "checkpoints/chemical_system",
   "weights_revision": "5244495dd9a979ff71abc7548a0b14b9deb0069a",
   "weights": [
@@ -48,5 +48,19 @@
   "core_lock_sha256": "331bef1795f52106b52f5cfd2295397c474d940c71560ddf3191e014f3357abc",
   "mattergen_lock_sha256": "2efe2f6efc96905fcba225ecab766b12d74b289ff24e4f6fde1c17909e00864e",
   "mattergen_wheel": "mattergen-1.0.3-py3-none-any.whl",
-  "mattergen_wheel_sha256": "4f41152e5ee9b0463b14aa2607eec65cd2cbb6c1cde0e472d821e98ff18f8fa7"
+  "mattergen_wheel_sha256": "4f41152e5ee9b0463b14aa2607eec65cd2cbb6c1cde0e472d821e98ff18f8fa7",
+  "expected_mcp_tools": [
+    "get_capabilities",
+    "prepare_plan",
+    "submit_job",
+    "get_job",
+    "control_job",
+    "get_results",
+    "screen_candidates",
+    "recommend_candidates",
+    "compare_runs",
+    "build_report",
+    "get_candidate_evidence",
+    "prepare_property_prediction"
+  ]
 }

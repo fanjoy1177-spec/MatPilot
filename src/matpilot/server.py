@@ -17,6 +17,23 @@ class MetricSelection(BaseModel):
     metric_id: str = Field(min_length=1)
 
 
+class RankingMetricSelection(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    candidate_id: str = Field(min_length=1)
+    structure_version_id: str = Field(min_length=1)
+    metric_id: str = Field(min_length=1)
+    job_id: str | None = Field(default=None, min_length=1)
+
+
+class RankingObjective(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+    property: str
+    unit: str
+    direction: str
+    target_min: float | None = None
+    target_max: float | None = None
+
+
 INSTRUCTIONS = """材策 MatPilot 材料研究插件。先调用 get_capabilities 获取当前模型能力，再把用户需求转换为 prepare_plan 的 request。
 request 字段：raw_request, requirements(逐项原文需求), model_id='mattergen'或'diffcsp', template_id(DiffCSP所需，来自已登记模板), checkpoint(可省略), conditions, review_targets(字符串数组), num_samples(最大采样预算，默认16), valid_candidates_target(合格候选目标，可省略), batch_size(默认2), seed(默认42), unconditional(默认false), clarifications(字符串数组), search_mode(默认direct)。
 自然语言请求必须提供 requirements，格式见 get_capabilities.requirements_contract。每条需求保留唯一 requirement_id、source 的 quote（优先只复制精确原文，程序定位；重复引文才提供 start/end）、kind、property、value、unit、strength、relation；位置按 Unicode 字符计数，end 不包含。程序生成每条要求的参数和检查映射。完整保留原始数字和单位，不能为了通过校验删去原文或缩短 raw_request。结构化入口没有原文时会记录为 structured_input，不伪装成完成自然语言理解。字段取值严格遵循 kind_rules：research_goal 必须 relation=goal，review_targets 可留空由需求记录自动生成。演示、先审批、仅计划、不得编造结论等是工作流指令，完整保留在 raw_request 并遵守当前宿主与后端策略，不把它们填成材料性质或虚构执行参数。
@@ -28,11 +45,21 @@ prepare_plan 返回 blocked 或 needs_clarification 时不得提交。展示 rea
 submit_job 立即返回任务号；长任务使用 get_job 查询。只能查询提交实际返回的 job_id，plan_id 不是 job_id，提交失败时不得编造任务号。失败先读错误，禁止自动扩大预算或放宽材料条件。只在明确终止状态下 resume。
 get_results 返回 structure_versions 与 metrics_by_structure_version；指标只属于其明确的 candidate_id 和 structure_version_id，不得沿用父版本指标。需要比较性质证据时，compare_runs 可提供 metric_selections，每项包含 job_id、candidate_id、structure_version_id、metric_id，允许同一任务内显式选择多个版本。不得按化学式替代身份、自动选择最有利指标或对方法不可比的数值作材料优劣排名。
 screen_candidates 和 build_report 可提供相同身份格式的 metric_selections，用明确选定的指标核验原始生成版本；未明确选择时，多份同性质有效指标保持 unknown。每个版本每项性质至多选一个指标，不能自动选择有利数值；所有未选指标保留在报告证据中。选择记录不改变采样预算或生成候选数，结论仅适用于所选方法和指标。
-用户请求筛选、排序或推荐时必须调用 recommend_candidates 完成对应流水线，不能只读原始结果后由模型自行排出名单。recommend_candidates 是只读候选后处理工具，job_id 与 collection_id 必须且只能提供一个。collection_id 只能来自 get_capabilities 的已登记集合；不能把任意目录或文件作为模型输入。集合来源独立于当前 demo/native/wsl 生成后端，已归档的真实候选不能误称为本轮生成或固定示例。默认推荐12个，最多256；默认仅返回入选记录与排除原因计数，需要全量审计才设 include_all_records=true。selection_policy 默认auto：明确Fe-Ni-O元素集合自动执行可审计的弛豫优先分层，从组成完整、显式满占位且标记为优先弛豫的代表结构中按组成/空间群/规模档位等权覆盖推荐；人工复核或暂缓结构不为凑数混入优先池。其它元素体系使用structural_v1通用结构推荐，不能套用Fe-Ni-O规则。可显式使用structural_v1重放原有结构排序，或fe_ni_o_relaxation_v1指定Fe-Ni-O策略。工具发布阈值与逐候选原因，优先弛豫是安排后续计算的启发式标签，不是已经完成弛豫或性质验证；不得宣称稳定、合成成功、性质优化或实际DFT费用降低。用户还要推荐报告时，build_report 设置recommendation_limit及相同recommendation_policy，保存全量审计与推荐，按策略隔离且不覆盖默认报告。
+用户请求筛选、排序或推荐时必须调用 recommend_candidates，不由LLM凭印象给晶体打物性分。job_id或已登记collection_id二选一；默认auto按get_capabilities中的automatic_ranking_policy选择离子策略，安装默认ionic_mixed_valence_v1；显式triage_v2仍逐个检查后选代表，不限定Fe-Ni-O。明确材料类别时传material_class：ionic/metallic/covalent/other/unknown；金属、合金与共价材料不强套离子价态。auto只表示基于元素的规则路由，不能识别实际键合；不支持范围只做结构准备度检查。
+需要按性质推荐时，先调用get_candidate_evidence查看不含数值的方法分组，再提供objective={property,unit,direction:minimize或maximize,可选target_min/target_max}及明确metric_selections，每项绑定candidate_id/structure_version_id/metric_id，job来源还需job_id。先确定评价方法和选择协议，再查看有利数值；不得自动选择最有利指标。程序核对CIF、原始输出、SHA、方法版本/权重/参照；缺证据复核，方法不兼容或跨组成原始能量比较拒绝。目标证据优先，多样性仅在同证据值打破平局。max_force/stress只表明计算准备度；可比元数据不证明模型适用性、稳定概率、合成成功或科学准确率提高。所有未选证据保留。
+auto在无额外参数时按操作者automatic_ranking_policy配置使用ionic_mixed_valence_v1、ionic_ranked_v2或ionic_complexity_v3；不支持离子规则时明确回退structural_v1。提供明确objective/metric_selections或material_class时，auto转入已有triage_v2/证据管线，真实指标证据优先，不使用代理分数替代。显式ionic_complexity_v3保留同一资格门，按约化整数化学式原子总数降序，再按文件SHA256和候选ID排序；规则选择参考开发标签，不拟合模型或输出物性分数。显式ionic_ranked_v2保留dev11资格门，只在优先池用历史标签训练的固定模型产生未校准相对低凸包距离代理分数；推理不读取真实性能标签，分数不是稳定概率、实际凸包距离或已验证物性。ranker超出训练域或特征不可用时整池保留dev11排序并给出警告。其余显式v1策略保留历史重放。推荐不会启动新的生成、弛豫或DFT；ionic_ranked_v2只运行固定代理评分，其他证据管线不代为运行物性模型。报告设置recommendation_limit、recommendation_policy及相同recommendation_objective和recommendation_metric_selections、material_class；硬性要求的metric_selections与推荐偏好分开，不能借排序削弱硬性要求。优先计算标签是后续任务规划，不是已完成计算或性能证明。
 示例模式是固定 NaCl 样本，不能说成 MatterGen 或 AI 生成。执行完成不是材料性能验证。报告只使用工具返回证据；不得宣称已有催化性能、耐腐蚀性、实验验证、AI 准确率提升或流程提速百分比。"""
 
 
 def make_server(settings: Settings) -> FastMCP:
+    # FastMCP dispatches synchronous tools to worker threads. On Windows a
+    # first NumPy/SciPy native-extension import in such a thread can stall. Initialize
+    # the required scientific runtime in the normal server startup thread,
+    # before tool dispatch; no model, weights or scientific calculation is run.
+    import importlib
+    for module in ("numpy", "pymatgen.core", "pymatgen.analysis.structure_matcher",
+                   "pymatgen.io.cif", "pymatgen.symmetry.analyzer"):
+        importlib.import_module(module)
     service = Service(settings)
     app = FastMCP("MatPilot", instructions=INSTRUCTIONS)
     read = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
@@ -75,11 +102,29 @@ def make_server(settings: Settings) -> FastMCP:
                                          if metric_selections is not None else None)
 
     @app.tool(annotations=read)
+    def get_candidate_evidence(job_id: str | None = None, collection_id: str | None = None) -> dict:
+        """列出原始候选的版本与指标方法分组，不显示有利/不利数值。先按研究协议确定适用方法，再把明确指标身份交给推荐工具；同一版本多份指标不能按值挑选。"""
+        return service.get_candidate_evidence(job_id, collection_id)
+
+    @app.tool(annotations=write)
+    def prepare_property_prediction(candidate_id: str, structure_version_id: str,
+                                    material_class: str, structure_state: str,
+                                    job_id: str | None = None, collection_id: str | None = None) -> dict:
+        """仅准备已登记结构的CHGNet静态预测计划，返回缺权重/环境/适用范围等问题，不运行模型或下载文件。材料类别和状态枚举见get_capabilities.property_prediction.operator_contract；计算执行未向模型暴露。"""
+        return service.prepare_property_prediction(candidate_id, structure_version_id, material_class, structure_state,
+                                                   job_id, collection_id)
+
+    @app.tool(annotations=read)
     def recommend_candidates(job_id: str | None = None, collection_id: str | None = None,
                              limit: int = 12, include_all_records: bool = False,
-                             selection_policy: str = "auto") -> dict:
-        """对已有候选执行只读筛选推荐流水线，不生成或弛豫。二选一提供job_id或登记collection_id；limit为1到256。auto对Fe-Ni-O先自动分层再从优先弛豫代表池做多样性选择；其它体系回退structural_v1。显式structural_v1可重放旧策略。默认仅返回入选记录，全量审计用include_all_records=true；启发式标签不证明物性。"""
-        return service.recommend_candidates(job_id, collection_id, limit, include_all_records, selection_policy)
+                             selection_policy: str = "auto", objective: RankingObjective | None = None,
+                             metric_selections: list[RankingMetricSelection] | None = None,
+                             material_class: str = "auto") -> dict:
+        """只读推荐。auto按能力表automatic_ranking_policy调用离子门控/代理排序；明确objective或material_class时转已有v2管线，真实证据优先。ionic_complexity_v3为约化式复杂度启发式，不是物性预测。显式ionic_ranked_v2分数不是校准稳定概率，保留训练、覆盖与回退审计。显式triage_v2逐结构检查后选代表；材料类别可明确为ionic/metallic/covalent/other/unknown，避免强套价态规则。objective含property/unit/direction及可选target_min/target_max；明确选择版本指标后按证据优先，多样性只打破平局，缺证据复核。job来源每项选择还需job_id；集合须先登记schema2证据。显式v1策略供历史重放；代理排序不代替用户选定的真实性能证据。不运行生成、弛豫或DFT。"""
+        return service.recommend_candidates(job_id, collection_id, limit, include_all_records, selection_policy,
+            objective.model_dump(exclude_none=True) if objective is not None else None,
+            [s.model_dump(exclude_none=True) for s in metric_selections] if metric_selections is not None else None,
+            material_class)
 
     @app.tool(annotations=read)
     def compare_runs(job_ids: list[str], metric_selections: list[MetricSelection] | None = None) -> dict:
@@ -89,9 +134,15 @@ def make_server(settings: Settings) -> FastMCP:
 
     @app.tool(annotations=write)
     def build_report(job_id: str, metric_selections: list[MetricSelection] | None = None,
-                     recommendation_limit: int | None = None, recommendation_policy: str = "auto") -> dict:
-        """生成 Markdown 与 JSON。明确指标选择按哈希独立保存。可选recommendation_limit为1到256，recommendation_policy同推荐工具的selection_policy；保存分层原因、代表推荐及全量审计，按策略隔离，不覆盖默认或指标选择报告。优先弛豫仅用于后处理规划，不证明物性改善。"""
+                     recommendation_limit: int | None = None, recommendation_policy: str = "auto",
+                     recommendation_objective: RankingObjective | None = None,
+                     recommendation_metric_selections: list[MetricSelection] | None = None,
+                     material_class: str = "auto") -> dict:
+        """生成 Markdown 与 JSON。明确指标选择按哈希独立保存。可选recommendation_limit为1到256，recommendation_policy同推荐工具的selection_policy；保存分层原因、代表推荐及全量审计；ionic_ranked_v2另存相对分数、覆盖和警告；ionic_complexity_v3另存约化式复杂度、启发式键和回退原因，按策略隔离，不覆盖默认或指标选择报告。优先弛豫仅用于后处理规划，不证明物性改善。"""
         return service.build_report(job_id, [selection.model_dump() for selection in metric_selections]
-                                    if metric_selections is not None else None, recommendation_limit, recommendation_policy)
+            if metric_selections is not None else None, recommendation_limit, recommendation_policy,
+            recommendation_objective.model_dump(exclude_none=True) if recommendation_objective is not None else None,
+            [s.model_dump() for s in recommendation_metric_selections] if recommendation_metric_selections is not None else None,
+            material_class)
 
     return app

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": {
+    "primary": true,
+    "methods": true,
+    "ground_truth": true,
+    "truth_order": true,
+    "predeclared_screening_trend_criterion": true,
+    "truth_semantic_sha256": true
+  },
+  "scope": "fixed_ranking_metrics_only_not_production_replay",
+  "primary_hits": 11,
+  "secondary_MACE_hits": 20,
+  "candidate_count": 100,
+  "ranking_count": 6,
+  "network_denied": true
+}

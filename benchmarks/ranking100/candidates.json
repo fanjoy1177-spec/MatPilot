@@ -1,0 +1,2106 @@
+{
+  "schema": "public_numeric_extract/v1",
+  "records": [
+    {
+      "candidate_id": "H001",
+      "material_id": "wbm-1-38437",
+      "formula": "Co6 O18 Pb6",
+      "chemical_system": "Co-O-Pb",
+      "n_sites": 30,
+      "initial_prototype_family": "AB3C_mC60_15_af_e4f_ef",
+      "sampling_hash": "00003ee28004e92f71fe15a27775a038e87f2d14e4613956c03a5047285cd7ff",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.3354640447400001,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.2567,
+        "mace-mp-0": -1.2378
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0787640447400002,
+        "mace-mp-0": 0.09766404474000012
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.126555
+    },
+    {
+      "candidate_id": "H002",
+      "material_id": "wbm-3-50568",
+      "formula": "Mn1 O2 Rb2",
+      "chemical_system": "Mn-O-Rb",
+      "n_sites": 5,
+      "initial_prototype_family": "AB2C2_tI10_139_a_e_e",
+      "sampling_hash": "000055208b9715f144b17fdf2c076ac27705cbef39e7d02670e1015b602da57e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.5591982722600004,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.64213,
+        "mace-mp-0": -1.4571
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.08293172773999968,
+        "mace-mp-0": 0.10209827226000034
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.113615
+    },
+    {
+      "candidate_id": "H003",
+      "material_id": "wbm-3-15305",
+      "formula": "Cl2 Ga2 U2",
+      "chemical_system": "Cl-Ga-U",
+      "n_sites": 6,
+      "initial_prototype_family": "ABC_hP6_164_d_d_c",
+      "sampling_hash": "00016fce57b191ed6d7761876c8efd269703bc557c93623d0b259dbe249f8677",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0700613236,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.91252,
+        "mace-mp-0": -0.9975
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.15754132360000006,
+        "mace-mp-0": 0.0725613236
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.17134
+    },
+    {
+      "candidate_id": "H004",
+      "material_id": "wbm-1-45207",
+      "formula": "Cs1 In1 P2 S7",
+      "chemical_system": "Cs-In-P-S",
+      "n_sites": 11,
+      "initial_prototype_family": "ABC2D7_mC22_5_b_a_c_a3c",
+      "sampling_hash": "0001741568da02f046dd5bebfb845cfb1aaa24ecc68c41f93b9e6b44b889463e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.8361931778454545,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.8459999999999999,
+        "mace-mp-0": -0.8594
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.009806822154545314,
+        "mace-mp-0": -0.023206822154545503
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.009286
+    },
+    {
+      "candidate_id": "H005",
+      "material_id": "wbm-3-17402",
+      "formula": "Co3 Nd3 Pt3",
+      "chemical_system": "Co-Nd-Pt",
+      "n_sites": 9,
+      "initial_prototype_family": "ABC_hP9_189_f_g_bc",
+      "sampling_hash": "00017a0079cb0f1cb51669a2c8f97a769b037ae90bea2ce0b4935fb6c57788e7",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.7609067974666666,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.58063,
+        "mace-mp-0": -0.4984
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.18027679746666658,
+        "mace-mp-0": 0.26250679746666655
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.288027
+    },
+    {
+      "candidate_id": "H006",
+      "material_id": "wbm-1-43280",
+      "formula": "Fe2 O7 P2",
+      "chemical_system": "Fe-O-P",
+      "n_sites": 11,
+      "initial_prototype_family": "A2B7C2_mC22_12_h_aij_i",
+      "sampling_hash": "000247a4309869825cfc7465d160e6fddbfc805d345ce6222b8522c27c7b7d3e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.3737980107,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.35874,
+        "mace-mp-0": -2.3588
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.015058010699999791,
+        "mace-mp-0": 0.014998010699999842
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.019055
+    },
+    {
+      "candidate_id": "H007",
+      "material_id": "wbm-1-60239",
+      "formula": "La3 Zn6",
+      "chemical_system": "La-Zn",
+      "n_sites": 9,
+      "initial_prototype_family": "AB2_hP9_189_f_adg",
+      "sampling_hash": "00027821ea6091205c016eafa4cf3fcf0ac6da464cad6db58fd48ad369ca1a96",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.3750285483,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.35472,
+        "mace-mp-0": -0.3138
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.020308548300000007,
+        "mace-mp-0": 0.06122854829999996
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.052813
+    },
+    {
+      "candidate_id": "H008",
+      "material_id": "wbm-3-50220",
+      "formula": "Br2 O4 Sb2 Tb2",
+      "chemical_system": "Br-O-Sb-Tb",
+      "n_sites": 10,
+      "initial_prototype_family": "AB2CD_oC20_63_c_e_c_c",
+      "sampling_hash": "0002ff283e48db4698f95dc09d4188e9c70d06cf96dbf930331c2ef5a3c035cb",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.589368221653334,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.60724,
+        "mace-mp-0": -2.3539
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.0178717783466662,
+        "mace-mp-0": 0.23546822165333392
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.359613
+    },
+    {
+      "candidate_id": "H009",
+      "material_id": "wbm-1-45053",
+      "formula": "Ga2 K6 P4",
+      "chemical_system": "Ga-K-P",
+      "n_sites": 12,
+      "initial_prototype_family": "AB3C2_oI24_72_a_bj_j",
+      "sampling_hash": "000458f8bfd7693a626acc6a6b4760e7724fffd47efe19f528cc2c9e5c241b16",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.3858888035833333,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.4357999999999999,
+        "mace-mp-0": -0.4256
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.04991119641666664,
+        "mace-mp-0": -0.039711196416666705
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.015351
+    },
+    {
+      "candidate_id": "H010",
+      "material_id": "wbm-5-6700",
+      "formula": "F6 K2 Th1",
+      "chemical_system": "F-K-Th",
+      "n_sites": 9,
+      "initial_prototype_family": "A6B2C_hP9_162_k_c_b",
+      "sampling_hash": "000478f418885897162d02a69d052dd4fe32d9efb778c5cc12ed114a6f68d4e2",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.9096112857,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.84228,
+        "mace-mp-0": -3.8414
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06733128569999991,
+        "mace-mp-0": 0.0682112856999999
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.054522
+    },
+    {
+      "candidate_id": "H011",
+      "material_id": "wbm-4-27633",
+      "formula": "Cs2 O6 Te1 Tm1",
+      "chemical_system": "Cs-O-Te-Tm",
+      "n_sites": 10,
+      "initial_prototype_family": "A2B6CD_cF40_225_c_e_a_b",
+      "sampling_hash": "0004acb968c1f43506ffed16ac14f788dd59253441a685efa07044c880800513",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.2891551583866665,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.62692,
+        "mace-mp-0": -2.1784
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.33776484161333364,
+        "mace-mp-0": 0.11075515838666661
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.163151
+    },
+    {
+      "candidate_id": "H012",
+      "material_id": "wbm-2-20846",
+      "formula": "Ba1 Ge1 Pt2 Se4",
+      "chemical_system": "Ba-Ge-Pt-Se",
+      "n_sites": 8,
+      "initial_prototype_family": "ABC2D4_oI16_23_a_b_f_k",
+      "sampling_hash": "0005a0e14253cc07aa7a025aa21b1030b21302a02ddcee82cfed8634c7c4e498",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0998271236875,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.0078400000000003,
+        "mace-mp-0": -0.8767
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.09198712368749962,
+        "mace-mp-0": 0.22312712368749987
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.284077
+    },
+    {
+      "candidate_id": "H013",
+      "material_id": "wbm-2-41718",
+      "formula": "Dy1 In5 Ru1",
+      "chemical_system": "Dy-In-Ru",
+      "n_sites": 7,
+      "initial_prototype_family": "AB5C_tP7_123_a_ci_b",
+      "sampling_hash": "0005a4672cb6bffe3d62a84ac8a88c37b84efbce9e5fd8b941baa774bc6e483c",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.2857809371428571,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.30223,
+        "mace-mp-0": -0.2956
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.01644906285714287,
+        "mace-mp-0": -0.009819062857142846
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.014217
+    },
+    {
+      "candidate_id": "H014",
+      "material_id": "wbm-1-39266",
+      "formula": "Na1 O3 Zr2",
+      "chemical_system": "Na-O-Zr",
+      "n_sites": 6,
+      "initial_prototype_family": "AB3C2_hP6_164_a_bd_d",
+      "sampling_hash": "000650301e53484511a8b08abb2d98e28fd3f0da499a5fefbc9e536c0b3d7b2c",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.8900751597300003,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.96103,
+        "mace-mp-0": -2.6764
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.07095484026999976,
+        "mace-mp-0": 0.21367515973000017
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.154236
+    },
+    {
+      "candidate_id": "H015",
+      "material_id": "wbm-4-4017",
+      "formula": "B5 Re3 Sm2",
+      "chemical_system": "B-Re-Sm",
+      "n_sites": 10,
+      "initial_prototype_family": "A5B3C2_mC20_5_a2c_bc_c",
+      "sampling_hash": "00069683f8cdb67037a9605c6c2b3ac6913972d7da4fac5877328c01cff6cb3d",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.4528245949475,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.47024,
+        "mace-mp-0": -0.3885
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.0174154050525,
+        "mace-mp-0": 0.06432459494749998
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.036231
+    },
+    {
+      "candidate_id": "H016",
+      "material_id": "wbm-3-15415",
+      "formula": "As2 Co2 Y1",
+      "chemical_system": "As-Co-Y",
+      "n_sites": 5,
+      "initial_prototype_family": "A2B2C_tI10_139_e_d_a",
+      "sampling_hash": "0006f77114ba0f524e917538edc69adb18b70f04e287b6c6945e15fe05aca431",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.7625877355133336,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.73709,
+        "mace-mp-0": -0.7219
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.025497735513333564,
+        "mace-mp-0": 0.0406877355133336
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.0567
+    },
+    {
+      "candidate_id": "H017",
+      "material_id": "wbm-2-101",
+      "formula": "Ag4 Sn1",
+      "chemical_system": "Ag-Sn",
+      "n_sites": 5,
+      "initial_prototype_family": "A4B_tI10_87_h_a",
+      "sampling_hash": "0007c7079df7fd5209231ffd739f9586e786b09b251ac4659536b53656e75706",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.015355051040000001,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.02116,
+        "mace-mp-0": -0.0243
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.00580494896,
+        "mace-mp-0": -0.008944948959999997
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.009737
+    },
+    {
+      "candidate_id": "H018",
+      "material_id": "wbm-4-7781",
+      "formula": "Co2 Ge4 Pa2",
+      "chemical_system": "Co-Ge-Pa",
+      "n_sites": 8,
+      "initial_prototype_family": "AB2C_oC16_63_c_2c_c",
+      "sampling_hash": "000836aee6ea285019a2278cc4e25e3a4a92b6fa3877f5b59212b4928510b7f8",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.41269029293333326,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.57019,
+        "mace-mp-0": -0.6099
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.15749970706666672,
+        "mace-mp-0": -0.19720970706666674
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.107215
+    },
+    {
+      "candidate_id": "H019",
+      "material_id": "wbm-2-33797",
+      "formula": "O4 Sn2",
+      "chemical_system": "O-Sn",
+      "n_sites": 6,
+      "initial_prototype_family": "A2B_tI12_122_d_a",
+      "sampling_hash": "0008b3720648d6ba2c4291edaf6b0a43b394a391f4ce55e0a368a48e25c44c08",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.1083302007999993,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.99345,
+        "mace-mp-0": -1.7397
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.11488020079999939,
+        "mace-mp-0": 0.3686302007999993
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.059086
+    },
+    {
+      "candidate_id": "H020",
+      "material_id": "wbm-3-50741",
+      "formula": "Al2 As2 O6",
+      "chemical_system": "Al-As-O",
+      "n_sites": 10,
+      "initial_prototype_family": "ABC3_hR30_148_c_c_f",
+      "sampling_hash": "0008cc17f447b60539c8e015bedd5a3704ef2a96338541a8bb8862a416046274",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.5285811555,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.38337,
+        "mace-mp-0": -2.4521
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.14521115549999974,
+        "mace-mp-0": 0.07648115549999979
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.001615
+    },
+    {
+      "candidate_id": "H021",
+      "material_id": "wbm-4-7786",
+      "formula": "Co1 Ge2 Sn3 Tb3",
+      "chemical_system": "Co-Ge-Sn-Tb",
+      "n_sites": 9,
+      "initial_prototype_family": "AB2C3D3_hP9_189_a_d_g_f",
+      "sampling_hash": "000a36778cf2aa3d3de18557e9c4825cd16c3f4d33140480c4182c713f44c5b9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.6678891016666666,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.67996,
+        "mace-mp-0": -0.6317
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.012070898333333413,
+        "mace-mp-0": 0.03618910166666656
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.096464
+    },
+    {
+      "candidate_id": "H022",
+      "material_id": "wbm-4-3414",
+      "formula": "As2 Rb4 Rh2",
+      "chemical_system": "As-Rb-Rh",
+      "n_sites": 8,
+      "initial_prototype_family": "AB2C_oC16_38_ab_de_c",
+      "sampling_hash": "000a3ee5a7eabe631429dc03408aa45d51005b12c5334cbd9c00035a70ead5f2",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.37902315468750003,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.3621299999999999,
+        "mace-mp-0": -0.1913
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.016893154687500134,
+        "mace-mp-0": 0.18772315468750003
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.189145
+    },
+    {
+      "candidate_id": "H023",
+      "material_id": "wbm-2-1865",
+      "formula": "Al4 La3 Si4",
+      "chemical_system": "Al-La-Si",
+      "n_sites": 11,
+      "initial_prototype_family": "A4B3C4_oI22_71_ef_af_ef",
+      "sampling_hash": "000a3f802cbfa1453be44d7eab6b47c974448bf3ae56546b4c538a9ebf03d0f0",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5346439909363636,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.55357,
+        "mace-mp-0": -0.5542
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.018926009063636395,
+        "mace-mp-0": -0.019556009063636415
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.044589
+    },
+    {
+      "candidate_id": "H024",
+      "material_id": "wbm-2-6811",
+      "formula": "Br4 Rh2 Te2",
+      "chemical_system": "Br-Rh-Te",
+      "n_sites": 8,
+      "initial_prototype_family": "A2BC_aP8_2_2i_i_i",
+      "sampling_hash": "000aa081b75399183cb67119268edc2cffb4b7339b975015ffa28f2de0d1f4b3",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.8281967573477274,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.76047,
+        "mace-mp-0": -0.8258
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06772675734772737,
+        "mace-mp-0": 0.002396757347727374
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.088273
+    },
+    {
+      "candidate_id": "H025",
+      "material_id": "wbm-4-25934",
+      "formula": "Al1 Hf1 O6 Sr2",
+      "chemical_system": "Al-Hf-O-Sr",
+      "n_sites": 10,
+      "initial_prototype_family": "ABC6D2_cF40_225_a_b_e_c",
+      "sampling_hash": "000ac38f69ac700a9e76b8c8ff5423fb1d790d9559eade43c553b36b247d0434",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.448796887234999,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.44641,
+        "mace-mp-0": -3.4238
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0023868872349988024,
+        "mace-mp-0": 0.024996887234999043
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.039075
+    },
+    {
+      "candidate_id": "H026",
+      "material_id": "wbm-4-38751",
+      "formula": "Rh9 Y3",
+      "chemical_system": "Rh-Y",
+      "n_sites": 12,
+      "initial_prototype_family": "A3B_hR36_166_ach_bc",
+      "sampling_hash": "000b5f0402921f740b5ba9062132d60223d6b177848ed7d2b3e819db9a909ff9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5630479625,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.55516,
+        "mace-mp-0": -0.541
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.007887962500000012,
+        "mace-mp-0": 0.022047962499999962
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.011373
+    },
+    {
+      "candidate_id": "H027",
+      "material_id": "wbm-4-16714",
+      "formula": "Bi1 I3 Yb3",
+      "chemical_system": "Bi-I-Yb",
+      "n_sites": 7,
+      "initial_prototype_family": "AB3C3_cP7_221_a_c_d",
+      "sampling_hash": "000bf600f79336b5eaf7876c075fe0c1b1fb2ecf5c90972232f853946caef712",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.5498362197452384,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.3554199999999998,
+        "mace-mp-0": -1.5656
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.1944162197452386,
+        "mace-mp-0": -0.01576378025476166
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.001734
+    },
+    {
+      "candidate_id": "H028",
+      "material_id": "wbm-3-17568",
+      "formula": "Co1 Rb4 Sb2",
+      "chemical_system": "Co-Rb-Sb",
+      "n_sites": 7,
+      "initial_prototype_family": "AB4C2_hR21_166_a_2c_c",
+      "sampling_hash": "000c1b0c0cefda9f193a0c508a2f139465feefe6865e75f6b3777cf6857c1553",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.3752980375469388,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.26822,
+        "mace-mp-0": -0.2226
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.10707803754693879,
+        "mace-mp-0": 0.1526980375469388
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.172794
+    },
+    {
+      "candidate_id": "H029",
+      "material_id": "wbm-2-36304",
+      "formula": "As2 O7 Tb2",
+      "chemical_system": "As-O-Tb",
+      "n_sites": 11,
+      "initial_prototype_family": "A2B7C2_mC22_12_i_aij_h",
+      "sampling_hash": "000c70464a48fc66d38929fae243c95dc001e6b180a6708bfaf034486b49d2fb",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.847395651938182,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.84625,
+        "mace-mp-0": -2.6384
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0011456519381818353,
+        "mace-mp-0": 0.20899565193818193
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.203083
+    },
+    {
+      "candidate_id": "H030",
+      "material_id": "wbm-4-11373",
+      "formula": "F8 La1 Na2 Sr1",
+      "chemical_system": "F-La-Na-Sr",
+      "n_sites": 12,
+      "initial_prototype_family": "A8BC2D_tI24_119_j_a_bc_d",
+      "sampling_hash": "000cf047ea16a61aee775e476546e3eba87a85b084ba694cb423d4c88c8a13d9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.5435743110333338,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.785789999999999,
+        "mace-mp-0": -3.6524
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.24221568896666534,
+        "mace-mp-0": -0.10882568896666633
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.001003
+    },
+    {
+      "candidate_id": "H031",
+      "material_id": "wbm-2-34442",
+      "formula": "As2 O8 Sn2",
+      "chemical_system": "As-O-Sn",
+      "n_sites": 12,
+      "initial_prototype_family": "AB4C_oC24_63_c_fg_a",
+      "sampling_hash": "000cf9008bc9179c64408a54eba8da13663eb1d3517eaba379f28b5c1a2dee26",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.8491444945541669,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.81006,
+        "mace-mp-0": -1.7081
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.03908449455416685,
+        "mace-mp-0": 0.1410444945541669
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.173762
+    },
+    {
+      "candidate_id": "H032",
+      "material_id": "wbm-3-71582",
+      "formula": "Ni2 Si2 Zn4",
+      "chemical_system": "Ni-Si-Zn",
+      "n_sites": 8,
+      "initial_prototype_family": "ABC2_hP8_194_c_b_f",
+      "sampling_hash": "000d3be33ff06ef956f7a75411570b1d096bc81e19e4ad1f3635224291ab4825",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.25984413109285714,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.1699,
+        "mace-mp-0": -0.171
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.08994413109285715,
+        "mace-mp-0": 0.08884413109285713
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.069911
+    },
+    {
+      "candidate_id": "H033",
+      "material_id": "wbm-1-37048",
+      "formula": "Hf2 O4",
+      "chemical_system": "Hf-O",
+      "n_sites": 6,
+      "initial_prototype_family": "AB2_tP6_136_a_f",
+      "sampling_hash": "000e585a0e1885b4c0e80a36728070a86fc5758e1ff1bd62d0a570e09b67f370",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -4.0206592367,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.97649,
+        "mace-mp-0": -3.996
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.04416923670000017,
+        "mace-mp-0": 0.024659236700000253
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.025441
+    },
+    {
+      "candidate_id": "H034",
+      "material_id": "wbm-2-34293",
+      "formula": "O6 Rh2 Yb2",
+      "chemical_system": "O-Rh-Yb",
+      "n_sites": 10,
+      "initial_prototype_family": "A3BC_oC20_63_cf_a_c",
+      "sampling_hash": "000ea99da72797051c728b2cb96f9cca518d6687a214e67e5a1b192ca327aac3",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.2825716677,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.1077,
+        "mace-mp-0": -2.2867
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.17487166770000018,
+        "mace-mp-0": -0.004128332300000093
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.016244
+    },
+    {
+      "candidate_id": "H035",
+      "material_id": "wbm-3-56101",
+      "formula": "Ce2 O7 Zr2",
+      "chemical_system": "Ce-O-Zr",
+      "n_sites": 11,
+      "initial_prototype_family": "A2B7C2_mC22_12_h_aij_i",
+      "sampling_hash": "000ecded74f361353fd52b6860d627dbfc91a4d76f4abf64b412fe59323cf438",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.815471398700001,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.78901,
+        "mace-mp-0": -3.7289
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.02646139870000086,
+        "mace-mp-0": 0.08657139870000119
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.086383
+    },
+    {
+      "candidate_id": "H036",
+      "material_id": "wbm-1-5178",
+      "formula": "B2 Ni2",
+      "chemical_system": "B-Ni",
+      "n_sites": 4,
+      "initial_prototype_family": "AB_hP4_194_a_c",
+      "sampling_hash": "000efaddc47a4780c2e086a2058ab2ef06ae1f78d733a0eb7cc9efa8818d3c73",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.24508711281249998,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.06461,
+        "mace-mp-0": -0.223
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.18047711281249998,
+        "mace-mp-0": 0.022087112812499976
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.135502
+    },
+    {
+      "candidate_id": "H037",
+      "material_id": "wbm-2-19603",
+      "formula": "Ge4 Ho2 Pd2",
+      "chemical_system": "Ge-Ho-Pd",
+      "n_sites": 8,
+      "initial_prototype_family": "A2BC_mP8_11_2e_e_e",
+      "sampling_hash": "000efd12601d9cef36c51546d150f6d81c42734e4a88a907dde7c1523a64dacd",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.7478163869000001,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.7812100000000001,
+        "mace-mp-0": -0.7317
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.0333936131,
+        "mace-mp-0": 0.016116386900000057
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.04473
+    },
+    {
+      "candidate_id": "H038",
+      "material_id": "wbm-4-21219",
+      "formula": "Cu1 Mn1 Sm2",
+      "chemical_system": "Cu-Mn-Sm",
+      "n_sites": 4,
+      "initial_prototype_family": "ABC2_oC8_38_a_b_ab",
+      "sampling_hash": "000f0f25878881cead1aaad3b05e77a4bcf807a7a137b2547d6b2094fefc5337",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.1040355519,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": 0.03894,
+        "mace-mp-0": 0.0553
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.1429755519,
+        "mace-mp-0": 0.15933555189999998
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.131395
+    },
+    {
+      "candidate_id": "H039",
+      "material_id": "wbm-2-46843",
+      "formula": "Si4 Y3 Zn4",
+      "chemical_system": "Si-Y-Zn",
+      "n_sites": 11,
+      "initial_prototype_family": "A4B3C4_oI22_71_ef_af_ef",
+      "sampling_hash": "000f5376eb63242613f858ccf11b82fdb6227931fb629abaab9c070485b8dd71",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5153051534321212,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.5874700000000002,
+        "mace-mp-0": -0.536
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.07216484656787892,
+        "mace-mp-0": -0.02069484656787879
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.000543
+    },
+    {
+      "candidate_id": "H040",
+      "material_id": "wbm-4-32848",
+      "formula": "Ho2 Ni2 S6 Sr2",
+      "chemical_system": "Ho-Ni-S-Sr",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC3D_oC24_63_a_c_cf_c",
+      "sampling_hash": "0010ad8bee0d6990378854cb825ecb4fe8600b5593d4ba9016d7b9243fd8c79a",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.9270558001833336,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.86883,
+        "mace-mp-0": -1.872
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.058225800183333565,
+        "mace-mp-0": 0.05505580018333345
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.055382
+    },
+    {
+      "candidate_id": "H041",
+      "material_id": "wbm-4-16252",
+      "formula": "Fe1 H8 Pu1 Zn2",
+      "chemical_system": "Fe-H-Pu-Zn",
+      "n_sites": 12,
+      "initial_prototype_family": "AB8CD2_hP12_164_a_di_b_d",
+      "sampling_hash": "001139bda7eae483dd77a6e4583f5fee541ad1cadc5634d57aca7f836b746906",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.17962163792435898,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.29069,
+        "mace-mp-0": -0.1632
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.11106836207564103,
+        "mace-mp-0": 0.016421637924358967
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.017293
+    },
+    {
+      "candidate_id": "H042",
+      "material_id": "wbm-3-15134",
+      "formula": "Cl6 Ho1 Rb3",
+      "chemical_system": "Cl-Ho-Rb",
+      "n_sites": 10,
+      "initial_prototype_family": "A6BC3_hR30_148_f_a_bc",
+      "sampling_hash": "001251609e39fb6a92f4f86aba975e97290ce69a12635fa0c0eeddf75aec9ae5",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.5057190257,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.48304,
+        "mace-mp-0": -2.494
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.02267902570000002,
+        "mace-mp-0": 0.011719025699999719
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.006762
+    },
+    {
+      "candidate_id": "H043",
+      "material_id": "wbm-1-9314",
+      "formula": "Cd6 Gd2",
+      "chemical_system": "Cd-Gd",
+      "n_sites": 8,
+      "initial_prototype_family": "A3B_oC16_63_cg_c",
+      "sampling_hash": "001290ae510f2af872bcdb156cb45feff2d2898d481fa21ec9bbdfaa2e9c9ec9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.2806178663,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.2735999999999999,
+        "mace-mp-0": -0.2864
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.00701786630000012,
+        "mace-mp-0": -0.0057821336999999695
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.001382
+    },
+    {
+      "candidate_id": "H044",
+      "material_id": "wbm-1-47896",
+      "formula": "Rh5 Tm1",
+      "chemical_system": "Rh-Tm",
+      "n_sites": 6,
+      "initial_prototype_family": "A5B_hP6_191_cg_a",
+      "sampling_hash": "0012cadc3ad197238f5ecdcf70545fbfa3b022a587f1f52ed6622f3f7ab8acad",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.38244182860000003,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.2901399999999999,
+        "mace-mp-0": -0.2867
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.09230182860000014,
+        "mace-mp-0": 0.09574182860000002
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.097254
+    },
+    {
+      "candidate_id": "H045",
+      "material_id": "wbm-1-49448",
+      "formula": "Ba4 S12 Ta4",
+      "chemical_system": "Ba-S-Ta",
+      "n_sites": 20,
+      "initial_prototype_family": "AB3C_oP20_62_c_cd_a",
+      "sampling_hash": "0012cb5d6c8bdbedf040d8308d9443057b31bf66acc4d11f7752c4ac669ed5d7",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.7850278749,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.7691,
+        "mace-mp-0": -1.711
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.015927874900000027,
+        "mace-mp-0": 0.07402787489999985
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.054711
+    },
+    {
+      "candidate_id": "H046",
+      "material_id": "wbm-3-37047",
+      "formula": "Cd1 K1 Li1 Te2",
+      "chemical_system": "Cd-K-Li-Te",
+      "n_sites": 5,
+      "initial_prototype_family": "ABCD2_tI10_119_a_c_b_f",
+      "sampling_hash": "00137e35e5f463ead54b960c5576837770af0d2d1f038151339a09343c1b068b",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.99817742085,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.97997,
+        "mace-mp-0": -1.0309
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.018207420850000045,
+        "mace-mp-0": -0.032722579149999875
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.023935
+    },
+    {
+      "candidate_id": "H047",
+      "material_id": "wbm-3-34799",
+      "formula": "Br6 Gd1 K2",
+      "chemical_system": "Br-Gd-K",
+      "n_sites": 9,
+      "initial_prototype_family": "A6BC2_cF36_225_e_a_c",
+      "sampling_hash": "0013ea1685777b0f0d9cd30c22449ae1268087f017dc09b3a11eb05935aa7fff",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.9918297106333334,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.13797,
+        "mace-mp-0": -2.1246
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.1461402893666668,
+        "mace-mp-0": -0.13277028936666668
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.051664
+    },
+    {
+      "candidate_id": "H048",
+      "material_id": "wbm-3-51569",
+      "formula": "Dy2 O6 V2",
+      "chemical_system": "Dy-O-V",
+      "n_sites": 10,
+      "initial_prototype_family": "AB3C_oI20_74_e_eg_a",
+      "sampling_hash": "0015f77ba5b259c9076747d704a7da9df8383d78cf6d02945d87be1c4c8c80cc",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.2997100453,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.25214,
+        "mace-mp-0": -3.2399
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.047570045300000086,
+        "mace-mp-0": 0.05981004529999989
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.067465
+    },
+    {
+      "candidate_id": "H049",
+      "material_id": "wbm-4-28853",
+      "formula": "Ho2 P4 Rh4",
+      "chemical_system": "Ho-P-Rh",
+      "n_sites": 10,
+      "initial_prototype_family": "AB2C2_tP10_129_c_ac_bc",
+      "sampling_hash": "001680d4e5255f6f12ca53b8d9acd43f725f366b2d7a2f268ba69c177335fc09",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0929311543105265,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.10716,
+        "mace-mp-0": -1.0881
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.014228845689473468,
+        "mace-mp-0": 0.0048311543105263866
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.028347
+    },
+    {
+      "candidate_id": "H050",
+      "material_id": "wbm-3-77719",
+      "formula": "Eu2 Ga4 Zn2",
+      "chemical_system": "Eu-Ga-Zn",
+      "n_sites": 8,
+      "initial_prototype_family": "AB2C_oP4_47_a_l_b",
+      "sampling_hash": "0016aa7891d190496f6aeb6222cf7d4da03b6cfc97c62317bf4f23eb52a72934",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.45462372938750006,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.37719,
+        "mace-mp-0": -0.3254
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.07743372938750004,
+        "mace-mp-0": 0.12922372938750004
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.181367
+    },
+    {
+      "candidate_id": "H051",
+      "material_id": "wbm-3-23439",
+      "formula": "Cr1 F6 Sc1",
+      "chemical_system": "Cr-F-Sc",
+      "n_sites": 8,
+      "initial_prototype_family": "AB6C_cF32_225_a_e_b",
+      "sampling_hash": "0016f4f62e7dd7415dcaa3a39b5600ace21054d3b2e4bc90ccdd9c7f63299946",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.6701156481,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.6024900000000004,
+        "mace-mp-0": -3.6119
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06762564809999949,
+        "mace-mp-0": 0.05821564810000002
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.012141
+    },
+    {
+      "candidate_id": "H052",
+      "material_id": "wbm-3-66839",
+      "formula": "As2 Fe2 Sc1",
+      "chemical_system": "As-Fe-Sc",
+      "n_sites": 5,
+      "initial_prototype_family": "A2B2C_tI10_139_e_d_a",
+      "sampling_hash": "001820f81185b7aba2dd5c99591174f6a3ed0832e85d04a26158a0a858e7f7bc",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.630759708,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.55098,
+        "mace-mp-0": -0.567
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.079779708,
+        "mace-mp-0": 0.06375970800000008
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.119888
+    },
+    {
+      "candidate_id": "H053",
+      "material_id": "wbm-4-39727",
+      "formula": "Nd4 Pt4 Zn2",
+      "chemical_system": "Nd-Pt-Zn",
+      "n_sites": 10,
+      "initial_prototype_family": "A2B2C_tP10_127_h_g_a",
+      "sampling_hash": "00183c40b16c666c1733470b42067e8342739fc5eb2022ee599487bf5af908d0",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.9456746501554839,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.9330699999999998,
+        "mace-mp-0": -0.9138
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.012604650155484065,
+        "mace-mp-0": 0.03187465015548396
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.048387
+    },
+    {
+      "candidate_id": "H054",
+      "material_id": "wbm-5-3285",
+      "formula": "C1 Ge2 Ir2 Tm2",
+      "chemical_system": "C-Ge-Ir-Tm",
+      "n_sites": 7,
+      "initial_prototype_family": "AB2C2D2_mC14_12_a_i_i_i",
+      "sampling_hash": "00184561238c3b91c13fd7f968b05b1177dd025e42572cba7185965fa2720ece",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.8190992712,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.7477400000000001,
+        "mace-mp-0": -0.6699
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.07135927119999996,
+        "mace-mp-0": 0.14919927119999998
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.159407
+    },
+    {
+      "candidate_id": "H055",
+      "material_id": "wbm-2-23178",
+      "formula": "Br6 Cs2 K1 Nb1",
+      "chemical_system": "Br-Cs-K-Nb",
+      "n_sites": 10,
+      "initial_prototype_family": "A6B2CD_cF40_225_e_c_a_b",
+      "sampling_hash": "00187f40c635690ad7a19b6cfbcd4d603d17a205224a85f94703b7d6fbb63a4e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.8053724495274999,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.74133,
+        "mace-mp-0": -1.7774
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06404244952749982,
+        "mace-mp-0": 0.027972449527499776
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.039824
+    },
+    {
+      "candidate_id": "H056",
+      "material_id": "wbm-3-39253",
+      "formula": "K2 La2 Mg2 Se6",
+      "chemical_system": "K-La-Mg-Se",
+      "n_sites": 12,
+      "initial_prototype_family": "ABCD3_oC24_63_c_a_c_cf",
+      "sampling_hash": "0018b1fe2b2a51275804b2b0b95b9fae861151e3b996777ff3abf1ccf2c63a08",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.7738193016000001,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.81922,
+        "mace-mp-0": -1.8087
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.04540069839999994,
+        "mace-mp-0": -0.034880698399999854
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.046359
+    },
+    {
+      "candidate_id": "H057",
+      "material_id": "wbm-3-36858",
+      "formula": "F8 Li2 Pa2",
+      "chemical_system": "F-Li-Pa",
+      "n_sites": 12,
+      "initial_prototype_family": "A4BC_mC24_15_2f_e_e",
+      "sampling_hash": "0018b9b9b6f7d81d3df8e858802d33d26bfb58a4811d9bc75414c4657b15e581",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0553148659666665,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.74149,
+        "mace-mp-0": -3.4787
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -2.6861751340333337,
+        "mace-mp-0": -2.4233851340333334
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -2.474685
+    },
+    {
+      "candidate_id": "H058",
+      "material_id": "wbm-3-2083",
+      "formula": "Al3 Rb2 Se4",
+      "chemical_system": "Al-Rb-Se",
+      "n_sites": 9,
+      "initial_prototype_family": "A3B2C4_oF36_69_ac_g_n",
+      "sampling_hash": "001a62371d2068ce96e1e46977bb87ee2eacb1b2ea74a899883b83d101e1e08a",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0265018843666667,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.29245,
+        "mace-mp-0": -0.8648
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.2659481156333334,
+        "mace-mp-0": 0.16170188436666666
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.266858
+    },
+    {
+      "candidate_id": "H059",
+      "material_id": "wbm-1-23789",
+      "formula": "Ho2 Li4 O6",
+      "chemical_system": "Ho-Li-O",
+      "n_sites": 12,
+      "initial_prototype_family": "AB2C3_mC24_15_e_2e_cf",
+      "sampling_hash": "001cc85c0f486f9e24f69a3df39b3ae9c346d2179fb4eac21655df3fe838dd16",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.7528120738333333,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.67585,
+        "mace-mp-0": -2.6464
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0769620738333332,
+        "mace-mp-0": 0.1064120738333334
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.132381
+    },
+    {
+      "candidate_id": "H060",
+      "material_id": "wbm-2-29590",
+      "formula": "F2 N2 Th4",
+      "chemical_system": "F-N-Th",
+      "n_sites": 8,
+      "initial_prototype_family": "ABC2_tI16_141_a_b_e",
+      "sampling_hash": "001cd0845b076fbe38146eb8729b3ce5e5aa050a79709dd18728151d94bc66be",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.3333801244,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.409250000000001,
+        "mace-mp-0": -1.9036
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.07586987560000091,
+        "mace-mp-0": 0.42978012440000013
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.470644
+    },
+    {
+      "candidate_id": "H061",
+      "material_id": "wbm-4-12689",
+      "formula": "Dy2 Fe2 Rb2 Te6",
+      "chemical_system": "Dy-Fe-Rb-Te",
+      "n_sites": 12,
+      "initial_prototype_family": "ABCD3_oC24_63_a_c_c_cf",
+      "sampling_hash": "001e9190674ccfcaa664f94369783c90ab4430024bc920d8e3bb6b816880fb3b",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0995242982791664,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.03823,
+        "mace-mp-0": -1.0756
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06129429827916644,
+        "mace-mp-0": 0.023924298279166534
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.029832
+    },
+    {
+      "candidate_id": "H062",
+      "material_id": "wbm-1-50908",
+      "formula": "S4 Zn4",
+      "chemical_system": "S-Zn",
+      "n_sites": 8,
+      "initial_prototype_family": "AB_cP8_215_e_ac",
+      "sampling_hash": "001f095417c7b3c4a19103d14d5dc4636f6a11797e15c95ff1213bec552bb431",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0631314144,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.0214100000000002,
+        "mace-mp-0": -1.0496
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.04172141439999977,
+        "mace-mp-0": 0.01353141439999983
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.001062
+    },
+    {
+      "candidate_id": "H063",
+      "material_id": "wbm-4-22728",
+      "formula": "In2 N1 O1 Th6",
+      "chemical_system": "In-N-O-Th",
+      "n_sites": 10,
+      "initial_prototype_family": "A2BCD6_cF40_225_c_a_b_e",
+      "sampling_hash": "001f203c7eb492849fc8efa9cc10a8db4efefbe4980ca4350afcd4a5c5c8daab",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.1312295146300002,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.50538,
+        "mace-mp-0": -0.8874
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.37415048536999973,
+        "mace-mp-0": 0.24382951463000024
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.103564
+    },
+    {
+      "candidate_id": "H064",
+      "material_id": "wbm-4-1034",
+      "formula": "Al3 Fe1 Np3 Si2",
+      "chemical_system": "Al-Fe-Np-Si",
+      "n_sites": 9,
+      "initial_prototype_family": "A3BC3D2_hP9_189_f_b_g_c",
+      "sampling_hash": "001f82096e21ac56a92f49f906b8fcec0da79d7d77476ea2ab18eafec60fd883",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.2267856391296296,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.20953,
+        "mace-mp-0": -0.1685
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.017255639129629602,
+        "mace-mp-0": 0.058285639129629585
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.010979
+    },
+    {
+      "candidate_id": "H065",
+      "material_id": "wbm-2-17971",
+      "formula": "Fe1 Ni2 Se4",
+      "chemical_system": "Fe-Ni-Se",
+      "n_sites": 7,
+      "initial_prototype_family": "AB2C4_aP7_2_a_i_2i",
+      "sampling_hash": "0020411f05aafc4eecc028045eeb8eb0beb9e93c966da66bf658b3c6be7d36dd",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5876839444333333,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.5102800000000001,
+        "mace-mp-0": -0.5403
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0774039444333332,
+        "mace-mp-0": 0.04738394443333327
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.057014
+    },
+    {
+      "candidate_id": "H066",
+      "material_id": "wbm-3-49475",
+      "formula": "Ni1 Pb1 Pt2",
+      "chemical_system": "Ni-Pb-Pt",
+      "n_sites": 4,
+      "initial_prototype_family": "ABC2_tP4_123_a_c_e",
+      "sampling_hash": "00204ae3f0b9f995f1d7b2c4fc0e5557833043a23374a6465836fed9841de773",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.16263038625,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.14894,
+        "mace-mp-0": -0.0065
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.01369038625000002,
+        "mace-mp-0": 0.15613038625
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.12736
+    },
+    {
+      "candidate_id": "H067",
+      "material_id": "wbm-3-54826",
+      "formula": "Dy2 O6 Sn1 Ta1",
+      "chemical_system": "Dy-O-Sn-Ta",
+      "n_sites": 10,
+      "initial_prototype_family": "A2B6CD_mC20_12_i_ij_a_d",
+      "sampling_hash": "0020bb049965b0f0d09a06eee1372ab04de167af88af561174a9bf99a921b214",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.4129480544925,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.1883799999999995,
+        "mace-mp-0": -3.2116
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.2245680544925004,
+        "mace-mp-0": 0.20134805449250015
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.214605
+    },
+    {
+      "candidate_id": "H068",
+      "material_id": "wbm-2-16536",
+      "formula": "F7 Pr2 Rb1",
+      "chemical_system": "F-Pr-Rb",
+      "n_sites": 10,
+      "initial_prototype_family": "A7B2C_oC20_65_ahp_g_c",
+      "sampling_hash": "002226c74cc92599ef5c6c6855a047d23d48b12d0a225a2f5053cbf8a0189b84",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -4.1351695369799994,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -4.07149,
+        "mace-mp-0": -4.1115
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06367953697999962,
+        "mace-mp-0": 0.023669536979999073
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.027159
+    },
+    {
+      "candidate_id": "H069",
+      "material_id": "wbm-4-2271",
+      "formula": "Al4 Hg4 La4",
+      "chemical_system": "Al-Hg-La",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC_hP12_194_f_f_ab",
+      "sampling_hash": "0022606a14b91e15ea309c63f699c3bff4e5158b34bdd147b3bc0b4013230182",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.49120961664999996,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.42632,
+        "mace-mp-0": -0.4965
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.06488961664999998,
+        "mace-mp-0": -0.0052903833500000386
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.020473
+    },
+    {
+      "candidate_id": "H070",
+      "material_id": "wbm-1-40439",
+      "formula": "Ce2 Hf2 O8",
+      "chemical_system": "Ce-Hf-O",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC4_mP12_14_a_d_2e",
+      "sampling_hash": "002269f450cee9aefb64fcfb01d7ce7fab199c5fdec4ea91c944054a1b84c0a5",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.9749852671,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.95308,
+        "mace-mp-0": -3.886
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.02190526710000018,
+        "mace-mp-0": 0.08898526709999999
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.09297
+    },
+    {
+      "candidate_id": "H071",
+      "material_id": "wbm-3-32621",
+      "formula": "H5 Os1 Th2",
+      "chemical_system": "H-Os-Th",
+      "n_sites": 8,
+      "initial_prototype_family": "A5BC2_tI16_107_ac_a_b",
+      "sampling_hash": "002292be6a67870240d859855fabf935e05bad7aa5dcb3ca8748068b38b92a1a",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5368065194535714,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.5163,
+        "mace-mp-0": -0.4657
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.020506519453571403,
+        "mace-mp-0": 0.07110651945357138
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.25942
+    },
+    {
+      "candidate_id": "H072",
+      "material_id": "wbm-2-5837",
+      "formula": "B3 Ba3 Pt6",
+      "chemical_system": "B-Ba-Pt",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC2_hP12_181_d_c_i",
+      "sampling_hash": "00229ace83395eece6190d260d27983f1cd795f8198e3291e130d67fb724701e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.6052163128953125,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.7296199999999999,
+        "mace-mp-0": -0.5734
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.12440368710468741,
+        "mace-mp-0": 0.031816312895312504
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.072283
+    },
+    {
+      "candidate_id": "H073",
+      "material_id": "wbm-5-1855",
+      "formula": "As4 Ho2",
+      "chemical_system": "As-Ho",
+      "n_sites": 6,
+      "initial_prototype_family": "A2B_mP6_11_2e_e",
+      "sampling_hash": "0022ace462c75e1c3987e65c2f2d5cb9d2e9affd8580bef4178a54abfec61414",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.0123194316666666,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.94135,
+        "mace-mp-0": -0.9298
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.07096943166666658,
+        "mace-mp-0": 0.08251943166666664
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.136265
+    },
+    {
+      "candidate_id": "H074",
+      "material_id": "wbm-2-45971",
+      "formula": "Pr2 Pt4 Si4",
+      "chemical_system": "Pr-Pt-Si",
+      "n_sites": 10,
+      "initial_prototype_family": "AB2C2_tP10_129_c_ac_bc",
+      "sampling_hash": "00230f1c55e5de5c4def9476f5b9a922c4d37c977f7097d171305cbf3cde7257",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.020491807,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.07419,
+        "mace-mp-0": -1.0896
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.053698193000000005,
+        "mace-mp-0": -0.06910819299999993
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.077901
+    },
+    {
+      "candidate_id": "H075",
+      "material_id": "wbm-1-11380",
+      "formula": "As1 Cd1 Co5",
+      "chemical_system": "As-Cd-Co",
+      "n_sites": 7,
+      "initial_prototype_family": "ABC5_tP7_123_b_c_ai",
+      "sampling_hash": "002332b5875fc515151852fdd6e91ec6093775988eb23553752a7231c390fd13",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.08580440428571427,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": 0.04528,
+        "mace-mp-0": 0.2595
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.13108440428571427,
+        "mace-mp-0": 0.3453044042857143
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.337191
+    },
+    {
+      "candidate_id": "H076",
+      "material_id": "wbm-3-78501",
+      "formula": "Cs2 Np2 Se6 Zn2",
+      "chemical_system": "Cs-Np-Se-Zn",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC3D_oC24_63_c_a_cf_c",
+      "sampling_hash": "0023da381d64c0fd08201994bc331b49f1e9d094101f5346251a01f4c7626d23",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.2262693780333334,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.35209,
+        "mace-mp-0": -1.3201
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.12582062196666666,
+        "mace-mp-0": -0.0938306219666667
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.078739
+    },
+    {
+      "candidate_id": "H077",
+      "material_id": "wbm-4-25220",
+      "formula": "Ni2 O6 Yb2",
+      "chemical_system": "Ni-O-Yb",
+      "n_sites": 10,
+      "initial_prototype_family": "AB3C_mC20_12_ad_ij_i",
+      "sampling_hash": "0023df63953854d3b5eccfd93cb0a557736b3be5907b1f91dd4ad86f6b9022f9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.9793080827,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.0131,
+        "mace-mp-0": -1.9373
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.033791917300000085,
+        "mace-mp-0": 0.042008082700000005
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.055823
+    },
+    {
+      "candidate_id": "H078",
+      "material_id": "wbm-1-49787",
+      "formula": "Rh4 S12 Sb4",
+      "chemical_system": "Rh-S-Sb",
+      "n_sites": 20,
+      "initial_prototype_family": "AB3C_oP20_62_c_3c_c",
+      "sampling_hash": "002457c72c30088e4dcad835fbf54ee72290d60668e9a1a05dbb8f3a1a20a8b0",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.6566560518999991,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.6907099999999999,
+        "mace-mp-0": -0.6894
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.03405394810000084,
+        "mace-mp-0": -0.03274394810000092
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.013832
+    },
+    {
+      "candidate_id": "H079",
+      "material_id": "wbm-2-4298",
+      "formula": "As1 Pr1 Pt1",
+      "chemical_system": "As-Pr-Pt",
+      "n_sites": 3,
+      "initial_prototype_family": "ABC_cF12_216_a_b_c",
+      "sampling_hash": "0025a08c900806608c53962276b1cc3db4a824c940b725362b9186718e5500c9",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.1133567499090908,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.1896799999999996,
+        "mace-mp-0": -1.0555
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.07632325009090879,
+        "mace-mp-0": 0.05785674990909073
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.085949
+    },
+    {
+      "candidate_id": "H080",
+      "material_id": "wbm-1-28944",
+      "formula": "Mg3 Zn3",
+      "chemical_system": "Mg-Zn",
+      "n_sites": 6,
+      "initial_prototype_family": "AB_oC12_38_2ab_a2b",
+      "sampling_hash": "0026dfeff9cf99363f1ef3d8a84a72587865f488dd612a8c076094d6f19b3108",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.12105072883056157,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.0276499999999999,
+        "mace-mp-0": -0.075
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.09340072883056168,
+        "mace-mp-0": 0.04605072883056158
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.05583
+    },
+    {
+      "candidate_id": "H081",
+      "material_id": "wbm-1-15875",
+      "formula": "Ce1 F6 K1 Rb2",
+      "chemical_system": "Ce-F-K-Rb",
+      "n_sites": 10,
+      "initial_prototype_family": "AB6CD2_cF40_225_a_e_b_c",
+      "sampling_hash": "0027589029cbae9b20ce1a47ac494b7ea69bc721a7e0295108ecc79545c9d4c2",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.49951326878,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.47802,
+        "mace-mp-0": -3.4696
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.02149326878000002,
+        "mace-mp-0": 0.029913268780000113
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.028212
+    },
+    {
+      "candidate_id": "H082",
+      "material_id": "wbm-3-45862",
+      "formula": "Na2 Rh2 S4 U1",
+      "chemical_system": "Na-Rh-S-U",
+      "n_sites": 9,
+      "initial_prototype_family": "A2B2C4D_mC18_12_i_i_2i_a",
+      "sampling_hash": "002799f1c53e978d77ef0dca66e9f16eff9d9e9d01dcbb14a2e6aa2740d8d0dd",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.23725155348,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.22927,
+        "mace-mp-0": -1.1741
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.007981553479999848,
+        "mace-mp-0": 0.06315155348000001
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.084937
+    },
+    {
+      "candidate_id": "H083",
+      "material_id": "wbm-3-48393",
+      "formula": "Ge4 Hf3 Ni4",
+      "chemical_system": "Ge-Hf-Ni",
+      "n_sites": 11,
+      "initial_prototype_family": "A4B3C4_oI22_71_ef_af_ef",
+      "sampling_hash": "0027e348a3ad0522dfa34fd1237285e24013f77eb775746d8bb2b43fbf0d6bc4",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.6675136109,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.62507,
+        "mace-mp-0": -0.5892
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.04244361090000004,
+        "mace-mp-0": 0.07831361090000011
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.110271
+    },
+    {
+      "candidate_id": "H084",
+      "material_id": "wbm-3-6855",
+      "formula": "As4 Ir4 Ta4",
+      "chemical_system": "As-Ir-Ta",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC_hP12_194_f_f_ab",
+      "sampling_hash": "002918ab7166d21391d4131fd870fa095273e9f4a912f0940a09ab3bfac9fc1b",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5945990416666667,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.45289,
+        "mace-mp-0": -0.4123
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.14170904166666665,
+        "mace-mp-0": 0.18229904166666666
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.281509
+    },
+    {
+      "candidate_id": "H085",
+      "material_id": "wbm-1-40918",
+      "formula": "Lu1 Na2 O4",
+      "chemical_system": "Lu-Na-O",
+      "n_sites": 7,
+      "initial_prototype_family": "AB2C4_oC14_65_a_f_gj",
+      "sampling_hash": "0029888973b1a2eb8294108666ed98f793f11e8fe7b12c1de8f312da18164d8e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.2467642311714284,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.96689,
+        "mace-mp-0": -1.9332
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.2798742311714284,
+        "mace-mp-0": 0.3135642311714284
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.245923
+    },
+    {
+      "candidate_id": "H086",
+      "material_id": "wbm-1-8210",
+      "formula": "Ag2 Ca3 In7",
+      "chemical_system": "Ag-Ca-In",
+      "n_sites": 12,
+      "initial_prototype_family": "A2B3C7_hR36_166_c_ac_bh",
+      "sampling_hash": "002a3702c25980c880b9843eaf966808bb36cd01ff2465a08789dd787673b51b",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.32657691060555555,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.36349,
+        "mace-mp-0": -0.2934
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.03691308939444443,
+        "mace-mp-0": 0.033176910605555554
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.052425
+    },
+    {
+      "candidate_id": "H087",
+      "material_id": "wbm-2-36800",
+      "formula": "Er1 O8 P2 Sr1",
+      "chemical_system": "Er-O-P-Sr",
+      "n_sites": 12,
+      "initial_prototype_family": "AB8C2D_mC24_12_a_2ij_i_c",
+      "sampling_hash": "002b27ad9d7e117eeafb12b97145eaf985a86dc30fcf498a67f272cbbe4b429c",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -3.240815313162501,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -3.34488,
+        "mace-mp-0": -3.1913
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.10406468683749903,
+        "mace-mp-0": 0.049515313162500796
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.082949
+    },
+    {
+      "candidate_id": "H088",
+      "material_id": "wbm-4-19547",
+      "formula": "Au2 Cu1 Mg1",
+      "chemical_system": "Au-Cu-Mg",
+      "n_sites": 4,
+      "initial_prototype_family": "A2BC_tP4_123_e_a_c",
+      "sampling_hash": "002b7845c76f179985d73b25d38ba1f436793eeaff21310e796fbbfa7671aeb5",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.35570268225,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.33676,
+        "mace-mp-0": -0.3185
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.01894268225000001,
+        "mace-mp-0": 0.03720268225000001
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.015815
+    },
+    {
+      "candidate_id": "H089",
+      "material_id": "wbm-2-52066",
+      "formula": "In4 Zn2",
+      "chemical_system": "In-Zn",
+      "n_sites": 6,
+      "initial_prototype_family": "A2B_hP6_194_ac_d",
+      "sampling_hash": "002b9c5207fa054c8e80e63dcea749a0dcc5192f32d33390d2e8cafa04dcee0e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": 0.0,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": 0.08831,
+        "mace-mp-0": 0.1267
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.08831,
+        "mace-mp-0": 0.1267
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.127416
+    },
+    {
+      "candidate_id": "H090",
+      "material_id": "wbm-2-44809",
+      "formula": "Rh1 Se2 Th6",
+      "chemical_system": "Rh-Se-Th",
+      "n_sites": 9,
+      "initial_prototype_family": "AB2C6_hP9_189_a_d_fg",
+      "sampling_hash": "002d35827c84dedac241958c196c1f3ccaaf3643032a68fe30a708d01b71c194",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.008190168311111,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.8567199999999999,
+        "mace-mp-0": -0.8356
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.15147016831111104,
+        "mace-mp-0": 0.17259016831111096
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.092752
+    },
+    {
+      "candidate_id": "H091",
+      "material_id": "wbm-2-35559",
+      "formula": "Ba2 Fe1 Ho1 O6",
+      "chemical_system": "Ba-Fe-Ho-O",
+      "n_sites": 10,
+      "initial_prototype_family": "A2BCD6_cF40_225_c_a_b_e",
+      "sampling_hash": "002d7585adc9d1af2d023fc8c195555812c118f3ed443e8f51d85304fa74a08e",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.709683669765,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.70589,
+        "mace-mp-0": -2.6837
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.0037936697649998408,
+        "mace-mp-0": 0.025983669764999995
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.015895
+    },
+    {
+      "candidate_id": "H092",
+      "material_id": "wbm-5-14129",
+      "formula": "Cu2 Er1 Na1 Sb2",
+      "chemical_system": "Cu-Er-Na-Sb",
+      "n_sites": 6,
+      "initial_prototype_family": "A2BCD2_hP6_164_d_a_b_d",
+      "sampling_hash": "002db285646377d867a578ab7e0bd0f1b8cc2dbb58f03a80cf7591512985f154",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.5499687707777778,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.42478,
+        "mace-mp-0": -0.5491
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.12518877077777785,
+        "mace-mp-0": 0.0008687707777778053
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.010201
+    },
+    {
+      "candidate_id": "H093",
+      "material_id": "wbm-1-7536",
+      "formula": "C2 Cl2 N4 Sr2",
+      "chemical_system": "C-Cl-N-Sr",
+      "n_sites": 10,
+      "initial_prototype_family": "ABC2D_mP10_11_e_e_2e_e",
+      "sampling_hash": "002dd48652b671cff0ea08338681454f4a7f07fe5a4ed13d2012ffec42daf318",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.3016122651000002,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.3275900000000005,
+        "mace-mp-0": -1.1094
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.025977734900000327,
+        "mace-mp-0": 0.19221226510000022
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.274131
+    },
+    {
+      "candidate_id": "H094",
+      "material_id": "wbm-4-498",
+      "formula": "Al2 Er1 Pd3",
+      "chemical_system": "Al-Er-Pd",
+      "n_sites": 6,
+      "initial_prototype_family": "A2BC3_hP6_191_c_a_g",
+      "sampling_hash": "002e60d291bf2a814017dc373d0a161e5067b10f6df08bd80478045d0e554c0c",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.92701139145,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.9034799999999998,
+        "mace-mp-0": -0.8786
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.02353139145000016,
+        "mace-mp-0": 0.04841139144999995
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.064829
+    },
+    {
+      "candidate_id": "H095",
+      "material_id": "wbm-2-18129",
+      "formula": "Fe1 Pt5 Sb1",
+      "chemical_system": "Fe-Pt-Sb",
+      "n_sites": 7,
+      "initial_prototype_family": "AB5C_tP7_123_c_ai_b",
+      "sampling_hash": "002fae319538f45eefe9c9a3f79d63b173df14ea7004dbd0009805c302ec13f8",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.2453728907142857,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.19107,
+        "mace-mp-0": -0.1969
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.054302890714285706,
+        "mace-mp-0": 0.048472890714285705
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.014832
+    },
+    {
+      "candidate_id": "H096",
+      "material_id": "wbm-1-54596",
+      "formula": "Co2 Si2 Ta8",
+      "chemical_system": "Co-Si-Ta",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC4_tP12_124_a_c_m",
+      "sampling_hash": "003014f0ef5fd2c1739007f8cfda494be4ce3bdf88311cd10f1d1880646ccf32",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.39183594588333326,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.3779599999999999,
+        "mace-mp-0": -0.4158
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.013875945883333352,
+        "mace-mp-0": -0.023964054116666744
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.00244
+    },
+    {
+      "candidate_id": "H097",
+      "material_id": "wbm-1-21309",
+      "formula": "H2 Nd2 O4",
+      "chemical_system": "H-Nd-O",
+      "n_sites": 8,
+      "initial_prototype_family": "ABC2_oP8_31_a_a_2a",
+      "sampling_hash": "00310f10980b85a790c231492c5cd2f7e037a26d8f0a59d350c89762c8f09783",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -2.8906488975,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -2.87756,
+        "mace-mp-0": -2.8285
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.013088897500000307,
+        "mace-mp-0": 0.06214889750000019
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.050012
+    },
+    {
+      "candidate_id": "H098",
+      "material_id": "wbm-1-36752",
+      "formula": "Ba3 Cu3 O6",
+      "chemical_system": "Ba-Cu-O",
+      "n_sites": 12,
+      "initial_prototype_family": "ABC2_hP12_152_a_b_c",
+      "sampling_hash": "0031ae5a56712e91f1e3ccf9e5e06b47810160bf0c8ce9fcd18179e13c9eec93",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -1.9926007231,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.96961,
+        "mace-mp-0": -1.9182
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": 0.022990723099999943,
+        "mace-mp-0": 0.07440072310000012
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.091339
+    },
+    {
+      "candidate_id": "H099",
+      "material_id": "wbm-2-4952",
+      "formula": "B2 Co2 N3 Yb3",
+      "chemical_system": "B-Co-N-Yb",
+      "n_sites": 10,
+      "initial_prototype_family": "A2B2C3D3_tI20_139_e_d_ae_be",
+      "sampling_hash": "0031b53fe32fd1e72998ede1a523c393b0c1f99fa34e1d8fb087f0075843cc14",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.93584861116,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -1.04284,
+        "mace-mp-0": -0.9119
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.10699138884000003,
+        "mace-mp-0": 0.02394861115999991
+      },
+      "disclosed_reference_dft_target_eV_per_atom": -0.004933
+    },
+    {
+      "candidate_id": "H100",
+      "material_id": "wbm-2-6373",
+      "formula": "B3 Ir6 Pr3",
+      "chemical_system": "B-Ir-Pr",
+      "n_sites": 12,
+      "initial_prototype_family": "AB2C_hP12_180_d_i_c",
+      "sampling_hash": "0031f3416f7c795d4ffa6df33f63a2456b66e00fdd3709f4969d73d4b247506c",
+      "reference_id": "matbench-discovery-mp-gga-ggau-figshare-52080797",
+      "reference_sha256": "f1d083a56cacb02cdcb556830f58216890f84503c6a19e1c53bf92939aaedb8e",
+      "reference_hull_formation_eV_per_atom": -0.707329225425,
+      "predicted_formation_eV_per_atom": {
+        "wrenformer": -0.72438,
+        "mace-mp-0": -0.6124
+      },
+      "predicted_energy_above_reference_hull_eV_per_atom": {
+        "wrenformer": -0.01705077457500004,
+        "mace-mp-0": 0.09492922542499993
+      },
+      "disclosed_reference_dft_target_eV_per_atom": 0.133341
+    }
+  ],
+  "scope": "100 selected public archive rows; disclosed labels for metric replay, not a new blind run"
+}

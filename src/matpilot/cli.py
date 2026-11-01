@@ -10,6 +10,13 @@ from pathlib import Path
 from .config import Settings
 from .service import Service
 
+RECOMMENDATION_POLICIES = ["triage_v2", "structural_v2", "ionic_mixed_valence_v2", "evidence_v1",
+                           "auto", "structural_v1", "fe_ni_o_relaxation_v1", "ionic_mixed_valence_v1", "ionic_ranked_v2", "ionic_complexity_v3"]
+
+
+def _json_file(path):
+    return json.loads(Path(path).read_text(encoding="utf-8-sig")) if path else None
+
 
 def main():
     parser = argparse.ArgumentParser(description="MatPilot materials tools for DeepSeek Harness")
@@ -28,13 +35,22 @@ def main():
         p.add_argument("job_id")
         if name == "report":
             p.add_argument("--recommendation-limit", type=int)
-            p.add_argument("--recommendation-policy", choices=["auto", "structural_v1", "fe_ni_o_relaxation_v1"], default="auto")
+            p.add_argument("--recommendation-policy", choices=RECOMMENDATION_POLICIES, default="auto")
+            p.add_argument("--objective-file")
+            p.add_argument("--metric-selections-file")
+            p.add_argument("--material-class", choices=["auto", "ionic", "metallic", "covalent", "other", "unknown"], default="auto")
     for name, source in [("recommend", "job_id"), ("recommend-collection", "collection_id")]:
         p = sub.add_parser(name)
         p.add_argument(source)
         p.add_argument("--limit", type=int, default=12)
         p.add_argument("--include-all-records", action="store_true")
-        p.add_argument("--selection-policy", choices=["auto", "structural_v1", "fe_ni_o_relaxation_v1"], default="auto")
+        p.add_argument("--selection-policy", choices=RECOMMENDATION_POLICIES, default="auto")
+        p.add_argument("--objective-file")
+        p.add_argument("--metric-selections-file")
+        p.add_argument("--material-class", choices=["auto", "ionic", "metallic", "covalent", "other", "unknown"], default="auto")
+    for name, source in [("evidence", "job_id"), ("evidence-collection", "collection_id")]:
+        p = sub.add_parser(name)
+        p.add_argument(source)
     p = sub.add_parser("compare")
     p.add_argument("job_ids", nargs="+")
     p = sub.add_parser("_worker", help=argparse.SUPPRESS)
@@ -67,11 +83,18 @@ def main():
             result = service.screen_candidates(args.job_id)
         elif args.command == "report":
             result = service.build_report(args.job_id, recommendation_limit=args.recommendation_limit,
-                                          recommendation_policy=args.recommendation_policy)
+                recommendation_policy=args.recommendation_policy,
+                recommendation_objective=_json_file(args.objective_file),
+                recommendation_metric_selections=_json_file(args.metric_selections_file), material_class=args.material_class)
         elif args.command in {"recommend", "recommend-collection"}:
             result = service.recommend_candidates(job_id=getattr(args, "job_id", None),
                 collection_id=getattr(args, "collection_id", None), limit=args.limit,
-                include_all_records=args.include_all_records, selection_policy=args.selection_policy)
+                include_all_records=args.include_all_records, selection_policy=args.selection_policy,
+                objective=_json_file(args.objective_file), metric_selections=_json_file(args.metric_selections_file),
+                material_class=args.material_class)
+        elif args.command in {"evidence", "evidence-collection"}:
+            result = service.get_candidate_evidence(job_id=getattr(args, "job_id", None),
+                                                    collection_id=getattr(args, "collection_id", None))
         elif args.command == "compare":
             result = service.compare_runs(args.job_ids)
         elif args.command in {"stop", "resume"}:

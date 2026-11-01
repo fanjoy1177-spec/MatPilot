@@ -1,6 +1,6 @@
 {
   "name": "dsh-matpilot",
-  "version": "0.2.0-dev.11",
+  "version": "0.2.0-dev.12",
   "description": "材策 MatPilot：环境检查、自动安装与恢复，材料任务管理和可追溯报告。",
   "type": "module",
   "files": [

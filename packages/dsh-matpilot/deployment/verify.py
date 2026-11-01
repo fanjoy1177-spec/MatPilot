@@ -43,8 +43,9 @@ async def mcp_check(root):
             if result.isError:
                 raise RuntimeError('MCP capability query failed')
             caps = json.loads(next(c.text for c in result.content if c.type == 'text'))
-            assert len(tools.tools) == 9
-            assert caps['version'] == '0.2.0.dev8'
+            recipe = json.loads((root / 'input/recipe.json').read_text(encoding='utf-8'))
+            assert {tool.name for tool in tools.tools} == set(recipe['expected_mcp_tools'])
+            assert caps['version'] == recipe['core_version']
             return {'mcp': True, 'tool_count': len(tools.tools), 'capabilities_version': caps['version'], 'backend': caps['backend']}
 
 

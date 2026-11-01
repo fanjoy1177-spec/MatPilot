@@ -1,4 +1,4 @@
-"""CPU-only production-path checks for automatic Fe-Ni-O relaxation triage."""
+"""CPU-only production-path checks for automatic triage and explicit legacy replay."""
 import asyncio
 import contextlib
 import hashlib
@@ -69,19 +69,19 @@ class TriageIntegrationTests(unittest.TestCase):
                 "manifest_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}}}), encoding="utf-8")
         return Service(Settings.load(str(config))), config
 
-    def test_default_auto_executes_priority_filter_before_diversity_and_preserves_audit(self):
+    def test_explicit_v2_executes_priority_filter_before_diversity_and_preserves_audit(self):
         job_id = self.fixture_job()
         screening = self.service.screen_candidates(job_id)
         self.assertEqual(screening["unique_valid_candidate_count"], 3)
-        result = self.service.recommend_candidates(job_id=job_id, limit=3, include_all_records=True)
+        result = self.service.recommend_candidates(job_id=job_id, limit=3, include_all_records=True, selection_policy="triage_v2")
         self.assertEqual((result["requested_selection_policy"], result["effective_selection_policy"]),
-                         ("auto", "fe_ni_o_relaxation_v1"))
-        self.assertEqual(result["selected_count"], 1)
+                         ("triage_v2", "ionic_mixed_valence_v2"))
+        self.assertEqual(result["selected_count"], 2)
         self.assertFalse(result["target_met"])
         self.assertEqual(result["stage_counts"]["structural_representative_count"], 3)
-        self.assertEqual(result["stage_counts"]["priority_relaxation_count"], 1)
+        self.assertEqual(result["stage_counts"]["priority_relaxation_count"], 2)
         self.assertEqual(result["stage_counts"]["manual_review_count"], 1)
-        self.assertEqual(result["stage_counts"]["defer_count"], 1)
+        self.assertEqual(result["stage_counts"]["defer_count"], 0)
         selected = [r for r in result["records"] if r["selected"]]
         self.assertEqual(selected[0]["relaxation_priority"]["priority"], "优先弛豫")
         self.assertTrue(all(r["structural_representative_qualified"] for r in result["records"]))
@@ -93,16 +93,16 @@ class TriageIntegrationTests(unittest.TestCase):
         self.assertEqual(old["effective_selection_policy"], "structural_v1")
         self.assertNotIn("relaxation_triage_policy", old)
 
-    def test_other_elements_fall_back_and_explicit_inapplicable_policy_is_rejected(self):
-        crystal = Structure(Lattice.cubic(5.64), ["Na", "Cl"], [[0, 0, 0], [0.5, 0.5, 0.5]])
+    def test_supported_halide_uses_new_policy_and_explicit_legacy_scope_is_rejected(self):
+        crystal = Structure(Lattice.cubic(4), ["Na", "Cl"], [[0, 0, 0], [0.5, 0.5, 0.5]])
         path = self.root / "nacl.cif"
         path.write_text(str(CifWriter(crystal)), encoding="utf-8")
         service, _ = self.registered([{"candidate_id": "nacl", "path": str(path),
                                     "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}], ["Na", "Cl"])
-        result = service.recommend_candidates(collection_id="fixture", limit=1)
-        self.assertEqual(result["effective_selection_policy"], "structural_v1")
+        result = service.recommend_candidates(collection_id="fixture", limit=1, selection_policy="triage_v2")
+        self.assertEqual(result["effective_selection_policy"], "ionic_mixed_valence_v2")
         self.assertEqual(result["selected_count"], 1)
-        self.assertNotIn("relaxation_triage_policy", result)
+        self.assertIn("relaxation_triage_policy", result)
         with self.assertRaisesRegex(ValueError, "only.*Fe-Ni-O"):
             service.recommend_candidates(collection_id="fixture", selection_policy="fe_ni_o_relaxation_v1")
         with self.assertRaisesRegex(ValueError, "selection_policy must"):
@@ -123,10 +123,12 @@ class TriageIntegrationTests(unittest.TestCase):
 
     def test_external_preference_cannot_promote_deferred_structure(self):
         job_id = self.fixture_job()
-        analysis = self.service.recommend_candidates(job_id=job_id, include_all_records=True)
+        analysis = self.service.recommend_candidates(job_id=job_id, include_all_records=True,
+                                                     selection_policy="fe_ni_o_relaxation_v1")
         deferred = next(r["candidate_id"] for r in analysis["records"] if r["relaxation_priority"]["tier"] == "defer")
         service, _ = self.registered(self.service.get_results(job_id)["records"], priority=[deferred])
-        result = service.recommend_candidates(collection_id="fixture", limit=1, include_all_records=True)
+        result = service.recommend_candidates(collection_id="fixture", limit=1, include_all_records=True,
+                                              selection_policy="fe_ni_o_relaxation_v1")
         self.assertEqual(result["selected_count"], 0)
         self.assertEqual(result["caller_priority_selector"]["candidate_ids"], [deferred])
         self.assertFalse(result["target_met"])
@@ -137,14 +139,14 @@ class TriageIntegrationTests(unittest.TestCase):
         structural = self.service.build_report(job_id, recommendation_limit=3, recommendation_policy="structural_v1")
         before = {result[key]: Path(result[key]).read_bytes() for result in [default, structural]
                   for key in ("report_path", "evidence_path")}
-        automatic = self.service.build_report(job_id, recommendation_limit=3)
+        automatic = self.service.build_report(job_id, recommendation_limit=3, recommendation_policy="triage_v2")
         self.assertEqual(len({default["report_path"], structural["report_path"], automatic["report_path"]}), 3)
         for path, data in before.items():
             self.assertEqual(Path(path).read_bytes(), data)
         evidence = json.loads(Path(automatic["evidence_path"]).read_text(encoding="utf-8"))
-        self.assertEqual(evidence["recommendation"]["selected_count"], 1)
+        self.assertEqual(evidence["recommendation"]["selected_count"], 2)
         report = Path(automatic["report_path"]).read_text(encoding="utf-8")
-        for expected in ["优先弛豫", "人工复核", "暂缓", "启发式", "fe_ni_o_relaxation_v1"]:
+        for expected in ["优先弛豫", "人工复核", "本策略不产生物性评分", "ionic_mixed_valence_v2", "电荷可行性"]:
             self.assertIn(expected, report)
         self.assertNotIn("recommendation", json.loads(before[default["evidence_path"]]))
 
@@ -166,13 +168,56 @@ class TriageIntegrationTests(unittest.TestCase):
             tool = next(t for t in await app.list_tools() if t.name == "recommend_candidates")
             self.assertTrue(tool.annotations.readOnlyHint)
             self.assertEqual(tool.inputSchema["properties"]["selection_policy"]["default"], "auto")
-            result = await app.call_tool("recommend_candidates", {"collection_id": "fixture", "limit": 3})
+            result = await app.call_tool("recommend_candidates", {"collection_id": "fixture", "limit": 3, "selection_policy": "triage_v2"})
             structured = result[1] if isinstance(result, tuple) else result
             if not isinstance(structured, dict):
                 blocks = result[0] if isinstance(result, tuple) else result
                 structured = json.loads(blocks[0].text)
-            self.assertEqual(structured["selected_count"], 1)
-            self.assertEqual(structured["effective_selection_policy"], "fe_ni_o_relaxation_v1")
+            self.assertEqual(structured["selected_count"], 2)
+            self.assertEqual(structured["effective_selection_policy"], "ionic_mixed_valence_v2")
+        asyncio.run(exercise())
+
+    def test_explicit_legacy_keeps_original_fenio_tiers_and_report_isolation(self):
+        job_id = self.fixture_job()
+        result = self.service.recommend_candidates(job_id=job_id, limit=3, include_all_records=True,
+                                                  selection_policy="fe_ni_o_relaxation_v1")
+        self.assertEqual(result["effective_selection_policy"], "fe_ni_o_relaxation_v1")
+        self.assertEqual(result["stage_counts"]["priority_relaxation_count"], 1)
+        self.assertEqual(result["stage_counts"]["manual_review_count"], 1)
+        self.assertEqual(result["stage_counts"]["defer_count"], 1)
+        legacy_report = self.service.build_report(job_id, recommendation_limit=3,
+                                                   recommendation_policy="fe_ni_o_relaxation_v1")
+        legacy_bytes = Path(legacy_report["report_path"]).read_bytes()
+        automatic = self.service.build_report(job_id, recommendation_limit=3)
+        self.assertNotEqual(legacy_report["report_path"], automatic["report_path"])
+        self.assertEqual(Path(legacy_report["report_path"]).read_bytes(), legacy_bytes)
+        self.assertIn("旧版 Fe-Ni-O", legacy_bytes.decode("utf-8"))
+
+    def test_report_cli_and_mcp_accept_explicit_new_policy_and_keep_audit(self):
+        job_id = self.fixture_job()
+        config = self.root / "report-config.json"
+        config.write_text(json.dumps(self.service.settings.snapshot()), encoding="utf-8")
+        output = io.StringIO()
+        with patch("sys.argv", ["matpilot", "--config", str(config), "report", job_id,
+                               "--recommendation-limit", "3", "--recommendation-policy", "ionic_mixed_valence_v1"]), contextlib.redirect_stdout(output):
+            main()
+        cli_result = json.loads(output.getvalue())
+        evidence = json.loads(Path(cli_result["evidence_path"]).read_text(encoding="utf-8"))
+        self.assertEqual(evidence["recommendation"]["effective_selection_policy"], "ionic_mixed_valence_v1")
+        self.assertTrue(evidence["recommendation"]["include_all_records"])
+
+        async def exercise():
+            app = make_server(self.service.settings)
+            result = await app.call_tool("build_report", {"job_id": job_id, "recommendation_limit": 3,
+                                                         "recommendation_policy": "ionic_mixed_valence_v1"})
+            structured = result[1] if isinstance(result, tuple) else result
+            if not isinstance(structured, dict):
+                blocks = result[0] if isinstance(result, tuple) else result
+                structured = json.loads(blocks[0].text)
+            self.assertEqual(structured["evidence_path"], cli_result["evidence_path"])
+            readback = json.loads(Path(structured["evidence_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(readback["recommendation"]["all_candidate_audit_sha256"],
+                             evidence["recommendation"]["all_candidate_audit_sha256"])
         asyncio.run(exercise())
 
 

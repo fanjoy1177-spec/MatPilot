@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "results": {
+    "build_harness": {
+      "exit_code": 0,
+      "seconds": 0.906
+    },
+    "deployment_tests": {
+      "exit_code": 0,
+      "passed": 13,
+      "log_sha256": "0f3db81e333d2789c91fa4d44ce9fd9cb649a1e263f1331eb243cc7a278a3bc3",
+      "reuse_unchanged_test_run": true
+    },
+    "harness_tests": {
+      "exit_code": 0,
+      "passed": 27,
+      "log_sha256": "ec0672926376dbdae9666d38957732fdfdf2fc04205e6a3d88544bedad9daefc",
+      "reuse_unchanged_test_run": true
+    },
+    "core_wheel": {
+      "source_files_identical_to_formal": 34,
+      "version": "0.2.0.dev14",
+      "sha256": "30a919820732c7b57917afcf0677d1e4cd91c0423c9dd414dbea420122f79a48"
+    },
+    "harness_bundle": {
+      "version": "0.2.0-dev.12",
+      "core_version": "0.2.0.dev14",
+      "recipe_id": "mattergen-1.0.3-cu121-core14-v1",
+      "sha256": "33fea5f8b9dba150764aa9221ffb17a51935ccb86e6e374ec9101e629c2049b4",
+      "bytes": 883817,
+      "embedded_and_outer_checksums": "passed",
+      "zip_crc": "passed"
+    },
+    "wheel_import_probe": {
+      "exit_code": 0,
+      "seconds": 0.172
+    },
+    "wheel_import": {
+      "wheel_import": true,
+      "version": "0.2.0.dev14",
+      "origin_inside_wheel": true,
+      "origin_suffix": "\\matpilot\\__init__.py"
+    },
+    "wheel_configure": {
+      "exit_code": 0,
+      "seconds": 0.203
+    },
+    "wheel_mcp_check": {
+      "exit_code": 0,
+      "seconds": 2.593
+    },
+    "wheel_mcp": {
+      "core_import": true,
+      "real_generation": false,
+      "scientific_validation": false,
+      "mcp": true,
+      "tool_count": 12,
+      "capabilities_version": "0.2.0.dev14",
+      "backend": "demo"
+    }
+  },
+  "no_actual_install": true,
+  "no_model_execution": true,
+  "no_user_configuration_changed": true,
+  "no_formal_source_changes": true,
+  "scope": "package integrity, existing deployment/Harness regressions, wheel-import demo MCP in existing Windows environment",
+  "fresh_linux_wsl_installation_verified": false,
+  "remote_ci_for_dev14": "not_run_until_public_sync",
+  "prior_merged_core_regression": {
+    "total": 437,
+    "passed": 427,
+    "skipped": 10
+  },
+  "formal_path_targeted_tests_passed": 32
+}

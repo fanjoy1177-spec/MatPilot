@@ -1,14 +1,22 @@
 # 材策 MatPilot
 
+当前为 core 0.2.0.dev14 源码集成版本；本次源码合并不代表已安装或公开发布。保留跨材料 triage_v2、显式性质证据排序及预测准备接口；新增 ionic_complexity_v3 约化式复杂度启发式，并保留 ionic_ranked_v2 实验排序。默认 auto 仍采用 ionic_mixed_valence_v1；真实证据和明确材料类别优先走既有管线。规则与边界见 [候选推荐](docs/candidate_recommendation.md) 和 [跨材料使用指南](docs/recommendation_v2.md)。
+
+本次源码整合版本为 core `0.2.0.dev14`；配套 Harness 安装包版本为 `0.2.0-dev.12`。两个版本号属于不同组件，安装配方和包内 core wheel 均明确固定为 dev14。原有安装恢复、校验与显式授权流程保留。源码/安装包测试不等于已经在用户机器完成部署。
+
+本版保留跨材料 `triage_v2`、显式性质证据排序和预测准备接口，新增可选 `ionic_ranked_v2`、`ionic_complexity_v3`；默认 `auto` 仍为 `ionic_mixed_valence_v1`。新100结构实验的完整 Service 主方法命中11/20，MACE 归档标量对照命中20/20；后者是外部计算证据排序的条件性结果，不能改写为主方法或插件物理预测能力的提升。详见[验证摘要](docs/validation_summary_20261101.md)。
+
 **让材料研究需求成为可检查、可执行、可追溯的任务。**
 
 MatPilot 是 DeepSeek Harness 的材料研究工具插件，直接使用 Harness 界面。第一版接入 MatterGen，提供能力查询、完整条件检查、持久化任务、候选检查、代表结构推荐和证据报告。开发版已增加 DiffCSP++ 模板适配器及统一核验；第二模型尚未通过真实计算验收，当前不宣称已获得双模型科学成果。
 
 MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V1 integrates MatterGen. A DiffCSP++ template bridge is implemented but not yet accepted on real inference; no new LLM is trained and MatterGen's neural network is unchanged.
 
+2026-10-31：核心dev11补充跨体系混合价态判断。473个未参与修改的公开DFT结构、12个体系，同221名额下低凸包距离命中108→139（48.9%→62.9%）；仍有24个低标签被转复核，且覆盖/原子规模有取舍。详见[验证与边界](docs/mixed_valence_validation_20261031.md)。
+
 ## 当前开发范围
 
-当前 Python 核心版本为 `0.2.0.dev10`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
+当前 Python 核心版本为 `0.2.0.dev14`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
 
 自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
 
@@ -20,7 +28,9 @@ dev9新增第10个工具 `recommend_candidates`：对已有任务或操作者登
 
 2026-10-26新增交付入口：[插件能力与MatterGen对比报告（PDF）](output/pdf/MatPilot_插件能力与MatterGen对比报告.pdf)、[机器可读对比证据](artifacts/mattergen-usage-comparison-20261026.json)、[公开复现目录](releases/studies/2026-10-26-mattergen-comparison/)。本轮新生成数据、历史128候选参考池及固定演示分别记录；流程步骤与候选覆盖的改善不等同于材料性能、人员总用时或总计算费用改善。下方历次验收数字保留其原有版本和范围。
 
-dev10补齐此前未自动执行的“优先弛豫”分级：Fe-Ni-O推荐默认先做结构核验与代表去重，再按固定启发式分为优先弛豫、人工复核、暂缓，最后从优先池按组成/空间群/规模推荐。其它体系保留通用结构策略。见[双场景操作对比PDF](output/pdf/MatPilot_双场景操作对比.pdf)和[补充对照证据](artifacts/triage-candidate-comparison-20261026.json)。沿用同12个候选的事后补充验证显示：与最小结构基线相比，多覆盖1种组成而多3个输入位点；与顺序基线持平。该成果属于候选清单与计算计划优化，未证明物性或总提速。旧报告和旧结果保留。
+当前源码中的自动推荐已扩展为跨体系混合价态检查：对明确支持的离子材料使用 `ionic_mixed_valence_v1`，允许同一种金属的不同位点采用不同正价态；不支持的体系明确回退通用结构推荐并说明未评估电荷可行性。它检查有限规则中的整数电荷分配，不预测真实原子价态或材料性能。旧 Fe-Ni-O 策略仍可显式复现。使用范围和调用方法见[候选推荐说明](docs/candidate_recommendation.md)。
+
+历史 dev10补齐此前未自动执行的“优先弛豫”分级：Fe-Ni-O推荐默认先做结构核验与代表去重，再按固定启发式分为优先弛豫、人工复核、暂缓，最后从优先池按组成/空间群/规模推荐。其它体系保留通用结构策略。见[双场景操作对比PDF](output/pdf/MatPilot_双场景操作对比.pdf)和[补充对照证据](artifacts/triage-candidate-comparison-20261026.json)。沿用同12个候选的事后补充验证显示：与最小结构基线相比，多覆盖1种组成而多3个输入位点；与顺序基线持平。该成果属于候选清单与计算计划优化，未证明物性或总提速。旧报告和旧结果保留。
 
 ## 0.1.1 历史已验证状态
 
@@ -34,7 +44,7 @@ dev10补齐此前未自动执行的“优先弛豫”分级：Fe-Ni-O推荐默�
 
 ## 安装后端
 
-**首次使用建议直接安装 [dev11 环境部署包](releases/harness/0.2.0-dev.11/)。无需预装 Python 或 MatterGen。** 插件集成环境检查、固定版本安装、失败恢复、CUDA/MCP 验证和单候选验证入口。具体范围与原/新流程对照见[环境部署指南](docs/deployment.md)。下面保留已有环境的手动安装方式。
+**首次使用建议直接安装 [Harness dev12 / core dev14 环境部署包](releases/harness/0.2.0-dev.12/)。无需预装 Python 或 MatterGen。** 插件集成环境检查、固定版本安装、失败恢复、CUDA/MCP 验证和单候选验证入口。具体范围与原/新流程对照见[环境部署指南](docs/deployment.md)。下面保留已有环境的手动安装方式。
 
 需要 Python 3.10 或以上。下载源码，在项目目录建立独立环境：
 
@@ -56,18 +66,18 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [dev10 Python 发行文件目录](releases/0.2.0.dev10/) 下载 wheel 和源码包，按其中 SHA256SUMS.txt 核对；Harness 原生连接包单独安装，见下一节。wheel 不包含示例配置；先解压源码包获得 examples 与模板，再把配置路径指向解压目录，具体步骤见[桌面配置说明](docs/desktop_setup.md)。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+也可从 [dev14 Python wheel 目录](releases/0.2.0.dev14/) 下载 wheel，按 SHA256SUMS.txt 核对。wheel 不包含示例配置；从同版本仓库获取 examples 与模板。Harness 原生连接包单独安装，见下一节。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
 
 ## 安装到 Harness
 
 桌面版直接使用原生插件页面：
 
-1. 下载 [桌面插件包 0.2.0-dev.11](releases/harness/0.2.0-dev.11/)，按 SHA256SUMS.txt 核对；首次使用无需先装 Python。
+1. 下载 [桌面插件包 0.2.0-dev.12](releases/harness/0.2.0-dev.12/)，按 SHA256SUMS.txt 核对；首次使用无需先装 Python。
 2. 在 Harness 中选择“插件 → 添加插件”，填写下载的 tgz **绝对路径**，安装并启用。
 3. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。检查并确认安装计划后，插件安装隔离环境；已有环境也可使用手动连接表单。
 4. 查询安装进度，按需恢复，完成导入/CUDA/MCP 检查。真实单候选验证和启用真实计算分别授权。只需固定样本体验时明确选择 demo。
 
-自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见 [桌面配置说明](docs/desktop_setup.md)。已发布的 Harness dev11 环境部署包及其安装、失败恢复功能保留；其固定配方使用 Python 核心 0.2.0.dev8。本轮另提供核心 0.2.0.dev10 的自动分级与候选推荐能力，需连接相应核心环境后查询 get_capabilities 确认，不能把安装 dev11 等同于已升级核心。推荐升级方式见[桌面配置说明](docs/desktop_setup.md#core-dev10-推荐能力升级2026-10-26)。两个包独立编号，尚未发布 npm 或 PyPI。
+自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见[桌面配置说明](docs/desktop_setup.md)。当前 Harness 0.2.0-dev.12 的配方和包内 wheel 明确固定为 core 0.2.0.dev14，验证器检查12工具及核心版本。历史 Harness dev11/core dev8 包保留；升级不会自动替换用户正在使用的环境，需选择新的受管环境并验证连接。两个组件独立编号，尚未发布 npm 或 PyPI。
 
 CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
 
@@ -101,12 +111,14 @@ python -m matpilot --config examples/config.demo.json report JOB_ID
 
 用实际返回的编号替换大写占位符。`--approve-plan` 表示已检查并授权该计划。同一次提交重试应保持幂等键一致。关闭 MCP 连接不会取消独立进程中的计算；停止任务用 `control_job` 或 CLI 的 `stop`。
 
-## 工具（Python core dev10：10个）
+## 工具（Python core dev14：12个）
 
-此表仅统计 Python 核心 MCP 工具；Harness dev11 的环境部署、安装及恢复工具另行提供，见[环境部署指南](docs/deployment.md)。
+此表仅统计 Python 核心 MCP 工具；Harness dev12 的环境部署、安装及恢复工具另行提供，见[环境部署指南](docs/deployment.md)。
 
 | 工具 | 作用 |
 |---|---|
+| get_candidate_evidence | 查询候选的结构身份、计算证据和可比性 |
+| prepare_property_prediction | 准备性质预测计划及证据契约，不执行模型 |
 | get_capabilities | 模型、检查点、条件组合和单位 |
 | prepare_plan | 完整校验并固定方案，不自动丢弃要求 |
 | submit_job | 按已授权计划提交并拦截重复提交 |

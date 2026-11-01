@@ -1,3 +1,26 @@
+# Harness 0.2.0-dev.12 / core 0.2.0.dev14 acceptance
+
+2026-11-01. These are separate version axes. This package contains the merged
+core dev14 wheel, and its recipe verifies both the wheel checksum and the exact
+12-tool MCP contract. The deployment recipe uses a new managed environment ID.
+MatterGen code, dependency locks, and checkpoint pins are unchanged.
+
+The current release is checked through package integrity, the existing 13
+deployment/download tests, Harness regression tests, and actual demo-mode MCP
+initialization directly from the built wheel. This verifies local packaging and
+protocol compatibility in the existing Windows Python environment. It does not
+constitute a new Linux/WSL installation, CUDA/model check, real generation, or
+fresh-machine acceptance of dev14. No existing user configuration is changed.
+
+The merged core previously passed 427 of 437 Python checks, with 10 documented
+skips, plus 32 targeted formal-source interface checks. See
+`docs/validation_summary_20261101.md` for scientific evidence and its limits.
+
+## Historical deployment evidence, retained verbatim
+
+The following record concerns Harness dev11 / core dev8 on 2026-10-25. It is
+historical evidence of the deployment mechanism, not a dev14 installation result.
+
 # 材策 dev11 环境部署验收
 
 2026-10-25。本开发版将环境检查、固定版本安装、失败恢复、分层验证与自动连接集成到材策插件；Python 核心继续为 0.2.0.dev8。安装包需联网。

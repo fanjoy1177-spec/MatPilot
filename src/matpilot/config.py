@@ -26,11 +26,18 @@ class Settings:
     diffcsp: dict = field(default_factory=dict)
     model_identities: dict = field(default_factory=dict)
     candidate_collections: dict = field(default_factory=dict)
+    automatic_ranking_policy: str = "ionic_mixed_valence_v1"
+    property_predictor: dict = field(default_factory=dict)
 
     def __post_init__(self) -> None:
+        from .predictors import validate_predictor_config
+        self.property_predictor = validate_predictor_config(self.property_predictor)
         # The v1.1 first-release cap also applies to restored worker snapshots.
         if type(self.max_samples) is not int or not 1 <= self.max_samples <= 32:
             raise ValueError("max_samples must be an integer from 1 to 32")
+        if (not isinstance(self.automatic_ranking_policy, str)
+                or self.automatic_ranking_policy not in {"ionic_mixed_valence_v1", "ionic_ranked_v2", "ionic_complexity_v3"}):
+            raise ValueError("automatic_ranking_policy must be ionic_mixed_valence_v1, ionic_ranked_v2 or ionic_complexity_v3")
         if not isinstance(self.candidate_collections, dict):
             raise ValueError("candidate_collections must be an operator-controlled registry")
         for key, entry in self.candidate_collections.items():

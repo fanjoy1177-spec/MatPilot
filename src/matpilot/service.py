@@ -29,7 +29,12 @@ class Service:
         self.store = Store(settings.data_dir)
 
     def get_capabilities(self) -> dict:
+        from .predictors import predictor_config_schema
         return {"product": "MatPilot", "version": __version__, "models": cards(self.settings),
+                "property_prediction": {"operator_contract": predictor_config_schema(),
+                    "enabled": self.settings.property_predictor["enabled"],
+                    "available_tool": "prepare_property_prediction", "execution_tool_exposed": False,
+                    "notice": "Preparation only; no model download, inference, relaxation or DFT is started by the Harness tools."},
                 "backend": self.settings.backend, "max_samples": self.settings.max_samples,
                 "default_samples": min(16, self.settings.max_samples), "seed_supported": self.settings.seed_supported,
                 "requirements_contract": requirement_contract(),
@@ -38,8 +43,13 @@ class Service:
                     "collection_ids": sorted(self.settings.candidate_collections),
                     "sources": "Choose exactly one existing job_id or operator-registered collection_id; arbitrary paths are not accepted.",
                     "default_selection_policy": "auto",
+                    "automatic_ranking_policy": self.settings.automatic_ranking_policy,
                     "selection_policies": self._recommendation_policy_cards(),
-                    "method": "Verified CIFs, explicit composition and occupancy checks, structural representatives; auto applies the declared Fe-Ni-O relaxation triage before equal-weight composition/space-group/site-bin coverage. Other element systems use structural coverage only.",
+                    "method": f"Verified CIFs, explicit composition and occupancy checks and representative deduplication; auto currently uses {self.settings.automatic_ranking_policy} for supported declared ionic systems, according to operator configuration. ionic_mixed_valence_v1 applies mixed oxidation-state feasibility then equal-weight category coverage. ionic_ranked_v2 applies a frozen learned relative low-hull proxy score within the same priority pool; training used historical labels, inference does not read property labels, and scores are not calibrated stability probabilities. ionic_complexity_v3 retains the same priority gate and sorts by descending atom count in the reduced integer formula, then verified artifact SHA256 and candidate ID; it is a heuristic chosen using development labels, not a fitted predictor or measured property. Explicit objective/metric evidence or material_class declarations route auto through the preserved triage_v2/evidence pipeline and take precedence over the learned proxy. Unsupported auto systems explicitly fall back to structural_v1 without a chemical-feasibility conclusion.",
+                    "material_classes": ["auto", "ionic", "metallic", "covalent", "other", "unknown"],
+                    "evidence_ranking": {"objective_fields": ["property", "unit", "direction", "target_min (optional)", "target_max (optional)"],
+                        "directions": ["minimize", "maximize"], "selection_fields": ["candidate_id", "structure_version_id", "metric_id", "job_id (required for job source)"],
+                        "rule": "Choose evidence by method/protocol before observing its favorable value; unselected and missing evidence stay in the audit. No automatic best-of-many selection."},
                     "scope": "Read-only postprocessing and compute planning, not material-property optimization; collection provenance is independent of the current generation backend.",
                     "registration_notice": "Listed collection IDs are configured sources; manifest and CIF checksums are reverified when used."},
                 "request_example": {"raw_request": "Fe-Ni-O，最多4个",
@@ -244,33 +254,92 @@ class Service:
                 "include_all_records": include_all_records,
                 "records": records if include_all_records else selected}
 
-    @staticmethod
-    def _recommendation_policy_cards() -> dict:
+    def _recommendation_policy_cards(self) -> dict:
         from .relaxation_triage import policy_description
+        from .mixed_valence import policy_description as mixed_valence_policy_description
+        from .priority_ranking import policy_description as ranking_policy_description
+        from .complexity_ranking import policy_description as complexity_policy_description
+        from .recommendation_routing import policy_cards
         return {
-            "auto": {"routing": "Exact declared element set Fe/Ni/O uses fe_ni_o_relaxation_v1; every other element system uses structural_v1."},
+            **policy_cards(),
+            "auto": {"ionic_policy": self.settings.automatic_ranking_policy,
+                     "routing": f"Supported declared ionic element sets use operator-configured {self.settings.automatic_ranking_policy}; unsupported sets use structural_v1 with selection_policy_resolution and fallback_reason explaining that chemical feasibility was not assessed. The installation default is ionic_mixed_valence_v1; switching requires the operator-controlled automatic_ranking_policy setting."},
             "structural_v1": {
                 "method": "Original structural checks, representative deduplication and equal-weight categorical diversity coverage.",
                 "scope": "No automatic relaxation-priority classification; retained for explicit historical replay and unsupported element systems."},
             "fe_ni_o_relaxation_v1": policy_description(),
+            "ionic_mixed_valence_v1": mixed_valence_policy_description(),
+            "ionic_ranked_v2": ranking_policy_description(),
+            "ionic_complexity_v3": complexity_policy_description(),
         }
 
-    @staticmethod
-    def _recommendation_result(records: list[dict], expected_elements, limit: int,
-                               selection_policy: str = "auto", **priority) -> dict:
+    def _recommendation_result(self, records: list[dict], expected_elements, limit: int,
+                               selection_policy: str = "auto", *, material_class: str = "auto",
+                               evidence: dict | None = None, **priority) -> dict:
+        from .recommendation_routing import POLICIES, recommend_v2
+        if isinstance(selection_policy, str) and selection_policy in POLICIES:
+            return recommend_v2(records, expected_elements, limit, selection_policy,
+                                material_class=material_class, evidence=evidence, **priority)
+        if selection_policy == "auto" and (evidence is not None or material_class != "auto"):
+            # Explicit evidence and material-class declarations take precedence
+            # over the learned proxy. No supplied parameter is silently dropped.
+            routed = recommend_v2(records, expected_elements, limit, "triage_v2",
+                                  material_class=material_class, evidence=evidence, **priority)
+            routed["requested_selection_policy"] = "auto"
+            routed["selection_policy_resolution"].update(
+                configured_automatic_ranking_policy=self.settings.automatic_ranking_policy,
+                auto_routing_reason="explicit_property_evidence_or_material_class_uses_v2_pipeline")
+            return routed
+        if evidence is not None or material_class != "auto":
+            raise ValueError("Explicit legacy, ionic_ranked_v2 and ionic_complexity_v3 policies do not accept evidence ranking or material_class; use auto, triage_v2 or evidence_v1 for these parameters.")
+        from .mixed_valence import supports_ionic_system, recommend_with_mixed_valence
         if not isinstance(selection_policy, str) or selection_policy not in {
-                "auto", "structural_v1", "fe_ni_o_relaxation_v1"}:
-            raise ValueError("selection_policy must be auto, structural_v1 or fe_ni_o_relaxation_v1.")
-        applicable = set(expected_elements) == {"Fe", "Ni", "O"}
-        if selection_policy == "fe_ni_o_relaxation_v1" and not applicable:
+                "auto", "structural_v1", "fe_ni_o_relaxation_v1", "ionic_mixed_valence_v1", "ionic_ranked_v2", "ionic_complexity_v3"}:
+            raise ValueError("selection_policy must be auto, structural_v1, fe_ni_o_relaxation_v1, ionic_mixed_valence_v1, ionic_ranked_v2 or ionic_complexity_v3.")
+        ionic_applicable = supports_ionic_system(expected_elements)
+        legacy_applicable = set(expected_elements) == {"Fe", "Ni", "O"}
+        if selection_policy == "fe_ni_o_relaxation_v1" and not legacy_applicable:
             raise ValueError("fe_ni_o_relaxation_v1 applies only to the explicitly declared Fe-Ni-O element system.")
-        effective = ("fe_ni_o_relaxation_v1" if applicable else "structural_v1") if selection_policy == "auto" else selection_policy
-        if effective == "fe_ni_o_relaxation_v1":
+        if selection_policy in {"ionic_mixed_valence_v1", "ionic_ranked_v2", "ionic_complexity_v3"} and not ionic_applicable:
+            raise ValueError(f"{selection_policy} does not support this declared element system; use structural_v1 for structural checks without chemical-feasibility assessment.")
+        effective = (self.settings.automatic_ranking_policy if ionic_applicable else "structural_v1") if selection_policy == "auto" else selection_policy
+        fallback = selection_policy == "auto" and not ionic_applicable
+        fallback_reason = ("declared_element_system_outside_ionic_policy_scope; chemical_feasibility_not_assessed"
+                           if fallback else None)
+        if effective == "ionic_complexity_v3":
+            from .complexity_ranking import recommend_complexity
+            result = recommend_complexity(records, expected_elements, limit, **priority)
+        elif effective == "ionic_ranked_v2":
+            from .priority_ranking import recommend_ranked
+            result = recommend_ranked(records, expected_elements, limit, **priority)
+        elif effective == "ionic_mixed_valence_v1":
+            result = recommend_with_mixed_valence(records, expected_elements, limit, **priority)
+        elif effective == "fe_ni_o_relaxation_v1":
             from .relaxation_triage import recommend_for_relaxation
             result = recommend_for_relaxation(records, expected_elements, limit, **priority)
         else:
             result = recommend_records(records, expected_elements, limit, **priority)
-        return {**result, "requested_selection_policy": selection_policy, "effective_selection_policy": effective}
+        if fallback:
+            result["limitations"] = list(result["limitations"]) + [
+                "The declared element system is outside the ionic policy scope. Only structural checks and representative selection were performed; oxidation-state feasibility and material properties remain unassessed."]
+        learned_score = effective == "ionic_ranked_v2" and any(
+            row.get("ranking_evidence", {}).get("uncalibrated_score") is not None
+            for row in result["records"])
+        return {**result, "requested_selection_policy": selection_policy, "effective_selection_policy": effective,
+                "fallback_reason": fallback_reason,
+                "selection_policy_resolution": {"ionic_policy_applicable": ionic_applicable,
+                    "configured_automatic_ranking_policy": self.settings.automatic_ranking_policy,
+                    "fallback_applied": fallback, "chemical_feasibility_policy_invoked": effective in {
+                        "ionic_mixed_valence_v1", "ionic_ranked_v2", "ionic_complexity_v3", "fe_ni_o_relaxation_v1"},
+                    "property_prediction_performed": learned_score,
+                    **({"prediction_scope": "uncalibrated_low_hull_proxy_relative_score" if learned_score else None,
+                        "learned_ranking_policy_invoked": True, "training_property_labels_used": True,
+                        "inference_property_labels_used": False, "calibrated_stability_probability": False}
+                       if effective == "ionic_ranked_v2" else {}),
+                    **({"heuristic_ranking_policy_invoked": True, "fitted_model": False,
+                        "policy_choice_informed_by_development_labels": True,
+                        "inference_property_labels_used": False, "calibrated_stability_probability": False}
+                       if effective == "ionic_complexity_v3" else {})}}
 
     def _load_candidate_collection(self, collection_id: str) -> tuple[dict, dict]:
         if not isinstance(collection_id, str) or collection_id not in self.settings.candidate_collections:
@@ -290,14 +359,37 @@ class Service:
             raise ValueError("Candidate collection manifest SHA256 mismatch.")
         manifest = json.loads(content.decode("utf-8-sig"))
         required = {"schema_version", "expected_elements", "provenance", "records"}
-        allowed = required | {"priority_candidate_ids", "priority_selection_basis"}
+        allowed = required | {"priority_candidate_ids", "priority_selection_basis", "metrics_by_structure_version"}
         if (not isinstance(manifest, dict) or not required <= set(manifest) or set(manifest) - allowed
-                or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+                or type(manifest["schema_version"]) is not int or manifest["schema_version"] not in {1, 2}
                 or not isinstance(manifest["expected_elements"], list) or not manifest["expected_elements"]
                 or not isinstance(manifest["provenance"], (str, dict)) or not manifest["provenance"]
                 or not isinstance(manifest["records"], list) or not 1 <= len(manifest["records"]) <= 256
                 or not all(isinstance(row, dict) for row in manifest["records"])):
             raise ValueError("Invalid registered candidate manifest schema.")
+        if "metrics_by_structure_version" in manifest:
+            from .evidence import validate_metric
+            if manifest["schema_version"] != 2 or not isinstance(manifest["metrics_by_structure_version"], dict):
+                raise ValueError("Collection metrics require schema_version 2 and a version-keyed dictionary.")
+            versions = {r.get("structure_version_id"): r for r in manifest["records"]}
+            ids = [r.get("candidate_id") for r in manifest["records"]]
+            if (len(versions) != len(manifest["records"]) or len(set(ids)) != len(ids)
+                    or any(not isinstance(v, str) or not v for v in versions)):
+                raise ValueError("Evidence collections require distinct explicit candidate and structure version identities.")
+            for version_id, metrics in manifest["metrics_by_structure_version"].items():
+                if version_id not in versions or not isinstance(metrics, list) or len(metrics) > 32:
+                    raise ValueError("Collection evidence must belong to registered versions, at most 32 metrics per version.")
+                for metric in metrics:
+                    if not isinstance(metric, dict) or "metric_id" not in metric:
+                        raise ValueError("Collection metrics need their immutable metric_id.")
+                    # Evidence artifact paths are absolute: normalizing a path
+                    # here would silently change its immutable metric identity.
+                    for key in ("input_artifact", "raw_output"):
+                        if not Path(metric.get(key, {}).get("path", "")).is_absolute():
+                            raise ValueError("Registered metric artifact paths must be absolute.")
+                    checked = validate_metric({k: v for k, v in metric.items() if k != "metric_id"}, versions[version_id])
+                    if checked["metric_id"] != metric["metric_id"]:
+                        raise ValueError("Registered metric identity mismatch.")
         for row in manifest["records"]:
             if isinstance(row.get("path"), str) and not Path(row["path"]).is_absolute():
                 row["path"] = str((manifest_path.parent / row["path"]).resolve())
@@ -307,23 +399,89 @@ class Service:
 
     def recommend_candidates(self, job_id: str | None = None, collection_id: str | None = None,
                              limit: int = 12, include_all_records: bool = False,
-                             selection_policy: str = "auto") -> dict:
+                             selection_policy: str = "auto", objective: dict | None = None,
+                             metric_selections: list[dict] | None = None, material_class: str = "auto") -> dict:
         """Read-only candidate planning from one known job or registered collection."""
         if (job_id is None) == (collection_id is None):
             raise ValueError("Provide exactly one job_id or collection_id.")
+        if objective is None and metric_selections is not None:
+            raise ValueError("Ranking metric selections need an explicit objective.")
+        from .evidence_ranking import build_evidence_rank_keys
+        evidence = None
         if job_id is not None:
             if not isinstance(job_id, str) or not job_id:
                 raise ValueError("job_id must be a nonempty string.")
             screened = self.screen_candidates(job_id)
             plan = self.store.plan(self.store.job(job_id)["plan_id"])
-            recommendation = self._recommendation_result(screened["records"], self._recommendation_elements(plan), limit, selection_policy)
+            if objective is not None:
+                if metric_selections is not None:
+                    self._validate_metric_selections(metric_selections, 0, 256)
+                    self._resolve_metric_selections(metric_selections, {job_id: screened})
+                records = [{**r, "job_id": job_id} for r in screened["records"]]
+                evidence = build_evidence_rank_keys(records, screened["metrics_by_structure_version"], objective, metric_selections)
+            recommendation = self._recommendation_result(screened["records"], self._recommendation_elements(plan), limit, selection_policy,
+                material_class=material_class, evidence=evidence)
             source = {"kind": "job", "job_id": job_id, "provenance": screened["provenance"]}
         else:
             manifest, source = self._load_candidate_collection(collection_id)
+            if objective is not None:
+                evidence = build_evidence_rank_keys(manifest["records"], manifest.get("metrics_by_structure_version", {}), objective, metric_selections)
             recommendation = self._recommendation_result(manifest["records"], manifest["expected_elements"], limit, selection_policy,
+                material_class=material_class, evidence=evidence,
                 priority_candidate_ids=manifest.get("priority_candidate_ids"),
                 priority_selection_basis=manifest.get("priority_selection_basis"))
         return self._recommendation_view(recommendation, source, include_all_records)
+
+    def get_candidate_evidence(self, job_id: str | None = None, collection_id: str | None = None) -> dict:
+        """Expose identities and method groups, withholding values during selection."""
+        if (job_id is None) == (collection_id is None):
+            raise ValueError("Provide exactly one job_id or collection_id.")
+        if job_id is not None:
+            available = self.get_results(job_id)
+            records, metrics = available["records"], available["metrics_by_structure_version"]
+            source = {"kind": "job", "job_id": job_id}
+        else:
+            available, source = self._load_candidate_collection(collection_id)
+            records, metrics = available["records"], available.get("metrics_by_structure_version", {})
+        groups = {}
+        for row in records:
+            cid, vid = row["candidate_id"], row.get("structure_version_id")
+            for metric in metrics.get(vid, []):
+                description = {k: metric.get(k) for k in ("property", "unit", "method", "reference_set")}
+                key = canonical_hash(description)
+                group = groups.setdefault(key, {"method_group_id": key, **description, "metric_selections": []})
+                selection = {"candidate_id": cid, "structure_version_id": vid, "metric_id": metric["metric_id"]}
+                if job_id is not None:
+                    selection["job_id"] = job_id
+                group["metric_selections"].append(selection)
+        for group in groups.values():
+            counts = Counter(s["candidate_id"] for s in group["metric_selections"])
+            group["ambiguous_candidate_ids"] = sorted(k for k, v in counts.items() if v > 1)
+            group["candidate_count"] = len(counts)
+        return {"source": source, "count": len(records),
+                "records": [{k: r.get(k) for k in ("candidate_id", "structure_version_id", "sha256")} for r in records],
+                "method_groups": [groups[k] for k in sorted(groups)],
+                "values_withheld": True,
+                "instruction": "Choose a method/protocol before numerical outcomes, then pass explicit metric_selections to recommend_candidates with objective. Resolve duplicate metrics by provenance, never by selecting favorable values. Missing evidence remains review."}
+
+    def prepare_property_prediction(self, candidate_id: str, structure_version_id: str,
+                                    material_class: str, structure_state: str,
+                                    job_id: str | None = None, collection_id: str | None = None) -> dict:
+        """Resolve registered identities and prepare only; no inference endpoint."""
+        from .predictors import prepare_static_prediction
+        if (job_id is None) == (collection_id is None):
+            raise ValueError("Provide exactly one job_id or collection_id.")
+        if job_id is not None:
+            data = self.get_results(job_id)
+            records = [v for versions in data["structure_versions"].values() for v in versions]
+        else:
+            manifest, _ = self._load_candidate_collection(collection_id)
+            records = manifest["records"]
+        matches = [r for r in records if r.get("candidate_id") == candidate_id and r.get("structure_version_id") == structure_version_id]
+        if len(matches) != 1:
+            raise ValueError("Prediction preparation needs one exact registered candidate and version identity.")
+        return prepare_static_prediction(matches[0], self.settings.property_predictor,
+            self.store.root / "property-prediction-plans", material_class=material_class, structure_state=structure_state)
 
     def compare_runs(self, job_ids: list[str], metric_selections: list[dict] | None = None) -> dict:
         minimum = 1 if metric_selections is not None else 2
@@ -363,7 +521,14 @@ class Service:
         return result
 
     def build_report(self, job_id: str, metric_selections: list[dict] | None = None,
-                     recommendation_limit: int | None = None, recommendation_policy: str = "auto") -> dict:
+                     recommendation_limit: int | None = None, recommendation_policy: str = "auto",
+                     recommendation_objective: dict | None = None,
+                     recommendation_metric_selections: list[dict] | None = None,
+                     material_class: str = "auto") -> dict:
+        if recommendation_limit is None and (recommendation_objective is not None or recommendation_metric_selections is not None):
+            raise ValueError("Recommendation evidence requires recommendation_limit.")
+        if recommendation_objective is None and recommendation_metric_selections is not None:
+            raise ValueError("Recommendation metric selections require an objective.")
         job = self.store.job(job_id)
         plan = self.store.plan(job["plan_id"])
         result = self.screen_candidates(job_id, metric_selections)
@@ -372,13 +537,27 @@ class Service:
             folder = folder / "metric-selections" / result["metric_selection_audit"]["selection_sha256"]
         recommendation = None
         if recommendation_limit is not None:
+            ranking = None
+            if recommendation_objective is not None:
+                from .evidence_ranking import build_evidence_rank_keys
+                available = result.get("all_metrics_by_structure_version", result["metrics_by_structure_version"])
+                if recommendation_metric_selections is not None:
+                    self._validate_metric_selections(recommendation_metric_selections, 0, 256)
+                    self._resolve_metric_selections(recommendation_metric_selections, {job_id: {**result, "metrics_by_structure_version": available}})
+                ranking = build_evidence_rank_keys([{**r, "job_id": job_id} for r in result["records"]], available,
+                                                  recommendation_objective, recommendation_metric_selections)
             recommendation = self._recommendation_view(
-                self._recommendation_result(result["records"], self._recommendation_elements(plan), recommendation_limit, recommendation_policy),
+                self._recommendation_result(result["records"], self._recommendation_elements(plan), recommendation_limit, recommendation_policy,
+                                            material_class=material_class, evidence=ranking),
                 {"kind": "job", "job_id": job_id, "provenance": result["provenance"]}, True)
             folder = folder / "recommendations"
             if recommendation["effective_selection_policy"] != "structural_v1":
                 folder = folder / recommendation["effective_selection_policy"]
             folder = folder / str(recommendation_limit)
+            if ranking is not None or material_class != "auto":
+                folder = folder / canonical_hash({"objective": recommendation_objective,
+                    "selection_audit": ranking["metric_selection_audit"] if ranking is not None else None,
+                    "material_class": material_class})
         folder.mkdir(parents=True, exist_ok=True)
         packages = {}
         for name in ["matpilot-core", "mcp", "pymatgen"]:
@@ -424,30 +603,93 @@ class Service:
             lines += ["| " + " | ".join(cell(selection[k]) for k in ("candidate_id", "structure_version_id", "metric_id")) + " |" for selection in audit["selections"]]
             lines += ["", "未选指标 ID：" + (", ".join(audit["unselected_metric_ids"]) or "无")]
         if recommendation is not None:
+            ranked = recommendation["effective_selection_policy"] == "ionic_ranked_v2"
+            complexity = recommendation["effective_selection_policy"] == "ionic_complexity_v3"
             lines += ["", "## 候选代表推荐", "",
-                      "此排序用于后续计算规划，不代表材料性质更优。组成、空间群和晶胞规模档位等权覆盖；原子数仅为规模代理，不是实际计算费用。",
+                      ("保留结构与混合价态资格门，按约化整数化学式的原子总数降序选择，再按已核验文件 SHA256 和候选 ID 打破平局。该启发式是根据开发数据选择的规则，没有拟合模型，也不输出材料性质或稳定概率。"
+                       if complexity else
+                       "此策略在不改变结构与混合价态资格门的前提下，使用历史标签训练的固定模型对优先池作相对排序，并记录覆盖调整。分数不是经过校准的稳定概率，也不是已测得的物性。"
+                       if ranked else
+                       "先按已选、可比的性质证据排序，证据相同才按组成、空间群与规模覆盖打破平局；缺证据进入复核。结论受所选方法和适用范围限制。"
+                       if recommendation.get("evidence_ranking") else
+                       "此排序用于后续计算规划。新策略逐个检查后选代表，再按组成、空间群和规模覆盖；原子数仅为规模代理，不是实际计算费用。"),
                       f"请求策略：{recommendation['requested_selection_policy']}；实际策略：{recommendation['effective_selection_policy']}。",
                       f"请求 {recommendation_limit} 个；合格代表 {recommendation['eligible_representative_count']} 个；实际推荐 {recommendation['selected_count']} 个。",
                       f"全量候选审计 SHA256：{recommendation['all_candidate_audit_sha256']}"]
+            if recommendation.get("fallback_reason"):
+                lines += ["", "声明的材料类别或元素体系不适用离子价态规则，已明确回退到通用结构推荐；未评估电荷可行性或材料性质。",
+                          "回退原因：" + cell(recommendation["fallback_reason"])]
             if "relaxation_triage_policy" in recommendation:
+                mixed = recommendation["effective_selection_policy"] in {"ionic_mixed_valence_v1", "ionic_mixed_valence_v2", "ionic_ranked_v2", "ionic_complexity_v3"}
+                description = (
+                    "使用已声明适用范围的离子体系规则，允许同一种金属元素使用多种公开先验正价态，检查有限价态集合内是否存在整数电荷分配；结构门通过且电荷检查可行的代表进入优先弛豫池，其余需要人工复核。电荷分配示例是可行性见证，不是各原子实际价态或材料稳定性的预测；" + ("本资格门不产生物性评分，后续相对排序另列。" if ranked else "本策略不产生物性评分。")
+                    if mixed else
+                    "使用保留的旧版 Fe-Ni-O 统一价态启发式；不检查同元素混合价态。"
+                    if recommendation["effective_selection_policy"] == "fe_ni_o_relaxation_v1" else
+                    "通用结构准备度检查不施加离子价态规则。若使用性质证据排序，缺失、不一致或未明确选定的证据不参与优先推荐。")
                 lines += ["", "### 自动弛豫优先级", "",
-                          "使用明示的 Fe-Ni-O 结构启发式生成优先弛豫、人工复核或暂缓标签，再从优先池的代表结构选择多样化候选。标签用于安排后续计算，不是弛豫结果、能量或催化性能结论。",
-                          "阶段计数：" + cell(json.dumps(recommendation.get("stage_counts", {}), ensure_ascii=False)), "",
-                          "| 候选 ID | 分层 | 启发式分数 | 原因或规则检查 |", "|---|---|---|---|"]
+                          description,
+                          "标签用于安排后续计算，不是弛豫结果、能量或催化性能结论。",
+                          "阶段计数：" + cell(json.dumps(recommendation.get("stage_counts", {}), ensure_ascii=False)), ""]
+                lines += (["| 候选 ID | 分层 | 电荷可行性状态 | 原因或规则检查 |", "|---|---|---|---|"]
+                          if mixed else
+                          ["| 候选 ID | 分层 | 启发式分数 | 原因或规则检查 |", "|---|---|---|---|"])
                 for row in recommendation["records"]:
                     triage = row.get("relaxation_priority", {})
                     if triage:
                         issues = triage.get("issues", [])
+                        charge = triage.get("metrics", {}).get("charge_feasibility", {})
                         lines.append("| " + " | ".join(cell(value) for value in [row["candidate_id"],
-                            triage.get("priority", triage.get("tier", "未知")), triage.get("score"),
-                            json.dumps(issues, ensure_ascii=False) if issues else "通过所列启发式规则；仍待物性验证"]) + " |")
-                lines += ["", "完整阈值、度量、排除理由与局限保存在 JSON 的 relaxation_triage_policy 和逐候选 relaxation_priority 中。"]
+                            triage.get("priority", triage.get("tier", "未知")),
+                            charge.get("status", "未知或不适用") if mixed else triage.get("score"),
+                            json.dumps(issues, ensure_ascii=False) if issues else "通过所列规则；仍待物性验证"]) + " |")
+                lines += ["", "完整阈值、度量、价态规则与分配见证（适用时）、排除理由与局限保存在 JSON 的 relaxation_triage_policy 和逐候选 relaxation_priority 中；未知结果不当作已确认可行。"]
+            if ranked:
+                ranking = recommendation.get("priority_ranking", {})
+                lines += ["", "### 优先池相对排序", "",
+                          "训练使用历史开发集的低凸包距离标签；本次推理只读取结构及固定模型参数，不读取候选真实性能标签。训练使用标签与推理不读标签是不同的证据边界。",
+                          "相对分数不能解释成稳定概率、凸包距离数值或已验证的弛豫成功率；新元素体系、生成结构与已弛豫数据库结构之间的分布差异仍需验证。",
+                          "排序状态：" + cell(ranking.get("status", "unknown")),
+                          "固定模型 ID：" + cell(ranking.get("model_id", "unknown")),
+                          "固定模型 SHA256：" + cell(ranking.get("model_sha256", "unknown")),
+                          "覆盖调整参数：" + cell(ranking.get("coverage_bonus")),
+                          "覆盖结果：" + cell(json.dumps(recommendation.get("coverage", {}), ensure_ascii=False)),
+                          "回退或警告：" + cell(json.dumps({"fallback_reasons": ranking.get("fallback_reasons", []),
+                              "warnings": ranking.get("warnings", [])}, ensure_ascii=False)), "",
+                          "| 候选 ID | 排序状态 | 线性分数 | 未校准相对分数 | 选择调整 |", "|---|---|---|---|---|"]
+                for row in recommendation["records"]:
+                    evidence = row.get("ranking_evidence", {})
+                    lines.append("| " + " | ".join(cell(value) for value in [row["candidate_id"],
+                        evidence.get("status", "未参与优先池评分"), evidence.get("linear_score"),
+                        evidence.get("uncalibrated_score"), json.dumps(evidence.get("selection_adjustment"), ensure_ascii=False)]) + " |")
+                lines += ["", "逐候选特征、标准化值和分数贡献保存在 JSON 的 ranking_evidence；完整模型说明保存在 priority_ranking。输入规模不直接等于计算费用。"]
+            if complexity:
+                ranking = recommendation.get("priority_ranking", {})
+                lines += ["", "### 优先池复杂度启发式", "",
+                    "使用约化整数化学式中的原子总数，复制输入晶胞不改变这一值。它不等于输入晶胞原子数，也不是实际计算费用或物性分数。",
+                    "规则选择参考过开发标签；本次排序不读取性能标签，不改变资格门或推荐名额。独立跨体系效果以冻结盲测报告为准。",
+                    "排序状态：" + cell(ranking.get("status", "unknown")),
+                    "回退或警告：" + cell(json.dumps({"fallback_reasons": ranking.get("fallback_reasons", []),
+                        "warnings": ranking.get("warnings", [])}, ensure_ascii=False)), "",
+                    "| 候选 ID | 排序状态 | 约化式原子总数 |", "|---|---|---|"]
+                for row in recommendation["records"]:
+                    heuristic = row.get("ranking_evidence", {})
+                    lines.append("| " + " | ".join(cell(value) for value in [row["candidate_id"],
+                        heuristic.get("status", "未参与优先池排序"), heuristic.get("reduced_formula_atom_count")]) + " |")
+                lines += ["", "逐候选启发式键保存在 JSON 的 ranking_evidence；异常时整池回退旧排序并保留明确原因。"]
+            if recommendation.get("evidence_ranking"):
+                ranking_audit = recommendation["evidence_ranking"]
+                lines += ["", "### 性质证据排序", "",
+                    "目标：" + cell(json.dumps(ranking_audit["ranking_metadata"]["objective"], ensure_ascii=False)),
+                    "证据选择 SHA256：" + ranking_audit["metric_selection_audit"]["selection_sha256"],
+                    f"缺少可比证据需复核：{len(ranking_audit['unresolved_candidates'])} 个。",
+                    "匹配的元数据和工件身份不等于模型已在该材料范围独立验证；不据此宣称稳定概率、合成成功或新材料性能提升。"]
             lines += ["",
                       "| 顺序 | 候选 ID | 约化组成 | 空间群 | 输入原子数 | 新增覆盖类别 |", "|---|---|---|---|---|---|"]
             for row in sorted((r for r in recommendation["records"] if r["selected"]), key=lambda r: r["selection_rank"]):
                 lines.append("| " + " | ".join(cell(value) for value in [row["selection_rank"], row["candidate_id"],
                     row["reduced_formula"], row["space_group_symbol"], row["site_count"],
-                    ", ".join(row["selection_reason"]["new_category_coverage"]) or "同分按规模及ID选择"]) + " |")
+                    ", ".join(row.get("selection_reason", {}).get("new_category_coverage", [])) or ("按约化式复杂度、文件 SHA256 与 ID 选择" if complexity else "按固定相对分数与覆盖调整选择" if ranked else "同分按规模及ID选择")]) + " |")
             lines += ["", "满占位、组成完整与结构预检通过不证明稳定性、可合成性或催化性能。没有执行新生成、弛豫或DFT。未知分析结果已排除，所有排除原因保存在JSON证据中。"]
         md_path = folder / "report.md"
         md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")

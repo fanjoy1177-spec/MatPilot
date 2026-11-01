@@ -26,7 +26,10 @@ SPEC.loader.exec_module(MODULE)
 class StudyPrepareTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        base = ROOT / ".work/test-temp"
+        # Git's Windows path handling cannot apply the bundled patch inside
+        # deeply nested snapshot roots. Keep only this disposable test output
+        # under the OS temporary directory; source still comes from ROOT.
+        base = Path(tempfile.gettempdir()) / "matpilot-study-tests"
         base.mkdir(parents=True, exist_ok=True)
         cls.tmp = tempfile.TemporaryDirectory(dir=base)
         cls.root = Path(cls.tmp.name)

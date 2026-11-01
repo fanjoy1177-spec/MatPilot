@@ -1,0 +1,24 @@
+{
+  "original_protocol_sha256": "ba871e244972b8ba8511e9e77b8368bf1ff8ddbf8a57df634b721e41e3362e03",
+  "metrics": {
+    "n": 100,
+    "k": 20,
+    "target_count": 50,
+    "ground_truth": "e_above_hull_mp2020_corrected_ppd_mp ascending, signed fixed-reference hull distance; verify compatibility by independent reference+released formation energy, never fit correction from targets.",
+    "truth_tie_seed": "MatPilot-trend-100-truth-tie-v1:",
+    "ties": "True order (DFT target, independent truth-tie SHA of material ID). Exact top50 primary, additionally report boundary tie count and inclusive-cutoff sensitivity; never share prediction tie seed.",
+    "primary": "Precision@20 = hits in true top50 / 20",
+    "secondary": [
+      "Recall@20 = hits/50",
+      "lift over random = precision/.5",
+      "Precision@returned and shortfall",
+      "Spearman for all100 available archive predictions vs truth; survivors separately if any",
+      "Top10 and Top20% ground-truth sensitivity, exploratory only",
+      "Per-material-class coverage and hits, no claim of class universality"
+    ]
+  },
+  "primary_method": "primary_service_plus_component",
+  "population": "fixed 100, retain failures; no replacement after labels",
+  "production_path": "per-system actual Service evidence_v1 then production global ranking component",
+  "upstream_training_overlap_excluded": false
+}

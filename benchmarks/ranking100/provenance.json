@@ -1,0 +1,40 @@
+{
+  "license": "CC BY 4.0 for public Matbench Discovery data",
+  "attribution": "Matbench Discovery dataset and its Wrenformer, MACE-MP-0 and Materials Project source records; see upstream model manifests for authors and individual artifact terms",
+  "upstream_repository": "https://github.com/janosh/matbench-discovery",
+  "upstream_data_manifest": "https://github.com/janosh/matbench-discovery/blob/main/matbench_discovery/data-files.yml",
+  "files": [
+    {
+      "role": "WBM summary / target labels",
+      "figshare_file_id": "64706751",
+      "url": "https://ndownloader.figshare.com/files/64706751"
+    },
+    {
+      "role": "Wrenformer v0.1.0 IP2E formation predictions",
+      "figshare_file_id": "66646136",
+      "url": "https://ndownloader.figshare.com/files/66646136"
+    },
+    {
+      "role": "MACE-MP-0 archived formation predictions; convergence unknown",
+      "figshare_file_id": "66646193",
+      "url": "https://ndownloader.figshare.com/files/66646193"
+    },
+    {
+      "role": "independent MP reference",
+      "figshare_file_id": "52080797",
+      "url": "https://ndownloader.figshare.com/files/52080797"
+    }
+  ],
+  "local_frozen_artifact_sha256": {
+    "protocol.json": "ba871e244972b8ba8511e9e77b8368bf1ff8ddbf8a57df634b721e41e3362e03",
+    "blind_features.json": "d98f88a99ae9ecf749f8e702558b6d4f1367e2f772e0c416235586e8669d7b3f",
+    "blind_run/rankings.json": "8a5fb3c08c609a90c2b2e27a7ae6fe37b651d46a425715aecc9b5d6768d415e9",
+    "sealed_labels.json": "5b8b969528abc0c5ce9aba39ac0e15a77201d5a3a13770b8e516e93edbf007dd",
+    "evaluation.json": "3db9ee00b842c63a473cf9eadaf62f1f0f65b1cd4cb96de1e21a40a38e2e3268",
+    "staging_metrics/evaluate100.py": "3992cc9c11bc5996ae001e592c251df517a68d051060b491c8c65a40df86ab60"
+  },
+  "new_model_inference_or_relaxation_or_dft": false,
+  "MACE_registered_as_usable_converged_service_metric": false,
+  "public_reproduction_scope": "fixed ranking evaluation arithmetic only; full production replay separately completed locally",
+  "selected_data_transformation": "whitelist numerical/public identities; omit all host paths, raw logs/config, full databases and local evidence ZIP"
+}

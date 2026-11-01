@@ -1,0 +1,99 @@
+{
+  "version": "0.2.0-dev.12",
+  "recipe_id": "mattergen-1.0.3-cu121-core14-v1",
+  "files": [
+    {
+      "path": "LICENSE",
+      "size": 1078
+    },
+    {
+      "path": "README.md",
+      "size": 2067
+    },
+    {
+      "path": "client.js",
+      "size": 7677
+    },
+    {
+      "path": "cordis.patch.yml",
+      "size": 71
+    },
+    {
+      "path": "deployment/assets/matpilot_core-0.2.0.dev14-py3-none-any.whl",
+      "size": 166507
+    },
+    {
+      "path": "deployment/assets/mattergen-1.0.3-py3-none-any.whl",
+      "size": 333564
+    },
+    {
+      "path": "deployment/assets/MatterGen-LICENSE.txt",
+      "size": 1141
+    },
+    {
+      "path": "deployment/cli.mjs",
+      "size": 1301
+    },
+    {
+      "path": "deployment/download.mjs",
+      "size": 3852
+    },
+    {
+      "path": "deployment/engine.mjs",
+      "size": 18120
+    },
+    {
+      "path": "deployment/locks/core-linux-py310.txt",
+      "size": 117008
+    },
+    {
+      "path": "deployment/locks/mattergen-linux-py310.txt",
+      "size": 336970
+    },
+    {
+      "path": "deployment/network.mjs",
+      "size": 3857
+    },
+    {
+      "path": "deployment/platform.mjs",
+      "size": 7879
+    },
+    {
+      "path": "deployment/recipe.json",
+      "size": 3065
+    },
+    {
+      "path": "deployment/tools.mjs",
+      "size": 2862
+    },
+    {
+      "path": "deployment/verify.py",
+      "size": 6947
+    },
+    {
+      "path": "deployment/worker.mjs",
+      "size": 681
+    },
+    {
+      "path": "icon.svg",
+      "size": 510
+    },
+    {
+      "path": "index.mjs",
+      "size": 3237
+    },
+    {
+      "path": "locale/en.json",
+      "size": 150
+    },
+    {
+      "path": "locale/zh.json",
+      "size": 194
+    },
+    {
+      "path": "package.json",
+      "size": 1466
+    }
+  ],
+  "sha256": "9dd5866149841f538044ddf1cf915c1e8e813ba20d645128be5d2cab04fcc746"
+}

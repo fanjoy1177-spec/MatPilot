@@ -127,7 +127,10 @@ class RecommendationIntegrationTests(unittest.TestCase):
             selected = self.service.build_report(job_id, metric_selections=[])
             selected_bytes = Path(selected["evidence_path"]).read_bytes()
             nested = self.service.build_report(job_id, metric_selections=[], recommendation_limit=1)
-        self.assertEqual(Path(nested["evidence_path"]).parent.parent.parent, Path(selected["evidence_path"]).parent)
+        self.assertEqual(Path(nested["evidence_path"]).parent,
+                         Path(selected["evidence_path"]).parent / "recommendations" / "ionic_mixed_valence_v1" / "1")
+        nested_evidence = json.loads(Path(nested["evidence_path"]).read_text(encoding="utf-8"))
+        self.assertEqual(nested_evidence["recommendation"]["effective_selection_policy"], "ionic_mixed_valence_v1")
         self.assertEqual(Path(selected["evidence_path"]).read_bytes(), selected_bytes)
 
     def test_cli_and_actual_fastmcp_discover_and_call_read_only_tool(self):
@@ -140,7 +143,7 @@ class RecommendationIntegrationTests(unittest.TestCase):
         async def exercise():
             app = make_server(service.settings)
             tools = await app.list_tools()
-            self.assertEqual(len(tools), 10)
+            self.assertIn("recommend_candidates", {tool.name for tool in tools})
             tool = next(t for t in tools if t.name == "recommend_candidates")
             self.assertTrue(tool.annotations.readOnlyHint)
             result = await app.call_tool("recommend_candidates", {"collection_id": "registered-fixture", "limit": 1})

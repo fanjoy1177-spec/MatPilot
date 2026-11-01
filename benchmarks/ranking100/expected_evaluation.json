@@ -1,0 +1,1969 @@
+{
+  "primary": {
+    "returned_count": 20,
+    "shortfall": 0,
+    "budget_denominator": 20,
+    "hit_count": 11,
+    "precision_at_20": 0.55,
+    "precision_at_20_percent": 55.0,
+    "precision_at_returned": 0.55,
+    "recall_at_20": 0.22,
+    "lift_over_random": 1.1,
+    "selected_candidate_ids": [
+      "H057",
+      "H063",
+      "H011",
+      "H058",
+      "H030",
+      "H018",
+      "H047",
+      "H076",
+      "H072",
+      "H041",
+      "H099",
+      "H087",
+      "H002",
+      "H079",
+      "H060",
+      "H039",
+      "H014",
+      "H074",
+      "H009",
+      "H056"
+    ],
+    "hit_candidate_ids": [
+      "H057",
+      "H030",
+      "H018",
+      "H047",
+      "H076",
+      "H041",
+      "H099",
+      "H039",
+      "H074",
+      "H009",
+      "H056"
+    ],
+    "miss_candidate_ids": [
+      "H063",
+      "H011",
+      "H058",
+      "H072",
+      "H087",
+      "H002",
+      "H079",
+      "H060",
+      "H014"
+    ],
+    "selected_truth_ranks": [
+      1,
+      69,
+      83,
+      93,
+      19,
+      2,
+      44,
+      3,
+      58,
+      7,
+      14,
+      59,
+      71,
+      61,
+      100,
+      18,
+      81,
+      4,
+      9,
+      5
+    ],
+    "random_all100": {
+      "population": 100,
+      "positive": 50,
+      "draws": 20,
+      "expected_hits": 10.0,
+      "expected_precision_fixed20": 0.5,
+      "precision_denominator": 20,
+      "selection_95pct_interval_hits": [
+        6,
+        14
+      ],
+      "upper_tail_ge_observed": 0.40156439114672526,
+      "exact_upper_tail_fraction": {
+        "numerator": "41905375271",
+        "denominator": "104355306882"
+      },
+      "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+    },
+    "secondary": {
+      "precision_at_10_against_true_top50": 0.6,
+      "hits_at_10_against_true_top50": 6,
+      "precision_at_20_against_true_top20": 0.5,
+      "hits_at_20_against_true_top20": 10,
+      "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+    },
+    "boundary_tie_sensitivity": {
+      "selected_strictly_better": 11,
+      "selected_tied_at_cutoff": 0,
+      "possible_hit_range": [
+        11,
+        11
+      ],
+      "possible_precision_range": [
+        0.55,
+        0.55
+      ],
+      "fractional_expected_hits": 11.0,
+      "fractional_expected_precision": 0.55,
+      "inclusive_cutoff_hits": 11,
+      "inclusive_cutoff_precision": 0.55,
+      "inclusive_cutoff_random_precision": 0.5,
+      "inclusive_cutoff_lift": 1.1
+    },
+    "service_eligible_pool": {
+      "count": 100,
+      "true_top50_count": 50,
+      "candidate_ids": [
+        "H001",
+        "H002",
+        "H003",
+        "H004",
+        "H005",
+        "H006",
+        "H007",
+        "H008",
+        "H009",
+        "H010",
+        "H011",
+        "H012",
+        "H013",
+        "H014",
+        "H015",
+        "H016",
+        "H017",
+        "H018",
+        "H019",
+        "H020",
+        "H021",
+        "H022",
+        "H023",
+        "H024",
+        "H025",
+        "H026",
+        "H027",
+        "H028",
+        "H029",
+        "H030",
+        "H031",
+        "H032",
+        "H033",
+        "H034",
+        "H035",
+        "H036",
+        "H037",
+        "H038",
+        "H039",
+        "H040",
+        "H041",
+        "H042",
+        "H043",
+        "H044",
+        "H045",
+        "H046",
+        "H047",
+        "H048",
+        "H049",
+        "H050",
+        "H051",
+        "H052",
+        "H053",
+        "H054",
+        "H055",
+        "H056",
+        "H057",
+        "H058",
+        "H059",
+        "H060",
+        "H061",
+        "H062",
+        "H063",
+        "H064",
+        "H065",
+        "H066",
+        "H067",
+        "H068",
+        "H069",
+        "H070",
+        "H071",
+        "H072",
+        "H073",
+        "H074",
+        "H075",
+        "H076",
+        "H077",
+        "H078",
+        "H079",
+        "H080",
+        "H081",
+        "H082",
+        "H083",
+        "H084",
+        "H085",
+        "H086",
+        "H087",
+        "H088",
+        "H089",
+        "H090",
+        "H091",
+        "H092",
+        "H093",
+        "H094",
+        "H095",
+        "H096",
+        "H097",
+        "H098",
+        "H099",
+        "H100"
+      ],
+      "random_comparator": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.40156439114672526,
+        "exact_upper_tail_fraction": {
+          "numerator": "41905375271",
+          "denominator": "104355306882"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "interpretation": "Diagnostic gate-versus-order decomposition; does not replace the primary all100 random baseline or remove excluded candidates from evaluation"
+    },
+    "spearman": {
+      "available_count": 100,
+      "missing_count": 0,
+      "all100": {
+        "n": 100,
+        "rho": 0.294989498949895,
+        "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+      },
+      "available_subset": {
+        "n": 100,
+        "rho": 0.294989498949895,
+        "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+      },
+      "service_survivors": {
+        "n": 100,
+        "rho": 0.294989498949895,
+        "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+      }
+    }
+  },
+  "methods": {
+    "primary_service_plus_component": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 11,
+      "precision_at_20": 0.55,
+      "precision_at_20_percent": 55.0,
+      "precision_at_returned": 0.55,
+      "recall_at_20": 0.22,
+      "lift_over_random": 1.1,
+      "selected_candidate_ids": [
+        "H057",
+        "H063",
+        "H011",
+        "H058",
+        "H030",
+        "H018",
+        "H047",
+        "H076",
+        "H072",
+        "H041",
+        "H099",
+        "H087",
+        "H002",
+        "H079",
+        "H060",
+        "H039",
+        "H014",
+        "H074",
+        "H009",
+        "H056"
+      ],
+      "hit_candidate_ids": [
+        "H057",
+        "H030",
+        "H018",
+        "H047",
+        "H076",
+        "H041",
+        "H099",
+        "H039",
+        "H074",
+        "H009",
+        "H056"
+      ],
+      "miss_candidate_ids": [
+        "H063",
+        "H011",
+        "H058",
+        "H072",
+        "H087",
+        "H002",
+        "H079",
+        "H060",
+        "H014"
+      ],
+      "selected_truth_ranks": [
+        1,
+        69,
+        83,
+        93,
+        19,
+        2,
+        44,
+        3,
+        58,
+        7,
+        14,
+        59,
+        71,
+        61,
+        100,
+        18,
+        81,
+        4,
+        9,
+        5
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.40156439114672526,
+        "exact_upper_tail_fraction": {
+          "numerator": "41905375271",
+          "denominator": "104355306882"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 0.6,
+        "hits_at_10_against_true_top50": 6,
+        "precision_at_20_against_true_top20": 0.5,
+        "hits_at_20_against_true_top20": 10,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 11,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          11,
+          11
+        ],
+        "possible_precision_range": [
+          0.55,
+          0.55
+        ],
+        "fractional_expected_hits": 11.0,
+        "fractional_expected_precision": 0.55,
+        "inclusive_cutoff_hits": 11,
+        "inclusive_cutoff_precision": 0.55,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 1.1
+      },
+      "service_eligible_pool": {
+        "count": 100,
+        "true_top50_count": 50,
+        "candidate_ids": [
+          "H001",
+          "H002",
+          "H003",
+          "H004",
+          "H005",
+          "H006",
+          "H007",
+          "H008",
+          "H009",
+          "H010",
+          "H011",
+          "H012",
+          "H013",
+          "H014",
+          "H015",
+          "H016",
+          "H017",
+          "H018",
+          "H019",
+          "H020",
+          "H021",
+          "H022",
+          "H023",
+          "H024",
+          "H025",
+          "H026",
+          "H027",
+          "H028",
+          "H029",
+          "H030",
+          "H031",
+          "H032",
+          "H033",
+          "H034",
+          "H035",
+          "H036",
+          "H037",
+          "H038",
+          "H039",
+          "H040",
+          "H041",
+          "H042",
+          "H043",
+          "H044",
+          "H045",
+          "H046",
+          "H047",
+          "H048",
+          "H049",
+          "H050",
+          "H051",
+          "H052",
+          "H053",
+          "H054",
+          "H055",
+          "H056",
+          "H057",
+          "H058",
+          "H059",
+          "H060",
+          "H061",
+          "H062",
+          "H063",
+          "H064",
+          "H065",
+          "H066",
+          "H067",
+          "H068",
+          "H069",
+          "H070",
+          "H071",
+          "H072",
+          "H073",
+          "H074",
+          "H075",
+          "H076",
+          "H077",
+          "H078",
+          "H079",
+          "H080",
+          "H081",
+          "H082",
+          "H083",
+          "H084",
+          "H085",
+          "H086",
+          "H087",
+          "H088",
+          "H089",
+          "H090",
+          "H091",
+          "H092",
+          "H093",
+          "H094",
+          "H095",
+          "H096",
+          "H097",
+          "H098",
+          "H099",
+          "H100"
+        ],
+        "random_comparator": {
+          "population": 100,
+          "positive": 50,
+          "draws": 20,
+          "expected_hits": 10.0,
+          "expected_precision_fixed20": 0.5,
+          "precision_denominator": 20,
+          "selection_95pct_interval_hits": [
+            6,
+            14
+          ],
+          "upper_tail_ge_observed": 0.40156439114672526,
+          "exact_upper_tail_fraction": {
+            "numerator": "41905375271",
+            "denominator": "104355306882"
+          },
+          "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+        },
+        "interpretation": "Diagnostic gate-versus-order decomposition; does not replace the primary all100 random baseline or remove excluded candidates from evaluation"
+      },
+      "spearman": {
+        "available_count": 100,
+        "missing_count": 0,
+        "all100": {
+          "n": 100,
+          "rho": 0.294989498949895,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        },
+        "available_subset": {
+          "n": 100,
+          "rho": 0.294989498949895,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        },
+        "service_survivors": {
+          "n": 100,
+          "rho": 0.294989498949895,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        }
+      }
+    },
+    "wrenformer_direct_scalar": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 11,
+      "precision_at_20": 0.55,
+      "precision_at_20_percent": 55.0,
+      "precision_at_returned": 0.55,
+      "recall_at_20": 0.22,
+      "lift_over_random": 1.1,
+      "selected_candidate_ids": [
+        "H057",
+        "H063",
+        "H011",
+        "H058",
+        "H030",
+        "H018",
+        "H047",
+        "H076",
+        "H072",
+        "H041",
+        "H099",
+        "H087",
+        "H002",
+        "H079",
+        "H060",
+        "H039",
+        "H014",
+        "H074",
+        "H009",
+        "H056"
+      ],
+      "hit_candidate_ids": [
+        "H057",
+        "H030",
+        "H018",
+        "H047",
+        "H076",
+        "H041",
+        "H099",
+        "H039",
+        "H074",
+        "H009",
+        "H056"
+      ],
+      "miss_candidate_ids": [
+        "H063",
+        "H011",
+        "H058",
+        "H072",
+        "H087",
+        "H002",
+        "H079",
+        "H060",
+        "H014"
+      ],
+      "selected_truth_ranks": [
+        1,
+        69,
+        83,
+        93,
+        19,
+        2,
+        44,
+        3,
+        58,
+        7,
+        14,
+        59,
+        71,
+        61,
+        100,
+        18,
+        81,
+        4,
+        9,
+        5
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.40156439114672526,
+        "exact_upper_tail_fraction": {
+          "numerator": "41905375271",
+          "denominator": "104355306882"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 0.6,
+        "hits_at_10_against_true_top50": 6,
+        "precision_at_20_against_true_top20": 0.5,
+        "hits_at_20_against_true_top20": 10,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 11,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          11,
+          11
+        ],
+        "possible_precision_range": [
+          0.55,
+          0.55
+        ],
+        "fractional_expected_hits": 11.0,
+        "fractional_expected_precision": 0.55,
+        "inclusive_cutoff_hits": 11,
+        "inclusive_cutoff_precision": 0.55,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 1.1
+      },
+      "spearman": {
+        "available_count": 100,
+        "missing_count": 0,
+        "all100": {
+          "n": 100,
+          "rho": 0.294989498949895,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        },
+        "available_subset": {
+          "n": 100,
+          "rho": 0.294989498949895,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        }
+      }
+    },
+    "mace_archived_scalar_convergence_unknown": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 20,
+      "precision_at_20": 1.0,
+      "precision_at_20_percent": 100.0,
+      "precision_at_returned": 1.0,
+      "recall_at_20": 0.4,
+      "lift_over_random": 2.0,
+      "selected_candidate_ids": [
+        "H057",
+        "H018",
+        "H047",
+        "H030",
+        "H076",
+        "H074",
+        "H009",
+        "H056",
+        "H078",
+        "H046",
+        "H096",
+        "H004",
+        "H039",
+        "H023",
+        "H027",
+        "H013",
+        "H017",
+        "H043",
+        "H069",
+        "H034"
+      ],
+      "hit_candidate_ids": [
+        "H057",
+        "H018",
+        "H047",
+        "H030",
+        "H076",
+        "H074",
+        "H009",
+        "H056",
+        "H078",
+        "H046",
+        "H096",
+        "H004",
+        "H039",
+        "H023",
+        "H027",
+        "H013",
+        "H017",
+        "H043",
+        "H069",
+        "H034"
+      ],
+      "miss_candidate_ids": [],
+      "selected_truth_ranks": [
+        1,
+        2,
+        44,
+        19,
+        3,
+        4,
+        9,
+        5,
+        10,
+        6,
+        15,
+        13,
+        18,
+        40,
+        16,
+        26,
+        23,
+        21,
+        31,
+        8
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 8.79303628551999e-08,
+        "exact_upper_tail_fraction": {
+          "numerator": "148",
+          "denominator": "1683150111"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 1.0,
+        "hits_at_10_against_true_top50": 10,
+        "precision_at_20_against_true_top20": 0.7,
+        "hits_at_20_against_true_top20": 14,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 20,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          20,
+          20
+        ],
+        "possible_precision_range": [
+          1.0,
+          1.0
+        ],
+        "fractional_expected_hits": 20.0,
+        "fractional_expected_precision": 1.0,
+        "inclusive_cutoff_hits": 20,
+        "inclusive_cutoff_precision": 1.0,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 2.0
+      },
+      "spearman": {
+        "available_count": 100,
+        "missing_count": 0,
+        "all100": {
+          "n": 100,
+          "rho": 0.8635103510351035,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        },
+        "available_subset": {
+          "n": 100,
+          "rho": 0.8635103510351035,
+          "tie_handling": "average numeric ranks; no hash tie-breaking for Spearman"
+        }
+      }
+    },
+    "fixed_hash": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 10,
+      "precision_at_20": 0.5,
+      "precision_at_20_percent": 50.0,
+      "precision_at_returned": 0.5,
+      "recall_at_20": 0.2,
+      "lift_over_random": 1.0,
+      "selected_candidate_ids": [
+        "H001",
+        "H002",
+        "H003",
+        "H004",
+        "H005",
+        "H006",
+        "H007",
+        "H008",
+        "H009",
+        "H010",
+        "H011",
+        "H012",
+        "H013",
+        "H014",
+        "H015",
+        "H016",
+        "H017",
+        "H018",
+        "H019",
+        "H020"
+      ],
+      "hit_candidate_ids": [
+        "H004",
+        "H006",
+        "H007",
+        "H009",
+        "H010",
+        "H013",
+        "H015",
+        "H017",
+        "H018",
+        "H020"
+      ],
+      "miss_candidate_ids": [
+        "H001",
+        "H002",
+        "H003",
+        "H005",
+        "H008",
+        "H011",
+        "H012",
+        "H014",
+        "H016",
+        "H019"
+      ],
+      "selected_truth_ranks": [
+        73,
+        71,
+        84,
+        13,
+        97,
+        30,
+        46,
+        99,
+        9,
+        47,
+        83,
+        96,
+        26,
+        81,
+        37,
+        52,
+        23,
+        2,
+        54,
+        17
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.5984356088532747,
+        "exact_upper_tail_fraction": {
+          "numerator": "62449931611",
+          "denominator": "104355306882"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 0.5,
+        "hits_at_10_against_true_top50": 5,
+        "precision_at_20_against_true_top20": 0.2,
+        "hits_at_20_against_true_top20": 4,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 10,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          10,
+          10
+        ],
+        "possible_precision_range": [
+          0.5,
+          0.5
+        ],
+        "fractional_expected_hits": 10.0,
+        "fractional_expected_precision": 0.5,
+        "inclusive_cutoff_hits": 10,
+        "inclusive_cutoff_precision": 0.5,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 1.0
+      }
+    },
+    "smallest_input_cell": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 5,
+      "precision_at_20": 0.25,
+      "precision_at_20_percent": 25.0,
+      "precision_at_returned": 0.25,
+      "recall_at_20": 0.1,
+      "lift_over_random": 0.5,
+      "selected_candidate_ids": [
+        "H079",
+        "H036",
+        "H038",
+        "H088",
+        "H066",
+        "H046",
+        "H016",
+        "H017",
+        "H002",
+        "H052",
+        "H019",
+        "H089",
+        "H073",
+        "H003",
+        "H014",
+        "H044",
+        "H080",
+        "H094",
+        "H033",
+        "H092"
+      ],
+      "hit_candidate_ids": [
+        "H088",
+        "H046",
+        "H017",
+        "H033",
+        "H092"
+      ],
+      "miss_candidate_ids": [
+        "H079",
+        "H036",
+        "H038",
+        "H066",
+        "H016",
+        "H002",
+        "H052",
+        "H019",
+        "H089",
+        "H073",
+        "H003",
+        "H014",
+        "H044",
+        "H080",
+        "H094"
+      ],
+      "selected_truth_ranks": [
+        61,
+        79,
+        76,
+        28,
+        74,
+        6,
+        52,
+        23,
+        71,
+        72,
+        54,
+        75,
+        80,
+        84,
+        81,
+        68,
+        51,
+        55,
+        32,
+        12
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.9974801132893285,
+        "exact_upper_tail_fraction": {
+          "numerator": "34697447777",
+          "denominator": "34785102294"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 0.3,
+        "hits_at_10_against_true_top50": 3,
+        "precision_at_20_against_true_top20": 0.1,
+        "hits_at_20_against_true_top20": 2,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 5,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          5,
+          5
+        ],
+        "possible_precision_range": [
+          0.25,
+          0.25
+        ],
+        "fractional_expected_hits": 5.0,
+        "fractional_expected_precision": 0.25,
+        "inclusive_cutoff_hits": 5,
+        "inclusive_cutoff_precision": 0.25,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 0.5
+      }
+    },
+    "largest_input_cell": {
+      "returned_count": 20,
+      "shortfall": 0,
+      "budget_denominator": 20,
+      "hit_count": 12,
+      "precision_at_20": 0.6,
+      "precision_at_20_percent": 60.0,
+      "precision_at_returned": 0.6,
+      "recall_at_20": 0.24,
+      "lift_over_random": 1.2,
+      "selected_candidate_ids": [
+        "H001",
+        "H045",
+        "H078",
+        "H087",
+        "H070",
+        "H040",
+        "H056",
+        "H086",
+        "H069",
+        "H100",
+        "H061",
+        "H076",
+        "H031",
+        "H026",
+        "H059",
+        "H096",
+        "H098",
+        "H030",
+        "H041",
+        "H072"
+      ],
+      "hit_candidate_ids": [
+        "H045",
+        "H078",
+        "H040",
+        "H056",
+        "H086",
+        "H069",
+        "H061",
+        "H076",
+        "H026",
+        "H096",
+        "H030",
+        "H041"
+      ],
+      "miss_candidate_ids": [
+        "H001",
+        "H087",
+        "H070",
+        "H100",
+        "H031",
+        "H059",
+        "H098",
+        "H072"
+      ],
+      "selected_truth_ranks": [
+        73,
+        48,
+        10,
+        59,
+        66,
+        49,
+        5,
+        45,
+        31,
+        78,
+        36,
+        3,
+        86,
+        24,
+        77,
+        15,
+        64,
+        19,
+        7,
+        58
+      ],
+      "random_all100": {
+        "population": 100,
+        "positive": 50,
+        "draws": 20,
+        "expected_hits": 10.0,
+        "expected_precision_fixed20": 0.5,
+        "precision_denominator": 20,
+        "selection_95pct_interval_hits": [
+          6,
+          14
+        ],
+        "upper_tail_ge_observed": 0.2269557723382557,
+        "exact_upper_tail_fraction": {
+          "numerator": "2631559919",
+          "denominator": "11595034098"
+        },
+        "interpretation": "Conditional fixed-pool random selection without replacement; not a population accuracy confidence interval"
+      },
+      "secondary": {
+        "precision_at_10_against_true_top50": 0.6,
+        "hits_at_10_against_true_top50": 6,
+        "precision_at_20_against_true_top20": 0.3,
+        "hits_at_20_against_true_top20": 6,
+        "interpretation": "Exploratory sensitivity only; primary remains Top20 against true Top50"
+      },
+      "boundary_tie_sensitivity": {
+        "selected_strictly_better": 12,
+        "selected_tied_at_cutoff": 0,
+        "possible_hit_range": [
+          12,
+          12
+        ],
+        "possible_precision_range": [
+          0.6,
+          0.6
+        ],
+        "fractional_expected_hits": 12.0,
+        "fractional_expected_precision": 0.6,
+        "inclusive_cutoff_hits": 12,
+        "inclusive_cutoff_precision": 0.6,
+        "inclusive_cutoff_random_precision": 0.5,
+        "inclusive_cutoff_lift": 1.2
+      }
+    }
+  },
+  "ground_truth": {
+    "direction": "minimize",
+    "interpretation": "signed distance to the fixed independent reference hull; negative values are permitted",
+    "cutoff_value": 0.055823,
+    "strictly_better_count": 49,
+    "boundary_tie_count": 1,
+    "tie_slots_in_top50": 1,
+    "tie_crosses_cutoff": false,
+    "inclusive_cutoff_positive_count": 50,
+    "distinct_value_count": 100,
+    "truth_tie_seed": "MatPilot-trend-100-truth-tie-v1:",
+    "truth_tie_identity": "immutable source ID supplied separately from anonymous candidate ID",
+    "true_top50_ids": [
+      "H057",
+      "H018",
+      "H076",
+      "H074",
+      "H056",
+      "H046",
+      "H041",
+      "H034",
+      "H009",
+      "H078",
+      "H064",
+      "H092",
+      "H004",
+      "H099",
+      "H096",
+      "H027",
+      "H020",
+      "H039",
+      "H030",
+      "H062",
+      "H043",
+      "H042",
+      "H017",
+      "H026",
+      "H051",
+      "H013",
+      "H095",
+      "H088",
+      "H091",
+      "H006",
+      "H069",
+      "H033",
+      "H068",
+      "H081",
+      "H049",
+      "H061",
+      "H015",
+      "H025",
+      "H055",
+      "H023",
+      "H037",
+      "H053",
+      "H097",
+      "H047",
+      "H086",
+      "H007",
+      "H010",
+      "H045",
+      "H040",
+      "H077"
+    ],
+    "true_top20_ids": [
+      "H057",
+      "H018",
+      "H076",
+      "H074",
+      "H056",
+      "H046",
+      "H041",
+      "H034",
+      "H009",
+      "H078",
+      "H064",
+      "H092",
+      "H004",
+      "H099",
+      "H096",
+      "H027",
+      "H020",
+      "H039",
+      "H030",
+      "H062"
+    ]
+  },
+  "truth_order": [
+    {
+      "rank": 1,
+      "candidate_id": "H057",
+      "source_id": "wbm-3-36858",
+      "value": -2.474685,
+      "tie_token": "ef30629c0315e765b30977585a089037982dafdd42178a68dabdaada2dec12f4"
+    },
+    {
+      "rank": 2,
+      "candidate_id": "H018",
+      "source_id": "wbm-4-7781",
+      "value": -0.107215,
+      "tie_token": "139eb85dbe0cc4a169d3318283a473baaa86e6d708f3e4d849d7da07f3607685"
+    },
+    {
+      "rank": 3,
+      "candidate_id": "H076",
+      "source_id": "wbm-3-78501",
+      "value": -0.078739,
+      "tie_token": "107a07c24d410b351c2a43e4c8b33933381a3a37a2e10584a865ae73fc99a214"
+    },
+    {
+      "rank": 4,
+      "candidate_id": "H074",
+      "source_id": "wbm-2-45971",
+      "value": -0.077901,
+      "tie_token": "08d63dbe6c67e2d69241ea4c92ce8a78c75d978afc74e43d65f478e58261a9fd"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "H056",
+      "source_id": "wbm-3-39253",
+      "value": -0.046359,
+      "tie_token": "fb82a909b81242f864759a4bd572e2a9d4f0e534b1b7907119d3b0c49803aec0"
+    },
+    {
+      "rank": 6,
+      "candidate_id": "H046",
+      "source_id": "wbm-3-37047",
+      "value": -0.023935,
+      "tie_token": "c91a480d32d05d8df00f8e86a3c19d5b28b27c8b46e92af56973238b81b05635"
+    },
+    {
+      "rank": 7,
+      "candidate_id": "H041",
+      "source_id": "wbm-4-16252",
+      "value": -0.017293,
+      "tie_token": "4cecc7a5fc2b4e482a8b0198a65c238571a14a6cf12b8d79ad3b63a126d9c68d"
+    },
+    {
+      "rank": 8,
+      "candidate_id": "H034",
+      "source_id": "wbm-2-34293",
+      "value": -0.016244,
+      "tie_token": "17da8e552be88f8dac515ebde8a1d2eea229e85e360310c009bd17ce609f0927"
+    },
+    {
+      "rank": 9,
+      "candidate_id": "H009",
+      "source_id": "wbm-1-45053",
+      "value": -0.015351,
+      "tie_token": "0e10b59bbe9001ee7ef55289c3ca11e9b791f9c736d5c63bae998c7e3889416f"
+    },
+    {
+      "rank": 10,
+      "candidate_id": "H078",
+      "source_id": "wbm-1-49787",
+      "value": -0.013832,
+      "tie_token": "3b38502858ab3d52f87f40240503d4a05376a0e7eafd4f786594804a4ee8f2d4"
+    },
+    {
+      "rank": 11,
+      "candidate_id": "H064",
+      "source_id": "wbm-4-1034",
+      "value": -0.010979,
+      "tie_token": "7277832b1b8cf49181d66015e6ba0657e02f1ada1e452e5b238350397203602d"
+    },
+    {
+      "rank": 12,
+      "candidate_id": "H092",
+      "source_id": "wbm-5-14129",
+      "value": -0.010201,
+      "tie_token": "c73f0a75b1d08bfedc0d4ccaad79e2ffe1f2d6acfc2bfb7dc61bd668bc4a0a59"
+    },
+    {
+      "rank": 13,
+      "candidate_id": "H004",
+      "source_id": "wbm-1-45207",
+      "value": -0.009286,
+      "tie_token": "0b7a07aa9e94bfce9fe6a4b194b0ae562aeed3360322f6660a9a2711fda941cf"
+    },
+    {
+      "rank": 14,
+      "candidate_id": "H099",
+      "source_id": "wbm-2-4952",
+      "value": -0.004933,
+      "tie_token": "45deb7bdc88eb14073c0686663cfefef3fc4aac5138e0a839b025ad246f04b8a"
+    },
+    {
+      "rank": 15,
+      "candidate_id": "H096",
+      "source_id": "wbm-1-54596",
+      "value": -0.00244,
+      "tie_token": "2b81660badc89639e462a9c79e5f58d57c8c6824dc7e16423c30f1b33a7b7d6e"
+    },
+    {
+      "rank": 16,
+      "candidate_id": "H027",
+      "source_id": "wbm-4-16714",
+      "value": -0.001734,
+      "tie_token": "55efe5acedda87ac4edb076cc7e35916f9355e56d0fbca257e4a983be62074a4"
+    },
+    {
+      "rank": 17,
+      "candidate_id": "H020",
+      "source_id": "wbm-3-50741",
+      "value": -0.001615,
+      "tie_token": "35325d1a311435f87f0691b40a4aecd4194f29341d0be0fbacb3939af26b74e4"
+    },
+    {
+      "rank": 18,
+      "candidate_id": "H039",
+      "source_id": "wbm-2-46843",
+      "value": 0.000543,
+      "tie_token": "8b0ac17fe0dbd414f1d0cf32adf6dfce2e49ce7dd99f599a24389afd6383b893"
+    },
+    {
+      "rank": 19,
+      "candidate_id": "H030",
+      "source_id": "wbm-4-11373",
+      "value": 0.001003,
+      "tie_token": "ba1ea0074ad4f474bea9843c813217a7a7a34a02fa2fff3b80b5eae2c4dc48cf"
+    },
+    {
+      "rank": 20,
+      "candidate_id": "H062",
+      "source_id": "wbm-1-50908",
+      "value": 0.001062,
+      "tie_token": "4514000b31950ec776d7233a71ac044ce018bc7310c0a5854687f9f687113f5a"
+    },
+    {
+      "rank": 21,
+      "candidate_id": "H043",
+      "source_id": "wbm-1-9314",
+      "value": 0.001382,
+      "tie_token": "12d7c5efe365a2cb338ac538171f2465e1316f8a6fab8515689cacb629b6870e"
+    },
+    {
+      "rank": 22,
+      "candidate_id": "H042",
+      "source_id": "wbm-3-15134",
+      "value": 0.006762,
+      "tie_token": "0cd63d4bfaed364b42c3a3a42c29f10ba467249962ed51f9d3ccc22e42db1ed7"
+    },
+    {
+      "rank": 23,
+      "candidate_id": "H017",
+      "source_id": "wbm-2-101",
+      "value": 0.009737,
+      "tie_token": "d56e57cf803e36ed0b25133f0a0a862fc7d777f4e6145f2c9812d080ca44a0b0"
+    },
+    {
+      "rank": 24,
+      "candidate_id": "H026",
+      "source_id": "wbm-4-38751",
+      "value": 0.011373,
+      "tie_token": "524145851472705e80de1db1429203fb59bb7450d08f876da6ea9912093a9941"
+    },
+    {
+      "rank": 25,
+      "candidate_id": "H051",
+      "source_id": "wbm-3-23439",
+      "value": 0.012141,
+      "tie_token": "13155bc3f92f22c9114d6041fe6d424d08ed4de2da1114cf467a65c1b4e2888e"
+    },
+    {
+      "rank": 26,
+      "candidate_id": "H013",
+      "source_id": "wbm-2-41718",
+      "value": 0.014217,
+      "tie_token": "5534a3351ae4602394b12565be94a5beebaff9025a68845b6bda6205118d857f"
+    },
+    {
+      "rank": 27,
+      "candidate_id": "H095",
+      "source_id": "wbm-2-18129",
+      "value": 0.014832,
+      "tie_token": "358c1a39e72bd2f4ccccaa63d4388653b22d6e71b6913478561940a9bca34e2e"
+    },
+    {
+      "rank": 28,
+      "candidate_id": "H088",
+      "source_id": "wbm-4-19547",
+      "value": 0.015815,
+      "tie_token": "196f5f124fe092827ad5e9700013f82710957470e02d8797775e243e28c40316"
+    },
+    {
+      "rank": 29,
+      "candidate_id": "H091",
+      "source_id": "wbm-2-35559",
+      "value": 0.015895,
+      "tie_token": "b3b54c5debff563ca2f9fa360b3eb54724cbf8137e1836671f6cfec213ff1d27"
+    },
+    {
+      "rank": 30,
+      "candidate_id": "H006",
+      "source_id": "wbm-1-43280",
+      "value": 0.019055,
+      "tie_token": "82420c647685c904c91c4dc7dcbc35357b97fb6b7376a789ccbd0390ada6d557"
+    },
+    {
+      "rank": 31,
+      "candidate_id": "H069",
+      "source_id": "wbm-4-2271",
+      "value": 0.020473,
+      "tie_token": "426c33c88348d251103bbb06140f12bb3deaa7465e3ad133cd7c1a21333e27e9"
+    },
+    {
+      "rank": 32,
+      "candidate_id": "H033",
+      "source_id": "wbm-1-37048",
+      "value": 0.025441,
+      "tie_token": "213dfae84fc4f6333528ecb903e1d2b39912a49cc1ffe7326954c20ada49df3c"
+    },
+    {
+      "rank": 33,
+      "candidate_id": "H068",
+      "source_id": "wbm-2-16536",
+      "value": 0.027159,
+      "tie_token": "ed97a8b386f4b245872597b3e22769a96796daee7c9ae9be34e808f8461a0858"
+    },
+    {
+      "rank": 34,
+      "candidate_id": "H081",
+      "source_id": "wbm-1-15875",
+      "value": 0.028212,
+      "tie_token": "aed997de3dc3dd4fee366b462c12536e336673ffa8e729c3d0a544a971e11f9f"
+    },
+    {
+      "rank": 35,
+      "candidate_id": "H049",
+      "source_id": "wbm-4-28853",
+      "value": 0.028347,
+      "tie_token": "100d1f651010626b17e8f014d3694461cc360577558e45962ac3e448e6c4c55f"
+    },
+    {
+      "rank": 36,
+      "candidate_id": "H061",
+      "source_id": "wbm-4-12689",
+      "value": 0.029832,
+      "tie_token": "5eab957f52265a23a4ea85ad2851166cba5503e27b60ae1faa4631b0f719eef1"
+    },
+    {
+      "rank": 37,
+      "candidate_id": "H015",
+      "source_id": "wbm-4-4017",
+      "value": 0.036231,
+      "tie_token": "c6b98f04a368f3aa2886e24f140bb90be8f15f1e7d1bcfb19b0c806de533d8ef"
+    },
+    {
+      "rank": 38,
+      "candidate_id": "H025",
+      "source_id": "wbm-4-25934",
+      "value": 0.039075,
+      "tie_token": "caf6db03253b703aa211cd8979842a964c3725d71fbda51ccc70fd29000d0fe3"
+    },
+    {
+      "rank": 39,
+      "candidate_id": "H055",
+      "source_id": "wbm-2-23178",
+      "value": 0.039824,
+      "tie_token": "60f167704d96442a2923f92fe66fe441182a7dac97295b7e685dbada646ea920"
+    },
+    {
+      "rank": 40,
+      "candidate_id": "H023",
+      "source_id": "wbm-2-1865",
+      "value": 0.044589,
+      "tie_token": "9d3589c59e8649d83de4af020847927fa200b863fdf55f40d877c7de583e5293"
+    },
+    {
+      "rank": 41,
+      "candidate_id": "H037",
+      "source_id": "wbm-2-19603",
+      "value": 0.04473,
+      "tie_token": "04526d4c3a750d3e331b74eb7cff55f779e6510bef06187a01f263b565d83b27"
+    },
+    {
+      "rank": 42,
+      "candidate_id": "H053",
+      "source_id": "wbm-4-39727",
+      "value": 0.048387,
+      "tie_token": "1cb4261b83e82917d68525f010376dad5193afb8b7d67958a9770ec17d19c419"
+    },
+    {
+      "rank": 43,
+      "candidate_id": "H097",
+      "source_id": "wbm-1-21309",
+      "value": 0.050012,
+      "tie_token": "061512d31c828efb890e464255af757b1c7dc37bef68c37ebd8366c6f68d8b22"
+    },
+    {
+      "rank": 44,
+      "candidate_id": "H047",
+      "source_id": "wbm-3-34799",
+      "value": 0.051664,
+      "tie_token": "fd2a8ac0cec292ff62e5008875d72029fdec26169877ee9f11f56f77631147ae"
+    },
+    {
+      "rank": 45,
+      "candidate_id": "H086",
+      "source_id": "wbm-1-8210",
+      "value": 0.052425,
+      "tie_token": "e0ba2a00a54e62b5ead63d1bae5bb782ef5d58ba848622267587bd22b2f5997c"
+    },
+    {
+      "rank": 46,
+      "candidate_id": "H007",
+      "source_id": "wbm-1-60239",
+      "value": 0.052813,
+      "tie_token": "f1c217f57d1c34aa2e5c1e3dd444e7e214558dc3a67cecddeb9bd84a50186bee"
+    },
+    {
+      "rank": 47,
+      "candidate_id": "H010",
+      "source_id": "wbm-5-6700",
+      "value": 0.054522,
+      "tie_token": "41b12237778e65607d6faebfb6d1304a5a6eae4881670883e3e6b8b536e5a509"
+    },
+    {
+      "rank": 48,
+      "candidate_id": "H045",
+      "source_id": "wbm-1-49448",
+      "value": 0.054711,
+      "tie_token": "97fe202e2b1306ce30cabc229f57b876a01f33c054faa66ab2987fcdf3c46edc"
+    },
+    {
+      "rank": 49,
+      "candidate_id": "H040",
+      "source_id": "wbm-4-32848",
+      "value": 0.055382,
+      "tie_token": "d93d5997a5241612dfdf35d6c096abdc965d0d3071726b2ad4ef141e2fcce6cd"
+    },
+    {
+      "rank": 50,
+      "candidate_id": "H077",
+      "source_id": "wbm-4-25220",
+      "value": 0.055823,
+      "tie_token": "41c7da8ecbec52df3ffa027dd7f6183a55e58439766bc83b29bd97ac846a8b75"
+    },
+    {
+      "rank": 51,
+      "candidate_id": "H080",
+      "source_id": "wbm-1-28944",
+      "value": 0.05583,
+      "tie_token": "441649f1e5427fa89a9cc07815d0ac30b4f34277d4f09768f03bf6dae5e967fa"
+    },
+    {
+      "rank": 52,
+      "candidate_id": "H016",
+      "source_id": "wbm-3-15415",
+      "value": 0.0567,
+      "tie_token": "d49ebb272edc54a1669a12834323b752dd333a741cddcc06329c2696be1b821f"
+    },
+    {
+      "rank": 53,
+      "candidate_id": "H065",
+      "source_id": "wbm-2-17971",
+      "value": 0.057014,
+      "tie_token": "88ca08cf0da17c8fd99a81ff40ddad09d991c0922503ef7efb2560b2cd3cd09b"
+    },
+    {
+      "rank": 54,
+      "candidate_id": "H019",
+      "source_id": "wbm-2-33797",
+      "value": 0.059086,
+      "tie_token": "eb65f31b30963e8fccdb553472cfdd914d33c8247f3966a06741a85ecdfd3f85"
+    },
+    {
+      "rank": 55,
+      "candidate_id": "H094",
+      "source_id": "wbm-4-498",
+      "value": 0.064829,
+      "tie_token": "ebc7de353036aecc4f78c3ed09eb8b6ba1cac3d46af61c7191bd4f9a262b71dd"
+    },
+    {
+      "rank": 56,
+      "candidate_id": "H048",
+      "source_id": "wbm-3-51569",
+      "value": 0.067465,
+      "tie_token": "9d984b3be44d466e9d36fbe641bd8d06951c5658b6c59b3f5a7e5d1bb4cca3ac"
+    },
+    {
+      "rank": 57,
+      "candidate_id": "H032",
+      "source_id": "wbm-3-71582",
+      "value": 0.069911,
+      "tie_token": "a9744dbc93971fb8b84364ed2f208a169fcf71bf5be50e791f5468c0708a202b"
+    },
+    {
+      "rank": 58,
+      "candidate_id": "H072",
+      "source_id": "wbm-2-5837",
+      "value": 0.072283,
+      "tie_token": "c31ebb65d79e31b8d367d6fe6e1374b9647d2e3d556cd1552bff8ea89a043f15"
+    },
+    {
+      "rank": 59,
+      "candidate_id": "H087",
+      "source_id": "wbm-2-36800",
+      "value": 0.082949,
+      "tie_token": "6bc9f7b58696cba6adddb37e3f100b7bd362a5c7cbd4f9bcc8f9ba4521e2d1bc"
+    },
+    {
+      "rank": 60,
+      "candidate_id": "H082",
+      "source_id": "wbm-3-45862",
+      "value": 0.084937,
+      "tie_token": "35f06eb5c2e4cb7b77f3d64283f38c729af66781ce84f9e2036349c49cb50d58"
+    },
+    {
+      "rank": 61,
+      "candidate_id": "H079",
+      "source_id": "wbm-2-4298",
+      "value": 0.085949,
+      "tie_token": "bcd4334e1f0465c12b425eafabb3b8cf3da673ec1bb49bdbbe2fd8b893fde5f4"
+    },
+    {
+      "rank": 62,
+      "candidate_id": "H035",
+      "source_id": "wbm-3-56101",
+      "value": 0.086383,
+      "tie_token": "e578381ac63a04cd9ab5e1f0a41259ee4de0454f5266ecaed2fc28eea4fbcf8f"
+    },
+    {
+      "rank": 63,
+      "candidate_id": "H024",
+      "source_id": "wbm-2-6811",
+      "value": 0.088273,
+      "tie_token": "00e67cb4d348054fe99b9ebffb94ca2ea95be4ef6049983d21ba875a9f04320f"
+    },
+    {
+      "rank": 64,
+      "candidate_id": "H098",
+      "source_id": "wbm-1-36752",
+      "value": 0.091339,
+      "tie_token": "25849efc99cba62aa6157a47182d091a495f618eb7fa6edb81e46fb28159e084"
+    },
+    {
+      "rank": 65,
+      "candidate_id": "H090",
+      "source_id": "wbm-2-44809",
+      "value": 0.092752,
+      "tie_token": "c6a1bee7f736e8de4d997f1601d164062f22987936dd42db4d476aa7a52fac09"
+    },
+    {
+      "rank": 66,
+      "candidate_id": "H070",
+      "source_id": "wbm-1-40439",
+      "value": 0.09297,
+      "tie_token": "2c81331c203f160742b9690cae907aea73731fe3dc729bcce84082cfc726e037"
+    },
+    {
+      "rank": 67,
+      "candidate_id": "H021",
+      "source_id": "wbm-4-7786",
+      "value": 0.096464,
+      "tie_token": "f1ed5730b8efdb9eb02fd616ae2c53f840b7a073f850ee43bb7886ad15d883d4"
+    },
+    {
+      "rank": 68,
+      "candidate_id": "H044",
+      "source_id": "wbm-1-47896",
+      "value": 0.097254,
+      "tie_token": "a9a18780e2db19c51b2237df238274b5743d1df4884fc619c47faa2fa56325bb"
+    },
+    {
+      "rank": 69,
+      "candidate_id": "H063",
+      "source_id": "wbm-4-22728",
+      "value": 0.103564,
+      "tie_token": "de2a1cecfbc76f35b096e790bf4f362351cf0ae314e42d9f01e7e10039ccf2c1"
+    },
+    {
+      "rank": 70,
+      "candidate_id": "H083",
+      "source_id": "wbm-3-48393",
+      "value": 0.110271,
+      "tie_token": "56a4e98b03c6b021e5b3e510b62b569665bf1bfcd231cc5cd75fd45bc5da8d2a"
+    },
+    {
+      "rank": 71,
+      "candidate_id": "H002",
+      "source_id": "wbm-3-50568",
+      "value": 0.113615,
+      "tie_token": "3fe846e479ad3d4e72c359c9eae36df43d63507d8660617ff765a17f4a68d2b4"
+    },
+    {
+      "rank": 72,
+      "candidate_id": "H052",
+      "source_id": "wbm-3-66839",
+      "value": 0.119888,
+      "tie_token": "ff0fb911b02edb819034b46d7b14e4a1a0a2e6f55ae11a8aebbb94d672629f50"
+    },
+    {
+      "rank": 73,
+      "candidate_id": "H001",
+      "source_id": "wbm-1-38437",
+      "value": 0.126555,
+      "tie_token": "d6a4921e522e663980cb2054d5fad54a462661c4134527e11de426dd6c461095"
+    },
+    {
+      "rank": 74,
+      "candidate_id": "H066",
+      "source_id": "wbm-3-49475",
+      "value": 0.12736,
+      "tie_token": "e2174fdfc1492381660c30679dcda1ecb144e2b6f42227e5d302bdac84b0aaf5"
+    },
+    {
+      "rank": 75,
+      "candidate_id": "H089",
+      "source_id": "wbm-2-52066",
+      "value": 0.127416,
+      "tie_token": "89d588d93b53dd1b6ea5614fce4176bcbcf24c5c084cd7d994f05e7e84f33144"
+    },
+    {
+      "rank": 76,
+      "candidate_id": "H038",
+      "source_id": "wbm-4-21219",
+      "value": 0.131395,
+      "tie_token": "9550ece2747e238499b5c129a278212ee96c18f6d6def7ba3a6442da956fb547"
+    },
+    {
+      "rank": 77,
+      "candidate_id": "H059",
+      "source_id": "wbm-1-23789",
+      "value": 0.132381,
+      "tie_token": "b133efb611a3fbfaf0a6aaf4256ef72a6700e59a53e4c88a55faaa5d839b1ee4"
+    },
+    {
+      "rank": 78,
+      "candidate_id": "H100",
+      "source_id": "wbm-2-6373",
+      "value": 0.133341,
+      "tie_token": "01eebc26df397092d0f1c983c3fd427abc4d3de7b86ac0e4730f659007cc2074"
+    },
+    {
+      "rank": 79,
+      "candidate_id": "H036",
+      "source_id": "wbm-1-5178",
+      "value": 0.135502,
+      "tie_token": "e7e3b4eab3e1667e7a6018ee536212590f8c384658c91712087c64b8626cf7f6"
+    },
+    {
+      "rank": 80,
+      "candidate_id": "H073",
+      "source_id": "wbm-5-1855",
+      "value": 0.136265,
+      "tie_token": "eb58e0153e06210e1ddbb71ddc69d69bdf8d02806a2d11da47e5c480378483b6"
+    },
+    {
+      "rank": 81,
+      "candidate_id": "H014",
+      "source_id": "wbm-1-39266",
+      "value": 0.154236,
+      "tie_token": "47dc7023cdbee7d6ac0a4cd13d87465da0d9dd6ac0a80aa93a501abfb652d5a0"
+    },
+    {
+      "rank": 82,
+      "candidate_id": "H054",
+      "source_id": "wbm-5-3285",
+      "value": 0.159407,
+      "tie_token": "e5a72f7cd4ef38589b1ac006c5e8af6d3716f80b0aab2230579d35e36189c122"
+    },
+    {
+      "rank": 83,
+      "candidate_id": "H011",
+      "source_id": "wbm-4-27633",
+      "value": 0.163151,
+      "tie_token": "ff8b6ee27d95713eb99e3a80270d74e22136fd19183f90fee7edf0b2d34fa350"
+    },
+    {
+      "rank": 84,
+      "candidate_id": "H003",
+      "source_id": "wbm-3-15305",
+      "value": 0.17134,
+      "tie_token": "a675c61b368faffaaae99de6df8f46e663322dd9e5d762cc72c92d128d4489bb"
+    },
+    {
+      "rank": 85,
+      "candidate_id": "H028",
+      "source_id": "wbm-3-17568",
+      "value": 0.172794,
+      "tie_token": "6492800b367d2ec0a09f04a249721e8ae4785dc6ba9f3b26239b18fc45b94466"
+    },
+    {
+      "rank": 86,
+      "candidate_id": "H031",
+      "source_id": "wbm-2-34442",
+      "value": 0.173762,
+      "tie_token": "d022da4a14bf1d70047822cdd8f93c2f77df46ecd0c80517a93a8a7fec8feea5"
+    },
+    {
+      "rank": 87,
+      "candidate_id": "H050",
+      "source_id": "wbm-3-77719",
+      "value": 0.181367,
+      "tie_token": "b605649d4c60095b40599f6516092a7639c121a57b93014f196409b1cb476e34"
+    },
+    {
+      "rank": 88,
+      "candidate_id": "H022",
+      "source_id": "wbm-4-3414",
+      "value": 0.189145,
+      "tie_token": "36025ee0c1c0d627274a50e4e726b31f34e6057bb5cff3bbc83561d7b3a4d5fb"
+    },
+    {
+      "rank": 89,
+      "candidate_id": "H029",
+      "source_id": "wbm-2-36304",
+      "value": 0.203083,
+      "tie_token": "780ff4523a9f005aeacaa731ac748f46742590fcde2486d71282539c62d11dfa"
+    },
+    {
+      "rank": 90,
+      "candidate_id": "H067",
+      "source_id": "wbm-3-54826",
+      "value": 0.214605,
+      "tie_token": "c1ac99e76e79487ac8c548a30d50984de5c76fd44e3dcd62e71aec72f0f98acc"
+    },
+    {
+      "rank": 91,
+      "candidate_id": "H085",
+      "source_id": "wbm-1-40918",
+      "value": 0.245923,
+      "tie_token": "a4493c1e34e93e4db0852bc4404b1fc5a059d41babcc1341255226ec3f7232ca"
+    },
+    {
+      "rank": 92,
+      "candidate_id": "H071",
+      "source_id": "wbm-3-32621",
+      "value": 0.25942,
+      "tie_token": "99bad9b3f5a39761df88a221df553d3f0d14a2f20988b86b76a003d97760e587"
+    },
+    {
+      "rank": 93,
+      "candidate_id": "H058",
+      "source_id": "wbm-3-2083",
+      "value": 0.266858,
+      "tie_token": "5f2de3cb57bd30c79b7e49c26ef29246a8d960f5cd55c2bc6e17391c7ec095c9"
+    },
+    {
+      "rank": 94,
+      "candidate_id": "H093",
+      "source_id": "wbm-1-7536",
+      "value": 0.274131,
+      "tie_token": "8c482b40e0c0c3c20bc660232501b36d4d2a162eb0de20010cab77fd80aad0d9"
+    },
+    {
+      "rank": 95,
+      "candidate_id": "H084",
+      "source_id": "wbm-3-6855",
+      "value": 0.281509,
+      "tie_token": "2ae4f9112838eb31c467d0575e7c3b1af1698e65376e6084932d51c84297486f"
+    },
+    {
+      "rank": 96,
+      "candidate_id": "H012",
+      "source_id": "wbm-2-20846",
+      "value": 0.284077,
+      "tie_token": "b5183db82fecd1e14e5691819367232e65ae20f4b5b1545d9469a232a682f9b1"
+    },
+    {
+      "rank": 97,
+      "candidate_id": "H005",
+      "source_id": "wbm-3-17402",
+      "value": 0.288027,
+      "tie_token": "64d095530cc3d16be388283ca5f7f48934dd786dfd701d822c82e8c288ff9b7d"
+    },
+    {
+      "rank": 98,
+      "candidate_id": "H075",
+      "source_id": "wbm-1-11380",
+      "value": 0.337191,
+      "tie_token": "c2dd32250511dcdfd137446be7bd3d77e25f360a718ce5fda2cfec707accfaf3"
+    },
+    {
+      "rank": 99,
+      "candidate_id": "H008",
+      "source_id": "wbm-3-50220",
+      "value": 0.359613,
+      "tie_token": "92afd0b064f7d4c88d13259be35749d323469d677b79278c5f447214b8992eec"
+    },
+    {
+      "rank": 100,
+      "candidate_id": "H060",
+      "source_id": "wbm-2-29590",
+      "value": 0.470644,
+      "tie_token": "94080deb7a4c82ecec969ad3d5631154de4182b173a1804f9987b872b8dcf2e0"
+    }
+  ],
+  "predeclared_screening_trend_criterion": {
+    "hits_above_random10": true,
+    "exact_random_upper_tail_lt_05": false,
+    "passed": false,
+    "no_automatic_default_switch": true
+  },
+  "truth_semantic_sha256": "ad9adce076824ddaa44517e1e82f75715210e2ec8c30bf6efe3f395d75db2855"
+}

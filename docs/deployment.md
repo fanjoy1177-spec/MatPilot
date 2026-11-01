@@ -1,11 +1,11 @@
-# 材策环境部署（Harness dev11）
+# 材策环境部署（Harness dev12 / core dev14）
 
 安装环境是插件功能的一部分。首次使用无需先安装 Python、uv、材策核心或 MatterGen；已有环境仍可用手动连接。Harness 本身及模型账户由用户安装和配置。
 
 ## 从下载到第一次任务
 
-1. 从本仓库 `releases/harness/0.2.0-dev.11/` 目录下载 `MatPilot-setup-0.2.0-dev.11.zip`，解压并核对 SHA256SUMS.txt。GitHub 文件页面点击 Download raw file 即可下载。
-2. 在 DeepSeek Harness `0.2.1-rc.2` 的“插件 → 添加插件”中选择 `dsh-matpilot-0.2.0-dev.11.tgz` 的绝对路径，安装并启用“材策 MatPilot”。
+1. 从本仓库 `releases/harness/0.2.0-dev.12/` 目录下载 `MatPilot-setup-0.2.0-dev.12.zip`，解压并核对 SHA256SUMS.txt。GitHub 文件页面点击 Download raw file 即可下载。
+2. 在 DeepSeek Harness `0.2.1-rc.2` 的“插件 → 添加插件”中选择 `dsh-matpilot-0.2.0-dev.12.tgz` 的绝对路径，安装并启用“材策 MatPilot”。
 3. 打开材策插件页，点击“复制环境检查指令”，在对话中发送：
 
    > 检查材策运行 MatterGen 的环境，并准备安装计划。保留现有环境，先不生成材料。
@@ -23,7 +23,7 @@
 - 真实生成需要该 Linux 环境能访问 NVIDIA GPU；仅有 `nvidia-smi` 不能证明兼容，安装后还要测试 PyTorch CUDA 分配，最后以真实小任务验证。
 - 系统需有 curl、tar、sha256sum、timeout。缺少 WSL、驱动或系统工具时给出阻塞原因和后续操作。本版不自动修改 BIOS、安装驱动、执行管理员系统安装或替用户完成重启；完成后重新检查即可。
 - 新安装要求至少 12 GiB 可用空间，已有托管环境/恢复/复核要求至少 2 GiB。该值是安装策略下限，实际空间随平台与缓存增加；不是容量保证。Windows 同时检查系统盘，WSL 在其他盘的复杂存储布局可能被保守拦截。
-- Python、材策核心和 MatterGen 分别由受管路径隔离，保持已有 Conda/系统 Python 不变。默认目录为 Linux 用户目录下 `.local/share/matpilot/mattergen-1.0.3-cu121-v1-模式`。
+- Python、材策核心和 MatterGen 分别由受管路径隔离，保持已有 Conda/系统 Python 不变。默认目录为 Linux 用户目录下 `.local/share/matpilot/mattergen-1.0.3-cu121-core14-v1-模式`。
 - `demo` 必须明确选择，只检查固定样本流程，不安装 MatterGen 或提供真实材料成果。不能因为缺少 GPU 就自动改成 demo 并报告部署成功。
 - 这是联网安装包。包含安装器、固定依赖清单、材策 wheel 和按官方固定提交构建的 MatterGen wheel；Python、CUDA Python 依赖和约 512 MB 权重按需下载。完整依赖下载为数 GB；不是离线镜像。
 

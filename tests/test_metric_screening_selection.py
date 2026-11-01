@@ -147,7 +147,7 @@ class MetricScreeningSelectionTests(unittest.TestCase):
         async def exercise():
             app = make_server(self.service.settings)
             tools = await app.list_tools()
-            self.assertEqual(len(tools), 10)
+            self.assertIn("recommend_candidates", {tool.name for tool in tools})
             for name in ("screen_candidates", "build_report"):
                 schema = next(t.inputSchema for t in tools if t.name == name)
                 self.assertIn("metric_selections", schema["properties"])

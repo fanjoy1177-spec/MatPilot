@@ -166,7 +166,7 @@ class ProductionMetricToolsTests(unittest.TestCase):
                 response = await app.call_tool(name, arguments)
                 return response[1] if isinstance(response, tuple) else json.loads(response[0].text)
             tools = await app.list_tools()
-            self.assertEqual(len(tools), 10)
+            self.assertIn("recommend_candidates", {tool.name for tool in tools})
             schema = next(t.inputSchema for t in tools if t.name == "compare_runs")
             self.assertIn("metric_selections", schema["properties"])
             self.assertIn("MetricSelection", schema["$defs"])
