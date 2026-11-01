@@ -123,7 +123,7 @@ python -m matpilot.development_report RUNTIME_JSON RUN_DIRECTORY EXISTING_LEDGER
 
 ## dev7 新情境的工具层验证
 
-[候选v2修订](candidate_revision_proposal_v2.md)仍待审核。新增 prepare_context_development.py 将5个已公开开发情境复制为独立开发包，smoke_context_runtime.mjs通过实际Harness ToolRuntime注册并执行共享工具；[结果](../artifacts/v07-context-tool-runtime-validation.json)为15/15场、110次调用通过，U/U+/M原始事实和共享工具结构一致。未创建LLM智能体、未加载账户服务，也未执行材料模型。
+[候选v2修订](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/docs/candidate_revision_proposal_v2.md)仍待审核。新增 prepare_context_development.py 将5个已公开开发情境复制为独立开发包，smoke_context_runtime.mjs通过实际Harness ToolRuntime注册并执行共享工具；[结果](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/v07-context-tool-runtime-validation.json)为15/15场、110次调用通过，U/U+/M原始事实和共享工具结构一致。未创建LLM智能体、未加载账户服务，也未执行材料模型。
 
 使用新的输出目录复算，避免覆盖历史包：
 

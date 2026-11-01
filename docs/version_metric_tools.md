@@ -36,7 +36,7 @@ screen_candidates 和 build_report 只检查原始生成版本；额外结构版
 | 正式工具数 | 9 | 9 |
 | 操作前后原始候选数 / 采样扣额 / 剩余预算 | 均为 1 / 1 / 0 | 均为 1 / 1 / 0 |
 
-结果来自 [实际 CPU 对照记录](../artifacts/metric-screening-cpu-comparison.json) 和 [复算脚本](../benchmarks/compare_metric_screening.py)。脚本调用实际 Service 与已注册 MCP 函数，记录冻结 wheel、两组源码和输入工件哈希；不把这一检查当作外部 Harness 或真实模型验收。dev8 的 [最终 CPU 回归记录](../artifacts/v08-unit-validation.json) 共 275 项：266 项通过、9 项跳过、无失败或错误，运行期间所登记源码未变化；跳过项目不计为通过。
+结果来自 [实际 CPU 对照记录](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/metric-screening-cpu-comparison.json) 和 [复算脚本](../benchmarks/compare_metric_screening.py)。脚本调用实际 Service 与已注册 MCP 函数，记录冻结 wheel、两组源码和输入工件哈希；不把这一检查当作外部 Harness 或真实模型验收。dev8 的 [最终 CPU 回归记录](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/v08-unit-validation.json) 共 275 项：266 项通过、9 项跳过、无失败或错误，运行期间所登记源码未变化；跳过项目不计为通过。
 
 ## dev6 → dev7 的既有对照
 
@@ -51,6 +51,6 @@ screen_candidates 和 build_report 只检查原始生成版本；额外结构版
 | 单任务显式选择两版本同方法指标 | 接口不支持 | 返回可比 |
 | 单任务显式选择不同方法指标 | 接口不支持 | 返回不可比，无排名 |
 
-dev6 的底层数据库已支持指标记录；本轮改善是让宿主内的插件可以调用这项能力，而不是宣称新增材料计算算法。比较来自 [实际记录](../artifacts/version-metric-tools-cpu-comparison.json) 和 [复算脚本](../benchmarks/compare_version_metric_tools.py)，其中保留两版源码及夹具哈希。
+dev6 的底层数据库已支持指标记录；本轮改善是让宿主内的插件可以调用这项能力，而不是宣称新增材料计算算法。比较来自 [实际记录](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/version-metric-tools-cpu-comparison.json) 和 [复算脚本](../benchmarks/compare_version_metric_tools.py)，其中保留两版源码及夹具哈希。
 
 此结果只证明指定输入下的工具行为。合成指标不是材料性能；接口可用不等于 AI 已正确选择指标，也不等于节省了多少人工时间。历史 U/U+/M 对照和消融另见 [贡献与证据](contribution_and_evidence.md)。

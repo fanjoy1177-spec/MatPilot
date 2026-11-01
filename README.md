@@ -1,52 +1,64 @@
 # 材策 MatPilot
 
-当前为 core 0.2.0.dev14 源码集成版本；本次源码合并不代表已安装或公开发布。保留跨材料 triage_v2、显式性质证据排序及预测准备接口；新增 ionic_complexity_v3 约化式复杂度启发式，并保留 ionic_ranked_v2 实验排序。默认 auto 仍采用 ionic_mixed_valence_v1；真实证据和明确材料类别优先走既有管线。规则与边界见 [候选推荐](docs/candidate_recommendation.md) 和 [跨材料使用指南](docs/recommendation_v2.md)。
-
-本次源码整合版本为 core `0.2.0.dev14`；配套 Harness 安装包版本为 `0.2.0-dev.12`。两个版本号属于不同组件，安装配方和包内 core wheel 均明确固定为 dev14。原有安装恢复、校验与显式授权流程保留。源码/安装包测试不等于已经在用户机器完成部署。
-
-本版保留跨材料 `triage_v2`、显式性质证据排序和预测准备接口，新增可选 `ionic_ranked_v2`、`ionic_complexity_v3`；默认 `auto` 仍为 `ionic_mixed_valence_v1`。新100结构实验的完整 Service 主方法命中11/20，MACE 归档标量对照命中20/20；后者是外部计算证据排序的条件性结果，不能改写为主方法或插件物理预测能力的提升。详见[验证摘要](docs/validation_summary_20261101.md)。
-
 **让材料研究需求成为可检查、可执行、可追溯的任务。**
 
-MatPilot 是 DeepSeek Harness 的材料研究工具插件，直接使用 Harness 界面。第一版接入 MatterGen，提供能力查询、完整条件检查、持久化任务、候选检查、代表结构推荐和证据报告。开发版已增加 DiffCSP++ 模板适配器及统一核验；第二模型尚未通过真实计算验收，当前不宣称已获得双模型科学成果。
+MatPilot 是 DeepSeek Harness 的材料研究工具插件，提供需求检查、任务管理、候选结构核验、代表结构推荐和证据报告。接入 MatterGen，保留 DiffCSP++ 模板适配器；第二模型尚未通过真实计算验收。
 
-MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. V1 integrates MatterGen. A DiffCSP++ template bridge is implemented but not yet accepted on real inference; no new LLM is trained and MatterGen's neural network is unchanged.
+MatPilot is a capability-aware materials workflow plugin for DeepSeek Harness. It connects research requirements, model execution and traceable candidate evidence without training a new LLM or changing MatterGen's neural network.
 
-2026-10-31：核心dev11补充跨体系混合价态判断。473个未参与修改的公开DFT结构、12个体系，同221名额下低凸包距离命中108→139（48.9%→62.9%）；仍有24个低标签被转复核，且覆盖/原子规模有取舍。详见[验证与边界](docs/mixed_valence_validation_20261031.md)。
+| 组件 | 当前开发版 | 下载与说明 |
+|---|---|---|
+| Python 核心 | `0.2.0.dev14` | [wheel 与 SHA256](releases/0.2.0.dev14/) |
+| Harness 插件与环境部署包 | `0.2.0-dev.12` | [安装文件](releases/harness/0.2.0-dev.12/) · [部署指南](docs/deployment.md) |
 
-## 当前开发范围
+两个版本号属于不同组件；当前安装配方与包内 wheel 均固定为 core dev14。开发版尚未发布到 npm 或 PyPI，安装包验证不等于已在每台用户机器完成部署。
 
-当前 Python 核心版本为 `0.2.0.dev14`，按 [研发方案 v1.1](docs/specification_v1.1.md) 实现。已增加逐项原文需求记录、确定性映射、候选身份与结构版本、指标来源核验、三值结果检查和结构等价匹配；当前可验证范围与未完成的研究事项见 [实施状态](docs/implementation_status.md)，不把功能完成等同于整份研究方案已验收。
+## 快速开始
 
-自然语言请求使用带精确原文引文的 `requirements`，程序自动定位唯一匹配；重复引文需要更完整的上下文或明确位置。最大采样预算包含已启动但失败的尝试，合格候选目标单独记录，详见 `get_capabilities` 和 `examples/request.json`。本地旧 0.1.1 安装包保留作回退。0.2.0.dev5固定发行包已通过176项Python回归、26项研究控制器检查与独立安装；桌面和真实 API 验证过程见 [新版验收记录](docs/release_acceptance_v05.md)；不把 demo 作为真实双模型验收。
+首次使用下载 [MatPilot 环境部署 ZIP](releases/harness/0.2.0-dev.12/MatPilot-setup-0.2.0-dev.12.zip)，按同目录 `SHA256SUMS.txt` 核对并解压。
 
-dev7补齐正式工具的逐版本指标读取和显式比较，实际前后结果见[版本指标工具对照](docs/version_metric_tools.md)，本轮验收见[dev7记录](docs/release_acceptance_v07.md)。新增36情境草稿和15场Harness工具验证不属于正式AI效果评分；已有整体提速未成立的结果继续保留。
+1. 在 Harness 的“插件 → 添加插件”中填写解压后 `dsh-matpilot-0.2.0-dev.12.tgz` 的绝对路径，安装并启用。
+2. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。
+3. 检查安装计划后确认，安装隔离环境；失败时使用进度查询和恢复入口。
+4. 完成导入、CUDA、MCP 检查，再按需授权单候选验证和真实计算。固定样本体验可选择 demo。
 
-dev8进一步将显式指标选择接入筛选和报告，保留未选证据及不同选择的报告；配置采样上限统一为32，小额度默认数量与能力卡一致。接口与对照见[指标工具说明](docs/version_metric_tools.md)，验收记录见[dev8记录](docs/release_acceptance_v08.md)。
+无需预装 Python 或 MatterGen；真实 MatterGen 计算仍需符合要求的 Linux/WSL2、NVIDIA 驱动、模型权重和磁盘空间。适用条件、原/新流程比较与失败恢复见[部署指南](docs/deployment.md)，已有环境的连接与旧配置迁移见[桌面接入](docs/desktop_setup.md)。账户与 API 配置由 Harness 管理。
 
-dev9新增第10个工具 `recommend_candidates`：对已有任务或操作者登记的候选集合重新核验CIF身份、组成、满占位和结构等价，按组成、空间群与输入晶胞规模覆盖推荐代表结构，并记录入选及排除原因。它用于候选后处理与后续计算规划，不改变MatterGen网络，也不把推荐顺序解释为材料性质排名。使用方式见[候选推荐说明](docs/candidate_recommendation.md)。
+连接后可输入：
 
-2026-10-26新增交付入口：[插件能力与MatterGen对比报告（PDF）](output/pdf/MatPilot_插件能力与MatterGen对比报告.pdf)、[机器可读对比证据](artifacts/mattergen-usage-comparison-20261026.json)、[公开复现目录](releases/studies/2026-10-26-mattergen-comparison/)。本轮新生成数据、历史128候选参考池及固定演示分别记录；流程步骤与候选覆盖的改善不等同于材料性能、人员总用时或总计算费用改善。下方历次验收数字保留其原有版本和范围。
+> 先查询 MatPilot 的能力。准备一个 Fe-Ni-O 体系、4 个候选结构的任务，把析氧活性和耐氯腐蚀性列为后续验证目标。先展示方案，不开始生成。
 
-当前源码中的自动推荐已扩展为跨体系混合价态检查：对明确支持的离子材料使用 `ionic_mixed_valence_v1`，允许同一种金属的不同位点采用不同正价态；不支持的体系明确回退通用结构推荐并说明未评估电荷可行性。它检查有限规则中的整数电荷分配，不预测真实原子价态或材料性能。旧 Fe-Ni-O 策略仍可显式复现。使用范围和调用方法见[候选推荐说明](docs/candidate_recommendation.md)。
+确认条件、数量和后端后再授权执行。条件目标会保留为待验证目标，不会被当作已测得的材料性质。
 
-历史 dev10补齐此前未自动执行的“优先弛豫”分级：Fe-Ni-O推荐默认先做结构核验与代表去重，再按固定启发式分为优先弛豫、人工复核、暂缓，最后从优先池按组成/空间群/规模推荐。其它体系保留通用结构策略。见[双场景操作对比PDF](output/pdf/MatPilot_双场景操作对比.pdf)和[补充对照证据](artifacts/triage-candidate-comparison-20261026.json)。沿用同12个候选的事后补充验证显示：与最小结构基线相比，多覆盖1种组成而多3个输入位点；与顺序基线持平。该成果属于候选清单与计算计划优化，未证明物性或总提速。旧报告和旧结果保留。
+## 能做什么
 
-## 0.1.1 历史已验证状态
+- 保留原文需求及对应关系，检查模型能力、条件组合、单位和采样预算。
+- 固定已审阅方案，持久化执行任务，记录失败尝试并保留有效的部分结果。
+- 核验 CIF、组成、结构身份和等价重复，给出候选推荐理由与排除原因。
+- 绑定结构版本、指标来源和方法；缺少证据时返回未知，方法不可比时不混排。
+- 输出可追溯报告，准备后续性质预测计划；计划接口本身不执行预测模型。
 
-- 21 项流程测试与 1 项官方 MCP 客户端协议测试通过。
-- Harness `0.2.1-rc.2` 中实际注册九个工具，能力查询成功。
-- 本机 WSL 与 RTX 4050 完成 1 个 Fe-Ni-O 候选生成、解析、检查和报告，执行约 248 秒。这是单任务联调，不是性能基准。
-- 已在用户的 Harness 桌面版中接入真实 DeepSeek API，完成中文需求、条件冲突、固定化学式、单位转换和演示流程联调。过程与局限见 [桌面验收记录](docs/desktop_acceptance.md)。
-- **用户提速对照尚未进行。** 固定示例数据不计作材料模型生成成果；本轮 AI 验收没有运行 MatterGen、DFT 或其他真实材料计算。
+当前默认 `auto` 对支持的离子材料采用 `ionic_mixed_valence_v1`，不支持的体系明确回退。跨材料 `triage_v2`、显式性质证据和预测准备接口保留；`ionic_ranked_v2`、`ionic_complexity_v3` 是可选策略，未替换默认策略。详见[候选推荐](docs/candidate_recommendation.md)、[跨材料使用指南](docs/recommendation_v2.md)和[性质预测证据契约](docs/property_predictor_contract.md)。
 
-2026-10-31新增[实际操作截图与来源清单](releases/studies/2026-10-31-visual-comparison/capture-manifest.json)及[新版真实AI联调记录](artifacts/harness-visual-recommendation-validation-20261031.json)：报告以直接MatterGen运行记录/CIF回看与Harness真实推荐界面对照。本次只读对话3次API、2次工具，未新增生成、弛豫或DFT；9.22秒仅是该次推荐对话耗时，不与生成耗时比较。
+Python 核心提供 12 个 MCP 工具；Harness 环境部署工具另行提供。
 
-## 安装后端
+| 工具 | 作用 |
+|---|---|
+| `get_capabilities` | 查询模型、检查点、条件和单位 |
+| `prepare_plan` | 检查并固定任务方案 |
+| `submit_job` | 提交已授权方案，拦截重复提交 |
+| `get_job` / `control_job` | 查询、停止及恢复任务 |
+| `get_results` | 返回结构文件与校验值 |
+| `screen_candidates` | 核验结构与所选指标 |
+| `recommend_candidates` | 推荐已有候选并提供审计记录 |
+| `get_candidate_evidence` | 查询候选证据与可比性 |
+| `prepare_property_prediction` | 准备预测计划及证据契约 |
+| `compare_runs` | 比较可比任务的完成数量与耗时 |
+| `build_report` | 保存任务报告与证据 |
 
-**首次使用建议直接安装 [Harness dev12 / core dev14 环境部署包](releases/harness/0.2.0-dev.12/)。无需预装 Python 或 MatterGen。** 插件集成环境检查、固定版本安装、失败恢复、CUDA/MCP 验证和单候选验证入口。具体范围与原/新流程对照见[环境部署指南](docs/deployment.md)。下面保留已有环境的手动安装方式。
+## 源码安装与固定样本演示
 
-需要 Python 3.10 或以上。下载源码，在项目目录建立独立环境：
+需要 Python 3.10 或以上。在仓库根目录建立独立环境：
 
 ```text
 python -m venv .venv
@@ -66,101 +78,36 @@ Linux：
 .venv/bin/python -m matpilot --config examples/config.demo.json demo
 ```
 
-也可从 [dev14 Python wheel 目录](releases/0.2.0.dev14/) 下载 wheel，按 SHA256SUMS.txt 核对。wheel 不包含示例配置；从同版本仓库获取 examples 与模板。Harness 原生连接包单独安装，见下一节。示例命令使用固定 NaCl 样本验证流程，不需要 GPU，也不调用 AI。
+演示使用固定 NaCl 样本，无需 GPU 或 AI。wheel 不包含示例配置，单独安装 wheel 时需从同版本仓库取得 `examples/`。真实 MatterGen 默认禁用；已有模型环境通过配置中的命令、工作目录和 WSL 参数连接。第二模型配置见[多模型部署说明](docs/multimodel_setup.md)。
 
-## 安装到 Harness
+## 验证与边界
 
-桌面版直接使用原生插件页面：
+最新[验证摘要](docs/validation_summary_20261101.md)区分软件回归和科学证据。固定 100 结构研究的主方法命中真实前 50 名中的 **11/20**，随机期望为 **10/20**；MACE 归档标量对照为 **20/20**，但收敛状态未知，未注册为可用 Service 指标，不能替代主方法结果。
 
-1. 下载 [桌面插件包 0.2.0-dev.12](releases/harness/0.2.0-dev.12/)，按 SHA256SUMS.txt 核对；首次使用无需先装 Python。
-2. 在 Harness 中选择“插件 → 添加插件”，填写下载的 tgz **绝对路径**，安装并启用。
-3. 打开“已安装插件 → 材策 MatPilot”，复制环境检查指令，在对话中发送。检查并确认安装计划后，插件安装隔离环境；已有环境也可使用手动连接表单。
-4. 查询安装进度，按需恢复，完成导入/CUDA/MCP 检查。真实单候选验证和启用真实计算分别授权。只需固定样本体验时明确选择 demo。
+[公开复现数据与命令](benchmarks/ranking100/)可离线核对六种方法的排名指标。本轮没有新增模型推断、几何弛豫或 DFT。既有开发对照尚未证明整体耗时或 API 费用下降，详见[作用与证据](docs/contribution_and_evidence.md)及[历史对照记录](docs/history.md)。
 
-自动部署步骤见[环境部署指南](docs/deployment.md)，已有环境连接和旧 MCP 配置迁移见[桌面配置说明](docs/desktop_setup.md)。当前 Harness 0.2.0-dev.12 的配方和包内 wheel 明确固定为 core 0.2.0.dev14，验证器检查12工具及核心版本。历史 Harness dev11/core dev8 包保留；升级不会自动替换用户正在使用的环境，需选择新的受管环境并验证连接。两个组件独立编号，尚未发布 npm 或 PyPI。
+结构可解析、组成匹配、有限价态规则可行或进入推荐清单，都不证明稳定性、可合成性、催化或耐腐蚀性能。原文映射仍需审阅；工作进程意外崩溃后的自动接管尚未实现，心跳迟到不会触发自动重跑。
 
-CLI/Web 用户仍可用 `dsh plugin --profile matpilot add ./packages/dsh-matpilot` 安装，再在 Web 插件详情保存连接配置；桌面的 desktop 配置由应用管理，不能使用 `dsh plugin --profile desktop add`。新包使用表单中的连接参数，旧包的 MATPILOT_PYTHON 环境变量设置方式不再适用。
+开发检查与 CI 使用固定样本和故障注入：
 
-在 Harness 中配置大模型账户或 API，然后可输入：
-
-> 先查询 MatPilot 的能力。准备一个 Fe-Ni-O 体系、4 个候选结构的任务，把析氧活性和耐氯腐蚀性列为后续验证目标。先展示方案，不开始生成。
-
-检查条件、数量和后端后再授权执行。无 API 时仍可用 CLI 和 MCP 客户端验证工具。历史真实 API 验收案例及失败记录见 `artifacts/desktop-acceptance.json`。
-
-## 连接实际 MatterGen
-
-新用户使用插件部署工具安装并验证后自动连接。已有环境也可按 [MatterGen 官方说明](https://github.com/microsoft/mattergen) 安装模型和权重，复制 `examples/config.native.json`，将 `command` 改为实际可执行文件路径，将 `MATPILOT_CONFIG` 指向该配置。真实计算默认禁用，取得对应授权并完成验证后启用。
-
-可用 `checkpoint_paths` 将检查点名称映射到已下载的模型目录，避免运行时下载。较旧 MatterGen 不支持 `--seed` 时设置 `seed_supported: false`；记录会明确标注种子未应用，不能保证逐结构复现。
-
-Windows 原生材料计算入口不受支持；使用 `backend: "wsl"`，设置 `wsl_distribution`、`wsl_user` 和 Linux `command`。输出目录须位于可映射到 `/mnt/盘符/` 的本地磁盘。Linux 监督进程负责中断和超时后的进程组清理。
-
-服务器可运行独立的 MatPilot Python 环境，并由 Harness MCP 客户端通过 SSH 启动 `python -m matpilot serve`。远程部署尚待服务器联调，未宣称验收。
-
-## 不经 AI 的结构化入口
-
-```text
-python -m matpilot --config examples/config.demo.json capabilities
-python -m matpilot --config examples/config.demo.json plan examples/request.json
-python -m matpilot --config examples/config.demo.json submit PLAN_ID --approve-plan PLAN_ID --key my-request-0001
-python -m matpilot --config examples/config.demo.json job JOB_ID
-python -m matpilot --config examples/config.demo.json screen JOB_ID
-python -m matpilot --config examples/config.demo.json recommend JOB_ID --limit 12
-python -m matpilot --config examples/config.demo.json report JOB_ID
-```
-
-用实际返回的编号替换大写占位符。`--approve-plan` 表示已检查并授权该计划。同一次提交重试应保持幂等键一致。关闭 MCP 连接不会取消独立进程中的计算；停止任务用 `control_job` 或 CLI 的 `stop`。
-
-## 工具（Python core dev14：12个）
-
-此表仅统计 Python 核心 MCP 工具；Harness dev12 的环境部署、安装及恢复工具另行提供，见[环境部署指南](docs/deployment.md)。
-
-| 工具 | 作用 |
-|---|---|
-| get_candidate_evidence | 查询候选的结构身份、计算证据和可比性 |
-| prepare_property_prediction | 准备性质预测计划及证据契约，不执行模型 |
-| get_capabilities | 模型、检查点、条件组合和单位 |
-| prepare_plan | 完整校验并固定方案，不自动丢弃要求 |
-| submit_job | 按已授权计划提交并拦截重复提交 |
-| get_job | 查询实际进度、批次和错误 |
-| control_job | 停止及恢复明确终止的任务 |
-| get_results | 结构文件与完整性校验值 |
-| screen_candidates | CIF、组成、基础几何与文件重复检查 |
-| recommend_candidates | 核验已有候选，去重后按类别覆盖推荐代表；返回理由与审计 |
-| compare_runs | 描述可比性、完成数量与耗时 |
-| build_report | Markdown 任务报告与 JSON 证据；可将推荐保存到独立子目录 |
-
-## 验证任务提升与流程提速
-
-减少查参数、改配置、报错返工及整理结果的人工时间，是主要研究目标。[作用与证据对照](docs/contribution_and_evidence.md) 分开说明实现、已验证行为和仍需测量的收益。工程封装与 AI 额外增益分别评估。主比较口径见 [评估执行说明](docs/study_protocol_v1.1.md)，旧入口比较保留在 docs/validation_protocol.md。第二模型配置见 [部署说明](docs/multimodel_setup.md)。不填入推测的提速百分比。[同题插件作用对照](docs/study_plugin_effects.md)保留全部12题及正反例：已观察到具体纠错作用，当前没有整体耗时或API费用下降的证据。新增研究驱动和回放/盲评工具的边界及用法见 [研究工具说明](docs/study_tooling.md)。dev5增加研究源码与待审报告工具；真实Harness开发联调及失败记录见 [开发对照记录](docs/study_development_results.md)。正式独立评分与用户时间测量仍未完成。
-
-```text
+```sh
+python -m pip install . -r benchmarks/study_drivers/requirements.txt
 python -m unittest discover -s tests -v
-python -m pip install build
-python -m build
-npm pack ./packages/dsh-matpilot --pack-destination dist
+node --test benchmarks/harness_study.test.mjs benchmarks/study_drivers/harness_bridge.test.mjs
+node --test benchmarks/deployment/*.test.mjs
 ```
 
-Windows MCP 异步运行时需要本机回环通信；受限沙箱可能阻断初始化。真实 GPU 联调需显式配置实际后端，默认测试只使用固定样本和故障注入。
+## 仓库导航
 
-## 结果边界
+| 目录 | 内容 |
+|---|---|
+| `src/` | Python 核心与模型适配器 |
+| `packages/` | Harness 插件与环境部署实现 |
+| `examples/` | 示例请求、配置和模板 |
+| `docs/` | 使用说明、接口契约与验证边界 |
+| `tests/` / `benchmarks/` | 回归测试、固定夹具、研究工具与复现数据 |
+| `releases/` | 当前开发版安装文件及校验清单 |
 
-条件目标不等于测量值。可解析、组成符合或距离检查通过，不证明稳定性、可合成性、催化或耐腐蚀性能。工作进程意外崩溃后的自动接管尚未实现；心跳迟到只提示检查，不自动重复启动。
+旧版安装包、过程验收记录、调研草稿和生成报告通过[历史资料入口](docs/history.md)访问。新生成的报告与日志由 `.gitignore` 排除，避免再次混入源码目录。
 
-代码采用 MIT 许可证；第三方组件与权重遵守各自授权，见 `THIRD_PARTY_NOTICES.md`。Python wheel 与 Harness bundle 以本地发行包提供，尚未发布到 npm 或 PyPI。
-
-## 本科项目定位与复用
-
-本项目面向缺少计算经验的材料专业学生，重点是减少参数配置错误、避免悄悄放宽需求，以及整理可核验的任务结果。插件形式、中文交互和接入大模型本身不宣称首创。
-
-[AtomisticSkills](https://github.com/learningmatter-mit/AtomisticSkills) 是重要的同类工作与复用来源；第二模型接口已实现，真实验收及正式对照实验尚未完成。本仓库当前使用独立的 MatterGen 适配器和 pymatgen，仅按需桥接固定版本的 DiffCSP++ 包装器，没有把上游全部模型能力算作本项目成果。材策 MatPilot 是独立本科项目，与其他同名研究系统无隶属关系。
-
-规则校验目前检查模型提交的结构化参数，不能保证识别自然语言提取阶段的所有遗漏。完整性仍需结合原文、方案审阅和独立测试评价。
-
-## 开发消融补充（2026-10-22）
-
-新增显式选择题目与模块开关的研究导出工具，源码回归189项Python、27项JavaScript通过。四道公开开发题、三种真实配置各运行一次，共12条真实Harness记录；全部材料数据仍为CPU回放。完整插件本轮API核算较低、墙钟较高，尚不支持整体提速或任务正确率提高。[完整消融报告与证据](docs/study_ablation_results.md)保留全部结果、费用与归因限制。已发布的dev5安装包及桌面固定部署保持不变，研究工具补充从当前仓库源码使用。
-
-## dev6 生产流程修复
-
-新增短返回/混合损坏文件/异常退出后完整产物的独立保留，明确失败尝试与可恢复预算；Linux/WSL进程监督覆盖父进程先退出及子孙忽略终止信号，清理未确认时禁止恢复。有限修改建议列出具体需求和参数差异。正式研究导入要求运行包、结果、轨迹、事件和费用账本一致，分析保留缺失与未评分。版本修复采用相同CPU夹具比较，不作为LLM增益或真实材料效果；验证与部署见[dev6验收](docs/release_acceptance_v06.md)。
+代码采用 MIT 许可证，第三方组件和权重遵守各自授权，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。MatPilot 是独立项目，与其他同名研究系统无隶属关系；[AtomisticSkills](https://github.com/learningmatter-mit/AtomisticSkills) 是同类工作与部分桥接设计的复用来源。

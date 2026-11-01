@@ -1,3 +1,4 @@
+# Local environments and build output
 .venv/
 .work/
 __pycache__/
@@ -10,30 +11,9 @@ node_modules/
 !.env.example
 matpilot-data/
 *.log
-deliverables/
-artifacts/*
-!artifacts/desktop-acceptance.json
-!artifacts/validation-summary.json
-!artifacts/real-example/
-!artifacts/figures/
-artifacts/figures/*
-!artifacts/figures/workflow.png
-!artifacts/figures/candidate_structure.png
 
-!artifacts/v11-unit-validation.json
-!artifacts/v02-deployment-validation.json
-
-!artifacts/v03-deployment-validation.json
-!artifacts/v03-live-acceptance.json
-
-!artifacts/v04-deployment-validation.json
-!artifacts/v04-live-acceptance.json
-
-!artifacts/study-tooling-validation.json
-!artifacts/study-harness-js-validation.json
-!artifacts/study-driver-cpu-validation.json
-
-!artifacts/v05-deployment-validation.json
-!artifacts/study-harness-development-validation.json
-
-!artifacts/figures/study_r3_workflow.png
+# Generated reports stay local; curated reproduction inputs live in benchmarks/.
+/deliverables/
+/artifacts/
+/output/
+/ranking100-receipt*.json

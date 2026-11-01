@@ -16,17 +16,17 @@ MatPilot 的具体价值是把需求和候选检查变成可调用、可追溯�
 | 小预算配置被默认数量阻塞，配置上限与首版规格不一致 | 配置采样上限限制为整数1—32；默认数量/批次分别不超过当前上限 | dev8固定源码回归覆盖上限拒绝与小预算默认值；显式超额请求仍拒绝 | 是输入契约修复，没有测得节省的人工时间或科学计算费用 |
 | 修改建议过于笼统，用户仍需猜参数 | 列出需求ID、条件和检查方式前后差异，预算不变 | dev6单元验证保留数值目标及硬结果要求，修订形成新计划 | 尚未测人工纠错时间，不能填提速比例 |
 
-r3 全12题：M/U+工具调用为94/104，墙钟合计159.031/133.756秒，API核算2.842496/2.298286元。M工具次数较少，但耗时和费用更高。全部36条对话正常结束不等于36题答对；未独立评分，人工主动时间未测。逐题数据及不利案例见[完整对照](study_plugin_effects.md)。
+r3 全12题：M/U+工具调用为94/104，墙钟合计159.031/133.756秒，API核算2.842496/2.298286元。M工具次数较少，但耗时和费用更高。全部36条对话正常结束不等于36题答对；未独立评分，人工主动时间未测。逐题数据及不利案例见[完整对照](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/docs/study_plugin_effects.md)。
 
-四题消融进一步区分模块作用：关闭结果核验后接口明确返回未检查，完整插件提供有效/唯一数量和方法可比性判断；LLM仍能读取原始证据并自行判断。三臂费用、耗时和失败均见[消融记录](study_ablation_results.md)。需求映射的独立收益尚不能据此确定。
+四题消融进一步区分模块作用：关闭结果核验后接口明确返回未检查，完整插件提供有效/唯一数量和方法可比性判断；LLM仍能读取原始证据并自行判断。三臂费用、耗时和失败均见[消融记录](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/docs/study_ablation_results.md)。需求映射的独立收益尚不能据此确定。
 
-[修复前后原始数据](../artifacts/v06-partial-output-comparison.json)记录冻结旧版、输入和源码哈希；[复算脚本](../benchmarks/compare_partial_outputs.py)不调用API。三例请求和采样扣额均为2，新版仍标partial、额度耗尽后仍拒绝恢复，不以多保留文件换取虚假的成功状态。
+[修复前后原始数据](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/v06-partial-output-comparison.json)记录冻结旧版、输入和源码哈希；[复算脚本](../benchmarks/compare_partial_outputs.py)不调用API。三例请求和采样扣额均为2，新版仍标partial、额度耗尽后仍拒绝恢复，不以多保留文件换取虚假的成功状态。
 
-dev8 的[指标选择对照](../artifacts/metric-screening-cpu-comparison.json)调用实际 Service 和已注册 MCP 函数，并核对两版接收的 CIF 与原始指标字节相同；它不是外部 Harness、传输协议或 LLM 端到端验收。旧 dev7 默认多值判为 unknown 的保守行为保留，新版不自动选择最有利指标。明确选择只作用于对应原始生成版本、性质和单位，报告同时列出选中与未选中证据，并用选择哈希区分档案。
+dev8 的[指标选择对照](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/metric-screening-cpu-comparison.json)调用实际 Service 和已注册 MCP 函数，并核对两版接收的 CIF 与原始指标字节相同；它不是外部 Harness、传输协议或 LLM 端到端验收。旧 dev7 默认多值判为 unknown 的保守行为保留，新版不自动选择最有利指标。明确选择只作用于对应原始生成版本、性质和单位，报告同时列出选中与未选中证据，并用选择哈希区分档案。
 
-另有独立的[dev8桌面验收](../artifacts/v08-deployment-validation.json)：实际九个MCP工具中重现合成指标默认unknown、显式选择后pass/fail及三报告共存，两条固定样本流程各得到2个文件、去重后1个。桌面工具验收没有调用LLM，不证明智能体能够正确选择方法；所有材料数据仍为演示或合成值。
+另有独立的[dev8桌面验收](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/v08-deployment-validation.json)：实际九个MCP工具中重现合成指标默认unknown、显式选择后pass/fail及三报告共存，两条固定样本流程各得到2个文件、去重后1个。桌面工具验收没有调用LLM，不证明智能体能够正确选择方法；所有材料数据仍为演示或合成值。
 
-[dev8 回归](../artifacts/v08-unit-validation.json)为275项中266通过、9项平台跳过，源码在测试中保持不变。指标值、结构及故障场景均是合成 CPU 数据，本轮新增 API 和真实材料计算均为0；测试数不能换算成任务正确率或提速比例。
+[dev8 回归](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/artifacts/v08-unit-validation.json)为275项中266通过、9项平台跳过，源码在测试中保持不变。指标值、结构及故障场景均是合成 CPU 数据，本轮新增 API 和真实材料计算均为0；测试数不能换算成任务正确率或提速比例。
 
 ## 开发过程中如何留下可用证据
 
@@ -47,4 +47,4 @@ dev8 的[指标选择对照](../artifacts/metric-screening-cpu-comparison.json)�
 
 后续由用户统一审核已有记录并提出修改；当前不安排老师做题，也不追加真实材料计算。只有实际测得人工时间和正确完成率后，才添加对应改善数字。
 
-[候选 v2 待审核包](../releases/studies/2026-10-23-candidate-v2/MatPilot_candidate_v2_review.zip)汇集36题、三处修订、合成情境和来源哈希，供用户后续审核。压缩包 SHA256：`c52d6fd303e71df1c32b64003025fce092022d0ecc32dca94abacd830626563d`。包内批准为false、审核身份为空、评分为null；这些开发者已看过的题目尚未成为正式封存测试，不构成新增效果证据。
+[候选 v2 待审核包](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/releases/studies/2026-10-23-candidate-v2/MatPilot_candidate_v2_review.zip)汇集36题、三处修订、合成情境和来源哈希，供用户后续审核。压缩包 SHA256：`c52d6fd303e71df1c32b64003025fce092022d0ecc32dca94abacd830626563d`。包内批准为false、审核身份为空、评分为null；这些开发者已看过的题目尚未成为正式封存测试，不构成新增效果证据。

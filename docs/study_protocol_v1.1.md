@@ -14,7 +14,7 @@ benchmarks/study/development_tasks.json 包含 12 道开发题；test_candidates
 
 U 使用固定上游及正常技能文档；U+ 加 benchmarks/baseline/atomisticskills-uplus.patch；M 共享 U+ 的同等科学能力和局部修复，再加 MatPilot 检查层。补丁原始文件快照、哈希和许可证随仓库保存，原参考目录未修改。
 
-四项修复：条件同时保留或显式拒绝；3 次采样按 2+1 执行；同化学式目标按唯一候选 ID 选择；数据库查询失败显示未知。已做隔离回归、真实上游函数到共享CPU回放的桥接验证，并完成真实Harness/LLM开发对照；材料模型推理和正式审定情境未验收。详见 study_plugin_effects.md。
+四项修复：条件同时保留或显式拒绝；3 次采样按 2+1 执行；同化学式目标按唯一候选 ID 选择；数据库查询失败显示未知。已做隔离回归、真实上游函数到共享CPU回放的桥接验证，并完成真实Harness/LLM开发对照；材料模型推理和正式审定情境未验收。详见[历史插件作用对照](https://github.com/fanjoy1177-spec/MatPilot/blob/9052a358f3f0b7135abd66db546fccb7ad2a8004/docs/study_plugin_effects.md)。
 
 三组环境清单必须固定相同宿主、LLM、推理模式、科学能力、回放数据、澄清规则、轮数/输出/采样预算。调度程序拒绝条件不一致及 U+/M 补丁不一致。可用模型或检查器有差异时先修正实验设计，不直接比较。不要为了保持 M 优势限制基线查文档或正常工具能力。
 

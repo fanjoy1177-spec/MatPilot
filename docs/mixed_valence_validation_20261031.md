@@ -42,6 +42,6 @@
 
 323项回归中314通过、9依既有条件跳过，无失败。包含13项求解器专属测试、54个小组成与独立穷举核对，以及Service/CLI/真实FastMCP接口验证。离线复跑新旧与匹配预算后，82项逐候选语义、选择集合及科学指标核对全部一致。
 
-详见 [中文对比报告](../output/pdf/MatPilot_混合价态优化与跨体系对比报告_2026-10-31.pdf) 和 [本地证据包](../releases/studies/2026-10-31-mixed-valence/MatPilot_混合价态跨体系验证证据包_2026-10-31.zip)。解压后使用兼容科学Python运行 reproduce_offline.py，指定全新输出目录；不调用网络、生成模型、弛豫或DFT。具体运行版本和原生插件安装验收见证据包部署回执。
+本轮中文对比报告、完整证据包和部署回执保存在本地，未包含在此公开仓库中；此页仅提供历史验证摘要。当前已公开的固定100结构数据与复算范围见 [最新验证摘要](validation_summary_20261101.md) 和 [公开复现入口](../benchmarks/ranking100/)，两轮实验不能混同。
 
 数据许可：[Alexandria CC BY 4.0](https://alexandria.icams.rub.de/about.html)，[Cavignac et al. 2026](https://doi.org/10.1088/2515-7639/ae6620)。价态先验定义：[pymatgen Element.icsd_oxidation_states](https://pymatgen.org/pymatgen.core.html#pymatgen.core.periodic_table.Element.icsd_oxidation_states)。
